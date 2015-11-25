@@ -5,12 +5,14 @@ import com.sadvit.repositories.UserRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.ContextStartedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -21,27 +23,20 @@ public class FileSystemService {
 
 	private Log logger = LogFactory.getLog(getClass());
 
-	@Autowired
-	private UserRepository userRepository;
+	@Value("${medimage.content}")
+	private String content;
 
-	@EventListener({ContextRefreshedEvent.class})
-	public void contextRefreshedEventListener() {
-		if (!checkFileSystem()) {
-			createFileSystem();
+	public void createUserFolder(String userName) {
+		String imagesPath = content + "/" + userName + "/" + "images";
+		String tempPath = content + "/" + userName + "/" + "temp";
+		File imagesFolder = new File(imagesPath);
+		File tempFolder = new File(tempPath);
+		if (!imagesFolder.mkdirs()) {
+			logger.error("Error creating user folder: " + imagesPath);
 		}
-		logger.info("FileSystemService checked the file system");
-	}
-
-	public void createFileSystem() {
-		List<User> users = userRepository.getAllUsers();
-		for (User user : users) {
-			String name = user.getName();
-
+		if (!tempFolder.mkdirs()) {
+			logger.error("Error creating user folder: " + tempPath);
 		}
-	}
-
-	public boolean checkFileSystem() {
-		return false;
 	}
 
 }

@@ -26,6 +26,9 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private FileSystemService fileSystemService;
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException	{
 		User user = userRepository.getUser(username);
@@ -40,5 +43,14 @@ public class UserService implements UserDetailsService {
     public String getCurrentUserName() {
         return getCurrentAuthentication().getName();
     }
+
+	public void registerUser(String login, String pass) {
+		userRepository.addUser(login, pass);
+		fileSystemService.createUserFolder(login);
+	}
+
+	public List<User> loadAllUsers() {
+		return userRepository.getAllUsers();
+	}
 
 }

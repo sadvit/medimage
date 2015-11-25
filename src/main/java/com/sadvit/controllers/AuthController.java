@@ -18,7 +18,4 @@ public class AuthController {
 	@RequestMapping("/logout")
 	public void logout() {}
 
-	@RequestMapping("/register")
-	public void register() {}
-
 }
