@@ -20,12 +20,7 @@ public class ImageController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public ResponseEntity<byte[]> getImage(@PathVariable String id) {
-		byte[] image = imageService.getImageAsByteArray(id);
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.IMAGE_PNG);
-
-		return new ResponseEntity<byte[]>(image, headers, HttpStatus.CREATED);
+		return imageResponse(imageService.getImageAsByteArray(id));
 	}
 
     @RequestMapping(method = RequestMethod.GET)
@@ -43,5 +38,10 @@ public class ImageController {
 		imageService.deleteImage(id);
     }
 
-}
+	private ResponseEntity<byte[]> imageResponse(byte[] image) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.IMAGE_PNG);
+		return new ResponseEntity<byte[]>(image, headers, HttpStatus.CREATED);
+	}
 
+}

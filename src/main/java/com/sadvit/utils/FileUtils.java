@@ -7,6 +7,8 @@ import com.sadvit.exceptions.FilesReadException;
 import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.ClassPathResource;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,6 +38,15 @@ public class FileUtils {
             throw new FileReadException(path);
         }
     }
+
+	public static synchronized BufferedImage readBufferedImage(String path) {
+		try	{
+			return ImageIO.read(new File(path));
+		}
+		catch (IOException e) {
+			throw new FileReadException(path);
+		}
+	}
 
     public static synchronized byte[] readFileAsByteArray(String path) {
         return toByteArray(readFile(path));
