@@ -20,12 +20,12 @@ import java.util.List;
 public class FileUtils {
 
     public static synchronized List<String> readAllFileNames(String path) {
-		File file = new File(path);;
+		File file = new File(path);
 		return Arrays.asList(file.list());
 	}
 
     public static synchronized void deleteFile(String path) {
-		File file = new File(path);;
+		File file = new File(path);
 		if (!file.exists() || !file.delete()) {
 			throw new FileDeleteException(path);
 		}
@@ -54,7 +54,7 @@ public class FileUtils {
 
     public static synchronized void writeFile(String path, InputStream inputStream) {
         try {
-            File file = new File(path);;
+            File file = new File(path);
             if (file.exists()) {
                 FileOutputStream outputStream = new FileOutputStream(file);
                 IOUtils.copy(inputStream, outputStream);

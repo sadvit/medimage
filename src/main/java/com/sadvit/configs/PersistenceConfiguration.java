@@ -15,15 +15,15 @@ import javax.sql.DataSource;
 @Configuration
 public class PersistenceConfiguration {
 
-	@Bean(name = "dataSource")
+	@Bean
 	@ConfigurationProperties(prefix = "spring.datasource")
 	public DataSource dataSource() {
 		return new BasicDataSource();
 	}
 
-	@Bean(name = "jdbcTemplate")
+	@Bean
+    @Autowired
 	@ConfigurationProperties(prefix = "spring.datasource")
-	@Autowired
 	public JdbcTemplate jdbcTemplate(DataSource dataSource) {
 		return new JdbcTemplate(dataSource);
 	}

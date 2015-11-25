@@ -1,11 +1,7 @@
 package com.sadvit.services;
 
-import boofcv.alg.filter.binary.ThresholdImageOps;
-import boofcv.core.image.ConvertBufferedImage;
-import boofcv.gui.binary.VisualizeBinaryData;
-import boofcv.struct.image.ImageFloat32;
-import boofcv.struct.image.ImageUInt8;
-import com.sadvit.utils.FileUtils;
+import com.sadvit.operations.binary.BinaryProcessHandler;
+import com.sadvit.operations.blur.BlurProcessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,16 +23,17 @@ public class ProcessService {
 	private ImageService imageService;
 
 	public byte[] processBlur(String id) {
-		return null;
+        BufferedImage image = imageService.getBufferedImage(id);
+        BlurProcessHandler handler = new BlurProcessHandler();
+        BufferedImage result = handler.handle(image, null);
+        return toByteArray(result);
 	}
 
 	public byte[] processBinary(String id) {
 		BufferedImage image = imageService.getBufferedImage(id);
-		ImageFloat32 input = ConvertBufferedImage.convertFromSingle(image, null, ImageFloat32.class);
-		ImageUInt8 binary = new ImageUInt8(input.width, input.height);
-		ThresholdImageOps.threshold(input, binary, 100, true);
-		BufferedImage visualBinary = VisualizeBinaryData.renderBinary(binary, null);
-		return toByteArray(visualBinary);
-	}
+        BinaryProcessHandler handler = new BinaryProcessHandler();
+        BufferedImage result = handler.handle(image, null);
+        return toByteArray(result);
+    }
 
 }

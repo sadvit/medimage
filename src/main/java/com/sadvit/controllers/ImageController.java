@@ -21,9 +21,6 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
 
-	@Autowired
-	private ProcessService processService;
-
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public ResponseEntity<byte[]> getImage(@PathVariable String id) {
 		return imageResponse(imageService.getImageAsByteArray(id));
@@ -43,15 +40,5 @@ public class ImageController {
     public void deleteImages(@PathVariable String id) {
 		imageService.deleteImage(id);
     }
-
-	@RequestMapping(method = RequestMethod.GET, value = "/{id}/process/binary")
-	public ResponseEntity<byte[]> processBinary(@PathVariable String id) {
-		return imageResponse(processService.processBinary(id));
-	}
-
-	@RequestMapping(method = RequestMethod.GET, value = "/{id}/process/blur")
-	public ResponseEntity<byte[]> processBlur(@PathVariable String id) {
-		return imageResponse(processService.processBlur(id));
-	}
 
 }
