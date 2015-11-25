@@ -1,12 +1,15 @@
 package com.sadvit.controllers;
 
 import com.sadvit.services.ImageService;
+import com.sadvit.services.ProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+
+import static com.sadvit.utils.WebUtils.imageResponse;
 
 /**
  * Created by vitaly.sadovskiy.
@@ -17,6 +20,9 @@ public class ImageController {
 
     @Autowired
     private ImageService imageService;
+
+	@Autowired
+	private ProcessService processService;
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public ResponseEntity<byte[]> getImage(@PathVariable String id) {
@@ -38,10 +44,14 @@ public class ImageController {
 		imageService.deleteImage(id);
     }
 
-	private ResponseEntity<byte[]> imageResponse(byte[] image) {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.IMAGE_PNG);
-		return new ResponseEntity<byte[]>(image, headers, HttpStatus.CREATED);
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}/process/binary")
+	public ResponseEntity<byte[]> processBinary(@PathVariable String id) {
+		return imageResponse(processService.processBinary(id));
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}/process/blur")
+	public ResponseEntity<byte[]> processBlur(@PathVariable String id) {
+		return imageResponse(processService.processBlur(id));
 	}
 
 }

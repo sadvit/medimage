@@ -33,19 +33,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http
 				.httpBasic()
 				.authenticationEntryPoint(authenticationEntryPoint)
-				.and()
+					.and()
 				.authorizeRequests()
-				.antMatchers("/images").hasRole("USER")
-				.and()
+				.antMatchers("/images/**").hasRole("USER")
+					.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/auth/logout"))
 				.invalidateHttpSession(true)
 				.logoutSuccessUrl("/");
-	}
-
-	@Override
-	public void configure(WebSecurity web) throws Exception	{
-		// TODO to ignore same URLs
 	}
 
 	@Override

@@ -75,9 +75,18 @@ public class FileUtils {
         try {
             return IOUtils.toByteArray(inputStream);
         } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException("Error converting image");
         }
     }
+
+	public static byte[] toByteArray(BufferedImage bufferedImage) {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try	{
+			ImageIO.write(bufferedImage, "jpg", baos);
+			return baos.toByteArray();
+		} catch (IOException e) {
+			throw new RuntimeException("Error converting image");
+		}
+	}
 
 }
