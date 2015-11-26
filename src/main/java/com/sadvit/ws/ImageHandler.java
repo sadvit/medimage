@@ -8,14 +8,13 @@ import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
-import org.springframework.web.socket.handler.BinaryWebSocketHandler;
 
 /**
  * Created by vitaly.sadovskiy.
  */
 public class ImageHandler extends AbstractWebSocketHandler {
 
-	private static final Log logger = LogFactory.getLog(GatewayHandler.class);
+	private static final Log logger = LogFactory.getLog(TransferWebSocketHandler.class);
 
 	@Autowired
 	private ImageService imageService;

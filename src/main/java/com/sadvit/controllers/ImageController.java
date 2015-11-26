@@ -1,4 +1,3 @@
-/*
 package com.sadvit.controllers;
 
 import com.sadvit.services.ImageService;
@@ -12,11 +11,6 @@ import java.util.List;
 
 import static com.sadvit.utils.WebUtils.imageResponse;
 
-*/
-/**
- * Created by vitaly.sadovskiy.
- *//*
-
 @RestController
 @RequestMapping("/images1")
 public class ImageController {
@@ -24,10 +18,10 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
 
-	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
+	/*@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public ResponseEntity<byte[]> getImage(@PathVariable String id) {
 		return imageResponse(imageService.getImageAsByteArray(id));
-	}
+	}*/
 
     @RequestMapping(method = RequestMethod.GET)
     public List<String> getImages() {
@@ -44,4 +38,4 @@ public class ImageController {
 		imageService.deleteImage(id);
     }
 
-}*/
+}

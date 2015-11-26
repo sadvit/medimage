@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -34,6 +32,7 @@ public class ImageService {
     public InputStream getImage(String id) {
         return null; // FileUtils.readFile(getFilePath(id));
     }
+
 
 	public BufferedImage getBufferedImage(String id) {
 		return null; // FileUtils.readBufferedImage(getFilePath(id));

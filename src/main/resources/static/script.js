@@ -5,20 +5,69 @@ angular.module('medimage', ['ngRoute', 'restangular', 'ngWebSocket']);
 angular.module('medimage').service('webSocketGateway', ['$websocket', function ($websocket) {
 
     var self = this;
-    var dataStream = $websocket('ws://localhost:8080/gateway');
-    var map = {};
+    var ws = $websocket('ws://localhost:8080/gateway');
 
-    var dataStream2 = $websocket('ws://localhost:8080/images');
+    var callbacks = {};
 
-    dataStream2.send('cecb4671-9679-452b-9e6f-aadab15db7b1');
+    this.imageRequest = function (data, callback) {
+        var id = self.guid();
+        callbacks[id] = callback;
+        var wrapper = {
+            id: id,
+            message: data
+        };
+        ws.send(wrapper);
+    };
 
-    dataStream2.onMessage(function (response) {
-        var image = response.data;
-        //image.type = 'image/png';
-        var url = URL.createObjectURL(image);
-        var element = document.getElementById('image');
-        element.src = url;
+    this.operationRequest = function (data, callback) {
+        var id = self.guid();
+        callbacks[id] = callback;
+        var wrapper = {
+            id: id,
+            message: data
+        };
+        ws.send(wrapper);
+    };
+
+    // ---------------------------------
+
+    this.imageRecieve = function (data) {
+        var id = data.slice(0, 36);
+        var image = 'data:image/png;base64,' + data.slice(37, data.length - 1) + '==';
+        if (callbacks[id]) {
+            callbacks[id](image);
+            delete callbacks[id];
+        }
+    };
+
+    this.jsonRecieve = function (data) {
+        if (data && data.id) {
+            if (callbacks[data.id]) {
+                callbacks[data.id](data);
+                delete callbacks[data.id];
+            }
+        }
+    };
+
+    // ---------------------------------
+
+    ws.onMessage(function (request) {
+        var data = request.data;
+        try {
+            var json = JSON.parse(data);
+            self.jsonRecieve(json);
+        } catch(e) {
+            self.imageRecieve(data);
+        }
+
+        if (data instanceof Blob) {
+            self.imageRecieve(data);
+        } else {
+            self.jsonRecieve(data);
+        }
     });
+
+    // ---------------------------------
 
     this.guid = function () {
         function s4() {
@@ -29,24 +78,6 @@ angular.module('medimage').service('webSocketGateway', ['$websocket', function (
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
             s4() + '-' + s4() + s4() + s4();
     };
-
-    this.request = function (data, callback) {
-        var id = self.guid();
-        data.id = id;
-        map[id] = callback;
-        dataStream.send(data);
-    };
-
-    dataStream.onMessage(function (request) {
-        var data = JSON.parse(request.data);
-        if (data && data.id) {
-            console.log('Success recv data');
-            map[data.id](data);
-            delete map[data.id];
-        } else {
-            console.log('Incorrect data');
-        }
-    });
 
 }]);
 
@@ -65,11 +96,11 @@ angular.module('medimage').controller('indexController', ['$scope', '$http', 'Re
 
     $scope.test = function () {
         var data = {
-            name: 'sadvit',
-            role: 'user'
+            id: 'cecb4671-9679-452b-9e6f-aadab15db7b1',
+            action: 'getImage'
         };
-        webSocketGateway.request(data, function (data) {
-            console.log('recv data from callback: ' + JSON.stringify(data))
+        webSocketGateway.imageRequest(data, function (image) {
+            document.getElementById('image').src = image;
         });
     };
 

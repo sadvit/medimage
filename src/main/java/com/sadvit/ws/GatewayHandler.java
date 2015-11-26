@@ -1,45 +1,34 @@
 package com.sadvit.ws;
 
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sadvit.services.ImageService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.sadvit.services.ImageTransferService;
+import com.sadvit.services.TextTransferService;
+import com.sadvit.ws.transfer.ImageTransfer;
+import com.sadvit.ws.transfer.TextTransfer;
+import com.sadvit.ws.transfer.Transfer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.socket.BinaryMessage;
-import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
-import org.springframework.web.socket.handler.AbstractWebSocketHandler;
+
+import java.io.IOException;
 
 /**
- * Created by vitaly.sadovskiy.
+ * Created by sadvit on 26.11.15.
  */
-public class GatewayHandler extends AbstractWebSocketHandler {
+public class GatewayHandler extends TransferWebSocketHandler {
 
-	private static final Log logger = LogFactory.getLog(GatewayHandler.class);
+    @Autowired
+    private TextTransferService textTransferService;
 
-	@Autowired
-	private ImageService imageService;
+    @Autowired
+    private ImageTransferService imageTransferService;
 
-	@Override
-	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		ObjectMapper mapper = new ObjectMapper();
-		JsonNode root = mapper.readTree(message.getPayload());
-		logger.info("rerere: " + imageService);
-		logger.info(root.get("name"));
-		logger.info(root.get("id"));
-		//WebSocketTransfer transfer = TransferConverter.toTransfer(message);
-		//String id = transfer.getId();
-		// TODO обрабатываем модель из Transfer, и отвечаем результатом, установив id запроса.
-		//logger.info("GET TEXT MESSAGE: " + message.getPayload());
-		session.sendMessage(new TextMessage(root.toString()));
-	}
+    @Override
+    protected Transfer handleTextTransfer(TextTransfer transfer) {
+        return textTransferService.process(transfer);
+    }
 
-	@Override
-	protected void handleBinaryMessage(WebSocketSession session, BinaryMessage message) throws Exception {
-		// TODO в теории, можно было бы узнать кто шлет картинку... да и сохранять её
-		logger.info("GET BINARY MESSAGE: " + message.getPayload());
-	}
+    @Override
+    protected Transfer handleImageTransfer(ImageTransfer transfer) {
+        return imageTransferService.process(transfer);
+    }
 
 }
