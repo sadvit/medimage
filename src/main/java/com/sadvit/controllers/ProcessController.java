@@ -1,5 +1,6 @@
 package com.sadvit.controllers;
 
+import com.sadvit.operations.HandlerType;
 import com.sadvit.services.ProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +23,12 @@ public class ProcessController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/binary/{id}")
     public ResponseEntity<byte[]> processBinary(@PathVariable String id) {
-        return imageResponse(processService.processBinary(id));
+        return imageResponse(processService.process(id, HandlerType.BINARY));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/blur/{id}")
     public ResponseEntity<byte[]> processBlur(@PathVariable String id) {
-        return imageResponse(processService.processBlur(id));
+        return imageResponse(processService.process(id, HandlerType.BLUR));
     }
 
 }
