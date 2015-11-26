@@ -103,6 +103,14 @@
             <version>4.2.3.RELEASE</version>
         </dependency>
 
+        <!-- WS -->
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>4.2.3.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <build>

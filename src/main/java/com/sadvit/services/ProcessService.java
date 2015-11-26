@@ -12,8 +12,6 @@ import static com.sadvit.utils.FileUtils.toByteArray;
 
 /**
  * Created by vitaly.sadovskiy.
- *
- *
  */
 @Service
 public class ProcessService {
@@ -21,10 +19,10 @@ public class ProcessService {
 	@Autowired
 	private ImageService imageService;
 
-	public byte[] process(String id, HandlerType type) {
+	public byte[] process(String id, HandlerType type, Object params) {
         BufferedImage image = imageService.getBufferedImage(id);
         ProcessHandler handler = HandlerFactory.getHandler(type);
-        BufferedImage result = handler.handle(image, null);
+        BufferedImage result = handler.handle(image, params);
         return toByteArray(result);
 	}
 
