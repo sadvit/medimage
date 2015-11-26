@@ -1,3 +1,4 @@
+/*
 package com.sadvit.controllers;
 
 import com.sadvit.services.ImageService;
@@ -11,11 +12,13 @@ import java.util.List;
 
 import static com.sadvit.utils.WebUtils.imageResponse;
 
+*/
 /**
  * Created by vitaly.sadovskiy.
- */
+ *//*
+
 @RestController
-@RequestMapping("/images")
+@RequestMapping("/images1")
 public class ImageController {
 
     @Autowired
@@ -41,4 +44,4 @@ public class ImageController {
 		imageService.deleteImage(id);
     }
 
-}
+}*/

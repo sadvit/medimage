@@ -32,23 +32,23 @@ public class ImageService {
     private UserService userService;
 
     public InputStream getImage(String id) {
-        return FileUtils.readFile(getFilePath(id));
+        return null; // FileUtils.readFile(getFilePath(id));
     }
 
 	public BufferedImage getBufferedImage(String id) {
-		return FileUtils.readBufferedImage(getFilePath(id));
+		return null; // FileUtils.readBufferedImage(getFilePath(id));
 	}
 
-    public byte[] getImageAsByteArray(String id) {
-        return FileUtils.readFileAsByteArray(getFilePath(id));
+    public byte[] getImageAsByteArray(String id, String name) {
+        return FileUtils.readFileAsByteArray(getFilePath(id, name));
     }
 
     public List<String> getAllImageNames() {
-        return FileUtils.readAllFileNames(getFolderPath());
+        return null; // FileUtils.readAllFileNames(getFolderPath());
     }
 
     public void deleteImage(String id) {
-        FileUtils.deleteFile(getFilePath(id));
+        //FileUtils.deleteFile(getFilePath(id));
     }
 
     public String saveImage(MultipartFile multipartFile) {
@@ -56,7 +56,7 @@ public class ImageService {
         {
             InputStream inputStream = multipartFile.getInputStream();
             String id = UUID.randomUUID().toString();
-            FileUtils.writeFile(getFilePath(id), inputStream);
+            //FileUtils.writeFile(getFilePath(id), inputStream);
             return id;
         }
         catch (IOException e) {
@@ -64,12 +64,12 @@ public class ImageService {
         }
     }
 
-    private String getFolderPath() {
-        return content + SEPARATOR + userService.getCurrentUserName() + SEPARATOR + IMAGES;
+    private String getFolderPath(String name) {
+        return content + SEPARATOR + name + SEPARATOR + IMAGES;
     }
 
-    private String getFilePath(String id) {
-        return getFolderPath() + SEPARATOR + id;
+    private String getFilePath(String id, String name) {
+        return getFolderPath(name) + SEPARATOR + id;
     }
 
 }

@@ -3,32 +3,30 @@ package com.sadvit.ws;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sadvit.services.ImageService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.stereotype.Service;
-import org.springframework.web.socket.AbstractWebSocketMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
 /**
  * Created by vitaly.sadovskiy.
  */
-public class WebSocketGateway extends AbstractWebSocketHandler {
+public class GatewayHandler extends AbstractWebSocketHandler {
 
-	private Map<String, AbstractWebSocketMessage> context = new HashMap<String, AbstractWebSocketMessage>();
+	private static final Log logger = LogFactory.getLog(GatewayHandler.class);
 
-	private static final Log logger = LogFactory.getLog(WebSocketGateway.class);
+	@Autowired
+	private ImageService imageService;
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode root = mapper.readTree(message.getPayload());
+		logger.info("rerere: " + imageService);
 		logger.info(root.get("name"));
 		logger.info(root.get("id"));
 		//WebSocketTransfer transfer = TransferConverter.toTransfer(message);

@@ -8,6 +8,18 @@ angular.module('medimage').service('webSocketGateway', ['$websocket', function (
     var dataStream = $websocket('ws://localhost:8080/gateway');
     var map = {};
 
+    var dataStream2 = $websocket('ws://localhost:8080/images');
+
+    dataStream2.send('cecb4671-9679-452b-9e6f-aadab15db7b1');
+
+    dataStream2.onMessage(function (response) {
+        var image = response.data;
+        //image.type = 'image/png';
+        var url = URL.createObjectURL(image);
+        var element = document.getElementById('image');
+        element.src = url;
+    });
+
     this.guid = function () {
         function s4() {
             return Math.floor((1 + Math.random()) * 0x10000)
@@ -30,6 +42,7 @@ angular.module('medimage').service('webSocketGateway', ['$websocket', function (
         if (data && data.id) {
             console.log('Success recv data');
             map[data.id](data);
+            delete map[data.id];
         } else {
             console.log('Incorrect data');
         }
