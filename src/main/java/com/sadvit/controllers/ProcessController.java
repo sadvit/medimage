@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringArrayPropertyEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -29,20 +26,21 @@ public class ProcessController {
 	@Autowired
 	private ImageCache cache;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/binary/{id}")
-    public String processBinary(@PathVariable String id) {
-		return toCache(processService.process(id, HandlerType.BINARY));
+    @RequestMapping(method = RequestMethod.POST, value = "/binary/{id}")
+    public String processBinary(@PathVariable String id, @RequestBody Object params) {
+		return toCache(processService.process(id, HandlerType.BINARY, params));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/blur/{id}")
-    public String processBlur(@PathVariable String id) {
-		return toCache(processService.process(id, HandlerType.BLUR));
+    @RequestMapping(method = RequestMethod.POST, value = "/blur/{id}")
+    public String processBlur(@PathVariable String id, @RequestBody Object params) {
+		return toCache(processService.process(id, HandlerType.BLUR, params));
     }
 
 	private String toCache(byte[] image) {
 		String imageId = UUID.randomUUID().toString();
 		cache.put(imageId, image);
-		return imageId;
+		return "{\"id\": \"" + imageId + "\"}";
+		//return "{\"id\":\"" + imageId + "\"}";
 	}
 
 }

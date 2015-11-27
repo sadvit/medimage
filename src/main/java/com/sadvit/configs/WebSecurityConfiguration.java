@@ -36,11 +36,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 					.and()
 				.authorizeRequests()
 				.antMatchers("/images/**").hasRole("USER")
+				.antMatchers("/process/**").hasRole("USER")
 					.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/auth/logout"))
 				.invalidateHttpSession(true)
-				.logoutSuccessUrl("/");
+				.logoutSuccessUrl("/")
+					.and()
+				.csrf()
+				.disable();
 	}
 
 	@Override
