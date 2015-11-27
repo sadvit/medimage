@@ -27,7 +27,8 @@ public class WebSocketConfig implements WebSocketConfigurer {
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 		registry
-				.addHandler(gatewayHandler(), "/gateway")
+				.addHandler(gatewayHandler(), "/realtime/gateway")
+				.addHandler(imageHandler(), "/realtime/images")
 				.addInterceptors(new HttpSessionHandshakeInterceptor());
 	}
 

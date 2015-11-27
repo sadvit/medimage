@@ -30,6 +30,5 @@ public class ImageHandler extends AbstractWebSocketHandler {
 		String id = message.getPayload();
 		byte[] array = imageService.getImageAsByteArray(id, name);
 		session.sendMessage(new BinaryMessage(array));
-		// TODO return image
 	}
 }
