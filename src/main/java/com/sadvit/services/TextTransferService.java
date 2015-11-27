@@ -3,10 +3,10 @@ package com.sadvit.services;
 import com.sadvit.ws.transfer.ImageTransfer;
 import com.sadvit.ws.transfer.TextTransfer;
 import com.sadvit.ws.transfer.Transfer;
-import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
 import java.util.Map;
 
 /**
@@ -23,7 +23,7 @@ public class TextTransferService {
         String id = (String) map.get("id");
         String name = transfer.getUser();
         byte[] array = imageService.getImageAsByteArray(id, name);
-        String image = Base64.encodeBase64URLSafeString(array);
+        String image = Base64.getEncoder().encodeToString(array);
 
         ImageTransfer imageTransfer = new ImageTransfer();
         imageTransfer.setId(transfer.getId());
