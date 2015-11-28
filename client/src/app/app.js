@@ -2,7 +2,7 @@
 
 var medimage = angular.module('medimage', ['restangular', 'ui.router']);
 
-medimage.config(function($stateProvider, $urlRouterProvider) {
+medimage.config(function($stateProvider, $urlRouterProvider, RestangularProvider) {
     $urlRouterProvider.otherwise("login");
     $stateProvider
         .state('login', {
@@ -15,4 +15,6 @@ medimage.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: "assets/test/test.html",
             controller: "testController"
         });
+
+    RestangularProvider.setBaseUrl('http://localhost:8080');
 });
