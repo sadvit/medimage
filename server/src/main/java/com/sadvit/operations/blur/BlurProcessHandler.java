@@ -1,9 +1,9 @@
 package com.sadvit.operations.blur;
 
 import boofcv.alg.filter.blur.BlurImageOps;
-import boofcv.core.image.ConvertBufferedImage;
 import boofcv.core.image.ConvertImage;
 import boofcv.gui.image.VisualizeImageData;
+import boofcv.io.image.ConvertBufferedImage;
 import boofcv.struct.image.ImageFloat32;
 import com.sadvit.operations.ProcessHandler;
 

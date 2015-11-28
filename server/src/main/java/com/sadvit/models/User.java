@@ -3,9 +3,7 @@ package com.sadvit.models;
 /**
  * Created by vitaly.sadovskiy.
  */
-public class User {
-
-	private int id;
+public class User extends Entity {
 
     private String name;
 
@@ -21,16 +19,6 @@ public class User {
 	public void setRole(Role role)
 	{
 		this.role = role;
-	}
-
-	public int getId()
-	{
-		return id;
-	}
-
-	public void setId(int id)
-	{
-		this.id = id;
 	}
 
     public String getName() {

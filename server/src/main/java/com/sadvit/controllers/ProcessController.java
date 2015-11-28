@@ -1,7 +1,7 @@
 package com.sadvit.controllers;
 
 import com.sadvit.models.CacheObject;
-import com.sadvit.operations.HandlerType;
+import com.sadvit.operations.OperationType;
 import com.sadvit.services.ImageCache;
 import com.sadvit.services.ProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +25,13 @@ public class ProcessController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/binary/{id}")
     public CacheObject processBinary(@PathVariable String id, @RequestBody Map params) {
-		return toCache(processService.process(id, HandlerType.BINARY, params));
+        // TODO to binary service
+		return toCache(processService.process(id, OperationType.BINARY, params));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/blur/{id}")
     public CacheObject processBlur(@PathVariable String id, @RequestBody Map params) {
-		return toCache(processService.process(id, HandlerType.BLUR, params));
+		return toCache(processService.process(id, OperationType.BLUR, params));
     }
 
 	private CacheObject toCache(byte[] image) {

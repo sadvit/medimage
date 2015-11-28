@@ -8,7 +8,7 @@ import com.sadvit.operations.blur.BlurProcessHandler;
  */
 public class HandlerFactory {
 
-	public static ProcessHandler getHandler(HandlerType type) {
+	public static ProcessHandler getHandler(OperationType type) {
 		switch (type) {
 			case BINARY:
 				return new BinaryProcessHandler();
