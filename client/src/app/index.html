@@ -12,13 +12,21 @@
   <body>
     <h1>medimage</h1>
     <h2>Your new AngularJS app is now ready...</h2>
-    <ng-view></ng-view>
+    <div ui-view></div>
     <!-- inject:vendor:js -->
     <script src="/angular/angular.js"></script>
-    <script src="/angular-route/angular-route.js"></script>
+    <script src="/lodash/lodash.js"></script>
+    <script src="/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/restangular/dist/restangular.js"></script>
     <!-- endinject -->
     <!-- inject:js -->
     <script src="/app.js"></script>
+    <script src="/assets/test/TestController.js"></script>
+    <script src="/assets/test/ProcessService.js"></script>
+    <script src="/assets/test/ImageService.js"></script>
+    <script src="/assets/login/LoginService.js"></script>
+    <script src="/assets/login/LoginController.js"></script>
+    <script src="/medimage-templates.js"></script>
     <!-- endinject -->
   </body>
 </html>
