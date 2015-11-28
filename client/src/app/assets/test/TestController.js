@@ -4,16 +4,12 @@ angular.module('medimage').controller('testController', ['$scope', 'processServi
 
     var index = 0;
 
-    $scope.imageId = 'flower';
-
     $scope.test = function () {
         if (index < $scope.images.length) {
-            index++;
             processService.binary($scope.images[index], {thresold: 30}, function (imageId) {
-                //$scope.$apply(function () {
                     $scope.imageId = imageId;
-                //});
-            })
+            });
+            index++;
         }
     };
 

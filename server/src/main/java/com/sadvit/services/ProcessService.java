@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.awt.image.BufferedImage;
+import java.util.Map;
 
 import static com.sadvit.utils.FileUtils.toByteArray;
 
@@ -21,7 +22,7 @@ public class ProcessService {
 	@Autowired
 	private ImageService imageService;
 
-	public byte[] process(String id, HandlerType type, Object params) {
+	public byte[] process(String id, HandlerType type, Map params) {
         BufferedImage image = imageService.getBufferedImage(id);
         ProcessHandler handler = HandlerFactory.getHandler(type);
         BufferedImage result = handler.handle(image, params);

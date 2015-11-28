@@ -8,6 +8,7 @@ import boofcv.struct.image.ImageFloat32;
 import com.sadvit.operations.ProcessHandler;
 
 import java.awt.image.BufferedImage;
+import java.util.Map;
 
 /**
  * Created by sadvit on 25.11.15.
@@ -15,7 +16,7 @@ import java.awt.image.BufferedImage;
 public class BlurProcessHandler implements ProcessHandler {
 
     @Override
-    public BufferedImage handle(BufferedImage image, Object params) {
+    public BufferedImage handle(BufferedImage image, Map params) {
 
         BufferedImage result = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
 
