@@ -1,9 +1,11 @@
 package com.sadvit.services;
 
+import com.sadvit.models.CacheObject;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by vitaly.sadovskiy.
@@ -24,5 +26,11 @@ public class ImageCache {
 	public void remove(String id) {
 		images.remove(id);
 	}
+
+    public CacheObject addToCache(byte[] image) {
+        String imageId = UUID.randomUUID().toString();
+        put(imageId, image);
+        return new CacheObject(imageId);
+    }
 
 }

@@ -4,9 +4,17 @@ angular.module('medimage').controller('testController', ['$scope', 'processServi
 
     var index = 0;
 
+    var params = {
+        type: 'SQUARE',
+        localSquare: [
+            28,
+            1.0
+        ]
+    };
+
     $scope.test = function () {
         if (index < $scope.images.length) {
-            processService.binary($scope.images[index], {thresold: 30}, function (imageId) {
+            processService.binary($scope.images[index], params, function (imageId) {
                     $scope.imageId = imageId;
             });
             index++;
