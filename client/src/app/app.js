@@ -10,10 +10,10 @@ medimage.config(function($stateProvider, $urlRouterProvider, RestangularProvider
             templateUrl: "login/login.html",
             controller: "loginController"
         })
-        .state('test', {
-            url: "/test",
-            templateUrl: "test/test.html",
-            controller: "testController"
+        .state('process', {
+            url: "/process",
+            templateUrl: "process/process.html",
+            controller: "processController"
         })
         .state('register', {
             url: "/register"
