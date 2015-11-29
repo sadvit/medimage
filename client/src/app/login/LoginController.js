@@ -1,10 +1,12 @@
 'use strict';
 
-angular.module('medimage').controller('loginController', ['$scope', 'loginService', function ($scope, loginService) {
+angular.module('medimage').controller('loginController', ['$scope', 'loginService', '$state', function ($scope, loginService, $state) {
 
     $scope.auth = function () {
-        loginService.auth($scope.login, $scope.pass, function (response) {
-            console.log(response);
+        loginService.auth($scope.login, $scope.pass, function () {
+            $state.go('process');
+        }, function () {
+            console.log('Incorrect login/pass');
         });
     };
 

@@ -15,15 +15,20 @@ angular.module('medimage').controller('processController', ['$scope', 'processSe
     $scope.test = function () {
         if (index < $scope.images.length) {
             processService.binary($scope.images[index], params, function (imageId) {
-                    $scope.imageId = imageId;
+                    $scope.currentImage = imageId;
             });
             index++;
         }
     };
 
+    $scope.openMenu = function (event) {
+        angular.element(event.currentTarget).parent().toggleClass('active');
+    };
+
     this.init = function () {
         imageService.getImages(function (images) {
             $scope.images = images;
+            $scope.test();
         });
     };
 
