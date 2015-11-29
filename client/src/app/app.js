@@ -7,12 +7,12 @@ medimage.config(function($stateProvider, $urlRouterProvider, RestangularProvider
     $stateProvider
         .state('login', {
             url: "/login",
-            templateUrl: "assets/login/login.html",
+            templateUrl: "login/login.html",
             controller: "loginController"
         })
         .state('test', {
             url: "/test",
-            templateUrl: "assets/test/test.html",
+            templateUrl: "test/test.html",
             controller: "testController"
         })
         .state('register', {
