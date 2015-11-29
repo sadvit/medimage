@@ -14,6 +14,9 @@ medimage.config(function($stateProvider, $urlRouterProvider, RestangularProvider
             url: "/test",
             templateUrl: "assets/test/test.html",
             controller: "testController"
+        })
+        .state('register', {
+            url: "/register"
         });
 
     RestangularProvider.setBaseUrl('http://localhost:8080');
