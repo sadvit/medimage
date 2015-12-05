@@ -46,7 +46,7 @@
                         class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href=""><i class="fa fa-circle-o text-aqua"></i>OTSU</a></li>
+                    <li><a href="" ng-click="addOtsuFilter()"><i class="fa fa-circle-o text-aqua"></i>OTSU</a></li>
                     <li class=""><a href=""><i class="fa fa-circle-o text-aqua"></i>THRESOLD</a></li>
                 </ul>
             </li>
@@ -101,7 +101,8 @@
                 </a>
             </li>
         </ul>
-        <button type="button" class="accept-button btn btn-block btn-primary btn-flat">Accept</button>
+        <button type="button" class="accept-button btn btn-block btn-primary btn-flat">Refresh</button>
+      <button type="button" class="accept-button btn btn-block btn-success btn-flat">Save</button>
     </section>
 </aside>
 
@@ -115,3 +116,5 @@
         <i class="fa fa-refresh fa-spin"></i>
     </div>
 </div>
+
+<div ng-include="'../modals/binaryModal.html'"></div>

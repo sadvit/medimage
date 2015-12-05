@@ -23,10 +23,6 @@
     "lodash": "~3.10.1",
     "angular-ui-router": "~0.2.15",
     "restangular": "~1.5.1",
-    "jquery": "~2.1.4",
-    "jquery-ui": "~1.11.4",
-    "bootstrap-css": "~3.3.4",
-    "font-awesome": "~4.5.0",
     "AdminLTE": "admin-lte#~2.3.2"
   },
   "devDependencies": {

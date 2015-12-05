@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('processController', ['$scope', 'processService', 'imageService', function ($scope, processService, imageService) {
+angular.module('medimage').controller('processController', ['$scope', 'processService', 'imageService', 'modalService', function ($scope, processService, imageService, modalService) {
 
     var index = 0;
 
@@ -10,6 +10,10 @@ angular.module('medimage').controller('processController', ['$scope', 'processSe
             28,
             1.0
         ]
+    };
+
+    $scope.addOtsuFilter = function () {
+      modalService.show();
     };
 
     $scope.test = function () {
