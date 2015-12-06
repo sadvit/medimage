@@ -4,10 +4,11 @@
 <div class="images-container">
 
   <div ng-repeat="image in images" class="image-tile">
-    <!--<div class="right-image-menu">
-      <i class="fa fa-edit"></i>
-      <i class="fa fa-info"></i>
-    </div>-->
+    <ul class="right-image-menu">
+      <li><i class="fa fa-edit"></i></li>
+      <li><i class="fa fa-close"></i></li>
+      <li><i class="fa fa-info"></i></li>
+    </ul>
     <img class="small-image img-thumbnail" ng-if="image" ng-src="http://localhost:8080/images/{{image}}">
   </div>
 <!--  <div ng-if="!currentImage" class="overlay">
