@@ -74,7 +74,7 @@
 </aside>
 
 <aside class="right-menu control-sidebar control-sidebar-dark control-sidebar-open ">
-  <section class="sidebar" style="height: 100%;/* overflow-y: scroll; */">
+  <section class="sidebar" style="height: 100%;">
     <!-- Create the tabs -->
     <ul class="sidebar-menu">
       <li class="header">CURRENT CHAIN</li>
@@ -109,12 +109,8 @@
 </aside>
 
 <div class="image-container box box-widget ">
-  <div class="image-process-box">
-    <div class="image-box">
-      <img ng-if="currentImage" ng-src="http://localhost:8080/temp/{{currentImage}}">
-    </div>
-  </div>
-  <div class="overlay">
+  <img class="img-thumbnail" ng-if="currentImage" ng-src="http://localhost:8080/temp/{{currentImage}}">
+  <div ng-if="!currentImage" class="overlay">
     <i class="fa fa-refresh fa-spin"></i>
   </div>
 </div>
