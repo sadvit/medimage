@@ -29,6 +29,12 @@ angular.module('medimage').controller('processController', ['$scope', 'processSe
         angular.element(event.currentTarget).parent().toggleClass('active');
     };
 
+    $scope.binarySelect = function () {
+      modalService.show('binary', function () {
+        console.log('accept');
+      });
+    };
+
     this.init = function () {
         imageService.getImages(function (images) {
             $scope.images = images;

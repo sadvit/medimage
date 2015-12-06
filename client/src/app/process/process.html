@@ -1,120 +1,122 @@
 <header class="main-header ">
-    <a class="logo">
-        <span class="logo-lg"><b>MEDIMAGE</b></span>
-    </a>
-    <nav class="navbar navbar-static-top" role="navigation">
-        <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-                <li class="dropdown messages-menu">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-pie-chart"></i>
-                    </a>
-                </li>
-                <li class="dropdown notifications-menu">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-laptop"></i>
+  <a class="logo">
+    <span class="logo-lg"><b>MEDIMAGE</b></span>
+  </a>
+  <nav class="navbar navbar-static-top" role="navigation">
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li class="dropdown messages-menu">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-pie-chart"></i>
+          </a>
+        </li>
+        <li class="dropdown notifications-menu">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-laptop"></i>
 
-                    </a>
-                </li>
-                <li class="dropdown tasks-menu">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-edit"></i>
+          </a>
+        </li>
+        <li class="dropdown tasks-menu">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-edit"></i>
 
-                    </a>
-                </li>
-                <li class="dropdown user user-menu">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class="hidden-xs">Vitaly Sadouski</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="" data-toggle="control-sidebar"><i class="fa fa-times"></i></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+          </a>
+        </li>
+        <li class="dropdown user user-menu">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="hidden-xs">Vitaly Sadouski</span>
+          </a>
+        </li>
+        <li>
+          <a href="" data-toggle="control-sidebar"><i class="fa fa-times"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </header>
 
 <aside class="main-sidebar ">
-    <section class="sidebar" style="height: auto;">
-        <ul class="sidebar-menu">
-            <li class="header">PROCESS OPERATIONS</li>
+  <section class="sidebar" style="height: auto;">
+    <ul class="sidebar-menu">
+      <li class="header">MATH OPERATIONS</li>
+      <li><a href="" ng-click="binarySelect()"><i class="fa fa-circle-o text-yellow"></i><span>BINARY</span></a></li>
+      <li><a href="" ng-click="blurSelect()"><i class="fa fa-circle-o text-yellow"></i><span>BLUR</span></a></li>
 
-            <li class="reeview">
-                <a ng-click="openMenu($event)" href="">
-                    <i class="fa fa-folder"></i> <span>BINARIZATION</span> <i
-                        class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="" ng-click="addOtsuFilter()"><i class="fa fa-circle-o text-aqua"></i>OTSU</a></li>
-                    <li class=""><a href=""><i class="fa fa-circle-o text-aqua"></i>THRESOLD</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a ng-click="openMenu($event)" href="">
-                    <i class="fa fa-folder"></i> <span>BLUR</span> <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href=""><i class="fa fa-circle-o text-aqua"></i>GAUSS</a></li>
+      <!--<li class="reeview">
+          <a ng-click="openMenu($event)" href="">
+              <i class="fa fa-folder"></i> <span>BINARIZATION</span> <i
+                  class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+              <li><a href="" ng-click="addOtsuFilter()"><i class="fa fa-circle-o text-aqua"></i>OTSU</a></li>
+              <li class=""><a href=""><i class="fa fa-circle-o text-aqua"></i>THRESOLD</a></li>
+          </ul>
+      </li>
+      <li class="treeview">
+          <a ng-click="openMenu($event)" href="">
+              <i class="fa fa-folder"></i> <span>BLUR</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+              <li><a href=""><i class="fa fa-circle-o text-aqua"></i>GAUSS</a></li>
 
-                </ul>
-            </li>
+          </ul>
+      </li>-->
 
-            <li class="header">SIZE OPERATIONS</li>
-            <li><a href="" ng-click="test()"><i class="fa fa-circle-o text-yellow"></i><span>CROP</span></a></li>
-            <li><a href=""><i class="fa fa-circle-o text-yellow"></i> <span>ROTATE</span></a></li>
-            <li><a href=""><i class="fa fa-circle-o text-yellow"></i> <span>ZOOM</span></a></li>
-            <li class="header">COLOR OPERATIONS</li>
-            <li><a href=""><i class="fa fa-circle-o text-yellow"></i> <span>GRAYSCALE</span></a></li>
+      <li class="header">SIZE OPERATIONS</li>
+      <li><a href="" ng-click="test()"><i class="fa fa-circle-o text-yellow"></i><span>CROP</span></a></li>
+      <li><a href=""><i class="fa fa-circle-o text-yellow"></i> <span>ROTATE</span></a></li>
+      <li><a href=""><i class="fa fa-circle-o text-yellow"></i> <span>ZOOM</span></a></li>
+      <li class="header">COLOR OPERATIONS</li>
+      <li><a href=""><i class="fa fa-circle-o text-yellow"></i> <span>GRAYSCALE</span></a></li>
 
-        </ul>
-    </section>
+    </ul>
+  </section>
 </aside>
 
 <aside class="right-menu control-sidebar control-sidebar-dark control-sidebar-open ">
-    <section class="sidebar" style="height: 100%;/* overflow-y: scroll; */">
-        <!-- Create the tabs -->
-        <ul class="sidebar-menu">
-            <li class="header">CURRENT CHAIN</li>
-            <li>
-                <a href="">
-                    <i class="fa fa-gears chain-options"></i>
-                    <span>CROP</span>
-                    <i class="fa fa-times chain-close"></i>
+  <section class="sidebar" style="height: 100%;/* overflow-y: scroll; */">
+    <!-- Create the tabs -->
+    <ul class="sidebar-menu">
+      <li class="header">CURRENT CHAIN</li>
+      <li>
+        <a href="">
+          <i class="fa fa-gears chain-options"></i>
+          <span>CROP</span>
+          <i class="fa fa-times chain-close"></i>
 
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <i class="fa fa-gears chain-options"></i>
-                    <span>ROTATE</span>
-                    <i class="fa fa-times chain-close"></i>
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <i class="fa fa-gears chain-options"></i>
+          <span>ROTATE</span>
+          <i class="fa fa-times chain-close"></i>
 
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <i class="fa fa-gears chain-options"></i>
-                    <span>ZOOM</span>
-                    <i class="fa fa-times chain-close"></i>
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <i class="fa fa-gears chain-options"></i>
+          <span>ZOOM</span>
+          <i class="fa fa-times chain-close"></i>
 
-                </a>
-            </li>
-        </ul>
-        <button type="button" class="accept-button btn btn-block btn-primary btn-flat">Refresh</button>
-      <button type="button" class="accept-button btn btn-block btn-success btn-flat">Save</button>
-    </section>
+        </a>
+      </li>
+    </ul>
+    <button type="button" class="accept-button btn btn-block btn-primary btn-flat">Refresh</button>
+    <button type="button" class="accept-button btn btn-block btn-success btn-flat">Save</button>
+  </section>
 </aside>
 
 <div class="image-container box box-widget ">
-    <div class="image-process-box">
-        <div class="image-box">
-            <img ng-if="currentImage" ng-src="http://localhost:8080/temp/{{currentImage}}">
-        </div>
+  <div class="image-process-box">
+    <div class="image-box">
+      <img ng-if="currentImage" ng-src="http://localhost:8080/temp/{{currentImage}}">
     </div>
-    <div class="overlay">
-        <i class="fa fa-refresh fa-spin"></i>
-    </div>
+  </div>
+  <div class="overlay">
+    <i class="fa fa-refresh fa-spin"></i>
+  </div>
 </div>
 
 <div ng-include="'../modals/binaryModal.html'"></div>
