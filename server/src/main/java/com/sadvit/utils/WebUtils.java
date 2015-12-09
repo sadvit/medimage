@@ -13,6 +13,7 @@ public class WebUtils {
 	public static ResponseEntity<byte[]> imageResponse(byte[] image) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.IMAGE_PNG);
+		headers.setCacheControl("private, max-age=600");
 		return new ResponseEntity<byte[]>(image, headers, HttpStatus.CREATED);
 	}
 

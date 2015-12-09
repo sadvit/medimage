@@ -5,14 +5,19 @@
 
   <div ng-repeat="image in images" class="image-tile">
     <ul class="right-image-menu">
-      <li><i class="fa fa-edit"></i></li>
-      <li><i class="fa fa-close"></i></li>
-      <li><i class="fa fa-info"></i></li>
+      <li><i class="fa fa-close" data-toggle="tooltip" data-placement="left" title="Delete" ng-click="deleteImage(image)"></i></li>
+      <li><i class="fa fa-edit" data-toggle="tooltip" data-placement="left" title="Process" ng-click="processImage(image)"></i></li>
+      <li><i class="fa fa-info" data-toggle="tooltip" data-placement="left" title="Info" ng-click="infoImage(image)"></i></li>
     </ul>
-    <img class="small-image img-thumbnail" ng-if="image" ng-src="http://localhost:8080/images/{{image}}">
+    <img ng-click="openImageModal(image)" class="small-image img-thumbnail" ng-if="image" ng-src="http://localhost:8080/images/{{image}}">
   </div>
-<!--  <div ng-if="!currentImage" class="overlay">
-    <i class="fa fa-refresh fa-spin"></i>
-  </div>-->
 
+</div>
+
+<div id="lightBox" class="lightbox fade"  tabindex="-1" role="dialog" aria-hidden="true">
+  <div class='lightbox-dialog'>
+    <div class='lightbox-content'>
+      <img id="imageBox">
+    </div>
+  </div>
 </div>

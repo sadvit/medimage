@@ -23,7 +23,8 @@
     "lodash": "~3.10.1",
     "angular-ui-router": "~0.2.15",
     "restangular": "~1.5.1",
-    "AdminLTE": "admin-lte#~2.3.2"
+    "AdminLTE": "admin-lte#~2.3.2",
+    "bootstrap-lightbox": "~0.7.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.14"
