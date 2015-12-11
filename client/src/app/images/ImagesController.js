@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('imagesController', ['$scope', 'imageService', function ($scope, imageService) {
+angular.module('medimage').controller('imagesController', ['$scope', 'imageService', '$state', function ($scope, imageService, $state) {
 
   $scope.openImageModal = function (image) {
     angular.element('#imageBox').attr('src', 'http://localhost:8080/images/' + image);
@@ -9,15 +9,16 @@ angular.module('medimage').controller('imagesController', ['$scope', 'imageServi
   };
 
   $scope.deleteImage = function (image) {
-    console.log(image);
+    console.log('delete ' + image);
   };
 
   $scope.processImage = function (image) {
-    console.log(image);
+    $state.go('process', {imageId: image});
+    console.log('process ' + image);
   };
 
   $scope.infoImage = function (image) {
-    console.log(image);
+    console.log('info ' + image);
   };
 
   this.init = function () {

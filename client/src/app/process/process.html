@@ -1,12 +1,10 @@
-<div ng-include="'../header/header.html'"></div>
-<div ng-include="'../leftBar/leftBar.html'"></div>
-<div ng-include="'../rightBar/rightBar.html'"></div>
+<div header></div>
+<div process-left-bar></div>
+<div process-right-bar></div>
 
 <div class="image-container box box-widget ">
-  <img class="img-thumbnail" ng-if="currentImage" ng-src="http://localhost:8080/temp/{{currentImage}}">
-  <div ng-if="!currentImage" class="overlay">
+  <img class="img-thumbnail" ng-if="imageId" ng-src="http://localhost:8080/images/{{imageId}}">
+  <div ng-if="!imageId" class="overlay">
     <i class="fa fa-refresh fa-spin"></i>
   </div>
 </div>
-
-<div ng-include="'../modals/binaryModal.html'"></div>
