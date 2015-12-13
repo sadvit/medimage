@@ -1,0 +1,30 @@
+.binary-modal {
+  .modal-dialog {
+    max-width: 375px;
+  }
+  .row {
+    height: 45px;
+  }
+  .dropdown {
+    width: 100%;
+    margin: auto;
+    button, .dropdown-menu {
+      width: 100%;
+    }
+  }
+}
+
+.modal-body .row .vcenter {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.modal-body .row div {
+  height: 100%;
+}
+
+.modal-body .dropdown .btn span {
+  margin-left: 5px;
+  margin-bottom: 2px;
+}

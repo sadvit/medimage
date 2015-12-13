@@ -1,3 +1,5 @@
+@import 'modal-binary';
+
 body {
   position: absolute;
   height: 99%;
@@ -92,22 +94,6 @@ body {
 .slider.slider-horizontal .tooltip.tooltip-main.top {
   margin-top: -35px;
   cursor: pointer;
-}
-
-.binary-modal {
-  .modal-dialog {
-    max-width: 375px;
-  }
-  .row {
-    height: 45px;
-  }
-  .dropdown {
-    width: 100%;
-    margin: auto;
-    button, .dropdown-menu {
-      width: 100%;
-    }
-  }
 }
 
 .nav.navbar-nav i {
