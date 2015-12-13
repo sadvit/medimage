@@ -14,25 +14,24 @@
             </div>
             <div class="col-md-8">
               <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">THRESOLD
-                  <span class="caret"></span></button>
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                  {{selectedBinaryType}}
+                  <span class="caret"></span>
+                </button>
                 <ul class="dropdown-menu">
-                  <li><a href="">MEAN</a></li>
-                  <li><a href="">OTSU</a></li>
-                  <li><a href="">SQUARE</a></li>
-                  <li><a href="">GAUSSIAN</a></li>
-                  <li><a href="">SAUVOLA</a></li>
-                  <li><a href="">THRESOLD</a></li>
+                  <li ng-repeat="binaryType in binaryTypes">
+                    <a ng-click="selectBinaryType(binaryType)" href="">{{binaryType}}</a>
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
-          <div class="row">
+          <div ng-if="selectedBinaryType == 'THRESOLD'" class="row">
             <div class="col-md-4 text-center">
               <span>Thresold:</span>
             </div>
             <div class="col-md-8">
-              <input class="slider slider-horizontal" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="14"/>
+              <input data-toggle="slider" class="slider slider-horizontal" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="14"/>
             </div>
           </div>
         </div>

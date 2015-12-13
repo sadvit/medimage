@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('processController', ['$scope', 'processService', 'imageService', 'modalService', '$stateParams', function ($scope, processService, imageService, modalService, $stateParams) {
+angular.module('medimage').controller('processController', ['$scope', 'processService', 'imageService', '$stateParams', function ($scope, processService, imageService, $stateParams) {
 
   //var index = 0;
 /*
@@ -37,7 +37,6 @@ angular.module('medimage').controller('processController', ['$scope', 'processSe
 
   this.init = function () {
     $scope.imageId = $stateParams.imageId;
-    console.log('222 ' + $scope.imageId);
   };
 
   this.init();

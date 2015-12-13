@@ -40,10 +40,7 @@
 
 <body class="skin-blue">
 
-<div ui-view="header"></div>
 <div class="wrapper-view" ui-view="content"></div>
-<div ui-view="leftBar"></div>
-<div ui-view="rightBar"></div>
 
 <!-- jQuery 2.1.4 -->
 <script src="/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>
@@ -74,21 +71,20 @@
 
 <!-- Config -->
 <script src="/app.js"></script>
-<!-- Services -->
-<script src="/process/ProcessService.js"></script>
-<script src="/modals/ModalService.js"></script>
-<script src="/login/LoginService.js"></script>
-<script src="/images/ImageService.js"></script>
-<!-- Controllers -->
-<script src="/process/ProcessController.js"></script>
-<script src="/login/LoginController.js"></script>
-<script src="/images/ImagesController.js"></script>
 <!-- Directives -->
-<script src="/header/headerController.js"></script>
-<script src="/processRightBar/processRightBarController.js"></script>
-<script src="/processLeftBar/processLeftBarController.js"></script>
-<script src="/imagesLeftBar/imagesLeftBarController.js"></script>
-
+<script src="/modals/modalBinary.js"></script>
+<script src="/header/header.js"></script>
+<script src="/process/menuRight/processMenuRight.js"></script>
+<script src="/process/menuLeft/processMenuLeft.js"></script>
+<script src="/images/menuLeft/imagesMenuLeft.js"></script>
+<!-- Services -->
+<script src="/process/processService.js"></script>
+<script src="/login/loginService.js"></script>
+<script src="/images/imageService.js"></script>
+<!-- Controllers -->
+<script src="/process/processController.js"></script>
+<script src="/login/loginController.js"></script>
+<script src="/images/imagesController.js"></script>
 <!-- Gulp template -->
 <script src="/medimage-templates.js"></script>
 

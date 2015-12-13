@@ -2,16 +2,16 @@
 'use strict';
 
 var gulp = require('gulp'),
-    g = require('gulp-load-plugins')({lazy: false}),
-    noop = g.util.noop,
-    es = require('event-stream'),
-    bowerFiles = require('main-bower-files'),
-    rimraf = require('rimraf'),
-    queue = require('streamqueue'),
-    lazypipe = require('lazypipe'),
-    stylish = require('jshint-stylish'),
-    bower = require('./bower'),
-    isWatching = false;
+  g = require('gulp-load-plugins')({lazy: false}),
+  noop = g.util.noop,
+  es = require('event-stream'),
+  bowerFiles = require('main-bower-files'),
+  rimraf = require('rimraf'),
+  queue = require('streamqueue'),
+  lazypipe = require('lazypipe'),
+  stylish = require('jshint-stylish'),
+  bower = require('./bower'),
+  isWatching = false;
 
 var htmlminOpts = {
   removeComments: true,
@@ -43,10 +43,10 @@ gulp.task('clean-css', function (done) {
 
 gulp.task('styles', ['clean-css'], function () {
   return gulp.src([
-    './src/app/**/*.styl',
-    '!./src/app/**/_*.styl'
+    './src/app/**/*.scss',
+    '!./src/app/**/_*.scss'
   ])
-    .pipe(g.stylus({use: [require('nib')()]}))
+    .pipe(g.sass())
     .pipe(gulp.dest('./.tmp/css/'))
     .pipe(g.cached('built-css'))
     .pipe(livereload());
@@ -159,7 +159,7 @@ gulp.task('watch', ['statics', 'default'], function () {
   });
   gulp.watch('./src/app/index.html', ['index']);
   gulp.watch(['./src/app/**/*.html', '!./src/app/index.html'], ['templates']);
-  gulp.watch(['./src/app/**/*.styl'], ['csslint']).on('change', function (evt) {
+  gulp.watch(['./src/app/**/*.scss'], ['csslint']).on('change', function (evt) {
     if (evt.type !== 'changed') {
       gulp.start('index');
     } else {

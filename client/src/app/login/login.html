@@ -1,7 +1,8 @@
 <div class="login-wrapper landing">
     <div class="login-box">
         <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <p ng-if="!error" class="login-box-msg">Sign in to start your session</p>
+            <p ng-if="error" class="login-box-msg error">Incorrect login or password</p>
             <div class="form-group has-feedback">
                 <input ng-model="login" class="form-control" placeholder="Email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

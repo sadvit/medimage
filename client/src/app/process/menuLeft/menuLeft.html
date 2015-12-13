@@ -2,7 +2,7 @@
   <section class="sidebar" style="height: auto;">
     <ul class="sidebar-menu">
       <li class="header">MATH OPERATIONS</li>
-      <li><a href="" ng-click="binarySelect()"><i class="fa fa-circle-o text-yellow"></i><span>BINARY</span></a></li>
+      <li><a href="" ng-click="binaryModalShow()"><i class="fa fa-circle-o text-yellow"></i><span>BINARY</span></a></li>
       <li><a href="" ng-click="blurSelect()"><i class="fa fa-circle-o text-yellow"></i><span>BLUR</span></a></li>
 
       <!--<li class="treeview">
@@ -37,6 +37,4 @@
   </section>
 </aside>
 
-<!-- MODAL WINDOWS -->
-
-<div ng-include="'../modals/binaryModal.html'"></div>
+<div modal-binary></div>

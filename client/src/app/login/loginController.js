@@ -4,9 +4,11 @@ angular.module('medimage').controller('loginController', ['$scope', 'loginServic
 
     $scope.auth = function () {
         loginService.auth($scope.login, $scope.pass, function () {
-            $state.go('process');
+            $state.go('images');
         }, function () {
-            console.log('Incorrect login/pass');
+            $scope.login = '';
+            $scope.pass = '';
+            $scope.error = true;
         });
     };
 
