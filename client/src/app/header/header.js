@@ -8,5 +8,5 @@ angular.module('medimage').directive('header', ['$state', function ($state) {
     controller: function ($scope) {
       $scope.state = $state;
     }
-  }
+  };
 }]);
