@@ -5,10 +5,12 @@ angular.module('medimage').directive('processMenuLeft', [function () {
     },
     templateUrl: 'process/menuLeft/menuLeft.html',
     restrict: 'A',
-    controller: function ($scope) {
+    controller: ['$scope','modalsService', function ($scope, modalsService) {
+
       $scope.binaryModalShow = function () {
-        $scope.modalBinaryShow = true;
+        modalsService.showBinaryModal($scope, $scope.binaryModalApply, $scope.binaryModalCancel)
       };
-    }
+
+    }]
   }
 }]);

@@ -1,6 +1,6 @@
 'use strict';
 
-var medimage = angular.module('medimage', ['restangular', 'ui.router']);
+var medimage = angular.module('medimage', ['restangular', 'ui.router', 'ui.bootstrap']);
 
 medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
   $urlRouterProvider.otherwise('login');
@@ -39,3 +39,18 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
   RestangularProvider.setBaseUrl('http://localhost:8080');
 
 });
+
+medimage.run(['$state', '$rootScope', 'Restangular', function ($state, $rootScope, Restangular) {
+
+  Restangular.setErrorInterceptor(function (response) {
+      if (response.status == 401) {
+        $state.go('login');
+      }
+      return false;
+    }
+  );
+  $rootScope.imgErrorHandler = function (error) {
+    console.log(error);
+  }
+
+}]);

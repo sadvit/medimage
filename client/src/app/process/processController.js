@@ -35,6 +35,40 @@ angular.module('medimage').controller('processController', ['$scope', 'processSe
     });
   };*/
 
+  var self = this;
+
+  var imagesFolder = 'images';
+  var tempFolder = 'temp';
+
+  $scope.folder = imagesFolder;
+  $scope.params = {};
+  $scope.operations = [];
+
+  this.addOperation = function (operation) {
+    $scope.operations.push(operation);
+  };
+
+  this.removeOperation = function (operation) {
+    // TODO remove operation by name
+  };
+
+  $scope.binaryModalApply = function (params) {
+
+    processService.binary($stateParams.imageId, params, function (id) {
+      $scope.folder = tempFolder;
+      $scope.imageId = id;
+      self.addOperation(params);
+    });
+  };
+
+  $scope.binaryModalCancel = function () {
+    // do nothing...
+  };
+
+  $scope.loadErrorHandler = function (error) {
+    console.log('Image not found: ' + error);
+  };
+
   this.init = function () {
     $scope.imageId = $stateParams.imageId;
   };

@@ -2,16 +2,15 @@
   <section class="sidebar" style="height: 100%;">
     <!-- Create the tabs -->
     <ul class="sidebar-menu">
-      <li class="header">CURRENT CHAIN</li>
-      <li>
+      <li class="header">CURRENT CHAIN:</li>
+      <li ng-repeat="operation in operations">
         <a href="">
-          <i class="fa fa-gears chain-options"></i>
-          <span>CROP</span>
-          <i class="fa fa-times chain-close"></i>
-
+          <i ng-click="showOptions(chain)" class="fa fa-gears chain-options"></i> <!-- TODO click show options -->
+          <span>{{operation.type}}</span>
+          <i ng-click="removeChain(chain)" class="fa fa-times chain-close"></i>  <!-- TODO click remove -->
         </a>
       </li>
-      <li>
+      <!--<li>
         <a href="">
           <i class="fa fa-gears chain-options"></i>
           <span>ROTATE</span>
@@ -26,7 +25,7 @@
           <i class="fa fa-times chain-close"></i>
 
         </a>
-      </li>
+      </li>-->
     </ul>
     <button type="button" class="accept-button btn btn-block btn-primary btn-flat">Refresh
       <i class="fa fa-refresh"></i>

@@ -1,7 +1,4 @@
-.binary-modal {
-  .modal-dialog {
-    max-width: 375px;
-  }
+.modal-content {
   .row {
     height: 45px;
   }
@@ -14,14 +11,18 @@
   }
 }
 
-.modal-body .row .vcenter {
+.modal-body .row .col-md-4 span {
   height: 100%;
   display: flex;
   align-items: center;
 }
 
-.modal-body .row div {
+.modal-body .row .col-md-4 {
   height: 100%;
+}
+
+.modal-body .row .slider-container {
+  margin-top: 14px;
 }
 
 .modal-body .dropdown .btn span {

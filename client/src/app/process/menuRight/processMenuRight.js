@@ -7,6 +7,8 @@ angular.module('medimage').directive('processMenuRight', [function () {
     restrict: 'A',
     controller: function ($scope) {
 
+
+
     }
   }
 }]);
