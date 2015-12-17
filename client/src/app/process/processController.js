@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('processController', ['$scope', 'processService', 'imageService', '$stateParams', function ($scope, processService, imageService, $stateParams) {
+angular.module('medimage').controller('processController', ['$scope', 'processService', 'imageService', '$stateParams', 'modalsService', function ($scope, processService, imageService, $stateParams, modalsService) {
 
   //var index = 0;
 /*
@@ -42,14 +42,29 @@ angular.module('medimage').controller('processController', ['$scope', 'processSe
 
   $scope.folder = imagesFolder;
   $scope.params = {};
-  $scope.operations = [];
+  $scope.chain = [];
 
-  this.addOperation = function (operation) {
-    $scope.operations.push(operation);
+  $scope.binaryModalShow = function () {
+    modalsService.showBinaryModal($scope, $scope.binaryModalApply, $scope.binaryModalCancel)
   };
 
-  this.removeOperation = function (operation) {
-    // TODO remove operation by name
+  this.applyOperation = function (type, params) {
+    $scope.chain.push({
+      type: type,
+      params: params
+    });
+  };
+
+  $scope.showModal = function (chainElement) {
+    switch (chainElement.type) {
+      case 'binary':
+        $scope.binaryModalShow();
+            break;
+    }
+  };
+
+  $scope.removeOperation = function (index) {
+    $scope.chain.splice(index, 1);
   };
 
   $scope.binaryModalApply = function (params) {
@@ -57,7 +72,7 @@ angular.module('medimage').controller('processController', ['$scope', 'processSe
     processService.binary($stateParams.imageId, params, function (id) {
       $scope.folder = tempFolder;
       $scope.imageId = id;
-      self.addOperation(params);
+      self.applyOperation('binary', params);
     });
   };
 

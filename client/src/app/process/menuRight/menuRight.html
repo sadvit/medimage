@@ -3,11 +3,11 @@
     <!-- Create the tabs -->
     <ul class="sidebar-menu">
       <li class="header">CURRENT CHAIN:</li>
-      <li ng-repeat="operation in operations">
-        <a href="">
-          <i ng-click="showOptions(chain)" class="fa fa-gears chain-options"></i> <!-- TODO click show options -->
-          <span>{{operation.type}}</span>
-          <i ng-click="removeChain(chain)" class="fa fa-times chain-close"></i>  <!-- TODO click remove -->
+      <li ng-repeat="chainElement in chain">
+        <a>
+          <i ng-click="showModal(chainElement)" class="fa fa-gears chain-options"></i> <!-- TODO click show options -->
+          <span>{{chainElement.type}}</span>
+          <i ng-click="removeOperation($index)" class="fa fa-times chain-close"></i>
         </a>
       </li>
       <!--<li>

@@ -5,6 +5,6 @@ package com.sadvit.operations;
  */
 public enum OperationType {
 
-	BINARY, BLUR;
+	BINARY, BLUR, CROP, RESIZE;
 
 }

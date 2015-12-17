@@ -7,10 +7,6 @@ angular.module('medimage').directive('processMenuLeft', [function () {
     restrict: 'A',
     controller: ['$scope','modalsService', function ($scope, modalsService) {
 
-      $scope.binaryModalShow = function () {
-        modalsService.showBinaryModal($scope, $scope.binaryModalApply, $scope.binaryModalCancel)
-      };
-
     }]
   }
 }]);
