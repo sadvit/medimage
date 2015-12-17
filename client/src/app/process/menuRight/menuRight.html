@@ -5,8 +5,8 @@
       <li class="header">CURRENT CHAIN:</li>
       <li ng-repeat="chainElement in chain">
         <a>
-          <i ng-click="showModal(chainElement)" class="fa fa-gears chain-options"></i> <!-- TODO click show options -->
-          <span>{{chainElement.type}}</span>
+          <i ng-click="changeOperation($index)" class="fa fa-gears chain-options"></i>
+          <span>{{chainElement.operationType}}</span>
           <i ng-click="removeOperation($index)" class="fa fa-times chain-close"></i>
         </a>
       </li>

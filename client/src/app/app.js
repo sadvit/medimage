@@ -1,6 +1,6 @@
 'use strict';
 
-var medimage = angular.module('medimage', ['restangular', 'ui.router', 'ui.bootstrap']);
+var medimage = angular.module('medimage', ['restangular', 'ui.router', 'ui.bootstrap', 'ui.bootstrap-slider']);
 
 medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
   $urlRouterProvider.otherwise('login');
