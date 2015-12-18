@@ -4,7 +4,7 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
 
   this.showBinaryModal = function ($scope, apply, cancel) {
       var modalInstance = $uibModal.open({
-        animation: true,
+        animation: false,
         templateUrl: '/modals/modalBinaryTemplate.html',
         controller: 'modalBinaryController',
         //size: 'sm',

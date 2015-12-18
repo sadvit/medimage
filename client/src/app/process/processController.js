@@ -16,6 +16,10 @@ angular.module('medimage').controller('processController', ['$scope', 'processSe
     modalsService.showBinaryModal($scope, $scope.binaryModalApply, $scope.binaryModalCancel);
   };
 
+  $scope.rand = function () {
+    return new Date().getMilliseconds();
+  };
+
   $scope.changeOperation = function (index) {
     var chainElement = $scope.chain[index];
     $scope.params = chainElement.binaryParams;
@@ -34,7 +38,7 @@ angular.module('medimage').controller('processController', ['$scope', 'processSe
 
     var chainElement = {
       index: $scope.chainIndex,
-      operationType: "BINARY",
+      operationType: "BINARY " + $scope.rand(),
       binaryParams: params
     };
 
