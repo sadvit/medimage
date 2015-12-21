@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('processController', ['$scope', 'processService', 'imageService', '$stateParams', 'modalsService', function ($scope, processService, imageService, $stateParams, modalsService) {
+angular.module('medimage').controller('processController', ['$scope', '$stateParams', 'modalsService', 'chainsService', function ($scope, $stateParams, modalsService, chainsService) {
 
   var self = this;
 
@@ -9,6 +9,17 @@ angular.module('medimage').controller('processController', ['$scope', 'processSe
   $scope.folder = imagesFolder;
 
   $scope.chain = [];
+
+  $scope.acceptChain = function () {
+    chainsService.acceptChain($scope.imageId, $scope.chain, function (imageId) {
+      $scope.folder = tempFolder;
+      $scope.imageId = imageId;
+    });
+  };
+
+  $scope.saveChain = function () {
+
+  };
 
   $scope.binaryModalShow = function (binaryParams) {
     if (!binaryParams) self.chainIndex = undefined;

@@ -1,5 +1,8 @@
 <aside class="main-sidebar ">
   <section class="sidebar" style="height: auto;">
+    <button ng-if="chain.length > 0" type="button" ng-click="saveImage()" class="accept-button btn btn-block btn-primary btn-flat">Save Image
+      <i class="fa fa-save"></i>
+    </button>
     <ul class="sidebar-menu">
       <li class="header">MATH OPERATIONS</li>
       <li><a href="" ng-click="binaryModalShow()"><i class="fa fa-circle-o text-yellow"></i><span>BINARY</span></a></li>

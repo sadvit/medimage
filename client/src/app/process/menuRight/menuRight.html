@@ -1,6 +1,9 @@
 <aside class="right-menu control-sidebar control-sidebar-dark control-sidebar-open ">
   <section class="sidebar" style="height: 100%;">
     <!-- Create the tabs -->
+    <button ng-if="chain.length > 0" type="button" ng-click="saveChain()" class="accept-button btn btn-block btn-primary btn-flat">Save Chain
+      <i class="fa fa-save"></i>
+    </button>
     <ul ng-if="chain.length > 0" class="sidebar-menu">
       <li class="header">CURRENT CHAIN:</li>
     </ul>
@@ -19,11 +22,8 @@
     <ul class="sidebar-menu">
       <li class="header">ACTIONS:</li>
     </ul>
-    <button type="button" class="accept-button btn btn-block btn-primary btn-flat">Refresh
+    <button type="button" ng-click="acceptChain()" class="accept-button btn btn-block btn-primary btn-flat">Accept
       <i class="fa fa-refresh"></i>
-    </button>
-    <button type="button" class="accept-button btn btn-block btn-success btn-flat">Save
-      <i class="fa fa-save"></i>
     </button>
   </section>
 </aside>

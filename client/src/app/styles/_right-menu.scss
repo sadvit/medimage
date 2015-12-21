@@ -32,7 +32,8 @@
   cursor: move;
 }
 
-.right-menu button i {
+.right-menu button i,
+.sidebar button i {
   float: right;
   right: 0;
   margin-top: 3px;

@@ -30,17 +30,20 @@ public class ChainService {
     @Autowired
     private ImageService imageService;
 
+    @Autowired
+    private BinaryService binaryService;
+
     public CacheObject processChain(String id, ChainElement[] chain) {
+        BufferedImage currentImage = imageService.getBufferedImage(id);
         for (ChainElement chainElement : chain) {
-            processChainElement(id, chainElement);
+            switch (chainElement.getOperationType()) {
+                case BINARY:
+                    currentImage = binaryService.processAsImage(currentImage, chainElement.getBinaryParams());
+                    break;
+            }
         }
-        return null;
-
-    }
-
-    public BufferedImage processChainElement(String id, ChainElement chainElement) {
-        return null;
-
+        byte[] result = toByteArray(currentImage);
+        return imageCache.addToCache(result);
     }
 
 }

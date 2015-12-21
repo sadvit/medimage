@@ -18,7 +18,7 @@ public class ChainController {
     @Autowired
     private ChainService chainService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/chain/{id}")
+    @RequestMapping(method = RequestMethod.POST, value = "{id}")
     public CacheObject processChain(@PathVariable String id, @RequestBody ChainElement[] chain) {
         return chainService.processChain(id, chain);
     }

@@ -29,8 +29,7 @@ public class BinaryService {
     @Autowired
     private ImageService imageService;
 
-    public CacheObject process(String id, BinaryParams params) {
-        BufferedImage image = imageService.getBufferedImage(id);
+    public BufferedImage processAsImage(BufferedImage image, BinaryParams params) {
         ImageFloat32 input = ConvertBufferedImage.convertFromSingle(image, null, ImageFloat32.class);
         ImageUInt8 binary = new ImageUInt8(input.width, input.height);
 
@@ -71,9 +70,14 @@ public class BinaryService {
                 break;
         }
 
-        byte[] result = toByteArray(VisualizeBinaryData.renderBinary(binary, false, null));
-        return imageCache.addToCache(result);
+        return VisualizeBinaryData.renderBinary(binary, false, null);
+    }
 
+    public CacheObject process(String id, BinaryParams params) {
+        BufferedImage image = imageService.getBufferedImage(id);
+        BufferedImage binary = processAsImage(image, params);
+        byte[] result = toByteArray(binary);
+        return imageCache.addToCache(result);
     }
 
 }

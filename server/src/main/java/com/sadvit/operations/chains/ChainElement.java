@@ -1,25 +1,23 @@
 package com.sadvit.operations.chains;
 
-import com.sadvit.models.Entity;
 import com.sadvit.operations.OperationType;
 import com.sadvit.operations.binary.BinaryParams;
-import com.sadvit.operations.binary.BinaryType;
 
 /**
  * Created by vitaly.sadovskiy.
  */
 public class ChainElement {
 
-	private OperationType operation;
+	private OperationType operationType;
 
 	private BinaryParams binaryParams;
 
-	public OperationType getOperation()	{
-		return operation;
+	public OperationType getOperationType()	{
+		return operationType;
 	}
 
-	public void setOperation(OperationType operation) {
-		this.operation = operation;
+	public void setOperationType(OperationType operationType) {
+		this.operationType = operationType;
 	}
 
 	public BinaryParams getBinaryParams() {
