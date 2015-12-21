@@ -10,22 +10,20 @@ angular.module('medimage').controller('processController', ['$scope', 'processSe
 
   $scope.chain = [];
 
-  $scope.binaryModalShow = function (index) {
-    $scope.chainIndex = index;
-    $scope.params = $scope.chain[index];
-    modalsService.showBinaryModal($scope, $scope.binaryModalApply, $scope.binaryModalCancel);
-  };
-
-  $scope.rand = function () {
-    return new Date().getMilliseconds();
+  $scope.binaryModalShow = function (binaryParams) {
+    if (!binaryParams) self.chainIndex = undefined;
+    modalsService.showBinaryModal(
+      self.binaryModalApply,
+      self.binaryModalCancel,
+      binaryParams);
   };
 
   $scope.changeOperation = function (index) {
     var chainElement = $scope.chain[index];
-    $scope.params = chainElement.binaryParams;
+    self.chainIndex = index;
     switch (chainElement.operationType) {
       case 'BINARY':
-        $scope.binaryModalShow();
+        $scope.binaryModalShow(chainElement.binaryParams);
             break;
     }
   };
@@ -34,29 +32,20 @@ angular.module('medimage').controller('processController', ['$scope', 'processSe
     $scope.chain.splice(index, 1);
   };
 
-  $scope.binaryModalApply = function (params) {
-
+  self.binaryModalApply = function (binaryParams) {
     var chainElement = {
-      index: $scope.chainIndex,
-      operationType: "BINARY " + $scope.rand(),
-      binaryParams: params
+      operationType: "BINARY",
+      binaryParams: binaryParams
     };
-
-    $scope.chain.push(chainElement);
-
-    /*processService.binary($stateParams.imageId, params, function (id) {
-      $scope.folder = tempFolder;
-      $scope.imageId = id;
-      self.applyOperation('binary', params);
-    });*/
+    if (self.chainIndex != undefined) {
+      $scope.chain[self.chainIndex] = chainElement;
+    } else {
+      $scope.chain.push(chainElement);
+    }
   };
 
-  $scope.binaryModalCancel = function () {
-    // do nothing...
-  };
+  self.binaryModalCancel = function () {
 
-  $scope.loadErrorHandler = function (error) {
-    console.log('Image not found: ' + error);
   };
 
   this.init = function () {

@@ -11,7 +11,7 @@
         <div class="dropdown vcenter">
           <div class="btn-group" uib-dropdown dropdown-append-to-body>
             <button id="btn-append-to-body" type="button" class="btn btn-primary" uib-dropdown-toggle>
-              {{params.type}}<span class="caret"></span>
+              {{binaryParams.type}}<span class="caret"></span>
             </button>
             <ul class="uib-dropdown-menu" role="menu" aria-labelledby="btn-append-to-body">
               <li ng-repeat="binaryType in binaryTypes" role="menuitem"><a href ng-click="selectBinaryType(binaryType)">{{binaryType}}</a></li>
@@ -21,14 +21,14 @@
       </div>
     </div>
     <!-- THRESOLD PARAMS -->
-    <div class="row" ng-class="{'hidden': params.type != 'THRESOLD'}">
+    <div class="row" ng-class="{'hidden': binaryParams.type != 'THRESOLD'}">
       <div class="col-md-4 text-center">
         <span>Thresold:</span>
       </div>
       <div class="col-md-8">
         <div class="slider-container">
           <span slider
-                ng-model="params.thresold"
+                ng-model="binaryParams.thresold"
                 min="0"
                 max="255"
                 range="range">
@@ -40,5 +40,5 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default pull-left" data-dismiss="modal" ng-click="cancel()">Close</button>
-  <button type="button" class="btn btn-primary" ng-click="apply()">Add</button>
+  <button type="button" class="btn btn-primary" ng-click="apply()">{{isEditMode ? 'Save' : 'Add'}}</button>
 </div>

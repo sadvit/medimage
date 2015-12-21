@@ -1,22 +1,34 @@
-angular.module('medimage').controller('modalBinaryController', function ($scope, $uibModalInstance) {
+angular.module('medimage').controller('modalBinaryController', ['$scope', '$uibModalInstance', 'binaryParams', function ($scope, $uibModalInstance, binaryParams) {
+
+  var self = this;
 
   $scope.binaryTypes = ['MEAN', 'OTSU', 'ENTROPY', 'SQUARE', 'GAUSSIAN', 'SAUVOLA', 'THRESOLD'];
 
-  if (!$scope.params) {
-    $scope.params = {};
-    $scope.params.type = 'MEAN';
-  }
-
   $scope.selectBinaryType = function (binaryType) {
-    $scope.params.type = binaryType;
+    $scope.binaryParams.type = binaryType;
   };
 
   $scope.apply = function () {
-    $uibModalInstance.close($scope.params);
+    console.log('apply');
+    $uibModalInstance.close($scope.binaryParams);
   };
 
   $scope.cancel = function () {
+    console.log('cancel');
     $uibModalInstance.dismiss('cancel');
   };
 
-});
+  self.init = function () {
+    if (binaryParams) {
+      $scope.isEditMode = true;
+      $scope.binaryParams = binaryParams;
+    } else {
+      $scope.isEditMode = false;
+      $scope.binaryParams = {};
+      $scope.binaryParams.type = 'MEAN';
+    }
+  };
+
+  self.init();
+
+}]);
