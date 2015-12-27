@@ -11,7 +11,7 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
   $scope.chain = [];
 
   $scope.acceptChain = function () {
-    chainsService.acceptChain($scope.imageId, $scope.chain, function (imageId) {
+    chainsService.acceptChain($stateParams.imageId, $scope.chain, function (imageId) {
       $scope.folder = tempFolder;
       $scope.imageId = imageId;
     });
@@ -21,8 +21,20 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
 
   };
 
+  $scope.blurModalShow = function (blurParams) {
+    if (!blurParams) {
+      self.chainIndex = undefined;
+    }
+    modalsService.showBlurModal(
+      self.blurModalApply,
+      self.blurModalCancel,
+      blurParams);
+  };
+
   $scope.binaryModalShow = function (binaryParams) {
-    if (!binaryParams) self.chainIndex = undefined;
+    if (!binaryParams) {
+      self.chainIndex = undefined;
+    }
     modalsService.showBinaryModal(
       self.binaryModalApply,
       self.binaryModalCancel,
@@ -36,6 +48,10 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
       case 'BINARY':
         $scope.binaryModalShow(chainElement.binaryParams);
             break;
+      case 'BLUR':
+        $scope.blurModalShow(chainElement.blurParams);
+            break;
+
     }
   };
 
@@ -43,9 +59,25 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
     $scope.chain.splice(index, 1);
   };
 
+  self.blurModalApply = function (blurParams) {
+    var chainElement = {
+      operationType: 'BLUR',
+      blurParams: blurParams
+    };
+    if (self.chainIndex != undefined) {
+      $scope.chain[self.chainIndex] = chainElement;
+    } else {
+      $scope.chain.push(chainElement);
+    }
+  };
+
+  self.blurModalCancel = function () {
+
+  };
+
   self.binaryModalApply = function (binaryParams) {
     var chainElement = {
-      operationType: "BINARY",
+      operationType: 'BINARY',
       binaryParams: binaryParams
     };
     if (self.chainIndex != undefined) {

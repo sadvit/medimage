@@ -33,12 +33,18 @@ public class ChainService {
     @Autowired
     private BinaryService binaryService;
 
+    @Autowired
+    private BlurService blurService;
+
     public CacheObject processChain(String id, ChainElement[] chain) {
         BufferedImage currentImage = imageService.getBufferedImage(id);
         for (ChainElement chainElement : chain) {
             switch (chainElement.getOperationType()) {
                 case BINARY:
                     currentImage = binaryService.processAsImage(currentImage, chainElement.getBinaryParams());
+                    break;
+                case BLUR:
+                    currentImage = blurService.processAsImage(currentImage, chainElement.getBlurParams());
                     break;
             }
         }

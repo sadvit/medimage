@@ -4,8 +4,8 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
 
   this.showBinaryModal = function (apply, cancel, binaryParams) {
       var modalInstance = $uibModal.open({
-        animation: false,
-        templateUrl: '/modals/modalBinaryTemplate.html',
+        animation: true,
+        templateUrl: '/modals/binary/modalBinaryTemplate.html',
         controller: 'modalBinaryController',
         resolve: {
           binaryParams: function() {
@@ -14,6 +14,20 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
         }
       });
       modalInstance.result.then(apply, cancel);
+  };
+
+  this.showBlurModal = function (apply, cancel, blurParams) {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: '/modals/blur/modalBlurTemplate.html',
+      controller: 'modalBlurController',
+      resolve: {
+        blurParams: function() {
+          return angular.copy(blurParams);
+        }
+      }
+    });
+    modalInstance.result.then(apply, cancel);
   };
 
 }]);

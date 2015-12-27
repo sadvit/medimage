@@ -1,11 +1,22 @@
 package com.sadvit.services;
 
+import boofcv.alg.feature.detect.edge.CannyEdge;
+import boofcv.alg.feature.detect.edge.EdgeContour;
+import boofcv.alg.filter.binary.BinaryImageOps;
+import boofcv.alg.filter.binary.Contour;
 import boofcv.alg.filter.binary.GThresholdImageOps;
 import boofcv.alg.filter.binary.ThresholdImageOps;
 import boofcv.alg.misc.ImageStatistics;
+import boofcv.factory.feature.detect.edge.FactoryEdgeDetectors;
+import boofcv.gui.ListDisplayPanel;
 import boofcv.gui.binary.VisualizeBinaryData;
+import boofcv.gui.image.ShowImages;
+import boofcv.io.UtilIO;
 import boofcv.io.image.ConvertBufferedImage;
+import boofcv.io.image.UtilImageIO;
+import boofcv.struct.ConnectRule;
 import boofcv.struct.image.ImageFloat32;
+import boofcv.struct.image.ImageSInt16;
 import boofcv.struct.image.ImageUInt8;
 import com.sadvit.models.CacheObject;
 import com.sadvit.operations.binary.BinaryParams;
@@ -14,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 import static com.sadvit.utils.FileUtils.toByteArray;
 

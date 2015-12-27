@@ -22,6 +22,10 @@
   display: none;
 }
 
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
 .right-menu .sidebar-menu i:hover,
 .right-menu .sidebar-menu i.active {
   color: white;

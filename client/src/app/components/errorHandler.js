@@ -1,12 +1,11 @@
-angular.module('medimage').directive('errorHandler', function () {
+angular.module('medimage').directive('errorHandler', ['$state', function ($state) {
   return {
-    restrict: 'A',
-    scope: {
-      handler: '&errorHandler'
-    },
-    link: function (scope, element, attrs) {
-      var handler = scope.handler();
-      element.bind('error', handler);
+    link: function(scope, element) {
+      element.bind('error', function () {
+        $state.go('login');
+        // TODO add user auth check
+        // TODO change image to fallback src
+      });
     }
-  }
-});
+  };
+}]);

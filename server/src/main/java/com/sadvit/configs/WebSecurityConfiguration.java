@@ -46,7 +46,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.csrf()
 				.disable();
 
-		http.headers().cacheControl().disable();
+		//http.headers().cacheControl().disable();
 	}
 
 	@Override

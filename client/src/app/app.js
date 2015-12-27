@@ -49,8 +49,5 @@ medimage.run(['$state', '$rootScope', 'Restangular', function ($state, $rootScop
       return false;
     }
   );
-  $rootScope.imgErrorHandler = function (error) {
-    console.log(error);
-  }
 
 }]);
