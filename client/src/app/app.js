@@ -1,8 +1,8 @@
 'use strict';
 
-var medimage = angular.module('medimage', ['restangular', 'ui.router', 'ui.bootstrap', 'ui.bootstrap-slider', 'dndLists']);
+var medimage = angular.module('medimage', ['restangular', 'ui.router', 'ui.bootstrap', 'ui.bootstrap-slider', 'dndLists', 'chart.js']);
 
-medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
+medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvider, ChartJsProvider) {
   $urlRouterProvider.otherwise('login');
   $stateProvider
     .state('login', {
@@ -42,7 +42,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       }
     })
     .state('statistics', {
-      url: '/statistics',
+      url: '/statistics/:imageId',
       views: {
         'content':{
           templateUrl: 'statistics/statistics.html',
@@ -55,6 +55,15 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
     });
 
   RestangularProvider.setBaseUrl('http://localhost:8080');
+
+  ChartJsProvider.setOptions({
+    colours: ['#FF5252', '#FF8A80'],
+    responsive: false
+  });
+  // Configure all line charts
+  ChartJsProvider.setOptions('Line', {
+    datasetFill: false
+  });
 
 });
 

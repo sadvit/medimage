@@ -18,7 +18,7 @@ angular.module('medimage').controller('imagesController', ['$scope', 'imageServi
   };
 
   $scope.infoImage = function (image) {
-    console.log('info ' + image);
+    $state.go('statistics', {imageId: image});
   };
 
   this.init = function () {
