@@ -6,13 +6,13 @@
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
         <li ng-class="{'active': state.includes('images') || state.includes('process')}">
-          <a href="">
+          <a ui-sref="images">
             <span>Images</span>
             <i class="fa fa-image"></i>
           </a>
         </li>
-        <li class="">
-          <a href="">
+        <li ng-class="{'active': state.includes('statistics')}">
+          <a ui-sref="statistics">
             <span>Statistic</span>
             <i class="fa fa-pie-chart"></i>
           </a>
@@ -23,8 +23,8 @@
             <i class="fa fa-laptop"></i>
           </a>
         </li>
-        <li class="">
-          <a href="">
+        <li ng-class="{'active': state.includes('chains')}">
+          <a ui-sref="chains">
             <span>Chains</span>
             <i class="fa fa-edit"></i>
           </a>

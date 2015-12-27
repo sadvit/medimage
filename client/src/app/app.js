@@ -32,6 +32,24 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
         }
       }
     })
+    .state('chains', {
+      url: '/chains',
+      views: {
+        'content':{
+          templateUrl: 'chains/chains.html',
+          controller: 'chainsController'
+        }
+      }
+    })
+    .state('statistics', {
+      url: '/statistics',
+      views: {
+        'content':{
+          templateUrl: 'statistics/statistics.html',
+          controller: 'statisticsController'
+        }
+      }
+    })
     .state('register', {
       url: '/register'
     });
