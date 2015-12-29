@@ -1,13 +1,26 @@
 <div header></div>
 <div statistics-menu-left></div>
 
-<div class="statistics-container">
-  <div id="image">
-
+<div class="container-fluid statistics-container">
+  <div class="row">
+    <div class="col-md-5 image-block">
+        <img class="img-thumbnail" ng-src="http://localhost:8080/images/{{imageId}}">
+    </div>
+    <div class="col-md-5 statistic-block">
+      <div class="row">
+        <p class="text-success">Histogram:</p>
+      </div>
+      <div class="row">
+        <img class="img-thumbnail" ng-src="http://localhost:8080/temp/{{histogramId}}">
+      </div>
+    </div>
   </div>
-  <div id="statistics">
-    <canvas id="bar" class="chart chart-bar"
-            chart-data="data" chart-labels="labels" chart-series="series">
-    </canvas>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="text-success">Folder: <b>IMAGES</b></p>
+      <p class="text-success">Width: <b>500</b></p>
+      <p class="text-success">Height: <b>500</b></p>
+      <p class="text-success">Format: <b>BMP</b></p>
+    </div>
   </div>
 </div>

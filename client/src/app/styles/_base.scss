@@ -131,3 +131,8 @@ aside .accept-button.btn.btn-block.btn-primary.btn-flat {
   margin-bottom: 11px;
   margin-top: 11px;
 }
+
+canvas {
+  max-width: 1000px !important;
+  max-height: 600px !important;
+}

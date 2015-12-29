@@ -57,12 +57,12 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
   RestangularProvider.setBaseUrl('http://localhost:8080');
 
   ChartJsProvider.setOptions({
-    colours: ['#FF5252', '#FF8A80'],
+    colours: ['#000000', '#000000'],
     responsive: false
   });
   // Configure all line charts
   ChartJsProvider.setOptions('Line', {
-    datasetFill: false
+    datasetFill: false,
   });
 
 });
