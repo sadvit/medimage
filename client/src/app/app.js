@@ -50,6 +50,15 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
         }
       }
     })
+    .state('recognize', {
+      url: '/recognize',
+      views: {
+        'content':{
+          templateUrl: 'recognize/recognize.html',
+          controller: 'recognizeController'
+        }
+      }
+    })
     .state('register', {
       url: '/register'
     });
