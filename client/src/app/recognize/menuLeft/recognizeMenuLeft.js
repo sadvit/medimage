@@ -1,4 +1,4 @@
-angular.module('medimage').directive('chainsMenuLeft', [function () {
+angular.module('medimage').directive('recognizeMenuLeft', [function () {
   return {
     link: function (scope, element, attrs) {
 
