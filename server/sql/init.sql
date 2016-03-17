@@ -1,8 +1,17 @@
-/*CREATE TYPE user_role AS ENUM ('admin', 'user');*/
+CREATE TYPE user_role AS ENUM ('ADMIN', 'USER');
 
-CREATE TABLE IF NOT EXISTS users
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users
 (
-  login INT,
-  hashpwd VARCHAR(45),
+  id INT PRIMARY KEY,
+  login VARCHAR(45),
+  hashpwd CHAR(60),
   role user_role
-)
+);
+
+INSERT INTO users (id, login, hashpwd, role) VALUES (2, 'sadvit', 'sadvit', 'USER');
+
+SELECT * FROM users;
+
+/*DROP TYPE user_role;*/
