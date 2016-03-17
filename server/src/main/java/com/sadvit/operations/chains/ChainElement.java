@@ -1,5 +1,6 @@
 package com.sadvit.operations.chains;
 
+import com.sadvit.models.Entity;
 import com.sadvit.operations.OperationType;
 import com.sadvit.operations.binary.BinaryParams;
 import com.sadvit.operations.blur.BlurParams;
@@ -7,7 +8,7 @@ import com.sadvit.operations.blur.BlurParams;
 /**
  * Created by vitaly.sadovskiy.
  */
-public class ChainElement {
+public class ChainElement extends Entity {
 
 	private OperationType operationType;
 

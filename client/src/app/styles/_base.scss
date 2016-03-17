@@ -1,6 +1,7 @@
 @import 'modal-binary';
 @import 'right-menu';
 @import 'statistics';
+@import 'chains';
 
 body {
   position: absolute;
@@ -105,6 +106,15 @@ img.small-image {
   .right-image-menu {
     opacity: 1;
   }
+}
+
+.img-thumbnail {
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .lightbox {

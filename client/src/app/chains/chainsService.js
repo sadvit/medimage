@@ -14,4 +14,10 @@ angular.module('medimage').service('chainsService', ['Restangular', function (Re
     });
   };
 
+  this.getChains = function (callback) {
+    Restangular.all('chains').getList().then(function (data) {
+      callback(data);
+    });
+  }
+
 }]);

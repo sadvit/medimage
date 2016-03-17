@@ -1,7 +1,182 @@
 <div header></div>
-<div chains-menu-right></div>
 <div chains-menu-left></div>
 
 <div class="chains-container">
+  <div class="row main">
+    <div class="col-md-4 chains-block show">
+      <ul class="sidebar-menu">
+        <li class="header">CHAIN OPERATION LIST</li>
 
+        <li><a href=""><i class="fa fa-circle-o text-yellow"></i><span>BINARY</span></a></li>
+        <li><a href=""><i class="fa fa-circle-o text-yellow"></i><span>BLUR</span></a></li>
+        <li><a href=""><i class="fa fa-circle-o text-yellow"></i><span>CROP</span></a></li>
+        <li><a href=""><i class="fa fa-circle-o text-yellow"></i><span>RESIZE</span></a></li>
+
+      </ul>
+
+
+
+
+      <div class="input-image-button" style="
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background: rgba(74, 82, 86, 0.72);
+    display: block;
+    /* top: 58px; */
+    bottom: 50px;
+    overflow: hidden;
+    text-align: center;
+    padding-top: 11px;
+">
+<span style="
+    color: #6B7E8A;
+    font-size: 20px;
+    font-weight: 600;
+    /* position: absolute; */
+    left: 11px;
+    top: 11px;
+">PROCESS IMAGES</span>
+      </div>
+
+
+
+
+
+    </div>
+    <div class="col-md-4 input-block show">
+      <div class="header" style="
+    display: block;
+    overflow: hidden;
+    height: 37px;
+    background-color: rgba(34,43,48,0.75);
+    /* text-align: left; */
+      "><span style="display: block;position: relative;left: 10px;top: 8px;color: #C6D4DA;">SELECT USER IMAGES</span>
+      </div>
+      <div class="input-image-content" style="
+    display: block;
+    position: relative;
+    height: 100%;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;">
+        <div class="input-image-folder" style="
+    display: block;
+    height: 100%;
+    box-shadow: 26px 0px 53px -26px #000000 inset;
+    background-color: #DCE7EC;
+    overflow: hidden;">
+
+          <!-- ngRepeat: image in images --><div ng-repeat="image in images" class="image-tile ng-scope 71d26a8a-ec16-11e5-9ce9-5e5517507c66" ng-class="[image]" ng-click="selectUserImage(image)">
+          <div class="selector"></div>
+          <!-- ngIf: image --><img error-handler="" class="small-image img-thumbnail ng-scope" ng-if="image" ng-src="http://localhost:8080/images/71d26a8a-ec16-11e5-9ce9-5e5517507c66" src="http://localhost:8080/images/71d26a8a-ec16-11e5-9ce9-5e5517507c66"><!-- end ngIf: image -->
+        </div><!-- end ngRepeat: image in images --><div ng-repeat="image in images" class="image-tile ng-scope 7cf4d600-ec16-11e5-9ce9-5e5517507c66" ng-class="[image]" ng-click="selectUserImage(image)">
+          <div class="selector"></div>
+          <!-- ngIf: image --><img error-handler="" class="small-image img-thumbnail ng-scope" ng-if="image" ng-src="http://localhost:8080/images/7cf4d600-ec16-11e5-9ce9-5e5517507c66" src="http://localhost:8080/images/7cf4d600-ec16-11e5-9ce9-5e5517507c66"><!-- end ngIf: image -->
+        </div><!-- end ngRepeat: image in images -->
+
+        </div>
+
+
+
+        <div class="col-md-4 output-block show"></div>
+      </div>
+
+
+
+      <div class="input-image-button" style="
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background: rgba(71, 82, 88, 0.72);
+    display: block;
+    /* top: 58px; */
+    bottom: 50px;
+    overflow: hidden;
+    text-align: center;
+    padding-top: 11px;
+">
+<span style="
+    color: #2E414C;
+    font-size: 20px;
+    font-weight: 600;
+    /* position: absolute; */
+    left: 11px;
+    top: 11px;
+">PROCESS IMAGES</span>
+      </div>
+
+
+    </div>
+    <div class="col-md-4 output-block show">
+      <div class="header" style="
+    display: block;
+    overflow: hidden;
+    height: 37px;
+    background-color: rgb(71, 82, 88);
+    /* text-align: left; */
+    border-left: #6C7979;
+    /* border-style: solid; */
+    border-left-style: solid;
+    "><span style="display: block;position: relative;left: 10px;top: 8px;color: #C6D4DA;">RESULTS PROCESSING</span>
+      </div>
+      <div class="input-image-content" style="
+    display: block;
+    position: relative;
+    height: 100%;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    border-left: #6C7979;
+    /* border-style: solid; */
+    border-left-style: solid;
+    ">
+        <div class="input-image-folder" style="
+    display: block;
+    height: 100%;
+    /* box-shadow: 26px 0px 53px -26px #000000 inset; */
+    background-color: #DCE7EC;
+    overflow: hidden;
+    ">
+
+          <!-- ngRepeat: image in images --><div ng-repeat="image in images" class="image-tile ng-scope 71d26a8a-ec16-11e5-9ce9-5e5517507c66" ng-class="[image]" ng-click="selectUserImage(image)">
+          <div class="selector"></div>
+          <!-- ngIf: image --><img error-handler="" class="small-image img-thumbnail ng-scope" ng-if="image" ng-src="http://localhost:8080/images/71d26a8a-ec16-11e5-9ce9-5e5517507c66" src="http://localhost:8080/images/71d26a8a-ec16-11e5-9ce9-5e5517507c66"><!-- end ngIf: image -->
+        </div><!-- end ngRepeat: image in images --><div ng-repeat="image in images" class="image-tile ng-scope 7cf4d600-ec16-11e5-9ce9-5e5517507c66" ng-class="[image]" ng-click="selectUserImage(image)">
+          <div class="selector"></div>
+          <!-- ngIf: image --><img error-handler="" class="small-image img-thumbnail ng-scope" ng-if="image" ng-src="http://localhost:8080/images/7cf4d600-ec16-11e5-9ce9-5e5517507c66" src="http://localhost:8080/images/7cf4d600-ec16-11e5-9ce9-5e5517507c66"><!-- end ngIf: image -->
+        </div><!-- end ngRepeat: image in images -->
+
+        </div>
+
+
+
+        <div class="col-md-4 output-block show"></div>
+      </div>
+
+
+
+      <div class="input-image-button" style="
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background: rgba(71, 82, 88, 0.72);
+    display: block;
+    /* top: 58px; */
+    bottom: 50px;
+    overflow: hidden;
+    text-align: center;
+    padding-top: 11px;
+">
+<span style="
+    color: #2E414C;
+    font-size: 20px;
+    font-weight: 600;
+    /* position: absolute; */
+    left: 11px;
+    top: 11px;
+">PROCESS IMAGES</span>
+      </div>
+
+
+    </div>
+  </div>
 </div>

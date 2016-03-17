@@ -1,5 +1,27 @@
 <aside class="main-sidebar ">
   <section class="sidebar" style="height: auto;">
+    <button ng-if="chain.length > 0" type="button" ng-click="saveImage()" class="accept-button btn btn-block btn-primary btn-flat">Save Image
+      <i class="fa fa-save"></i>
+    </button>
+    <ul class="sidebar-menu">
+      <li class="header">CHAINS LIST</li>
 
+      <li ng-click="showChainsBlock(element)">
+        <a href=""><i class="fa fa-circle-o text-yellow"></i><span>showChainsBlock</span></a>
+      </li>
+
+      <li ng-click="showInputBlock(element)">
+        <a href=""><i class="fa fa-circle-o text-yellow"></i><span>showInputBlock</span></a>
+      </li>
+
+      <li ng-click="showOutputBlock(element)">
+        <a href=""><i class="fa fa-circle-o text-yellow"></i><span>showOutputBlock</span></a>
+      </li>
+
+      <li ng-repeat="element in chains" ng-click="selectChain(element)">
+        <a href=""><i class="fa fa-circle-o text-yellow"></i><span>{{element.name}}</span></a>
+      </li>
+
+    </ul>
   </section>
 </aside>
