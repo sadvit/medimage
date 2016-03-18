@@ -2,16 +2,16 @@
 <div images-menu-left></div>
 
 <div class="images-container">
-
-  <div ng-repeat="image in images" class="image-tile">
-    <ul class="right-image-menu">
-      <li><i class="fa fa-close" data-toggle="tooltip" data-placement="left" title="Delete" ng-click="deleteImage(image)"></i></li>
-      <li><i class="fa fa-edit" data-toggle="tooltip" data-placement="left" title="Process" ng-click="processImage(image)"></i></li>
-      <li><i class="fa fa-info" data-toggle="tooltip" data-placement="left" title="Info" ng-click="infoImage(image)"></i></li>
-    </ul>
-    <img error-handler ng-click="openImageModal(image)" class="small-image img-thumbnail" ng-if="image" ng-src="http://localhost:8080/images/{{image}}">
+  <div class="images-content">
+    <div ng-repeat="image in images" class="image-tile">
+      <ul class="right-image-menu">
+        <li><i class="fa fa-close" data-toggle="tooltip" data-placement="left" title="Delete" ng-click="deleteImage(image)"></i></li>
+        <li><i class="fa fa-edit" data-toggle="tooltip" data-placement="left" title="Process" ng-click="processImage(image)"></i></li>
+        <li><i class="fa fa-info" data-toggle="tooltip" data-placement="left" title="Info" ng-click="infoImage(image)"></i></li>
+      </ul>
+      <img error-handler ng-click="openImageModal(image)" class="small-image img-thumbnail" ng-if="image" ng-src="http://localhost:8080/images/{{image}}">
+    </div>
   </div>
-
 </div>
 
 <div id="lightBox" class="lightbox fade"  tabindex="-1" role="dialog" aria-hidden="true">

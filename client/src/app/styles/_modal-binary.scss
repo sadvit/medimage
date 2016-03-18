@@ -33,3 +33,8 @@
 .uib-dropdown-menu.dropdown-menu {
   z-index: 1050;
 }
+
+.slider.slider-horizontal .tooltip.tooltip-main.top {
+  margin-top: -35px;
+  cursor: pointer;
+}
