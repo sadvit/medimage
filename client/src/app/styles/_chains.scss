@@ -9,7 +9,6 @@
   margin-top: 3px;
 }
 
-
 .chains-container {
 
   position: absolute;
@@ -54,6 +53,9 @@
         left: 11px;
         top: 11px;
       }
+      &:hover {
+        cursor: pointer;
+      }
     }
     .chains-block .input-image-button span {
       color: #6B7E8A;
@@ -81,12 +83,10 @@
         overflow: auto;
         padding: 0;
       }
-
     }
     .chains-block.show {
       width: 230px;
     }
-
 
     .input-block {
       background-color: #B8C7CE;
@@ -107,13 +107,13 @@
         display: block;
         position: relative;
         height: calc(100% - 37px);
+        overflow: auto;
+        background-color: #DCE7EC;
         -webkit-user-drag: none;
         -webkit-user-select: none;
         .input-image-folder {
-          display: block;
-          height: 100%;
-          box-shadow: 26px 0px 53px -26px #000000 inset;
           background-color: #DCE7EC;
+          display: block;
           overflow: hidden;
         }
       }
@@ -121,7 +121,6 @@
     .input-block.show {
       width: calc(50% - 115px);
     }
-
 
     .output-block {
       background: rgba(0, 0, 255, 0.51);
@@ -143,14 +142,15 @@
         display: block;
         position: relative;
         height: calc(100% - 37px);
+        overflow: auto;
         -webkit-user-drag: none;
         -webkit-user-select: none;
         border-left: solid #6C7979;
+        background-color: #DCE7EC;
         .output-image-folder {
           display: block;
-          height: 100%;
-          background-color: #DCE7EC;
           overflow: hidden;
+          background-color: #DCE7EC;
         }
       }
     }
