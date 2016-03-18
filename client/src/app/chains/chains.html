@@ -4,7 +4,7 @@
 <div class="chains-container">
   <div class="row main">
 
-    <div class="col-md-4 chains-block">
+    <div class="col-md-4 chains-block anim-colm">
       <div class="content">
         <ul class="sidebar-menu">
           <li class="header">CHAIN OPERATION LIST</li>
@@ -19,10 +19,11 @@
       </div>
     </div>
 
-    <div class="col-md-4 input-block">
+    <div class="col-md-4 input-block anim-colm">
       <div class="header">
         <span>SELECT USER IMAGES</span>
       </div>
+
       <div class="input-image-content">
         <div class="input-image-folder">
           <div ng-repeat="image in images" class="image-tile" ng-class="[image]" ng-click="selectUserImage(image)">
@@ -39,10 +40,11 @@
 
     </div>
 
-    <div class="col-md-4 output-block">
+    <div class="col-md-4 output-block anim-colm">
       <div class="header">
         <span>RESULTS PROCESSING</span>
       </div>
+
       <div class="output-image-content">
         <div class="output-image-folder">
           <div ng-repeat="image in images" class="image-tile" ng-class="[image]" ng-click="selectUserImage(image)">
