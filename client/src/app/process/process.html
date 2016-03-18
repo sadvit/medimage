@@ -3,8 +3,10 @@
 <div process-menu-left></div>
 
 <div class="image-container box box-widget ">
-  <img error-handler class="img-thumbnail" ng-if="imageId" ng-src="http://localhost:8080/{{folder}}/{{imageId}}">
-  <div ng-if="!imageId" class="overlay">
-    <i class="fa fa-refresh fa-spin"></i>
+  <div class="content">
+    <img error-handler class="img-thumbnail" ng-if="imageId" ng-src="http://localhost:8080/{{folder}}/{{imageId}}">
+    <div ng-if="!imageId" class="overlay">
+      <i class="fa fa-refresh fa-spin"></i>
+    </div>
   </div>
 </div>
