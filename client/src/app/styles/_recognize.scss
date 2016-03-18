@@ -1,0 +1,75 @@
+.recognize-container {
+  width: calc(100% - 230px);
+  height: 100%;
+  /*background-color: #ecf0f5;*/
+  background-color: #B8C7CE;
+  margin: auto auto auto 230px;
+
+  .row.main {
+    display: block;
+    height: 100%;
+    margin: 0;
+    .col-md-4 {
+      display: block;
+      height: 100%;
+      width: 0;
+      padding: 0;
+    }
+    .col-md-4 {
+      transition-timing-function: ease-in-out;
+      transition: width 150ms, padding 150ms;
+    }
+    .chains-block {
+      background: rgba(34,45,50,0.95);
+      .header {
+        background: rgba(26,34,38,0.45);
+      }
+      a {
+        color: #b8c7ce;
+      }
+    }
+    .chains-block.show {
+      width: 230px;
+    }
+    .input-block {
+      background-color: #B8C7CE;
+    }
+    .input-block.show {
+      width: calc(50% - 115px);
+    }
+    .output-block {
+      background: rgba(0, 0, 255, 0.51);
+    }
+    .output-block.show {
+      width: calc(50% - 115px);
+    }
+  }
+  .image-tile {
+    float: left;
+    margin: 20px 0 0 25px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+  }
+  .image-tile.selected .selector {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(71, 82, 88, 0.38);
+    display: block;
+    border-radius: 4px;
+    background-image: url("/assets/arrow.png");
+    background-repeat: no-repeat;
+    background-position-x: 73px;
+    background-position-y: 73px;
+    transition: background-color 100ms;
+  }
+  .img-thumbnail:hover {
+    background-color: #3C8DBC;
+  }
+  .image-tile.selected .img-thumbnail {
+    background-color: #3C8DBC;
+  }
+}

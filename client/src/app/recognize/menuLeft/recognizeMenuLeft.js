@@ -3,7 +3,7 @@ angular.module('medimage').directive('recognizeMenuLeft', [function () {
     link: function (scope, element, attrs) {
 
     },
-    templateUrl: 'chains/menuLeft/menuLeft.html',
+    templateUrl: 'recognize/menuLeft/menuLeft.html',
     restrict: 'A',
     controller: ['$scope','modalsService', function ($scope, modalsService) {
 
