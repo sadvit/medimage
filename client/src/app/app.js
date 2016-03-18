@@ -14,6 +14,13 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
         }
       }
     })
+      /* TODO add remove session for logout */
+    /*.state('logout', {
+      url: '/logout',
+      controller: function ($scope, $state) {
+        $state.go('login');
+      }
+    })*/
     .state('process', {
       url: '/process/:imageId',
       views: {
@@ -56,6 +63,15 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
         'content':{
           templateUrl: 'recognize/recognize.html',
           controller: 'recognizeController'
+        }
+      }
+    })
+    .state('profile', {
+      url: '/profile',
+      views: {
+        'content':{
+          templateUrl: 'profile/profile.html',
+          controller: 'profileController'
         }
       }
     })

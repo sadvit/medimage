@@ -23,14 +23,14 @@
             <i class="fa fa-edit"></i>
           </a>
         </li>
-        <li class="">
-          <a href="">
+        <li ng-class="{'active': state.includes('profile')}">
+          <a ui-sref="profile">
             <span>Profile</span>
             <i class="fa fa-black-tie"></i>
           </a>
         </li>
         <li>
-          <a href="">
+          <a ui-sref="login">
             <span>Log out</span>
             <i class="fa fa-sign-out"></i>
           </a>
