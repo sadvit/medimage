@@ -61,11 +61,9 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color: rgba(71, 82, 88, 0.38);
     display: block;
     border-radius: 4px;
-    background-image: url("/assets/arrow.png");
-    background-repeat: no-repeat;
+    background: rgba(71, 82, 88, 0.38) url("/assets/arrow.png") no-repeat;
     background-position-x: 73px;
     background-position-y: 73px;
     transition: background-color 100ms;
@@ -76,4 +74,64 @@
   .image-tile.selected .img-thumbnail {
     background-color: #3C8DBC;
   }
+}
+
+.recognize-container .chains-block ul li i.fa-play.yellow {
+  color: #f39c12;
+}
+
+.recognize-container .chains-block ul li i.fa-play.blue {
+  color: #0073b7;
+}
+
+.recognize-container .chains-block ul li i.fa-play {
+  top: 15px;
+  right: 15px;
+  position: absolute;
+  cursor: pointer;
+  padding-left: 0;
+  transition: padding-left 120ms;
+}
+
+.recognize-container .chains-block ul li i.fa-play:hover {
+  padding-left: 8px;
+  color: #0073b7;
+}
+
+.recognize-container .chains-block ul li i.fa-gears:hover {
+  color: #0073b7;
+}
+
+.recognize-container .chains-block ul li i.fa-times:hover {
+  color: #0073b7;
+}
+
+.recognize-container .chains-block ul li i.fa-gears {
+  cursor: pointer;
+}
+
+.recognize-container .chains-block ul li i.fa-times {
+  cursor: pointer;
+}
+
+.recognize-container .chains-block ul li span {
+  cursor: default;
+}
+
+.small-image-tile {
+  float: left;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  width: 80px;
+  height: 80px;
+  img.small-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.table-image {
+  width: 100%;
+  height: 100%;
 }

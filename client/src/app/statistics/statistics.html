@@ -3,34 +3,36 @@
 
 <div class="container-fluid statistics-container">
 
-  <div class="col-md-11">
-    <div class="box box-primary">
-      <div class="box-header with-border">
-        <h3 class="box-title">Statistic for image: <b>[{{imageId}}]</b></h3>
-      </div>
+  <div class="content">
 
-      <div class="box-body">
-        <div class="row">
-          <div class="col-md-6">
-            <p class="text-center text-success">ORIGINAL</p>
-            <img class="img-thumbnail" ng-src="http://localhost:8080/images/{{imageId}}">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Statistic for image: <b>[{{imageId}}]</b></h3>
+        </div>
+
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="text-center text-success">ORIGINAL</p>
+              <img class="img-thumbnail" ng-src="http://localhost:8080/images/{{imageId}}">
+            </div>
+            <div class="col-md-6">
+              <p class="text-center text-success">HISTOGRAM</p>
+              <img class="img-thumbnail" ng-src="http://localhost:8080/temp/{{histogramId}}">
+            </div>
           </div>
-          <div class="col-md-6">
-            <p class="text-center text-success">HISTOGRAM</p>
-            <img class="img-thumbnail" ng-src="http://localhost:8080/temp/{{histogramId}}">
+          <div class="row">
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-6">
+
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6">
 
-          </div>
-          <div class="col-md-6">
-
-          </div>
-        </div>
       </div>
 
-    </div>
   </div>
 
 </div>

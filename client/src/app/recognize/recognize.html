@@ -8,10 +8,11 @@
       <div ng-scrollbars class="content">
         <ul class="sidebar-menu">
           <li class="header">SELECT CHAIN</li>
-          <li><a ><i class="fa fa-circle-o text-yellow"></i><span>chain 1</span></a></li>
-          <li><a ><i class="fa fa-circle-o text-yellow"></i><span>chain 2</span></a></li>
-          <li><a ><i class="fa fa-circle-o text-yellow"></i><span>chain 3</span></a></li>
-          <li><a ><i class="fa fa-circle-o text-yellow"></i><span>chain 4</span></a></li>
+          <!--<i class="fa fa-gears yellow"></i>-->
+          <li><a><i class="fa fa-circle-o text-yellow"></i><span>chain 1</span><i class="fa fa-play yellow"></i></a></li>
+          <li><a><i class="fa fa-circle-o text-yellow"></i><span>chain 2</span><i class="fa fa-play yellow"></i></a></li>
+          <li><a><i class="fa fa-circle-o text-yellow"></i><span>chain 3</span><i class="fa fa-play yellow"></i></a></li>
+          <li><a><i class="fa fa-circle-o text-yellow"></i><span>chain 4</span><i class="fa fa-play yellow"></i></a></li>
         </ul>
       </div>
     </div>
@@ -22,11 +23,62 @@
       </div>
 
       <div ng-scrollbars class="input-image-content">
-        <div class="input-image-folder"></div>
+        <div class="input-image-folder">
+          <div ng-repeat="image in images" class="image-tile" ng-class="[image]" ng-click="selectUserImage(image)">
+            <div class="selector"></div>
+            <img error-handler ng-click="openImageModal(image)" class="small-image img-thumbnail" ng-if="image"
+                 ng-src="http://localhost:8080/images/{{image}}">
+          </div>
+        </div>
       </div>
 
       <div class="input-image-button">
-        <span>PROCESS IMAGES ></span>
+        <span>RECOGNIZE IMAGES ></span>
+      </div>
+
+    </div>
+
+    <div class="col-md-4 output-block anim-colm show">
+      <div class="header">
+        <span>RECOGNIZE RESULTS</span>
+      </div>
+
+      <div ng-scrollbars class="output-image-content">
+        <div class="output-image-folder">
+
+          <table class="table table-bordered">
+            <tbody>
+            <tr>
+              <th>#</th>
+              <th>ORIGINAL</th>
+              <th>PROCESS</th>
+              <th style="width: 99%">STATISTIC</th>
+            </tr>
+            <tr ng-repeat="image in images" ng-class="[image]">
+              <td>
+                <span>{{$index}}</span>
+              </td>
+              <td>
+                  <div class="small-image-tile">
+                    <img error-handler class="small-image img-thumbnail" ng-if="image" ng-src="http://localhost:8080/images/{{image}}">
+                  </div>
+              </td>
+              <td>
+                <div class="small-image-tile">
+                  <img error-handler class="small-image img-thumbnail" ng-if="image" ng-src="http://localhost:8080/images/{{image}}">
+                </div>
+              </td>
+              <td>
+                <span>ALABAMENSIS</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="input-image-button">
+        <span>SAVE RESULTS</span>
       </div>
 
     </div>

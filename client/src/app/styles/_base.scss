@@ -7,6 +7,7 @@
 @import "login";
 @import "images";
 @import "process";
+@import "elements";
 
 body {
   position: absolute;
@@ -14,8 +15,4 @@ body {
   width:100%;
   min-width: 800px;
   min-height: 480px;
-}
-
-.nav.navbar-nav i {
-  margin-left: 5px;
 }
