@@ -1,8 +1,8 @@
 'use strict';
 
-var medimage = angular.module('medimage', ['restangular', 'ui.router', 'ui.bootstrap', 'ui.bootstrap-slider', 'dndLists']);
+var medimage = angular.module('medimage', ['restangular', 'ui.router', 'ui.bootstrap', 'ui.bootstrap-slider', 'dndLists', 'ngScrollbars']);
 
-medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
+medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvider, ScrollBarsProvider) {
   $urlRouterProvider.otherwise('login');
   $stateProvider
     .state('login', {
@@ -80,6 +80,20 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
     });
 
   RestangularProvider.setBaseUrl('http://localhost:8080');
+
+  ScrollBarsProvider.defaults = {
+    scrollButtons: {
+      scrollAmount: 'auto', // scroll amount when button pressed
+      enable: true // enable scrolling buttons by default
+    },
+    axis: 'y', // enable 2 axis scrollbars by default
+    autoHideScrollbar: false,
+    theme: 'minimal-dark',
+    advanced:{
+      updateOnContentResize: true
+    },
+    scrollInertia: 0
+  };
 
 });
 
