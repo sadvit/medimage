@@ -1,71 +1,107 @@
-ul.sidebar-menu li a span {
-  cursor: pointer;
-  -webkit-user-select: none;
-  user-select: none;
-}
+$menu-yellow: #f39c12;
+$menu-blue: #3c8dbc;
+$menu-hover-span: #fff;
+$menu-background: #222d32;
+$menu-hover-li: #1E282C;
 
+// TODO remove
 .nav.navbar-nav i {
   margin-left: 5px;
 }
 
-// Shift - button menu
-// <li><a><i class="fa fa-circle-o text-yellow"></i><span>chain 1</span><i class="fa fa-play yellow"></i></a></li>
-
-ul.shift-button-menu {
-  li.header {
-    cursor: default !important;
-  }
-  li i.fa-play.yellow {
-    color: #f39c12;
-  }
-  li i.fa-play.blue {
-    color: #0073b7;
-  }
-  li i.fa-play {
-    top: 15px;
-    right: 15px;
-    position: absolute;
-    cursor: pointer;
-    padding-left: 0;
-    transition: padding-left 120ms;
-  }
-  li:hover,
-  li:hover span {
-    cursor: pointer;
-  }
-  li:hover i.fa-play {
-    padding-left: 8px;
-    color: #0073b7;
-  }
-  li i.fa-gears:hover {
-    color: #0073b7;
-  }
-  li i.fa-times:hover {
-    color: #0073b7;
-  }
-  li i.fa-gears {
-    cursor: pointer;
-  }
-  li i.fa-times {
-    cursor: pointer;
-  }
-  li span {
+// action menu
+ul.sidebar-menu.action-menu {
+  li:hover.header {
     cursor: default;
   }
-  li.selected i.fa-play {
-    padding-left: 8px;
-    color: #0073b7;
+  li:hover {
     cursor: pointer;
-  }
-  li.selected a {
-    color: #fff;
-    background: #1e282c;
-    border-left-color: #3c8dbc;
   }
 }
 
-ul.view-button-menu {
+// shift menu
+ul.sidebar-menu.shift-menu {
+  li.header {
+    cursor: default !important;
+  }
+  li {
+    i.fa-play.yellow {
+      color: $menu-yellow;
+    }
+    i.fa-play.blue {
+      color: $menu-blue;
+    }
+    i.fa-play {
+      top: 15px;
+      right: 15px;
+      position: absolute;
+      cursor: pointer;
+      padding-left: 0;
+      transition: padding-left 120ms;
+    }
+    span {
+      cursor: default;
+    }
+    a {
+      color: #b8c7ce;
+    }
+  }
+  li:hover {
+    span {
+      color: #fff;
+      cursor: pointer;
+    }
+    i.fa-play {
+      padding-left: 8px;
+      color: #3c8dbc;
+    }
+    cursor: pointer;
+  }
+  li.selected {
+    i.fa-play {
+      padding-left: 8px;
+      color: #3c8dbc;
+      cursor: pointer;
+    }
+    a {
+      background: #1e282c;
+      border-left-color: #3c8dbc;
+    }
+    span {
+      color: #fff;
+    }
+  }
+}
+
+// chain menu
+ul.sidebar-menu.chain-menu {
   li i:hover {
     cursor: pointer;
   }
+  li:hover {
+    a {
+      border: none;
+    }
+    i {
+      color: $menu-yellow;
+    }
+    span {
+      color: #fff;
+    }
+  }
+  li a {
+    border: none;
+    cursor: move;
+  }
+  &[dnd-list] {
+    .dndPlaceholder {
+      display: block;
+      background: #222d32;
+      min-height: 44px;
+    }
+    .dndDraggingSource {
+      display: none;
+    }
+  }
+
 }

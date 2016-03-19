@@ -7,7 +7,7 @@
     <ul ng-if="chain.length > 0" class="sidebar-menu">
       <li class="header">CURRENT CHAIN:</li>
     </ul>
-    <ul dnd-list="chain" class="sidebar-menu">
+    <ul dnd-list="chain" class="sidebar-menu chain-menu">
       <li ng-repeat="chainElement in chain"
           dnd-draggable="chainElement"
           dnd-moved="chain.splice($index , 1)"
