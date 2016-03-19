@@ -4,9 +4,9 @@ angular.module('medimage').service('imageService', ['Restangular', function (Res
 
   this.getImages = function (callback) {
     Restangular.all('images').getList().then(function (result) {
-      callback(result);
+      callback(result.plain());
     }, function (error) {
-      callback(error);
+      callback(error.plain());
     });
   };
 

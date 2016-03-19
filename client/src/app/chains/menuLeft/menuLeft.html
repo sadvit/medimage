@@ -1,22 +1,14 @@
 <aside class="main-sidebar">
   <section ng-scrollbars class="sidebar">
-    <ul class="sidebar-menu">
+    <ul class="sidebar-menu shift-button-menu">
       <li class="header">CHAINS LIST</li>
 
-      <li ng-click="showChainsBlock(element)">
-        <a ><i class="fa fa-circle-o text-yellow"></i><span>showChainsBlock</span></a>
-      </li>
-
-      <li ng-click="showInputBlock(element)">
-        <a ><i class="fa fa-circle-o text-yellow"></i><span>showInputBlock</span></a>
-      </li>
-
-      <li ng-click="showOutputBlock(element)">
-        <a ><i class="fa fa-circle-o text-yellow"></i><span>showOutputBlock</span></a>
-      </li>
-
-      <li ng-repeat="element in chains" ng-click="selectChain(element)">
-        <a ><i class="fa fa-circle-o text-yellow"></i><span>{{element.name}}</span></a>
+      <li ng-repeat="element in chains" ng-click="showChainsBlock($event, element)" ng-class="{'selected' : element.id == selectedChain.id}">
+        <a>
+          <i class="fa fa-circle-o text-yellow"></i>
+          <span>{{element.name}}</span>
+          <i class="fa fa-play yellow"></i>
+        </a>
       </li>
 
     </ul>

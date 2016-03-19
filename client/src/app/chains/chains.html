@@ -6,35 +6,23 @@
 
     <div class="col-md-4 chains-block anim-colm">
       <div ng-scrollbars class="content">
-        <ul class="sidebar-menu">
+        <ul class="sidebar-menu view-button-menu">
           <li class="header">CHAIN OPERATION LIST</li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>BINARY</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>BLUR</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>CROP</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>RESIZE</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>BINARY</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>BLUR</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>CROP</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>RESIZE</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>BINARY</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>BLUR</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>CROP</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>RESIZE</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>BINARY</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>BLUR</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>CROP</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>RESIZE</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>BINARY</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>BLUR</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>CROP</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>RESIZE</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>BINARY</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>BLUR</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>CROP</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>RESIZE</span></a></li>
+
+          <li ng-repeat="chainElement in chainElements"
+              dnd-draggable="chainElement"
+              dnd-moved="chain.splice($index , 1)"
+              dnd-effect-allowed="move">
+            <a>
+              <i ng-click="changeOperation($index)" class="fa fa-gears chain-options"></i>
+              <span>{{chainElement.operationType}}</span>
+              <i ng-click="removeOperation($index)" class="fa fa-times chain-close"></i>
+            </a>
+          </li>
+
         </ul>
       </div>
-      <div class="input-image-button">
+      <div ng-click="showInputBlock()" class="input-image-button">
         <span>SELECT IMAGES ></span>
       </div>
     </div>
@@ -54,7 +42,7 @@
         </div>
       </div>
 
-      <div class="input-image-button">
+      <div ng-click="showOutputBlock()" class="input-image-button">
         <span>PROCESS IMAGES ></span>
       </div>
 

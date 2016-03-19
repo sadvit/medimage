@@ -5,7 +5,9 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainsServ
   var self = this;
 
   $scope.chains = {};
+  $scope.chainElements = [];
   $scope.images = [];
+  $scope.selectedChain = {};
 
   self.init = function () {
     chainsService.getChains(function (chains) {
@@ -23,8 +25,13 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainsServ
 
   };
 
-  $scope.showChainsBlock = function () {
-    angular.element('.chains-block').toggleClass('show');
+  $scope.showChainsBlock = function (event, element) {
+    var isOpened = angular.element('.chains-block').hasClass('show');
+    if (!isOpened) {
+      angular.element('.chains-block').toggleClass('show');
+    }
+    $scope.selectedChain = element;
+    $scope.chainElements = element.chainElements;
   };
 
   $scope.showInputBlock = function () {

@@ -63,3 +63,9 @@ ul.shift-button-menu {
     border-left-color: #3c8dbc;
   }
 }
+
+ul.view-button-menu {
+  li i:hover {
+    cursor: pointer;
+  }
+}
