@@ -3,70 +3,75 @@
 
 <div class="container-fluid profile-container">
 
-  <div class="content">
+  <div class="content-block">
 
     <section class="content-header">
-      <h1>General Account Information</h1>
+      <h1>Account Information</h1>
     </section>
 
     <section class="content">
       <div class="row">
-
         <div class="col-md-6">
-
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Horizontal Form</h3>
+              <h3 class="box-title">General</h3>
             </div>
-            <!-- /.box-header -->
-            <!-- form start -->
             <form class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-
                   <div class="col-sm-10">
                     <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-
                   <div class="col-sm-10">
                     <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
                   </div>
                 </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-info pull-right">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Functions</h3>
+            </div>
+            <form class="form-horizontal">
+              <div class="box-body">
                 <div class="form-group">
-                  <div class="col-sm-offset-2 col-sm-10">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox"> Remember me
-                      </label>
-                    </div>
+                  <label for="inputEmail3" class="col-sm-6 control-label">Delete <b>ALL</b> user images</label>
+                  <div class="col-sm-6">
+                    <button type="button" class="btn btn-block btn-danger">DELETE</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-6 control-label">Delete <b>ALL</b> user chains</label>
+                  <div class="col-sm-6">
+                    <button type="button" class="btn btn-block btn-danger">DELETE</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-6 control-label">Delete <b>ALL</b> user networks</label>
+                  <div class="col-sm-6">
+                    <button type="button" class="btn btn-block btn-danger">DELETE</button>
                   </div>
                 </div>
               </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                <button type="submit" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-info pull-right">Sign in</button>
-              </div>
-              <!-- /.box-footer -->
             </form>
           </div>
-
-
-
-
-        </div><div class="col-md-6">
-
-      </div>
-
-
+        </div>
 
 
       </div>
-      <!-- /.row -->
+
     </section>
 
   </div>
