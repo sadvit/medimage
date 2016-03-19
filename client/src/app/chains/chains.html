@@ -45,7 +45,6 @@
       <div ng-click="showOutputBlock()" class="input-image-button">
         <span>PROCESS IMAGES ></span>
       </div>
-
     </div>
 
     <div class="col-md-4 output-block anim-colm">
@@ -55,7 +54,7 @@
 
       <div ng-scrollbars class="output-image-content">
         <div class="output-image-folder">
-          <div ng-repeat="image in images" class="image-tile" ng-class="[image]" ng-click="selectUserImage(image)">
+          <div ng-repeat="image in selectedImages" class="image-tile" ng-class="[image]" ng-click="selectUserImage(image)">
             <div class="selector"></div>
             <img error-handler ng-click="openImageModal(image)" class="small-image img-thumbnail" ng-if="image"
                  ng-src="http://localhost:8080/images/{{image}}">
@@ -68,5 +67,10 @@
       </div>
 
     </div>
+
+    <div class="no-data">
+      <span>Select chain</span>
+    </div>
+
   </div>
 </div>
