@@ -6,7 +6,7 @@
 
     <div class="col-md-4 chains-block anim-colm show">
       <div ng-scrollbars class="content">
-        <ul class="sidebar-menu">
+        <ul class="sidebar-menu shift-button-menu">
           <li class="header">SELECT CHAIN</li>
           <!--<i class="fa fa-gears yellow"></i>-->
           <li><a><i class="fa fa-circle-o text-yellow"></i><span>chain 1</span><i class="fa fa-play yellow"></i></a></li>
@@ -46,7 +46,7 @@
       <div ng-scrollbars class="output-image-content">
         <div class="output-image-folder">
 
-          <table class="table table-bordered">
+          <table class="table table-bordered results">
             <tbody>
             <tr>
               <th>#</th>
@@ -55,7 +55,7 @@
               <th style="width: 99%">STATISTIC</th>
             </tr>
             <tr ng-repeat="image in images" ng-class="[image]">
-              <td>
+              <td class="middle-cell">
                 <span>{{$index}}</span>
               </td>
               <td>

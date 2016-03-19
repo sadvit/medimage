@@ -31,6 +31,7 @@
       a {
         color: #b8c7ce;
       }
+
     }
     .chains-block.show {
       width: 230px;
@@ -50,12 +51,18 @@
   }
   .image-tile {
     float: left;
-    margin: 20px 0 0 25px;
+    margin: 15px;
     cursor: default;
     position: relative;
     overflow: hidden;
     width: 200px;
     height: 200px;
+    .img-thumbnail:hover {
+      background-color: #3C8DBC;
+    }
+    .image-tile.selected .img-thumbnail {
+      background-color: #3C8DBC;
+    }
   }
   .image-tile.selected .selector {
     width: 100%;
@@ -68,54 +75,17 @@
     background-position-y: 73px;
     transition: background-color 100ms;
   }
-  .img-thumbnail:hover {
-    background-color: #3C8DBC;
+  table.results .middle-cell {
+    vertical-align: middle;
+    text-align: center;
   }
-  .image-tile.selected .img-thumbnail {
-    background-color: #3C8DBC;
+  table.results {
+    margin: 0;
+    background: white;
+    td, th {
+      border: 1px solid #475258;
+    }
   }
-}
-
-.recognize-container .chains-block ul li i.fa-play.yellow {
-  color: #f39c12;
-}
-
-.recognize-container .chains-block ul li i.fa-play.blue {
-  color: #0073b7;
-}
-
-.recognize-container .chains-block ul li i.fa-play {
-  top: 15px;
-  right: 15px;
-  position: absolute;
-  cursor: pointer;
-  padding-left: 0;
-  transition: padding-left 120ms;
-}
-
-.recognize-container .chains-block ul li i.fa-play:hover {
-  padding-left: 8px;
-  color: #0073b7;
-}
-
-.recognize-container .chains-block ul li i.fa-gears:hover {
-  color: #0073b7;
-}
-
-.recognize-container .chains-block ul li i.fa-times:hover {
-  color: #0073b7;
-}
-
-.recognize-container .chains-block ul li i.fa-gears {
-  cursor: pointer;
-}
-
-.recognize-container .chains-block ul li i.fa-times {
-  cursor: pointer;
-}
-
-.recognize-container .chains-block ul li span {
-  cursor: default;
 }
 
 .small-image-tile {

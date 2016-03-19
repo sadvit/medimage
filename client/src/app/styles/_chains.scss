@@ -32,7 +32,7 @@
 
   .image-tile {
     float: left;
-    margin: 10px;
+    margin: 15px;
     cursor: default;
     position: relative;
     overflow: hidden;
@@ -160,7 +160,8 @@
 }
 .output-block.show {
   width: calc(50% - 115px);
-  border-left: solid #6C7979;
+  border-left: solid #9EA5A5;
+  border-width: 2px;
 }
 
 // Slide sectors

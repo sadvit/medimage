@@ -7,3 +7,59 @@ ul.sidebar-menu li a span {
 .nav.navbar-nav i {
   margin-left: 5px;
 }
+
+// Shift - button menu
+// <li><a><i class="fa fa-circle-o text-yellow"></i><span>chain 1</span><i class="fa fa-play yellow"></i></a></li>
+
+ul.shift-button-menu {
+  li.header {
+    cursor: default !important;
+  }
+  li i.fa-play.yellow {
+    color: #f39c12;
+  }
+  li i.fa-play.blue {
+    color: #0073b7;
+  }
+  li i.fa-play {
+    top: 15px;
+    right: 15px;
+    position: absolute;
+    cursor: pointer;
+    padding-left: 0;
+    transition: padding-left 120ms;
+  }
+  li:hover,
+  li:hover span {
+    cursor: pointer;
+  }
+  li:hover i.fa-play {
+    padding-left: 8px;
+    color: #0073b7;
+  }
+  li i.fa-gears:hover {
+    color: #0073b7;
+  }
+  li i.fa-times:hover {
+    color: #0073b7;
+  }
+  li i.fa-gears {
+    cursor: pointer;
+  }
+  li i.fa-times {
+    cursor: pointer;
+  }
+  li span {
+    cursor: default;
+  }
+  li.selected i.fa-play {
+    padding-left: 8px;
+    color: #0073b7;
+    cursor: pointer;
+  }
+  li.selected a {
+    color: #fff;
+    background: #1e282c;
+    border-left-color: #3c8dbc;
+  }
+}
