@@ -8,7 +8,6 @@
       <div ng-scrollbars class="content">
         <ul class="sidebar-menu shift-button-menu">
           <li class="header">SELECT CHAIN</li>
-          <!--<i class="fa fa-gears yellow"></i>-->
           <li><a><i class="fa fa-circle-o text-yellow"></i><span>chain 1</span><i class="fa fa-play yellow"></i></a></li>
           <li><a><i class="fa fa-circle-o text-yellow"></i><span>chain 2</span><i class="fa fa-play yellow"></i></a></li>
           <li><a><i class="fa fa-circle-o text-yellow"></i><span>chain 3</span><i class="fa fa-play yellow"></i></a></li>
@@ -54,8 +53,8 @@
               <th>PROCESS</th>
               <th style="width: 99%">STATISTIC</th>
             </tr>
-            <tr ng-repeat="image in images" ng-class="[image]">
-              <td class="middle-cell">
+            <tr ng-repeat="image in images" ng-class="{'first-child' : $index == 0, 'last-child' : $index == images.length - 1}">
+              <td class="middle-cell first-child">
                 <span>{{$index}}</span>
               </td>
               <td>
@@ -68,7 +67,7 @@
                   <img error-handler class="small-image img-thumbnail" ng-if="image" ng-src="http://localhost:8080/images/{{image}}">
                 </div>
               </td>
-              <td>
+              <td class="last-child">
                 <span>ALABAMENSIS</span>
               </td>
             </tr>
