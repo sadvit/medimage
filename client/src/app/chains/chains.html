@@ -5,13 +5,18 @@
   <div class="row main">
 
     <div class="col-md-4 chains-block anim-colm">
+
       <div ng-scrollbars class="content">
+
         <ul class="sidebar-menu chain-menu">
           <li class="header">CHAIN OPERATION LIST</li>
+        </ul>
+
+        <ul dnd-list="chainElements" class="sidebar-menu chain-menu">
 
           <li ng-repeat="chainElement in chainElements"
               dnd-draggable="chainElement"
-              dnd-moved="chain.splice($index , 1)"
+              dnd-moved="chainElements.splice($index , 1)"
               dnd-effect-allowed="move">
             <a>
               <i ng-click="changeOperation($index)" class="fa fa-gears chain-options"></i>
@@ -22,9 +27,11 @@
 
         </ul>
       </div>
+
       <div ng-click="showInputBlock()" class="input-image-button">
         <span>SELECT IMAGES ></span>
       </div>
+
     </div>
 
     <div class="col-md-4 input-block anim-colm">
@@ -52,9 +59,27 @@
         <span>RESULTS PROCESSING</span>
       </div>
 
-      <div ng-scrollbars class="output-image-content">
+      <div ng-if="selectedImages.length == 0" class="spinner">
+        <div class="sk-fading-circle">
+          <div class="sk-circle1 sk-circle"></div>
+          <div class="sk-circle2 sk-circle"></div>
+          <div class="sk-circle3 sk-circle"></div>
+          <div class="sk-circle4 sk-circle"></div>
+          <div class="sk-circle5 sk-circle"></div>
+          <div class="sk-circle6 sk-circle"></div>
+          <div class="sk-circle7 sk-circle"></div>
+          <div class="sk-circle8 sk-circle"></div>
+          <div class="sk-circle9 sk-circle"></div>
+          <div class="sk-circle10 sk-circle"></div>
+          <div class="sk-circle11 sk-circle"></div>
+          <div class="sk-circle12 sk-circle"></div>
+        </div>
+      </div>
+
+      <div ng-if="selectedImages.length > 0" ng-scrollbars class="output-image-content">
         <div class="output-image-folder">
-          <div ng-repeat="image in selectedImages" class="image-tile" ng-class="[image]" ng-click="selectUserImage(image)">
+          <!-- selectedImages -->
+          <div ng-repeat="image in testArray" class="image-tile" ng-class="[image]" ng-click="selectResultImage(image)">
             <div class="selector"></div>
             <img error-handler ng-click="openImageModal(image)" class="small-image img-thumbnail" ng-if="image"
                  ng-src="http://localhost:8080/images/{{image}}">

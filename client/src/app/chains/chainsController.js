@@ -8,6 +8,9 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainsServ
   $scope.chainElements = [];
   $scope.images = [];
   $scope.selectedChain = {};
+  $scope.selectedImages = [];
+
+  $scope.testArray = [];
 
   self.init = function () {
     chainsService.getChains(function (chains) {
@@ -39,14 +42,26 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainsServ
   };
 
   $scope.showOutputBlock = function () {
+    angular.element('div.no-data').addClass('hide');
     angular.element('.output-block').toggleClass('show');
   };
 
-  $scope.selectedImages = [];
-
   $scope.selectUserImage = function (imageId) {
-    angular.element('.' + imageId).toggleClass('selected');
-    $scope.selectedImages.push(imageId);
+    var element = angular.element('.input-image-folder .' + imageId);
+    var isSelected = element.hasClass('selected');
+    if (isSelected) {
+      element.removeClass('selected');
+      _.remove($scope.selectedImages, function(n) {
+        return n == imageId;
+      });
+    } else {
+      element.addClass('selected');
+      $scope.selectedImages.push(imageId);
+    }
+  };
+
+  $scope.selectResultImage = function (imageId) {
+
   };
 
 }]);

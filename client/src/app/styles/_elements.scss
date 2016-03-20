@@ -103,5 +103,19 @@ ul.sidebar-menu.chain-menu {
       display: none;
     }
   }
+}
 
+// elements
+.spinner {
+  background: #DCE7EC;
+  height: calc(100% - 37px);
+  width: 100%;
+  .sk-fading-circle {
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin:auto;
+  }
 }
