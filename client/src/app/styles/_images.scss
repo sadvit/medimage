@@ -14,48 +14,6 @@
   }
 }
 
-.image-tile {
-  float: left;
-  margin: 15px;
-  cursor: zoom-in;
-  position: relative;
-  overflow: hidden;
-  width: 200px;
-  height: 200px;
-}
-
-img.small-image {
-  width: 200px;
-  height: 200px;
-}
-
-.image-tile:hover {
-  .right-image-menu {
-    opacity: 1;
-  }
-}
-
-.img-thumbnail {
-  user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-
-.lightbox {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1045;
-  display: none;
-  overflow: auto;
-  overflow-y: scroll;
-}
-
 .accept-button {
   width: 90%;
   margin: 6px auto auto;
@@ -66,35 +24,5 @@ aside .accept-button.btn.btn-block.btn-primary.btn-flat {
   margin-top: 11px;
 }
 
-// menu on image tile
 
-.right-image-menu:hover {
-  .fa:hover {
-    color: black;
-  }
-}
 
-.right-image-menu {
-  opacity: 0;
-  cursor: default;
-  list-style: none;
-  position: absolute;
-  margin-left: 169px;
-  margin-top: 8px;
-  width: 22px;
-  background-color: white;
-  border-radius: 5px;
-  height: 61px;
-  padding: 0;
-  transition: all 700ms;
-  .fa-edit, .fa-close {
-    padding-left: 5px;
-  }
-  .fa-info {
-    padding-left: 8px;
-  }
-  .fa {
-    color: #b8c7ce;
-    cursor: pointer;
-  }
-}

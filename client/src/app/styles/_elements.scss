@@ -119,3 +119,137 @@ ul.sidebar-menu.chain-menu {
     margin:auto;
   }
 }
+
+// no data element
+.no-data {
+  width: auto;
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+  span {
+    position: absolute;
+    top: 50%;
+    height: 38px;
+    width: 180px;
+    margin-left: -90px;
+    display: inline-block;
+    font-size: 33px;
+    font-weight: 600;
+    color: #222D32;
+  }
+}
+
+// image tile component
+$medium-tile: 200px;
+$small-tile: 80px;
+.image-tile {
+
+  float: left;
+  margin: 15px;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+
+  &.selectable {
+    img:hover {
+      background-color: #71B1D5;
+    }
+  }
+  &.zoomable {
+    cursor: zoom-in;
+  }
+
+  &.small {
+    img {
+      width: $small-tile;
+      height: $small-tile;
+    }
+  }
+  &.medium {
+    img {
+      width: $medium-tile;
+      height: $medium-tile;
+    }
+  }
+
+  .selector {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: hsla(201, 93%, 89%, 0.38) url("/assets/arrow.png") no-repeat;
+    background-position-x: 73px;
+    background-position-y: 73px;
+    transition: background-color 100ms;
+  }
+  &.selected {
+    .selector {
+      display: block;
+    }
+    img {
+      background-color: #71B1D5;
+    }
+  }
+  img {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    transition: all .2s ease-in-out;
+  }
+}
+
+// TODO menu in image tile
+.right-image-menu:hover {
+  .fa:hover {
+    color: black;
+  }
+}
+.image-tile:hover {
+  .right-image-menu {
+    opacity: 1;
+  }
+}
+.right-image-menu {
+  opacity: 0;
+  cursor: default;
+  list-style: none;
+  position: absolute;
+  margin-left: 169px;
+  margin-top: 8px;
+  width: 22px;
+  background-color: white;
+  border-radius: 5px;
+  height: 61px;
+  padding: 0;
+  transition: all 700ms;
+  .fa-edit, .fa-close {
+    padding-left: 5px;
+  }
+  .fa-info {
+    padding-left: 8px;
+  }
+  .fa {
+    color: #b8c7ce;
+    cursor: pointer;
+  }
+}
+
+// lightbox restyling
+.lightbox {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1045;
+  display: none;
+  overflow: auto;
+  .lightbox-dialog .lightbox-content {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

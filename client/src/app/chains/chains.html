@@ -41,10 +41,9 @@
 
       <div ng-scrollbars class="input-image-content">
         <div class="input-image-folder">
-          <div ng-repeat="image in images" class="image-tile" ng-class="[image]" ng-click="selectUserImage(image)">
+          <div ng-repeat="image in images" class="image-tile medium selectable" ng-class="[image]" ng-click="selectUserImage(image)">
             <div class="selector"></div>
-            <img error-handler ng-click="openImageModal(image)" class="small-image img-thumbnail" ng-if="image"
-                 ng-src="http://localhost:8080/images/{{image}}">
+            <img error-handler ng-click="openImageModal(image)" ng-if="image" ng-src="http://localhost:8080/images/{{image}}">
           </div>
         </div>
       </div>
@@ -79,10 +78,9 @@
       <div ng-if="selectedImages.length > 0" ng-scrollbars class="output-image-content">
         <div class="output-image-folder">
           <!-- selectedImages -->
-          <div ng-repeat="image in testArray" class="image-tile" ng-class="[image]" ng-click="selectResultImage(image)">
+          <div ng-repeat="image in selectedImages" class="image-tile medium selectable" ng-class="[image]" ng-click="selectResultImage(image)">
             <div class="selector"></div>
-            <img error-handler ng-click="openImageModal(image)" class="small-image img-thumbnail" ng-if="image"
-                 ng-src="http://localhost:8080/images/{{image}}">
+            <img error-handler ng-click="openImageModal(image)" ng-if="image" ng-src="http://localhost:8080/images/{{image}}">
           </div>
         </div>
       </div>
