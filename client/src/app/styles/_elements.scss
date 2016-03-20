@@ -103,12 +103,14 @@ ul.sidebar-menu.chain-menu {
       display: none;
     }
   }
+  a {
+    color: #b8c7ce;
+  }
 }
 
 // elements
 .spinner {
   background: #DCE7EC;
-  height: calc(100% - 37px);
   width: 100%;
   .sk-fading-circle {
     position: absolute;

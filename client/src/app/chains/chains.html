@@ -9,7 +9,7 @@
       <div ng-scrollbars class="content">
 
         <ul class="sidebar-menu chain-menu">
-          <li class="header">CHAIN OPERATION LIST</li>
+          <li class="panel-header border"><a><span>CHAIN OPERATION LIST</span></a></li>
         </ul>
 
         <ul dnd-list="chainElements" class="sidebar-menu chain-menu">
@@ -28,15 +28,15 @@
         </ul>
       </div>
 
-      <div ng-click="showInputBlock()" class="input-image-button">
-        <span>SELECT IMAGES ></span>
+      <div ng-click="showInputBlock()" class="input-image-button shift">
+        <a><span>SELECT IMAGES</span><i class="fa fa-play yellow"></i></a>
       </div>
 
     </div>
 
     <div class="col-md-4 input-block anim-colm">
-      <div class="header">
-        <span>SELECT USER IMAGES</span>
+      <div class="panel-header border-right">
+        <a><span>SELECT USER IMAGES</span></a>
       </div>
 
       <div ng-scrollbars class="input-image-content">
@@ -48,14 +48,14 @@
         </div>
       </div>
 
-      <div ng-click="showOutputBlock()" class="input-image-button">
-        <span>PROCESS IMAGES ></span>
+      <div ng-click="showOutputBlock()" class="input-image-button shift">
+        <a><span>PROCESS IMAGES</span><i class="fa fa-play yellow"></i></a>
       </div>
     </div>
 
     <div class="col-md-4 output-block anim-colm">
-      <div class="header">
-        <span>RESULTS PROCESSING</span>
+      <div class="panel-header">
+        <a><span>RESULTS PROCESSING</span></a>
       </div>
 
       <div ng-if="selectedImages.length == 0" class="spinner">
@@ -85,8 +85,8 @@
         </div>
       </div>
 
-      <div class="input-image-button">
-        <span>SAVE IMAGES</span>
+      <div class="input-image-button save">
+        <a><span>SAVE IMAGES</span><i class="fa fa-save yellow"></i></a>
       </div>
 
     </div>
