@@ -9,7 +9,7 @@
         <li><i class="fa fa-edit" data-toggle="tooltip" data-placement="left" title="Process" ng-click="processImage(image)"></i></li>
         <li><i class="fa fa-info" data-toggle="tooltip" data-placement="left" title="Info" ng-click="infoImage(image)"></i></li>
       </ul>
-      <img error-handler ng-click="openImageModal(image)" ng-if="image" ng-src="http://localhost:8080/images/{{image}}">
+      <img error-handler ng-click="openImageModal(image)" ng-if="image" ng-src="{{network_address + '/images/' + image}}">
     </div>
   </div>
 </div>

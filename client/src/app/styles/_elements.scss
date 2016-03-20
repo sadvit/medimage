@@ -162,12 +162,17 @@ $small-tile: 80px;
   }
 
   &.small {
+    margin: 0;
+    width: $small-tile;
+    height: $small-tile;
     img {
       width: $small-tile;
       height: $small-tile;
     }
   }
   &.medium {
+    width: $medium-tile;
+    height: $medium-tile;
     img {
       width: $medium-tile;
       height: $medium-tile;

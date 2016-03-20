@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('medimage').controller('imagesController', ['$scope', 'imageService', '$state', function ($scope, imageService, $state) {
+angular.module('medimage').controller('imagesController', ['$scope', 'imageService', '$state', '$rootScope', function ($scope, imageService, $state, $rootScope) {
 
   $scope.openImageModal = function (image) {
-    angular.element('#imageBox').attr('src', 'http://localhost:8080/images/' + image);
+    angular.element('#imageBox').attr('src', $rootScope.network_address + '/images/' + image);
     angular.element('#lightBox').lightbox();
     console.log(image);
   };
