@@ -168,6 +168,7 @@ $small-tile: 80px;
     img {
       width: $small-tile;
       height: $small-tile;
+      padding: 1px;
     }
   }
   &.medium {
