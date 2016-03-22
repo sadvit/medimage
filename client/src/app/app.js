@@ -2,7 +2,7 @@
 
 var medimage = angular.module('medimage', ['restangular', 'ui.router', 'ui.bootstrap', 'ui.bootstrap-slider', 'dndLists', 'ngScrollbars']);
 
-var network_address = 'http://192.168.0.100:8080';
+var network_address = 'http://192.168.0.103:8080';
 
 medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvider, ScrollBarsProvider) {
   $urlRouterProvider.otherwise('login');

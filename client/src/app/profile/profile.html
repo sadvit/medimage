@@ -3,10 +3,10 @@
 
 <div class="container-fluid profile-container">
 
-  <div class="content-block">
+  <div ng-scrollbars class="content-block">
 
     <section class="content-header">
-      <h1>Account Information</h1>
+      <h1>Settings</h1>
     </section>
 
     <section class="content">
@@ -14,26 +14,54 @@
         <div class="col-md-6">
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">General</h3>
+              <h3 class="box-title">Change email</h3>
             </div>
             <form class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-                  <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                  </div>
+                  <label class="col-sm-4 control-label">Current email:</label>
+                  <label class="col-sm-8 control-label"><b>mr.sadvit@gmail.com</b></label>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                  <label for="inputPassword3" class="col-sm-4 control-label">New email:</label>
+                  <div class="col-sm-8">
+                    <input type="email" class="form-control" id="inputPassword3" placeholder="Email">
                   </div>
                 </div>
               </div>
               <div class="box-footer">
-                <button type="submit" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-info pull-right">Save</button>
+                <button type="submit" class="btn btn-primary btn-flat pull-right">Save</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Change password</h3>
+            </div>
+            <form class="form-horizontal">
+              <div class="box-body">
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">Current password:</label>
+                  <div class="col-sm-8">
+                    <input type="password" class="form-control" placeholder="Password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">New password:</label>
+                  <div class="col-sm-8">
+                    <input type="password" class="form-control" placeholder="Password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">Repeat password:</label>
+                  <div class="col-sm-8">
+                    <input type="password" class="form-control" placeholder="Password">
+                  </div>
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary btn-flat pull-right">Save</button>
               </div>
             </form>
           </div>
@@ -42,26 +70,26 @@
         <div class="col-md-6">
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Functions</h3>
+              <h3 class="box-title">Options</h3>
             </div>
             <form class="form-horizontal">
-              <div class="box-body">
+              <div class="box-body buttons">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-6 control-label">Delete <b>ALL</b> user images</label>
-                  <div class="col-sm-6">
-                    <button type="button" class="btn btn-block btn-danger">DELETE</button>
+                  <label class="col-sm-4 control-label">Delete <b>ALL</b> user images:</label>
+                  <div class="col-sm-8">
+                    <button type="submit" class="btn btn-primary btn-flat">Delete</button>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-6 control-label">Delete <b>ALL</b> user chains</label>
-                  <div class="col-sm-6">
-                    <button type="button" class="btn btn-block btn-danger">DELETE</button>
+                  <label class="col-sm-4 control-label">Delete <b>ALL</b> user chains:</label>
+                  <div class="col-sm-8">
+                    <button type="submit" class="btn btn-primary btn-flat">Delete</button>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-6 control-label">Delete <b>ALL</b> user networks</label>
-                  <div class="col-sm-6">
-                    <button type="button" class="btn btn-block btn-danger">DELETE</button>
+                  <label class="col-sm-4 control-label">Delete <b>ALL</b> user networks:</label>
+                  <div class="col-sm-8">
+                    <button type="submit" class="btn btn-primary btn-flat">Delete</button>
                   </div>
                 </div>
               </div>
