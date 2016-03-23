@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.Collections;
@@ -56,16 +57,35 @@ public class StatisticController {
         return imageCache.addToCache(toByteArray(generateHistogram(histogram)));
     }
 
+    // 500 * 200
+    // 500 * 400
     private BufferedImage generateHistogram(int[] histogram) {
-        BufferedImage image = new BufferedImage(255, 100, BufferedImage.TYPE_INT_RGB);
-        int height = image.getHeight();
+        int width = 500;
+        int height = 400;
+        int padding = 20;
+        BufferedImage image = new BufferedImage(width + padding * 2, height + padding * 2, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = image.createGraphics();
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, image.getWidth(), image.getHeight());
-        g.setColor(Color.BLACK);
+
+        Font font = new Font(null, Font.PLAIN, 10);
+        AffineTransform affineTransform = new AffineTransform();
+        affineTransform.rotate(Math.toRadians(90), 0, 0);
+        Font rotatedFont = font.deriveFont(affineTransform);
+        g.setFont(rotatedFont);
+
+        g.setColor(new Color(34, 35, 50));
         for (int i = 0; i < histogram.length; i++) {
-            int j = histogram[i];
-            g.drawLine(i, height, i, height - j);
+            int j = histogram[i] * 4;
+            int x = i * 2 + padding;
+            int y1 = height + padding;
+            int y2 = height - j + padding;
+            if (y1 - y2 > 0) {
+                g.drawLine(x, y1, x, y2);
+            }
+        }
+        for (int i = 0; i <= 255; i += 5) {
+            g.drawString("" + i, i * 2 + padding, height + padding);
         }
         g.dispose();
         return image;

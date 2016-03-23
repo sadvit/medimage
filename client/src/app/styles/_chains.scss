@@ -62,11 +62,10 @@ $content-background : #ECF0F5;
     position: relative;
     height: calc(100% - 77px);
     overflow: auto;
-    background-color: #DCE7EC;
     -webkit-user-drag: none;
     -webkit-user-select: none;
     .input-image-folder {
-      background-color: #DCE7EC;
+      background-color: $content-background;
       border-right: 1px solid #36444C;
       display: block;
       overflow: hidden;
