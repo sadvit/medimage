@@ -22,7 +22,7 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
 
       var drawNumber = function (value, x, y) {
         ctx.fillStyle = "#222D32";
-        ctx.font = 'bold 12px Calibri';
+        ctx.font = '12px sans-serif';
         ctx.fillText(value, x, y);
         ctx.fill();
       };
@@ -45,12 +45,18 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
 
       //drawNumber("0", padding - 3, height - padding / 2);
 
-      for (var i = 0; i <= 255; i += 15) {
-        drawNumber(i + "", i * 1.71 + padding, height - padding / 2 + 3);
-      }
       ctx.textAlign="center";
+      var x, y;
+      for (var i = 0; i <= 255; i += 15) {
+        x = i * 1.72 + padding + 3;
+        y = height - padding / 2 + 3;
+        drawNumber(i, x, y); // horizontal
+      }
+
       for (var i = 0; i <= 100; i += 10) {
-        drawNumber(100 - i, padding / 2, padding + i * 3.4 + 8);
+        x = padding / 2;
+        y = padding + i * 3.395 + 9;
+        drawNumber(100 - i, x, y); // vertical
       }
     });
   };

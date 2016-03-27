@@ -3,27 +3,64 @@
 
 <div class="container-fluid statistics-container">
 
-  <div class="content">
+  <div ng-scrollbars class="statistic-wrapper">
 
-      <div ng-scrollbars class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title">Statistic for image: <b>[{{imageId}}]</b></h3>
-        </div>
+    <section class="content-header">
+      <h1>Statistic for image</h1>
+    </section>
 
-        <div class="box-body">
-          <div class="row">
-            <div class="col-md-6">
-              <p class="text-center text-success">ORIGINAL</p>
-              <img class="img-thumbnail" ng-src="{{network_address + '/images/' + imageId}}">
+    <section class="content">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Image details</h3>
             </div>
-            <div class="col-md-6">
-              <p class="text-center text-success">HISTOGRAM</p>
-              <canvas class="histogram" id="histogram" width="500" height="400"></canvas>
-            </div>
+            <form class="form-horizontal">
+              <div class="box-body">
+                <div class="row">
+                  <div class="col-md-5">
+                    <div class="image-tile medium zoomable">
+                      <img ng-src="{{network_address + '/images/' + imageId}}">
+                    </div>
+                  </div>
+                  <div class="col-md-7">
+                    <div class="form-group margin">
+                      <label class="col-sm-4 control-label">Name:</label>
+                      <label class="col-sm-8 control-label"><b>{{imageId}}</b></label>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label">Height:</label>
+                      <label class="col-sm-8 control-label"><b>1280px</b></label>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label">Width:</label>
+                      <label class="col-sm-8 control-label"><b>1024px</b></label>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label">Format:</label>
+                      <label class="col-sm-8 control-label"><b>BMP</b></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
-
+        <div class="col-md-6">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Histogram</h3>
+            </div>
+            <form class="form-horizontal">
+              <div class="box-body">
+                <canvas class="histogram" id="histogram" width="500" height="400"></canvas>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
+    </section>
 
   </div>
 
