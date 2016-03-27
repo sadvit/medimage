@@ -210,6 +210,13 @@ $small-tile: 80px;
   }
 }
 
+canvas.histogram {
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  width: 500px;
+  height: 400px;
+}
+
 // TODO menu in image tile
 .right-image-menu:hover {
   .fa:hover {

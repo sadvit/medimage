@@ -4,7 +4,7 @@ angular.module('medimage').service('statisticsService', ['Restangular', function
 
   this.getStatistics = function (id, callback) {
     Restangular.one('statistics', id).get().then(function (data) {
-      callback(data);
+      callback(data.plain());
     });
   };
 

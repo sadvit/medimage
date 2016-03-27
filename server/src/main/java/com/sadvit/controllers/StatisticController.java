@@ -20,8 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 
 import static com.sadvit.utils.FileUtils.toByteArray;
 
@@ -39,7 +38,7 @@ public class StatisticController {
     private ImageCache imageCache;
 
     @RequestMapping(method = RequestMethod.GET, value = "{id}")
-    public CacheObject getStatistic(@PathVariable String id) {
+    public Map<Integer, Integer> getStatistic(@PathVariable String id) {
 
         BufferedImage buffered = imageService.getBufferedImage(id);
         ImageUInt8 gray = ConvertBufferedImage.convertFrom(buffered, (ImageUInt8) null);
@@ -50,11 +49,15 @@ public class StatisticController {
 
         double max = (double) Arrays.stream(histogram).max().getAsInt();
 
+        Map<Integer, Integer> res = new HashMap<>();
         for (int i = 0; i < histogram.length; i++) {
-            histogram[i] = (int) (histogram[i] / max * 100);
+            int swap = (int) (histogram[i] / max * 100);
+            if (swap != 0) {
+                res.put(i, swap);
+            }
         }
 
-        return imageCache.addToCache(toByteArray(generateHistogram(histogram)));
+        return res;
     }
 
     // 500 * 200
@@ -62,7 +65,7 @@ public class StatisticController {
     private BufferedImage generateHistogram(int[] histogram) {
         int width = 500;
         int height = 400;
-        int padding = 20;
+        int padding = 35;
         BufferedImage image = new BufferedImage(width + padding * 2, height + padding * 2, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = image.createGraphics();
         g.setColor(Color.WHITE);
@@ -82,10 +85,13 @@ public class StatisticController {
             int y2 = height - j + padding;
             if (y1 - y2 > 0) {
                 g.drawLine(x, y1, x, y2);
+                g.drawLine(x - 1, y1, x - 1, y2);
             }
         }
+        g.drawLine(padding, height + padding, width + padding, height + padding);
+        g.drawLine(padding, padding, padding, height + padding);
         for (int i = 0; i <= 255; i += 5) {
-            g.drawString("" + i, i * 2 + padding, height + padding);
+            g.drawString("" + i, i * 2 + padding - 3, height + padding + 5);
         }
         g.dispose();
         return image;
