@@ -62,13 +62,13 @@
 
           <table class="table table-bordered results">
             <tbody>
-            <tr>
+            <tr class="table-head">
               <th>#</th>
               <th>ORIGINAL</th>
               <th>PROCESS</th>
               <th style="width: 99%">STATISTIC</th>
             </tr>
-            <tr ng-repeat="image in selectedImages" ng-class="{'first-child' : $index == 0, 'last-child' : $index == images.length - 1}">
+            <tr ng-repeat="image in selectedImages" ng-class="{'first-child' : $index == 0, 'last-child' : $index == selectedImages.length - 1}">
               <td class="middle-cell first-child">
                 <span>{{$index + 1}}</span>
               </td>
