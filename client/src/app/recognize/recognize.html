@@ -4,19 +4,18 @@
 <div class="recognize-container">
   <div class="row main">
 
-    <div class="col-md-4 chains-block anim-colm show">
+    <div class="col-md-4 chains-block anim-colm">
       <div ng-scrollbars class="content">
         <ul class="sidebar-menu shift-menu">
           <li class="panel-header border"><a><span>SELECT CHAIN</span></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>chain 1</span><i class="fa fa-play yellow"></i></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>chain 2</span><i class="fa fa-play yellow"></i></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>chain 3</span><i class="fa fa-play yellow"></i></a></li>
-          <li><a><i class="fa fa-circle-o text-yellow"></i><span>chain 4</span><i class="fa fa-play yellow"></i></a></li>
+          <li ng-repeat="chain in chains" ng-click="selectChain($event, chain)" ng-class="{'selected' : chain.id == selectedChain.id}">
+            <a><i class="fa fa-circle-o text-yellow"></i><span>chain 1</span><i class="fa fa-play yellow"></i></a>
+          </li>
         </ul>
       </div>
     </div>
 
-    <div class="col-md-4 input-block anim-colm show">
+    <div class="col-md-4 input-block anim-colm">
       <div class="panel-header border-right">
         <a><span>SELECT USER IMAGES</span></a>
       </div>
@@ -25,23 +24,40 @@
         <div class="input-image-folder">
           <div ng-repeat="image in images" class="image-tile medium selectable" ng-class="[image]" ng-click="selectUserImage(image)">
             <div class="selector"></div>
-            <img error-handler ng-click="openImageModal(image)" ng-if="image" ng-src="{{network_address + '/images/' + image}}">
+            <img error-handler ng-if="image" ng-src="{{network_address + '/images/' + image}}">
           </div>
         </div>
       </div>
 
-      <div class="input-image-button shift">
+      <div class="input-image-button shift" ng-click="showOutputBlock()">
         <a><span>RECOGNIZE IMAGES</span><i class="fa fa-play yellow"></i></a>
       </div>
 
     </div>
 
-    <div class="col-md-4 output-block anim-colm show">
+    <div class="col-md-4 output-block anim-colm">
       <div class="panel-header">
         <a><span>RECOGNIZE RESULTS</span></a>
       </div>
 
-      <div ng-scrollbars class="output-image-content">
+      <div ng-if="selectedImages.length == 0" class="spinner">
+        <div class="sk-fading-circle">
+          <div class="sk-circle1 sk-circle"></div>
+          <div class="sk-circle2 sk-circle"></div>
+          <div class="sk-circle3 sk-circle"></div>
+          <div class="sk-circle4 sk-circle"></div>
+          <div class="sk-circle5 sk-circle"></div>
+          <div class="sk-circle6 sk-circle"></div>
+          <div class="sk-circle7 sk-circle"></div>
+          <div class="sk-circle8 sk-circle"></div>
+          <div class="sk-circle9 sk-circle"></div>
+          <div class="sk-circle10 sk-circle"></div>
+          <div class="sk-circle11 sk-circle"></div>
+          <div class="sk-circle12 sk-circle"></div>
+        </div>
+      </div>
+
+      <div ng-if="selectedImages.length > 0" ng-scrollbars class="output-image-content">
         <div class="output-image-folder">
 
           <table class="table table-bordered results">
@@ -52,7 +68,7 @@
               <th>PROCESS</th>
               <th style="width: 99%">STATISTIC</th>
             </tr>
-            <tr ng-repeat="image in images" ng-class="{'first-child' : $index == 0, 'last-child' : $index == images.length - 1}">
+            <tr ng-repeat="image in selectedImages" ng-class="{'first-child' : $index == 0, 'last-child' : $index == images.length - 1}">
               <td class="middle-cell first-child">
                 <span>{{$index + 1}}</span>
               </td>
@@ -79,6 +95,10 @@
         <a><span>SAVE RESULTS</span><i class="fa fa-save yellow"></i></a>
       </div>
 
+    </div>
+
+    <div class="no-data">
+      <span>Select chain</span>
     </div>
 
   </div>

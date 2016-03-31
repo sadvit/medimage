@@ -81,22 +81,23 @@ $content-background : #ECF0F5;
   height: 100%;
   width: 0;
   padding: 0;
-  background: #B8C7CE;
+  background: #ECF0F5;
   .output-image-content {
     display: block;
     position: relative;
     height: calc(100% - 77px);
     overflow: auto;
-    background-color: #DCE7EC;
+    background-color: #ECF0F5;
     .output-image-folder {
       display: block;
       overflow: hidden;
-      background-color: #DCE7EC;
+      background-color: #ECF0F5;
     }
   }
   .spinner {
     height: calc(100% - 77px);
     display: none;
+    background: #ECF0F5;
   }
   &.show {
     width: calc(50% - 115px);

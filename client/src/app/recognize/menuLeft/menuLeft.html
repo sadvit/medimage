@@ -4,9 +4,9 @@
     <ul class="sidebar-menu shift-menu">
       <li class="header">SELECT NETWORK</li>
 
-      <li><a><i class="fa fa-circle-o text-yellow"></i><span>NETWORK 1</span><i class="fa fa-play yellow"></i></a></li>
-      <li><a><i class="fa fa-circle-o text-yellow"></i><span>NETWORK 1</span><i class="fa fa-play yellow"></i></a></li>
-      <li><a><i class="fa fa-circle-o text-yellow"></i><span>NETWORK 1</span><i class="fa fa-play yellow"></i></a></li>
+      <li ng-repeat="network in networks" ng-click="selectNetwork($event, network)" ng-class="{'selected' : network.id == selectedNetwork.id}">
+        <a><i class="fa fa-circle-o text-yellow"></i><span>{{network.name}}</span><i class="fa fa-play yellow"></i></a>
+      </li>
 
     </ul>
 

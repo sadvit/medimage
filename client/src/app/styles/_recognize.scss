@@ -42,9 +42,6 @@
     .input-block.show {
       width: calc(50% - 115px);
     }
-    .output-block {
-      background: rgba(0, 0, 255, 0.51);
-    }
     .output-block.show {
       width: calc(50% - 115px);
     }
@@ -60,7 +57,7 @@
     border-top: 0;
   }
   table tr:last-child td {
-    border-bottom: 0;
+    //border-bottom: 0;
   }
   table tr td:first-child,
   table tr th:first-child {
@@ -76,11 +73,16 @@
   }
   table.results {
     margin: 0;
-    background: #DCE7EC;
+    background: #ECF0F5;
     td, th {
       border: 1px solid #aec0c6;
     }
   }
+
+  .chains-block .content {
+    height: 100%;
+  }
+
 }
 
 .small-image-tile {
