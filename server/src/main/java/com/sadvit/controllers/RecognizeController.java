@@ -1,5 +1,8 @@
 package com.sadvit.controllers;
 
+import com.sadvit.recognizer.ImageProcess;
+import com.sadvit.recognizer.statistic.StatisticalRecognizer;
+import com.sadvit.recognizer.statistic.distribution.HistogramDistribution;
 import com.sadvit.services.ImageService;
 import com.sadvit.utils.FileUtils;
 import org.neuroph.core.NeuralNetwork;
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +32,14 @@ public class RecognizeController {
 
 	@Autowired
 	private ImageService imageService;
+
+	@RequestMapping(value="/test", method = RequestMethod.GET)
+	public String test(String id) {
+		BufferedImage bufferedImage = imageService.getBufferedImage(id);
+
+		//StatisticalRecognizer sr = new StatisticalRecognizer(new HistogramDistribution(), MEMORY_PATH);
+		return null; //sr.recognize(ImageProcess.getParams(bufferedImage));
+	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public void teach(Map<String, String> images) {
