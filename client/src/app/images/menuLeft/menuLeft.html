@@ -2,10 +2,16 @@
   <section ng-scrollbars class="sidebar">
     <ul class="sidebar-menu action-menu">
       <li class="header">SELECT FOLDER</li>
-      <li><a ><i class="fa fa-circle-o text-yellow"></i><span>IMAGES</span></a></li>
-      <li><a ><i class="fa fa-circle-o text-yellow"></i><span>TEMP</span></a></li>
+      <li><a><i class="fa fa-circle-o text-yellow"></i><span>IMAGES</span></a></li>
+      <li><a><i class="fa fa-circle-o text-yellow"></i><span>TEMP</span></a></li>
       <li class="header">SELECT ACTION</li>
-      <li><a ><i class="fa fa-circle-o text-yellow"></i><span>UPLOAD</span></a></li>
+      <li>
+        <input type="file" class="image-uploader upload" nv-file-select="" uploader="uploader" multiple/>
+        <a>
+          <i class="fa fa-circle-o text-yellow"></i>
+          <span>UPLOAD</span>
+        </a>
+      </li>
     </ul>
   </section>
 </aside>
