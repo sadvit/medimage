@@ -1,11 +1,15 @@
 package com.sadvit.services;
 
+import com.sadvit.beetle.ImageUtils;
 import com.sadvit.models.CacheObject;
 import com.sadvit.operations.chains.ChainElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import static com.sadvit.utils.FileUtils.toByteArray;
 

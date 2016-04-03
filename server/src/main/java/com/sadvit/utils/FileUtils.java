@@ -82,7 +82,7 @@ public class FileUtils {
 	public static byte[] toByteArray(BufferedImage bufferedImage) {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try	{
-			ImageIO.write(bufferedImage, "jpg", baos);
+			ImageIO.write(bufferedImage, "bmp", baos);
 			return baos.toByteArray();
 		} catch (IOException e) {
 			throw new RuntimeException("Error converting image");

@@ -13,7 +13,7 @@ import java.util.UUID;
 @Service
 public class ImageCache {
 
-	private Map<String, byte[]> images = new HashMap<String, byte[]>();
+	private Map<String, byte[]> images = new HashMap<>();
 
 	public void put(String id, byte[] image) {
 		images.put(id, image);
