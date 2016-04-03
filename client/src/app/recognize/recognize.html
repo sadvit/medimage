@@ -66,7 +66,8 @@
               <th>#</th>
               <th>ORIGINAL</th>
               <th>PROCESS</th>
-              <th style="width: 99%">STATISTIC</th>
+              <th ng-if="isLearnMode" style="width: 99%">ENTER CORRECT RESULTS</th>
+              <th ng-if="!isLearnMode" style="width: 99%">RESULTS</th>
             </tr>
             <tr ng-repeat="image in selectedImages" ng-class="{'first-child' : $index == 0, 'last-child' : $index == selectedImages.length - 1}">
               <td class="middle-cell first-child">
@@ -83,7 +84,13 @@
                 </div>
               </td>
               <td class="last-child">
-                <span>ALABAMENSIS</span>
+                <div ng-if="isLearnMode">
+                  <span>Enter type of object:</span>
+                  <input id="{{'cell_' + $index}}" type="text">
+                </div>
+                <div ng-if="!isLearnMode">
+                  <span>ALABAMENSIS</span>
+                </div>
               </td>
             </tr>
             </tbody>
@@ -91,7 +98,7 @@
         </div>
       </div>
 
-      <div class="input-image-button save">
+      <div ng-click="saveResults()" class="input-image-button save">
         <a><span>SAVE RESULTS</span><i class="fa fa-save yellow"></i></a>
       </div>
 

@@ -10,8 +10,20 @@ angular.module('medimage').service('networkService', ['Restangular', function (R
     });
   };
 
-  this.recognize = function () {
+  this.recognize = function (images, callback) {
+    Restangular.all('networks/recognize').customPOST(images).then(function (result) {
+      callback(result.plain());
+    }, function (error) {
+      callback(error.plain());
+    });
+  };
 
+  this.learn = function (params, callback) {
+    Restangular.all('networks/learn').customPOST(params).then(function (result) {
+      callback(result.plain());
+    }, function (error) {
+      callback(error.plain());
+    });
   };
 
 }]);

@@ -14,7 +14,7 @@ import java.util.Map;
  * Created by vitaly.sadovskiy.
  */
 @RestController
-@RequestMapping("/recognize")
+@RequestMapping("/networks")
 public class RecognizeController {
 
 	@Autowired
@@ -26,7 +26,7 @@ public class RecognizeController {
 	}
 
 	@RequestMapping(value = "/recognize", method = RequestMethod.POST)
-	public Map<String, String> recognize(List<String> images) {
+	public Map<String, String> recognize(@RequestBody List<String> images) {
 		return recognizeService.recognize(images);
 	}
 

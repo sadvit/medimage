@@ -9,6 +9,8 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
   $scope.chains = [];
   $scope.selectedImages = [];
 
+  $scope.isLearnMode = true;
+
   self.init = function () {
     // TODO remove
     imageService.getImages(function (images) {
@@ -42,6 +44,10 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
     angular.element('div.no-data').addClass('hide');
     angular.element('.output-block').toggleClass('show');
 
+   /* networkService.recognize($scope.selectedImages, function (result) {
+      console.log(result);
+    });*/
+
   };
 
   $scope.selectUserImage = function (imageId) {
@@ -55,6 +61,20 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
     } else {
       element.addClass('selected');
       $scope.selectedImages.push(imageId);
+    }
+  };
+
+  $scope.saveResults = function () {
+    if ($scope.isLearnMode) {
+      var params = {};
+      $scope.selectedImages.forEach(function (imageId, index) {
+        params[imageId] = angular.element('#cell_' + index).val();
+      });
+      networkService.learn(params, function (data) {
+        console.log(data);
+      })
+    } else {
+
     }
   };
 
