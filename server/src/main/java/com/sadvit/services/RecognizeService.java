@@ -19,23 +19,23 @@ import java.util.*;
 @Service
 public class RecognizeService {
 
-    public static final int INPUT_PARAMS_NUMBER = 7;
-    public static final int OUTPUT_PARAMS_NUMBER = 14;
+    public static int INPUT_PARAMS_NUMBER = 8;
+    public static int OUTPUT_PARAMS_NUMBER = 14;
 
     @Autowired
     private TestService testService;
 
     Network network;
 
-    {
+    RecognizeService () {
         network = new Network();
-        MultiLayerPerceptron perceptron = new MultiLayerPerceptron();
-        network.setPerceptron(perceptron);
     }
 
     public void learn(Map<String, String> images) {
-        DataSet dataSet = new DataSet(INPUT_PARAMS_NUMBER, OUTPUT_PARAMS_NUMBER);
         List<String> answers = RecognizeUtils.extractAnswers(images);
+        OUTPUT_PARAMS_NUMBER = answers.size();
+        DataSet dataSet = new DataSet(INPUT_PARAMS_NUMBER, OUTPUT_PARAMS_NUMBER);
+        network.setPerceptron(new MultiLayerPerceptron(INPUT_PARAMS_NUMBER, 35, 50, 35, OUTPUT_PARAMS_NUMBER));
         network.setAnswers(answers);
         for (String imageId : images.keySet()) {
             String value = images.get(imageId);
