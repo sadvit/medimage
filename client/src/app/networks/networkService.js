@@ -10,4 +10,8 @@ angular.module('medimage').service('networkService', ['Restangular', function (R
     });
   };
 
+  this.recognize = function () {
+
+  };
+
 }]);

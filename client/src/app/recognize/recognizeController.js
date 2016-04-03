@@ -41,6 +41,7 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
   $scope.showOutputBlock = function () {
     angular.element('div.no-data').addClass('hide');
     angular.element('.output-block').toggleClass('show');
+
   };
 
   $scope.selectUserImage = function (imageId) {
