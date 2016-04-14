@@ -16,9 +16,15 @@ public class RecognizeUtils {
     }
 
     public static String getOutput(double[] output, List<String> answers) {
-        double max = Arrays.stream(output).max().getAsDouble();
-        int index = Arrays.binarySearch(output, max);
-        return answers.get(index);
+        double max = output[0];
+        int maxpos = 0;
+        for (int i = 0; i < output.length; i++) {
+            if (output[i] > max) {
+                max = output[i];
+                maxpos = i;
+            }
+        }
+        return answers.get(maxpos);
     }
 
     public static List<String> extractAnswers(Map<String, String> images) {

@@ -35,7 +35,7 @@ public class RecognizeService {
         List<String> answers = RecognizeUtils.extractAnswers(images);
         OUTPUT_PARAMS_NUMBER = answers.size();
         DataSet dataSet = new DataSet(INPUT_PARAMS_NUMBER, OUTPUT_PARAMS_NUMBER);
-        network.setPerceptron(new MultiLayerPerceptron(INPUT_PARAMS_NUMBER, 35, 50, 35, OUTPUT_PARAMS_NUMBER));
+        network.setPerceptron(new MultiLayerPerceptron(INPUT_PARAMS_NUMBER, 20, OUTPUT_PARAMS_NUMBER));
         network.setAnswers(answers);
         for (String imageId : images.keySet()) {
             String value = images.get(imageId);
@@ -43,6 +43,7 @@ public class RecognizeService {
             dataSet.addRow(new DataSetRow(params, RecognizeUtils.getInput(answers, value)));
         }
         network.getPerceptron().learn(dataSet);
+        System.out.println("1");
     }
 
     public Map<String, String> recognize(List<String> images) {

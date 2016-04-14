@@ -30,14 +30,21 @@
       </div>
 
       <div class="input-image-button shift" ng-click="showOutputBlock()">
-        <a><span>RECOGNIZE IMAGES</span><i class="fa fa-play yellow"></i></a>
+        <a>
+          <span ng-if="!isLearnMode">RECOGNIZE IMAGES</span>
+          <span ng-if="isLearnMode">TRAIN IMAGES</span>
+          <i class="fa fa-play yellow"></i>
+        </a>
       </div>
 
     </div>
 
     <div class="col-md-4 output-block anim-colm">
       <div class="panel-header">
-        <a><span>RECOGNIZE RESULTS</span></a>
+        <a>
+          <span ng-if="!isLearnMode">RECOGNIZE RESULTS</span>
+          <span ng-if="isLearnMode">ENTER RECOGNIZE RESULTS</span>
+        </a>
       </div>
 
       <div ng-if="selectedImages.length == 0" class="spinner">
@@ -86,7 +93,7 @@
               <td class="last-child">
                 <div ng-if="isLearnMode">
                   <span>Enter type of object:</span>
-                  <input id="{{'cell_' + $index}}" type="text">
+                  <input id="{{image}}" type="text"  ng-model="::image">
                 </div>
                 <div ng-if="!isLearnMode">
                   <span>ALABAMENSIS</span>
@@ -99,7 +106,11 @@
       </div>
 
       <div ng-click="saveResults()" class="input-image-button save">
-        <a><span>SAVE RESULTS</span><i class="fa fa-save yellow"></i></a>
+        <a>
+          <span ng-if="!isLearnMode">SAVE RESULTS</span>
+          <span ng-if="isLearnMode">SAVE TRAIN</span>
+          <i class="fa fa-save yellow"></i>
+        </a>
       </div>
 
     </div>
