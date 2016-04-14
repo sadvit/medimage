@@ -43,7 +43,6 @@ public class RecognizeService {
             dataSet.addRow(new DataSetRow(params, RecognizeUtils.getInput(answers, value)));
         }
         network.getPerceptron().learn(dataSet);
-        System.out.println("1");
     }
 
     public Map<String, String> recognize(List<String> images) {
