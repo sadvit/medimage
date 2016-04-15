@@ -2,11 +2,10 @@ package com.sadvit.controllers;
 
 import com.sadvit.models.CacheObject;
 import com.sadvit.models.Chain;
-import com.sadvit.operations.OperationType;
+import com.sadvit.models.OperationType;
 import com.sadvit.operations.binary.BinaryParams;
 import com.sadvit.operations.binary.BinaryType;
-import com.sadvit.operations.chains.ChainElement;
-import com.sadvit.services.BinaryService;
+import com.sadvit.models.ChainElement;
 import com.sadvit.services.ChainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

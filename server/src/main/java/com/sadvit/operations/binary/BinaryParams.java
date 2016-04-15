@@ -1,10 +1,19 @@
 package com.sadvit.operations.binary;
 
+import javax.persistence.*;
+
 /**
  * Created by sadvit on 29.11.15.
  */
+@Entity
+@Table
 public class BinaryParams {
 
+    @Id
+    @GeneratedValue
+    private Integer id;
+
+    @Enumerated
     private BinaryType type;
 
     private double[] localSquare;
@@ -63,6 +72,18 @@ public class BinaryParams {
 
     public void setThresold(int thresold) {
         this.thresold = thresold;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setDown(boolean down) {
+        isDown = down;
     }
 
 }

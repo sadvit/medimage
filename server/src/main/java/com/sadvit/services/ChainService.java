@@ -1,7 +1,7 @@
 package com.sadvit.services;
 
 import com.sadvit.models.CacheObject;
-import com.sadvit.operations.chains.ChainElement;
+import com.sadvit.models.ChainElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

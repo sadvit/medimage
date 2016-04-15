@@ -1,12 +1,21 @@
 package com.sadvit.operations.blur;
 
+import javax.persistence.*;
+
 /**
  * Created by vitaly.sadovskiy on 24.12.2015.
  */
+@Entity
+@Table
 public class BlurParams {
+
+    @Id
+    @GeneratedValue
+    private Integer id;
 
     private int radius;
 
+    @Enumerated
     private BlurType type;
 
     public int getRadius() {
@@ -23,6 +32,14 @@ public class BlurParams {
 
     public void setType(BlurType type) {
         this.type = type;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }

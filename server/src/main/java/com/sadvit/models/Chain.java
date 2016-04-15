@@ -1,17 +1,22 @@
 package com.sadvit.models;
 
-import com.sadvit.operations.chains.ChainElement;
-import org.apache.catalina.LifecycleState;
-
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by sadvit on 28.11.15.
  */
-public class Chain extends Entity {
+@Entity
+@Table
+public class Chain {
+
+    @Id
+    @GeneratedValue
+    private Integer id;
 
     private String name;
 
+    @OneToMany(fetch = FetchType.EAGER)
     private List<ChainElement> chainElements;
 
     public List<ChainElement> getChainElements() {
@@ -28,6 +33,14 @@ public class Chain extends Entity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }

@@ -1,10 +1,10 @@
 package com.sadvit.models;
 
 /**
- * Created by sadvit on 28.11.15.
+ * Created by vitaly.sadovskiy.
  */
 public enum OperationType {
 
-    BINARY, BLUR
+	BINARY, BLUR, CROP, RESIZE;
 
 }
