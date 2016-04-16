@@ -30,12 +30,12 @@ public class ChainRepositoryTest {
 
     @Test
     public void testAddChain() {
-        //List<Chain> chains = createChains();
-        //chains.forEach(chain -> chainRepository.addChain(USERNAME, chain));
+        List<Chain> chains = createChains();
+        chains.forEach(chain -> chainRepository.addChain(USERNAME, chain));
         List<Chain> _chains = chainRepository.getChains(USERNAME);
-        //Assert.assertNotNull(chains);
+        Assert.assertNotNull(chains);
         Assert.assertNotNull(_chains);
-        //Assert.assertTrue(chains.size() == _chains.size());
+        Assert.assertTrue(chains.size() == _chains.size());
     }
 
     public List<Chain> createChains() {
