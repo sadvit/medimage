@@ -1,5 +1,6 @@
 package com.sadvit.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sadvit.enums.Role;
 import org.hibernate.annotations.Type;
 
@@ -20,17 +21,20 @@ public class User {
     @Column(unique = true)
     private String name;
 
+    @JsonIgnore
 	private String hashpwd;
 
+    @Enumerated
 	private Role role;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Chain> chains;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Network> networks;
 
-    @Enumerated
 	public Role getRole()
 	{
 		return role;

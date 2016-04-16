@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.awt.image.BufferedImage;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static com.sadvit.utils.FileUtils.toByteArray;
@@ -55,7 +56,7 @@ public class ChainService {
         return imageCache.addToCache(result);
     }
 
-    public Set<Chain> getChains() {
+    public List<Chain> getChains() {
         String username = userService.getCurrentUser();
         return chainRepository.getChains(username);
     }

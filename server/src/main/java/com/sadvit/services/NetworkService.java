@@ -7,6 +7,7 @@ import org.neuroph.nnet.MultiLayerPerceptron;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -26,7 +27,7 @@ public class NetworkService {
         return networkRepository.getNetwork(username, networkId);
     }
 
-    public Set<Network> getNetworks() {
+    public List<Network> getNetworks() {
         String username = userService.getCurrentUser();
         return networkRepository.getNetworks(username);
     }

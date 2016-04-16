@@ -1,5 +1,6 @@
 package com.sadvit.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
 import org.neuroph.nnet.MultiLayerPerceptron;
 
@@ -20,10 +21,11 @@ public class Network {
 
     private String name;
 
+    @JsonIgnore
     @Type(type = "serializable")
     private MultiLayerPerceptron perceptron;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> answers;
 
     public String getName() {

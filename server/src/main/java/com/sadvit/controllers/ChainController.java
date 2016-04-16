@@ -30,7 +30,7 @@ public class ChainController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Set<Chain> getChains() {
+    public List<Chain> getChains() {
         return chainService.getChains();
     }
 

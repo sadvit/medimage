@@ -23,7 +23,7 @@ public class NetworkController {
     private NetworkService networkService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Set<Network> getNetworks() {
+    public List<Network> getNetworks() {
         return networkService.getNetworks();
     }
 

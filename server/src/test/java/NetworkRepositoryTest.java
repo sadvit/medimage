@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by sadvit on 4/16/16.
@@ -28,15 +26,15 @@ public class NetworkRepositoryTest {
 
     @Test
     public void test() {
-        Set<Network> networks = createNetworks();
+        List<Network> networks = createNetworks();
         networks.forEach(network -> networkRepository.addNetwork(USERNAME, network));
-        Set<Network> _networks = networkRepository.getNetworks(USERNAME);
+        List<Network> _networks = networkRepository.getNetworks(USERNAME);
         Assert.assertNotNull(_networks);
         Assert.assertTrue(networks.size() == _networks.size());
     }
 
-    public Set<Network> createNetworks() {
-        Set<Network> networks = new HashSet<>();
+    public List<Network> createNetworks() {
+        List<Network> networks = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             Network network = new Network();
             network.setName("Network " + i);
