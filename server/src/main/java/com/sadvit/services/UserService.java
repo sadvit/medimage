@@ -1,5 +1,6 @@
 package com.sadvit.services;
 
+import com.sadvit.enums.Role;
 import com.sadvit.models.User;
 import com.sadvit.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,7 @@ public class UserService implements UserDetailsService {
     }
 
 	public void registerUser(String login, String pass) {
-		userRepository.addUser(login, pass);
+		userRepository.addUser(login, pass, Role.USER);
 		fileSystemService.createUserFolder(login);
 	}
 
