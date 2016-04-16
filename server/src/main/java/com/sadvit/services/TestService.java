@@ -3,7 +3,7 @@ package com.sadvit.services;
 import com.sadvit.analysis.beetle.ByteImage;
 import com.sadvit.analysis.beetle.ImageUtils;
 import com.sadvit.models.CacheObject;
-import com.sadvit.models.OperationType;
+import com.sadvit.enums.OperationType;
 import com.sadvit.operations.binary.BinaryParams;
 import com.sadvit.operations.binary.BinaryType;
 import com.sadvit.models.ChainElement;

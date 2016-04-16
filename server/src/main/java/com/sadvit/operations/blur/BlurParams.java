@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by vitaly.sadovskiy on 24.12.2015.
  */
 @Entity
-@Table
+@Table(name = "BLUR_PARAMS")
 public class BlurParams {
 
     @Id

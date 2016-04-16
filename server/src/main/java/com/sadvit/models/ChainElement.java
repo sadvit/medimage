@@ -1,5 +1,6 @@
 package com.sadvit.models;
 
+import com.sadvit.enums.OperationType;
 import com.sadvit.operations.binary.BinaryParams;
 import com.sadvit.operations.blur.BlurParams;
 
@@ -9,7 +10,7 @@ import javax.persistence.*;
  * Created by vitaly.sadovskiy.
  */
 @Entity
-@Table
+@Table(name = "CHAIN_ELEMENTS")
 public class ChainElement {
 
     @Id

@@ -2,7 +2,7 @@ package com.sadvit.controllers;
 
 import com.sadvit.models.CacheObject;
 import com.sadvit.models.Chain;
-import com.sadvit.models.OperationType;
+import com.sadvit.enums.OperationType;
 import com.sadvit.operations.binary.BinaryParams;
 import com.sadvit.operations.binary.BinaryType;
 import com.sadvit.models.ChainElement;

@@ -1,4 +1,4 @@
-package com.sadvit.models;
+package com.sadvit.enums;
 
 /**
  * Created by vitaly.sadovskiy.

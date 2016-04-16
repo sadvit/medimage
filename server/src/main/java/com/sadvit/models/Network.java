@@ -1,5 +1,6 @@
 package com.sadvit.models;
 
+import org.hibernate.annotations.Type;
 import org.neuroph.nnet.MultiLayerPerceptron;
 
 import javax.persistence.*;
@@ -9,7 +10,8 @@ import java.util.Set;
 /**
  * Created by sadvit on 3/20/16.
  */
-
+@Entity
+@Table(name = "NETWORKS")
 public class Network {
 
     @Id
@@ -18,7 +20,7 @@ public class Network {
 
     private String name;
 
-    
+    @Type(type = "serializable")
     private MultiLayerPerceptron perceptron;
 
     @ElementCollection

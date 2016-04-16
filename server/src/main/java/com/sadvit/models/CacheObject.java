@@ -19,7 +19,4 @@ public class CacheObject {
         this.id = id;
     }
 
-    public CacheObject() {
-    }
-
 }

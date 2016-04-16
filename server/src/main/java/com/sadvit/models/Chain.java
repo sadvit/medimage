@@ -7,7 +7,7 @@ import java.util.List;
  * Created by sadvit on 28.11.15.
  */
 @Entity
-@Table
+@Table(name = "CHAINS")
 public class Chain {
 
     @Id

@@ -1,5 +1,6 @@
 package com.sadvit.models;
 
+import com.sadvit.enums.Role;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ import java.util.Set;
  * Created by vitaly.sadovskiy.
  */
 @Entity
-@Table
+@Table(name = "USERS")
 public class User {
 
     @Id
@@ -25,7 +26,7 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY)
     private Set<Chain> chains;
 
-    @Type(type = "serializable")
+    @OneToMany(fetch = FetchType.LAZY)
     private Set<Network> networks;
 
     @Enumerated
@@ -71,6 +72,14 @@ public class User {
 
     public void setChains(Set<Chain> chains) {
         this.chains = chains;
+    }
+
+    public Set<Network> getNetworks() {
+        return networks;
+    }
+
+    public void setNetworks(Set<Network> networks) {
+        this.networks = networks;
     }
 
 }

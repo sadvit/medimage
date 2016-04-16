@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by sadvit on 29.11.15.
  */
 @Entity
-@Table
+@Table(name = "BINARY_PARAMS")
 public class BinaryParams {
 
     @Id
