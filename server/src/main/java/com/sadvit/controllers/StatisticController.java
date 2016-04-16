@@ -60,41 +60,4 @@ public class StatisticController {
         return res;
     }
 
-    // 500 * 200
-    // 500 * 400
-    private BufferedImage generateHistogram(int[] histogram) {
-        int width = 500;
-        int height = 400;
-        int padding = 35;
-        BufferedImage image = new BufferedImage(width + padding * 2, height + padding * 2, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g = image.createGraphics();
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 0, image.getWidth(), image.getHeight());
-
-        Font font = new Font(null, Font.PLAIN, 10);
-        AffineTransform affineTransform = new AffineTransform();
-        affineTransform.rotate(Math.toRadians(90), 0, 0);
-        Font rotatedFont = font.deriveFont(affineTransform);
-        g.setFont(rotatedFont);
-
-        g.setColor(new Color(34, 35, 50));
-        for (int i = 0; i < histogram.length; i++) {
-            int j = histogram[i] * 4;
-            int x = i * 2 + padding;
-            int y1 = height + padding;
-            int y2 = height - j + padding;
-            if (y1 - y2 > 0) {
-                g.drawLine(x, y1, x, y2);
-                g.drawLine(x - 1, y1, x - 1, y2);
-            }
-        }
-        g.drawLine(padding, height + padding, width + padding, height + padding);
-        g.drawLine(padding, padding, padding, height + padding);
-        for (int i = 0; i <= 255; i += 5) {
-            g.drawString("" + i, i * 2 + padding - 3, height + padding + 5);
-        }
-        g.dispose();
-        return image;
-    }
-
 }

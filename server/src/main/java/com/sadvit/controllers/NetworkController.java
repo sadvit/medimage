@@ -1,13 +1,16 @@
 package com.sadvit.controllers;
 
 import com.sadvit.models.Network;
+import com.sadvit.services.NetworkService;
 import org.hibernate.validator.constraints.CreditCardNumber;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by sadvit on 3/20/16.
@@ -16,20 +19,12 @@ import java.util.List;
 @RequestMapping("/networks")
 public class NetworkController {
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Network> getNetworks() {
-        List<Network> networks = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Network network = new Network();
-            network.setName("Network " + i);
-            network.setId(generateId());
-            networks.add(network);
-        }
-        return networks;
-    }
+    @Autowired
+    private NetworkService networkService;
 
-    public static int generateId() {
-        return (int) (Math.random() * 5000);
+    @RequestMapping(method = RequestMethod.GET)
+    public Set<Network> getNetworks() {
+        return networkService.getNetworks();
     }
 
 }

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.awt.image.BufferedImage;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static com.sadvit.utils.FileUtils.toByteArray;
@@ -35,7 +34,10 @@ public class ChainService {
     private BlurService blurService;
 
     @Autowired
-    private UserRepository userRepository;
+    private ChainRepository chainRepository;
+
+    @Autowired
+    private UserService userService;
 
     public CacheObject processChain(String id, ChainElement[] chain) {
         BufferedImage currentImage = imageService.getBufferedImage(id);
@@ -53,26 +55,9 @@ public class ChainService {
         return imageCache.addToCache(result);
     }
 
-    public void saveChain(ChainElement[] chainElements, String name) {
-
-    }
-
-    public Set<Chain> getChains(String username) {
-        User user = userRepository.getUser(username);
-        return user.getChains();
-    }
-
-    public void addChain(String username, Chain chain) {
-        User user = userRepository.getUser(username);
-        Set<Chain> chains = user.getChains();
-        if (chains == null) {
-            chains = new HashSet<>();
-            chains.add(chain);
-            user.setChains(chains);
-        } else {
-            chains.add(chain);
-        }
-        userRepository.updateUser(user);
+    public Set<Chain> getChains() {
+        String username = userService.getCurrentUser();
+        return chainRepository.getChains(username);
     }
 
 }

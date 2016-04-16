@@ -1,12 +1,10 @@
 import com.sadvit.Application;
 import com.sadvit.enums.OperationType;
-import com.sadvit.enums.Role;
 import com.sadvit.models.Chain;
 import com.sadvit.models.ChainElement;
 import com.sadvit.operations.binary.BinaryParams;
 import com.sadvit.operations.binary.BinaryType;
 import com.sadvit.repositories.ChainRepository;
-import com.sadvit.services.ChainService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,18 +21,18 @@ import java.util.Set;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(Application.class)
-public class ChainServiceTest {
-
-    @Autowired
-    private ChainService chainService;
+public class ChainRepositoryTest {
 
     public static final String USERNAME = "sadvit";
+
+    @Autowired
+    private ChainRepository chainRepository;
 
     @Test
     public void testAddChain() {
         List<Chain> chains = createChains();
-        chains.forEach(chain -> chainService.addChain(USERNAME, chain));
-        Set<Chain> _chains = chainService.getChains(USERNAME);
+        chains.forEach(chain -> chainRepository.addChain(USERNAME, chain));
+        Set<Chain> _chains = chainRepository.getChains(USERNAME);
         Assert.assertNotNull(chains);
         Assert.assertNotNull(_chains);
         Assert.assertTrue(chains.size() == _chains.size());
