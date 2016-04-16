@@ -2,24 +2,26 @@ package com.sadvit.models;
 
 import org.neuroph.nnet.MultiLayerPerceptron;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
 /**
  * Created by sadvit on 3/20/16.
  */
+
 public class Network {
 
+    @Id
+    @GeneratedValue
     private Integer id;
 
     private String name;
 
+    
     private MultiLayerPerceptron perceptron;
 
+    @ElementCollection
     private List<String> answers;
 
     public String getName() {

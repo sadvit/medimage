@@ -42,7 +42,7 @@ public class PersistenceConfiguration {
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource, Properties hibernateProperties) {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
-        sessionFactory.setPackagesToScan("com.sadvit.models", "com.sadvit.operations");
+        sessionFactory.setPackagesToScan(configurator.getPackagesToScan());
         sessionFactory.setHibernateProperties(hibernateProperties);
         return sessionFactory;
     }

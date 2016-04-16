@@ -2,6 +2,7 @@ package com.sadvit.services;
 
 import com.sadvit.models.Network;
 import com.sadvit.utils.RecognizeUtils;
+import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
 import org.neuroph.nnet.MultiLayerPerceptron;

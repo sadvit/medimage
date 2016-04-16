@@ -1,5 +1,7 @@
 package com.sadvit.models;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -23,7 +25,7 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY)
     private Set<Chain> chains;
 
-    @Transient
+    @Type(type = "serializable")
     private Set<Network> networks;
 
     @Enumerated

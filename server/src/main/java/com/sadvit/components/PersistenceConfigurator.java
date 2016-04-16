@@ -5,6 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -17,6 +18,16 @@ public class PersistenceConfigurator {
     private BasicDataSource dataSource;
 
     private Properties hibernateProperties;
+
+    private String[] packagesToScan;
+
+    public String[] getPackagesToScan() {
+        return packagesToScan;
+    }
+
+    public void setPackagesToScan(String[] packagesToScan) {
+        this.packagesToScan = packagesToScan;
+    }
 
     public BasicDataSource getDataSource() {
         return dataSource;
