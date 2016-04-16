@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class BinaryParams {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Enumerated

@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by sadvit
  */
-@RestController
-@RequestMapping("/test")
+/*@RestController
+@RequestMapping("/test")*/
 public class TestController {
 
-    @Autowired
+    /*@Autowired
     private TestService testService;
 
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
     public double[] test(@PathVariable("id") String id) {
         return testService.findParams(id);
-    }
+    }*/
 
 }

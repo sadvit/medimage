@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class BlurParams {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private int radius;

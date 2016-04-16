@@ -18,10 +18,10 @@ import java.awt.image.BufferedImage;
 /**
  * Created by sadvit
  */
-@Service
+//@Service
 public class TestService {
 
-    @Autowired
+    /*@Autowired
     private ChainService chainService;
 
     @Autowired
@@ -70,6 +70,6 @@ public class TestService {
         byteImage = getContour(byteImage);
         BufferedImage buffered = ImageUtils.byteToBuffered(byteImage);
         return ImageProcess.getParams(buffered);
-    }
+    }*/
 
 }

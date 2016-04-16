@@ -14,16 +14,16 @@ import javax.persistence.*;
 public class ChainElement {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Enumerated
 	private OperationType operationType;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private BinaryParams binaryParams;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private BlurParams blurParams;
 
 	public OperationType getOperationType()	{

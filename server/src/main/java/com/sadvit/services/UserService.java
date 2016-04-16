@@ -54,4 +54,12 @@ public class UserService implements UserDetailsService {
 		return userRepository.getAllUsers();
 	}
 
+    public String getCurrentUser() {
+        if (SecurityContextHolder.getContext().getAuthentication() != null) {
+            return SecurityContextHolder.getContext().getAuthentication().getName();
+        } else {
+            return null;
+        }
+    }
+
 }

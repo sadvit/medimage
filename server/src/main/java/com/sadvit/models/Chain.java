@@ -11,12 +11,12 @@ import java.util.List;
 public class Chain {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ChainElement> chainElements;
 
     public List<ChainElement> getChainElements() {

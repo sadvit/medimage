@@ -15,7 +15,7 @@ import java.util.Set;
 public class Network {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;

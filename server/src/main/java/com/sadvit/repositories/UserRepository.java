@@ -45,4 +45,8 @@ public class UserRepository {
         template.save(user);
 	}
 
+    public void updateUser(User user) {
+        template.update(user);
+    }
+
 }
