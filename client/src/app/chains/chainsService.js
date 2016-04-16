@@ -2,8 +2,8 @@
 
 angular.module('medimage').service('chainsService', ['Restangular', function (Restangular) {
 
-  this.acceptChain = function (id, chain, callback) {
-    Restangular.one('chains', id).customPOST(chain).then(function (data) {
+  this.acceptChain = function (imageId, chain, callback) {
+    Restangular.one('chains/one', imageId).customPOST(chain).then(function (data) {
       callback(data.plain().id);
     });
   };
@@ -18,6 +18,12 @@ angular.module('medimage').service('chainsService', ['Restangular', function (Re
     Restangular.all('chains').getList().then(function (data) {
       callback(data.plain());
     });
-  }
+  };
+
+  this.processImages = function (chainId, images, callback) {
+    Restangular.one('chains/many', chainId).customPOST(images).then(function (data) {
+      callback(data.plain());
+    });
+  };
 
 }]);

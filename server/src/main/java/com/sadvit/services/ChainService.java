@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -40,15 +41,17 @@ public class ChainService {
     @Autowired
     private UserService userService;
 
-    public CacheObject processChain(String id, ChainElement[] chain) {
+    public CacheObject processChain(String id, List<ChainElement> chain) {
         BufferedImage currentImage = imageService.getBufferedImage(id);
         for (ChainElement chainElement : chain) {
             switch (chainElement.getOperationType()) {
                 case BINARY:
-                    currentImage = binaryService.processAsImage(currentImage, chainElement.getBinaryParams());
+                    if (chainElement.getBinaryParams() != null)
+                        currentImage = binaryService.processAsImage(currentImage, chainElement.getBinaryParams());
                     break;
                 case BLUR:
-                    currentImage = blurService.processAsImage(currentImage, chainElement.getBlurParams());
+                    if (chainElement.getBlurParams() != null)
+                        currentImage = blurService.processAsImage(currentImage, chainElement.getBlurParams());
                     break;
             }
         }
@@ -56,9 +59,29 @@ public class ChainService {
         return imageCache.addToCache(result);
     }
 
+    public CacheObject processChain(String id, Integer chainId) {
+        Chain chain = getChain(chainId);
+        return processChain(id, chain.getChainElements());
+    }
+
+    public List<String> processChains(List<String> images, Integer chainId) {
+        String username = userService.getCurrentUser();
+        Chain chain = chainRepository.getChain(username, chainId);
+        List<String> result = new ArrayList<>();
+        images.forEach(imageId -> {
+            result.add(processChain(imageId, chain.getChainElements()).getId());
+        });
+        return result;
+    }
+
     public List<Chain> getChains() {
         String username = userService.getCurrentUser();
         return chainRepository.getChains(username);
+    }
+
+    public Chain getChain(Integer id) {
+        String username = userService.getCurrentUser();
+        return chainRepository.getChain(username, id);
     }
 
 }

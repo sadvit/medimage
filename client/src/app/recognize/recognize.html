@@ -9,7 +9,7 @@
         <ul class="sidebar-menu shift-menu">
           <li class="panel-header border"><a><span>SELECT CHAIN</span></a></li>
           <li ng-repeat="chain in chains" ng-click="selectChain($event, chain)" ng-class="{'selected' : chain.id == selectedChain.id}">
-            <a><i class="fa fa-circle-o text-yellow"></i><span>chain 1</span><i class="fa fa-play yellow"></i></a>
+            <a><i class="fa fa-circle-o text-yellow"></i><span>{{chain.name}}</span><i class="fa fa-play yellow"></i></a>
           </li>
         </ul>
       </div>

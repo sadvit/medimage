@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sadvit
@@ -26,17 +28,6 @@ public class ParamsService {
 
     @Autowired
     private ImageCache imageCache;
-
-    public ChainElement[] createTestChain() {
-        ChainElement[] elements = new ChainElement[1];
-        ChainElement element = new ChainElement();
-        BinaryParams binaryParams = new BinaryParams();
-        binaryParams.setType(BinaryType.OTSU);
-        element.setOperationType(OperationType.BINARY);
-        element.setBinaryParams(binaryParams);
-        elements[0] = element;
-        return elements;
-    }
 
     public ByteImage getContour(ByteImage byteImage) {
         ByteImageProcessor byteImageProcessor = new ByteImageProcessor(byteImage);
@@ -63,8 +54,8 @@ public class ParamsService {
         return image;
     }
 
-    public double[] findParams(String id) {
-        CacheObject object = chainService.processChain(id, createTestChain());
+    public double[] findParams(String id, Integer chainId) {
+        CacheObject object = chainService.processChain(id, chainId);
         BufferedImage swap = imageCache.getBuffered(object.getId());
         ByteImage byteImage = ImageUtils.bufferedToBinary(swap);
         byteImage = getContour(byteImage);

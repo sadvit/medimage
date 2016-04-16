@@ -2,6 +2,9 @@ package com.sadvit.repositories;
 
 import com.sadvit.enums.Role;
 import com.sadvit.models.User;
+import org.hibernate.annotations.NamedNativeQueries;
+import org.hibernate.annotations.NamedNativeQuery;
+import org.hibernate.annotations.NamedQuery;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;

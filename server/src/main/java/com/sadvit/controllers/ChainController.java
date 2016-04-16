@@ -24,9 +24,14 @@ public class ChainController {
     @Autowired
     private ChainService chainService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "{id}")
-    public CacheObject processChain(@PathVariable String id, @RequestBody ChainElement[] chain) {
-        return chainService.processChain(id, chain);
+    @RequestMapping(value = "/one/{imageId}", method = RequestMethod.POST)
+    public CacheObject processChain(@PathVariable String imageId, @RequestBody List<ChainElement> elements) {
+        return chainService.processChain(imageId, elements);
+    }
+
+    @RequestMapping(value = "/many/{chainId}", method = RequestMethod.POST)
+    public List<String> processChains(@RequestBody List<String> images, @PathVariable("chainId") Integer chainId) {
+        return chainService.processChains(images, chainId);
     }
 
     @RequestMapping(method = RequestMethod.GET)

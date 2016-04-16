@@ -1,6 +1,12 @@
 package com.sadvit.models;
 
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.List;
 
 /**
