@@ -33,6 +33,10 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
   };
 
   $scope.selectTrain = function () {
+    var isOpened = angular.element('.chains-block').hasClass('show');
+    if (!isOpened) {
+      angular.element('.chains-block').toggleClass('show');
+    }
     $scope.isLearnMode = true;
   };
 

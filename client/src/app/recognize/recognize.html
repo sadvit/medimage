@@ -92,8 +92,16 @@
               </td>
               <td class="last-child">
                 <div ng-if="isLearnMode">
-                  <span>Enter type of object:</span>
-                  <input id="{{image}}" type="text"  ng-model="::image">
+                  <form class="form-horizontal">
+                    <div class="box-body">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Enter type of object:</label>
+                        <div class="col-sm-8">
+                          <input id="{{image}}" type="text"  ng-model="image" class="form-control" placeholder="Class name">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
                 </div>
                 <div ng-if="!isLearnMode">
                   <span>ALABAMENSIS</span>
