@@ -57,12 +57,15 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainsServ
   };
 
   $scope.processImages = function () {
-    $scope.showOutputBlock();
-    $scope.isResultLoading = true;
-    chainsService.processImages($scope.selectedChain.id, $scope.selectedImages, function (images) {
-      $scope.resultImages = images;
-      $scope.isResultLoading = false;
-    });
+    if ($scope.selectedImages.length > 0) {
+      $scope.showOutputBlock();
+      $scope.isResultLoading = true;
+      $scope.resultImages = [];
+      chainsService.processImages($scope.selectedChain.id, $scope.selectedImages, function (images) {
+        $scope.resultImages = images;
+        $scope.isResultLoading = false;
+      });
+    }
   };
 
   $scope.selectResultImage = function (imageId) {

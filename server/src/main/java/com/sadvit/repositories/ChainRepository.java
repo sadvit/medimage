@@ -32,12 +32,8 @@ public class ChainRepository {
         return query.list();
     }
 
-    public Chain getChain(String username, Integer chainId) {
-        Session session = template.getSessionFactory().openSession();
-        Query query = session.getNamedQuery("findChainById");
-        query.setString("username", username);
-        query.setInteger("chainId", chainId);
-        return (Chain) query.list().get(0);
+    public Chain getChain(Integer chainId) {
+        return template.get(Chain.class, chainId);
     }
 
     public void addChain(String username, Chain chain) {

@@ -154,7 +154,8 @@ $content-background : #ECF0F5;
 .chains-block .input-image-button,
 .input-block .input-image-button,
 .output-block .input-image-button {
-  &.shift:hover {
+  &.shift:hover,
+  &.shift.selected {
     a {
       border-left: 3px solid #3c8dbc;
     }
@@ -164,12 +165,38 @@ $content-background : #ECF0F5;
     }
     cursor: pointer;
   }
-  &.save:hover {
+  &.shift.disabled {
+    a {
+      border-left: 3px solid #bc3949;
+      span {
+        color: #bc3949;
+      }
+    }
+    i {
+      right: 13px;
+      color: #bc3949;
+    }
+    cursor: pointer;
+  }
+  &.save:hover,
+  &.save.selected {
     a {
       border-left: 3px solid #3c8dbc;
     }
     i {
       color: #3c8dbc;
+    }
+    cursor: pointer;
+  }
+  &.save.disabled {
+    a {
+      border-left: 3px solid #bc3949;
+      span {
+        color: #bc3949;
+      }
+    }
+    i {
+      color: #bc3949;
     }
     cursor: pointer;
   }

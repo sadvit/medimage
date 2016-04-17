@@ -65,8 +65,7 @@ public class ChainService {
     }
 
     public List<String> processChains(List<String> images, Integer chainId) {
-        String username = userService.getCurrentUser();
-        Chain chain = chainRepository.getChain(username, chainId);
+        Chain chain = chainRepository.getChain(chainId);
         List<String> result = new ArrayList<>();
         images.forEach(imageId -> {
             result.add(processChain(imageId, chain.getChainElements()).getId());
@@ -80,8 +79,7 @@ public class ChainService {
     }
 
     public Chain getChain(Integer id) {
-        String username = userService.getCurrentUser();
-        return chainRepository.getChain(username, id);
+        return chainRepository.getChain(id);
     }
 
 }

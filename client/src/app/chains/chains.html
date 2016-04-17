@@ -48,7 +48,7 @@
         </div>
       </div>
 
-      <div ng-click="processImages()" class="input-image-button shift">
+      <div ng-click="processImages()" class="input-image-button shift" ng-class="{'disabled' : selectedImages.length == 0}">
         <a><span>PROCESS IMAGES</span><i class="fa fa-play yellow"></i></a>
       </div>
     </div>

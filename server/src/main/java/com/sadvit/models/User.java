@@ -2,7 +2,8 @@ package com.sadvit.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sadvit.enums.Role;
-import org.hibernate.annotations.Type;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -14,7 +15,6 @@ import java.util.Set;
 @Table(name = "USERS")
 @NamedQueries({
         @NamedQuery(name = "findChainsByUser", query = "SELECT USER.chains FROM User AS USER WHERE USER.name = :username"),
-        @NamedQuery(name = "findChainById", query = "SELECT USER.chains FROM User AS USER JOIN USER.chains AS CHAIN WHERE USER.name = :username AND CHAIN.id = :chainId")
 })
 public class User {
 
