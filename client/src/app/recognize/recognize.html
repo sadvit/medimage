@@ -104,7 +104,13 @@
                   </form>
                 </div>
                 <div ng-if="!isLearnMode">
-                  <span>ALABAMENSIS</span>
+                  <form class="form-horizontal">
+                    <div class="box-body">
+                      <div class="form-group">
+                        <label class="col-sm-12 control-label left">{{::recognizeResult[imagesAfterChain[$index]]}}</label>
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </td>
             </tr>

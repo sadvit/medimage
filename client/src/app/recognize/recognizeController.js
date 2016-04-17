@@ -16,6 +16,8 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
   $scope.imagesToChain = [];
   $scope.imagesAfterChain = [];
 
+  $scope.recognizeResult = [];
+
   $scope.types = {};
 
   self.init = function () {
@@ -61,12 +63,27 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
       angular.element('div.no-data').addClass('hide');
       angular.element('.output-block').toggleClass('show');
     }
-    $scope.isLoading = true;
-    chainsService.processImages($scope.selectedChain.id, $scope.imagesToChain, function (images) {
-      $scope._imagesToChain = angular.copy($scope.imagesToChain);
-      $scope.imagesAfterChain = images;
-      $scope.isLoading = false;
-    });
+
+    if ($scope.isLearnMode) {
+      $scope.isLoading = true;
+      chainsService.processImages($scope.selectedChain.id, $scope.imagesToChain, function (images) {
+        $scope._imagesToChain = angular.copy($scope.imagesToChain);
+        $scope.imagesAfterChain = images;
+        $scope.isLoading = false;
+      });
+    } else {
+      $scope.isLoading = true;
+      chainsService.processImages($scope.selectedChain.id, $scope.imagesToChain, function (images) {
+        networkService.recognize($scope.selectedNetwork.id, images, function (data) {
+          $scope._imagesToChain = angular.copy($scope.imagesToChain);
+          $scope.imagesAfterChain = images;
+          $scope.isLoading = false;
+
+          $scope.recognizeResult = data;
+        });
+      });
+    }
+
   };
 
   /*$scope.recognizeImages = function () {
@@ -98,10 +115,6 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
       });
       networkService.learn(-1, params, function () {
         console.log('learned');
-      });
-    } else {
-      networkService.recognize($scope.selectedNetwork.id, $scope.imagesAfterChain, function (data) {
-        console.log('recognized: ', data);
       });
     }
   };
