@@ -3,9 +3,11 @@ angular.module('medimage').controller('modalChainController', ['$scope', '$uibMo
   $scope.getFormatDate = function () {
     var d = new Date();
     var day = d.getUTCDate();
-    var month = d.getMonth();
-    var year = d.getFullYear();
-    return day + '.' + month + '.' + year;
+    var month = d.getUTCMonth();
+    var year = d.getUTCFullYear();
+    var minutes = d.getUTCMinutes();
+    var hours = d.getUTCHours();
+    return day + '.' + month + '.' + year + ' - ' + hours + ':' + minutes;
   };
 
   $scope.name = $scope.getFormatDate();

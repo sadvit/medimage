@@ -24,9 +24,6 @@ import java.util.List;
 public class ParamsService {
 
     @Autowired
-    private ChainService chainService;
-
-    @Autowired
     private ImageCache imageCache;
 
     public ByteImage getContour(ByteImage byteImage) {
@@ -35,17 +32,15 @@ public class ParamsService {
         ByteImage result = byteImageProcessor.getByteImage();
 
         BinaryImageProcessor binaryImageProcessor = new BinaryImageProcessor(result);
-        binaryImageProcessor.setFillImage();
 
+        binaryImageProcessor.setFillImage();
         binaryImageProcessor.setErodeImage(1);
         binaryImageProcessor.setErodeImage(1);
         binaryImageProcessor.setErodeImage(1);
         binaryImageProcessor.setErodeImage(1);
         binaryImageProcessor.setErodeImage(1);
         binaryImageProcessor.setDilateImage(1);
-
         binaryImageProcessor.fillBorder();
-
         binaryImageProcessor.setLinesImage();
 
         ByteImage image = binaryImageProcessor.getByteImage();
@@ -54,9 +49,8 @@ public class ParamsService {
         return image;
     }
 
-    public double[] findParams(String id, Integer chainId) {
-        CacheObject object = chainService.processChain(id, chainId);
-        BufferedImage swap = imageCache.getBuffered(object.getId());
+    public double[] findParams(String imageId) {
+        BufferedImage swap = imageCache.getBuffered(imageId);
         ByteImage byteImage = ImageUtils.bufferedToBinary(swap);
         byteImage = getContour(byteImage);
         BufferedImage buffered = ImageUtils.byteToBuffered(byteImage);

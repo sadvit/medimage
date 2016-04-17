@@ -17,14 +17,14 @@ public class RecognizeController {
 	@Autowired
 	private RecognizeService recognizeService;
 
-	@RequestMapping(value = "/learn/{chainId}/{networkId}", method = RequestMethod.POST)
-	public void learn(@RequestBody Map<String, String> images, @PathVariable("networkId") Integer networkId, @PathVariable("chainId") Integer chainId) {
-		recognizeService.learn(chainId, networkId, images);
+	@RequestMapping(value = "/learn/{networkId}", method = RequestMethod.POST)
+	public void learn(@RequestBody Map<String, String> images, @PathVariable("networkId") Integer networkId) {
+		recognizeService.learn(networkId, images);
 	}
 
-	@RequestMapping(value = "/recognize/{chainId}/{networkId}", method = RequestMethod.POST)
-	public Map<String, String> recognize(@RequestBody List<String> images, @PathVariable("networkId") Integer networkId, @PathVariable("chainId") Integer chainId) {
-		return recognizeService.recognize(chainId, networkId, images);
+	@RequestMapping(value = "/recognize/{networkId}", method = RequestMethod.POST)
+	public Map<String, String> recognize(@RequestBody List<String> images, @PathVariable("networkId") Integer networkId) {
+		return recognizeService.recognize(networkId, images);
 	}
 
 }

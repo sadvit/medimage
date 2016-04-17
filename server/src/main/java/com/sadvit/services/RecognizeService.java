@@ -25,7 +25,7 @@ public class RecognizeService {
     @Autowired
     private NetworkService networkService;
 
-    public void learn(Integer chainId, Integer networkId, Map<String, String> images) {
+    public void learn(Integer networkId, Map<String, String> images) {
         List<String> answers = RecognizeUtils.extractAnswers(images);
         OUTPUT_PARAMS_NUMBER = answers.size();
         DataSet dataSet = new DataSet(INPUT_PARAMS_NUMBER, OUTPUT_PARAMS_NUMBER);
@@ -34,18 +34,18 @@ public class RecognizeService {
         network.setAnswers(answers);
         for (String imageId : images.keySet()) {
             String value = images.get(imageId);
-            double[] params = paramsService.findParams(imageId, chainId);
+            double[] params = paramsService.findParams(imageId);
             dataSet.addRow(new DataSetRow(params, RecognizeUtils.getInput(answers, value)));
         }
         network.getPerceptron().learn(dataSet);
     }
 
-    public Map<String, String> recognize(Integer chainId, Integer networkId, List<String> images) {
+    public Map<String, String> recognize(Integer networkId, List<String> images) {
         Network network = networkService.getNetwork(networkId);
         if (network.getPerceptron() != null) {
             Map<String, String> resultMap = new HashMap<>();
             for (String imageId : images) {
-                double[] params = paramsService.findParams(imageId, chainId);
+                double[] params = paramsService.findParams(imageId);
                 network.getPerceptron().setInput(params);
                 network.getPerceptron().calculate();
                 double[] result = network.getPerceptron().getOutput();

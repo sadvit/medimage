@@ -10,16 +10,16 @@ angular.module('medimage').service('networkService', ['Restangular', function (R
     });
   };
 
-  this.recognize = function (networkId, chainId, images, callback) {
-    Restangular.one('networks/recognize', networkId).one(chainId).customPOST(images).then(function (result) {
+  this.recognize = function (networkId, images, callback) {
+    Restangular.one('networks/recognize', networkId).customPOST(images).then(function (result) {
       callback(result.plain());
     }, function (error) {
       callback(error.plain());
     });
   };
 
-  this.learn = function (networkId, chainId, params, callback) {
-    Restangular.one('networks/learn', networkId).one(chainId).customPOST(params).then(function (result) {
+  this.learn = function (networkId, params, callback) {
+    Restangular.one('networks/learn', networkId).customPOST(params).then(function (result) {
       callback(result.plain());
     }, function (error) {
       callback(error.plain());

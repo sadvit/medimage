@@ -24,6 +24,9 @@ public class NetworkService {
 
     public Network getNetwork(Integer networkId) {
         String username = userService.getCurrentUser();
+        if (networkId == -1) {
+            return new Network();
+        }
         return networkRepository.getNetwork(username, networkId);
     }
 

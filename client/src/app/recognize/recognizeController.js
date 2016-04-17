@@ -16,6 +16,8 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
   $scope.imagesToChain = [];
   $scope.imagesAfterChain = [];
 
+  $scope.types = {};
+
   self.init = function () {
     imageService.getImages(function (images) {
       $scope.images = images;
@@ -89,29 +91,18 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
   };
 
   $scope.saveResults = function () {
-    if (!$scope.isLearnMode) {
+    if ($scope.isLearnMode) {
       var params = {};
-      $scope.selectedImages.forEach(function (imageId, index) {
-        params[imageId] = angular.element('#cell_' + index).val();
+      $scope.imagesAfterChain.forEach(function (imageId) {
+        params[imageId] = $scope.types[imageId];
       });
-      networkService.learn(params, function (data) {
+      networkService.learn(-1, params, function (data) {
         console.log(data);
-      })
+      });
     } else {
-      var testArr = {};
-      $scope.selectedImages.forEach(function (image) {
-        var k = image.substr(0, image.length - 1);
-        testArr[image] = k;
-      });
-      networkService.learn(testArr, function (data) {
+      networkService.recognize($scope.selectedNetwork.id, $scope.imagesAfterChain, function (data) {
         console.log(data);
-
-        networkService.recognize($scope.selectedImages, function (data) {
-          console.log(data);
-        });
       });
-
-
     }
   };
 
