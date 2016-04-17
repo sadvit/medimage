@@ -1,7 +1,8 @@
 <aside class="right-menu control-sidebar control-sidebar-dark control-sidebar-open">
   <section ng-scrollbars class="sidebar">
     <!-- Create the tabs -->
-    <button ng-if="chain.length > 0" type="button" ng-click="saveChain()" class="accept-button btn btn-block btn-primary btn-flat">Save Chain
+    <button ng-if="chain.length > 0" type="button" ng-click="saveChain()" class="accept-button btn btn-block btn-primary btn-flat">
+      <span>Save Chain</span>
       <i class="fa fa-save"></i>
     </button>
     <ul ng-if="chain.length > 0" class="sidebar-menu">
@@ -22,10 +23,8 @@
     <ul class="sidebar-menu">
       <li class="header">ACTIONS:</li>
     </ul>
-    <button type="button" ng-click="acceptChain()" class="accept-button btn btn-block btn-primary btn-flat">Accept
-      <i class="fa fa-refresh"></i>
-    </button>
-    <button type="button" ng-click="selectChain()" class="accept-button btn btn-block btn-primary btn-flat">Select
+    <button ng-if="chain.length > 0" type="button" ng-click="acceptChain()" class="accept-button btn btn-block btn-primary btn-flat">
+      <span>Apply chain</span>
       <i class="fa fa-refresh"></i>
     </button>
   </section>

@@ -17,11 +17,19 @@
 .accept-button {
   width: 90%;
   margin: 6px auto auto;
+  text-align: left;
+  span {
+    text-transform: uppercase;
+  }
 }
 
 aside .accept-button.btn.btn-block.btn-primary.btn-flat {
   margin-bottom: 11px;
   margin-top: 11px;
+  i {
+    float: right;
+    margin-top: 3px;
+  }
 }
 
 .image-uploader {
