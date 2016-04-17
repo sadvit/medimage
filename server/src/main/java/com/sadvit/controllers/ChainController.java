@@ -24,6 +24,11 @@ public class ChainController {
     @Autowired
     private ChainService chainService;
 
+    @RequestMapping(method = RequestMethod.POST)
+    public void saveChain(@RequestBody List<ChainElement> elements) {
+        chainService.saveChain(elements);
+    }
+
     @RequestMapping(value = "/one/{imageId}", method = RequestMethod.POST)
     public CacheObject processChain(@PathVariable String imageId, @RequestBody List<ChainElement> elements) {
         return chainService.processChain(imageId, elements);

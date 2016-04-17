@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('processController', ['$scope', '$stateParams', 'modalsService', 'chainsService', function ($scope, $stateParams, modalsService, chainsService) {
+angular.module('medimage').controller('processController', ['$scope', '$stateParams', 'modalsService', 'chainsService', '$state', function ($scope, $stateParams, modalsService, chainsService, $state) {
 
   var self = this;
 
@@ -18,7 +18,9 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
   };
 
   $scope.saveChain = function () {
-
+    chainsService.saveChain($scope.chain, function () {
+      $state.go('chains');
+    });
   };
 
   $scope.blurModalShow = function (blurParams) {

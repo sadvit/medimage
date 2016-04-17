@@ -14,6 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "USERS")
 @NamedQueries({
+        @NamedQuery(name = "findUserByName", query = "SELECT U FROM User AS U WHERE U.name = :username"),
         @NamedQuery(name = "findChainsByUser", query = "SELECT USER.chains FROM User AS USER WHERE USER.name = :username"),
 })
 public class User {

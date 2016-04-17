@@ -82,4 +82,12 @@ public class ChainService {
         return chainRepository.getChain(id);
     }
 
+    public void saveChain(List<ChainElement> elements) {
+        String username = userService.getCurrentUser();
+        Chain chain = new Chain();
+        chain.setName("test"); // TODO to param
+        chain.setChainElements(elements);
+        chainRepository.addChain(username, chain);
+    }
+
 }

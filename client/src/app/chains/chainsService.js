@@ -10,7 +10,7 @@ angular.module('medimage').service('chainsService', ['Restangular', function (Re
 
   this.saveChain = function (chain, callback) {
     Restangular.all('chains').customPOST(chain).then(function (data) {
-      callback(data.plain());
+      callback();
     });
   };
 
