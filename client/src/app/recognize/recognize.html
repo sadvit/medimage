@@ -73,9 +73,21 @@
               <th>#</th>
               <th>ORIGINAL</th>
               <th>PROCESS</th>
-              <th ng-if="isLearnMode" style="width: 99%">ENTER CORRECT RESULTS</th>
+              <th ng-if="isLearnMode" class="table-learn" style="width: 99%">
+                <form class="form-horizontal">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label class="col-sm-5 control-label">Enter network name:</label>
+                      <div class="col-sm-7">
+                        <input spellcheck="false" type="text"  ng-model="networkName" class="form-control" placeholder="Network name">
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </th>
               <th ng-if="!isLearnMode" style="width: 99%">RESULTS</th>
             </tr>
+
             <tr ng-repeat="image in _imagesToChain" ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
               <td class="middle-cell first-child">
                 <span>{{$index + 1}}</span>

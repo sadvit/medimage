@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('recognizeController', ['$scope', 'imageService', 'networkService', 'chainsService', '$timeout', function ($scope, imageService, networkService, chainsService, $timeout) {
+angular.module('medimage').controller('recognizeController', ['$scope', 'imageService', 'networkService', 'chainsService', 'modalsService', function ($scope, imageService, networkService, chainsService, modalsService) {
 
   var self = this;
 
@@ -86,13 +86,6 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
 
   };
 
-  /*$scope.recognizeImages = function () {
-    networkService.recognize($scope.selectedNetwork.id, $scope.selectedChain.id, $scope.selectedImages, function (result) {
-      // TODO stop loader
-    });
-    // TODO start loader
-  };*/
-
   $scope.selectUserImage = function (imageId) {
     var element = angular.element('.input-image-folder .' + imageId);
     var isSelected = element.hasClass('selected');
@@ -110,12 +103,18 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
   $scope.saveResults = function () {
     if ($scope.isLearnMode) {
       var params = {};
-      $scope.imagesAfterChain.forEach(function (imageId, index) {
-        params[imageId] = $scope.imagesToChain[index]; //$scope.types[imageId];
+      $scope.imagesAfterChain.forEach(function (imageId) {
+        params[imageId] = $scope.types[imageId];
       });
       networkService.learn(-1, params, function () {
-        console.log('learned');
+        console.log('learned'); // TODO get network id
       });
+    } else {
+      modalsService.showRecognizeModal(function (result) {
+        console.log(true)
+      }, function () {
+        console.log(false)
+      })
     }
   };
 

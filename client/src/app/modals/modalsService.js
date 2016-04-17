@@ -39,4 +39,13 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
     modalInstance.result.then(apply, cancel);
   };
 
+  this.showRecognizeModal = function (apply, cancel) {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: '/modals/recognize/modalRecognizeTemplate.html',
+      controller: 'modalRecognizeController'
+    });
+    modalInstance.result.then(apply, cancel);
+  };
+
 }]);
