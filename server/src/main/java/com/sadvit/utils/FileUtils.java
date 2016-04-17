@@ -71,6 +71,25 @@ public class FileUtils {
         }
     }
 
+    public static synchronized void writeBufferedImage(String path, BufferedImage bufferedImage) {
+        try {
+            File file = new File(path);
+            if (file.exists()) {
+                FileOutputStream outputStream = new FileOutputStream(file);
+                ImageIO.write(bufferedImage, "bmp", outputStream);
+            } else {
+                if (file.createNewFile()) {
+                    FileOutputStream outputStream = new FileOutputStream(file);
+                    ImageIO.write(bufferedImage, "bmp", outputStream);
+                } else {
+                    throw new FileWriteException(path);
+                }
+            }
+        } catch (IOException e) {
+            throw new FileWriteException(path);
+        }
+    }
+
     public static byte[] toByteArray(InputStream inputStream) {
         try {
             return IOUtils.toByteArray(inputStream);

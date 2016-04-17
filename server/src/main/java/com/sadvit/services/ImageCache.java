@@ -1,6 +1,7 @@
 package com.sadvit.services;
 
 import com.sadvit.models.CacheObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
@@ -8,15 +9,16 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Created by vitaly.sadovskiy.
  */
 @Service
 public class ImageCache {
+
+    @Autowired
+    private ImageService imageService;
 
 	private Map<String, byte[]> images = new HashMap<>();
 
@@ -46,5 +48,15 @@ public class ImageCache {
         put(imageId, image);
         return new CacheObject(imageId);
     }
+
+    public List<String> saveFromCache(List<String> images) {
+        List<String> imageIds = new ArrayList<>();
+        images.forEach(image -> {
+            imageIds.add(imageService.saveImage(getBuffered(image)));
+        });
+        return imageIds;
+    }
+
+
 
 }

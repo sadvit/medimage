@@ -10,4 +10,20 @@ angular.module('medimage').service('imageService', ['Restangular', function (Res
     });
   };
 
+  this.saveImages = function (images, callback) {
+    Restangular.all('temp').customPOST(images).then(function (result) {
+      callback(result.plain());
+    }, function (error) {
+      callback(error.plain());
+    });
+  };
+
+  this.deleteImage = function (imageId, callback) {
+    Restangular.one('images', imageId).remove().then(function () {
+      callback();
+    }, function (error) {
+      console.log(error)
+    });
+  }
+
 }]);

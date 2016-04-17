@@ -64,6 +64,12 @@ public class ImageService {
         }
     }
 
+    public String saveImage(BufferedImage bufferedImage) {
+        String id = UUID.randomUUID().toString();
+        FileUtils.writeBufferedImage(getFilePath(id), bufferedImage);
+        return id;
+    }
+
     private String getFolderPath() {
         return content + SEPARATOR + userService.getCurrentUserName() + SEPARATOR + IMAGES;
     }

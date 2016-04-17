@@ -23,7 +23,10 @@ angular.module('medimage').controller('imagesController', ['$scope', 'imageServi
   };
 
   $scope.deleteImage = function (image) {
-    console.log('delete ' + image);
+    imageService.deleteImage(image, function () {
+      var index = $scope.images.indexOf(image);
+      $scope.images.splice(index, 1);
+    })
   };
 
   $scope.processImage = function (image) {
@@ -43,6 +46,17 @@ angular.module('medimage').controller('imagesController', ['$scope', 'imageServi
     imageService.getImages(function (images) {
       $scope.images = images;
     });
+  };
+
+  $scope.safeApply = function(fn) {
+    var phase = $scope.$$phase;
+    if(phase == '$apply' || phase == '$digest') {
+      if(fn && (typeof(fn) === 'function')) {
+        fn();
+      }
+    } else {
+      $scope.$apply(fn);
+    }
   };
 
   this.init();

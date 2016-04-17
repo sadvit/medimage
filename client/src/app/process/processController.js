@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('processController', ['$scope', '$stateParams', 'modalsService', 'chainsService', '$state', function ($scope, $stateParams, modalsService, chainsService, $state) {
+angular.module('medimage').controller('processController', ['$scope', '$stateParams', 'modalsService', 'chainsService', '$state', 'imageService', function ($scope, $stateParams, modalsService, chainsService, $state, imageService) {
 
   var self = this;
 
@@ -20,6 +20,15 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
   $scope.saveChain = function () {
     chainsService.saveChain($scope.chain, function () {
       $state.go('chains');
+    });
+  };
+
+  $scope.saveImage = function () {
+    var imageId = $scope.imageId;
+    var query = [];
+    query.push(imageId);
+    imageService.saveImages(query, function () {
+      $state.go('images');
     });
   };
 

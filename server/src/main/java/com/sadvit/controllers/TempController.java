@@ -3,10 +3,9 @@ package com.sadvit.controllers;
 import com.sadvit.services.ImageCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static com.sadvit.utils.WebUtils.imageResponse;
 
@@ -23,6 +22,12 @@ public class TempController {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable String id) {
         return imageResponse(cache.get(id));
+    }
+
+
+    @RequestMapping(method = RequestMethod.POST)
+    public List<String> saveFromCache(@RequestBody List<String> images) {
+        return cache.saveFromCache(images);
     }
 
 }
