@@ -18,8 +18,12 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
   };
 
   $scope.saveChain = function () {
-    chainsService.saveChain($scope.chain, function () {
-      $state.go('chains');
+    modalsService.showChainModal(function (name) {
+      chainsService.saveChain(name, $scope.chain, function () {
+        $state.go('chains');
+      });
+    }, function () {
+      console.log('cancel');
     });
   };
 

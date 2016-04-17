@@ -30,4 +30,13 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
     modalInstance.result.then(apply, cancel);
   };
 
+  this.showChainModal = function (apply, cancel) {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: '/modals/chain/modalChainTemplate.html',
+      controller: 'modalChainController'
+    });
+    modalInstance.result.then(apply, cancel);
+  };
+
 }]);

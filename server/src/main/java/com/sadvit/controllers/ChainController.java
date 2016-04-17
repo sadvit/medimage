@@ -24,9 +24,9 @@ public class ChainController {
     @Autowired
     private ChainService chainService;
 
-    @RequestMapping(method = RequestMethod.POST)
-    public void saveChain(@RequestBody List<ChainElement> elements) {
-        chainService.saveChain(elements);
+    @RequestMapping(value = "/{name}", method = RequestMethod.POST)
+    public void saveChain(@RequestBody List<ChainElement> elements, @PathVariable("name") String name) {
+        chainService.saveChain(name, elements);
     }
 
     @RequestMapping(value = "/one/{imageId}", method = RequestMethod.POST)

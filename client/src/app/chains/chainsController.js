@@ -72,4 +72,8 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainsServ
 
   };
 
+  $scope.saveChain = function () {
+
+  };
+
 }]);
