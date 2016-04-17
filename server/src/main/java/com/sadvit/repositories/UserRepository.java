@@ -2,6 +2,8 @@ package com.sadvit.repositories;
 
 import com.sadvit.enums.Role;
 import com.sadvit.models.User;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.annotations.NamedNativeQueries;
 import org.hibernate.annotations.NamedNativeQuery;
 import org.hibernate.annotations.NamedQuery;
@@ -30,10 +32,10 @@ public class UserRepository {
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 	public User getUser(String username) {
-        DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
-        criteria.add(Restrictions.eq("name", username));
-        List<User> users = (List<User>) template.findByCriteria(criteria);
-        return users.stream().findFirst().get();
+        Session session = template.getSessionFactory().openSession();
+        Query query = session.getNamedQuery("findUserByName");
+        query.setString("username", username);
+        return (User) query.list().stream().findFirst().get();
 	}
 
 	public List<User> getAllUsers() {

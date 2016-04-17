@@ -18,8 +18,34 @@ public class StatisticalRecognizer implements Recognizer {
     Distribution func;
     Map<String, double[][]> map;
 
+    public Distribution getFunc() {
+        return func;
+    }
+
+    public void setFunc(Distribution func) {
+        this.func = func;
+    }
+
+    public Map<String, double[][]> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<String, double[][]> map) {
+        this.map = map;
+    }
+
     public StatisticalRecognizer(Distribution func) {
         this.map = new TreeMap<>();
+    }
+
+    public StatisticalRecognizer(Distribution func, File file) {
+        this.func = func;
+        this.map = new TreeMap<>();
+        try {
+            loadFromFile(file);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(StatisticalRecognizer.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public StatisticalRecognizer(Distribution func, String fileName) {
@@ -56,6 +82,25 @@ public class StatisticalRecognizer implements Recognizer {
             }
         }
         return maxs;
+    }
+
+    public void loadFromFile(File file) throws FileNotFoundException {
+        Scanner sc = new Scanner(file);
+        int n = sc.nextInt();
+        sc.nextLine();
+        for (int i = 0; i < n; i++) {
+            String name = sc.next().toLowerCase();
+            int m = sc.nextInt();
+            int k = sc.nextInt();
+            double buf[][] = new double[m][k];
+            for (int j = 0; j < m; j++) {
+                for (int l = 0; l < k; l++) {
+                    buf[j][l] = Double.parseDouble(sc.next());
+                }
+            }
+            map.put(name, buf);
+            sc.nextLine();
+        }
     }
 
     public void loadFromFile(String fileName) throws FileNotFoundException {

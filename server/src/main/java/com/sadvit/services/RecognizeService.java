@@ -1,5 +1,7 @@
 package com.sadvit.services;
 
+import com.sadvit.analysis.recognizer.statistic.StatisticalRecognizer;
+import com.sadvit.analysis.recognizer.statistic.distribution.HistogramDistribution;
 import com.sadvit.models.NetworkEntity;
 import com.sadvit.utils.RecognizeUtils;
 import org.neuroph.core.data.DataSet;
@@ -60,16 +62,8 @@ public class RecognizeService {
                 resultMap.put(imageId, answer);
             }
             return resultMap;
-        }
-        throw new InternalError();
-
-
-        /*String name = userService.getCurrentUserName();
-        String memoryPath = content + "/" + name + "/networks/memory.txt";
-        StatisticalRecognizer recognizer = new StatisticalRecognizer(new HistogramDistribution(), memoryPath);
-
-        Network network = networkService.getNetwork(networkId);
-        if (network.getNeuralNetwork() != null) {
+        } else if (networkEntity.getMemory() != null) {
+            StatisticalRecognizer recognizer = new StatisticalRecognizer(new HistogramDistribution(), networkEntity.getMemory());
             Map<String, String> resultMap = new HashMap<>();
             for (String imageId : images) {
                 double[] params = paramsService.findParams(imageId);
@@ -78,7 +72,7 @@ public class RecognizeService {
             }
             return resultMap;
         }
-        throw new InternalError();*/
+        throw new InternalError();
     }
 
 }

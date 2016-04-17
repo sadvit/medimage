@@ -8,6 +8,7 @@ import org.neuroph.nnet.MultiLayerPerceptron;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -30,6 +31,17 @@ public class NetworkEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> answers;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Map<String, double[][]> memory;
+
+    public Map<String, double[][]> getMemory() {
+        return memory;
+    }
+
+    public void setMemory(Map<String, double[][]> memory) {
+        this.memory = memory;
+    }
+
     public String getName() {
         return name;
     }
@@ -40,6 +52,10 @@ public class NetworkEntity {
 
     public NeuralNetwork getNeuralNetwork() {
         return neuralNetwork;
+    }
+
+    public void setNeuralNetwork(NeuralNetwork neuralNetwork) {
+        this.neuralNetwork = neuralNetwork;
     }
 
     public void setPerceptron(NeuralNetwork neuralNetwork) {

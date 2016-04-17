@@ -93,8 +93,8 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
   $scope.saveResults = function () {
     if ($scope.isLearnMode) {
       var params = {};
-      $scope.imagesAfterChain.forEach(function (imageId) {
-        params[imageId] = $scope.types[imageId];
+      $scope.imagesAfterChain.forEach(function (imageId, index) {
+        params[imageId] = $scope.imagesToChain[index]; //$scope.types[imageId];
       });
       networkService.learn(-1, params, function () {
         console.log('learned');

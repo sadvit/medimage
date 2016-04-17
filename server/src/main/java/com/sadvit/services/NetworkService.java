@@ -5,6 +5,8 @@ import com.sadvit.repositories.NetworkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,7 +23,10 @@ public class NetworkService {
 
     public NetworkEntity getNetwork(Integer networkId) {
         if (networkId == -1) {
-            return new NetworkEntity();
+            NetworkEntity networkEntity = new NetworkEntity();
+            LocalDateTime currentTime = LocalDateTime.now();
+            networkEntity.setName(currentTime.getHour() + ":" + currentTime.getMinute());
+            return networkEntity;
         }
         return networkRepository.getNetwork(networkId);
     }
