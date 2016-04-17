@@ -43,7 +43,7 @@
         <div class="input-image-folder">
           <div ng-repeat="image in images" class="image-tile medium selectable" ng-class="[image]" ng-click="selectUserImage(image)">
             <div class="selector"></div>
-            <img error-handler ng-if="image" ng-src="{{network_address + '/images/' + image}}">
+            <img ng-if="image" ng-src="{{network_address + '/images/' + image}}">
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@
           <!-- selectedImages -->
           <div ng-repeat="image in resultImages" class="image-tile medium selectable" ng-class="[image]" ng-click="selectResultImage(image)">
             <div class="selector"></div>
-            <img error-handler ng-if="image" ng-src="{{network_address + '/temp/' + image}}">
+            <img ng-if="image" ng-src="{{network_address + '/temp/' + image}}">
           </div>
         </div>
       </div>

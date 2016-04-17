@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('recognizeController', ['$scope', 'imageService', 'networkService', 'chainsService', function ($scope, imageService, networkService, chainsService) {
+angular.module('medimage').controller('recognizeController', ['$scope', 'imageService', 'networkService', 'chainsService', '$timeout', function ($scope, imageService, networkService, chainsService, $timeout) {
 
   var self = this;
 
@@ -10,6 +10,11 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
   $scope.selectedImages = [];
 
   $scope.isLearnMode = false;
+
+  $scope.isLoading = false;
+
+  $scope.imagesToChain = [];
+  $scope.imagesAfterChain = [];
 
   self.init = function () {
     imageService.getImages(function (images) {
@@ -48,9 +53,20 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
     $scope.selectedChain = chain;
   };
 
-  $scope.showOutputBlock = function () {
-    angular.element('div.no-data').addClass('hide');
-    angular.element('.output-block').toggleClass('show');
+  $scope.sendImagesToChain = function () {
+    var isOpened = angular.element('.output-block').hasClass('show');
+    if ($scope.imagesToChain.length > 0 && !isOpened) {
+      angular.element('div.no-data').addClass('hide');
+      angular.element('.output-block').toggleClass('show');
+    }
+    $scope.isLoading = true;
+    chainsService.processImages($scope.selectedChain.id, $scope.imagesToChain, function (images) {
+      $scope._imagesToChain = angular.copy($scope.imagesToChain);
+      $scope.imagesAfterChain = images;
+      $timeout(function () {
+        $scope.isLoading = false;
+      }, 1000);
+    });
   };
 
   $scope.recognizeImages = function () {
@@ -65,12 +81,12 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
     var isSelected = element.hasClass('selected');
     if (isSelected) {
       element.removeClass('selected');
-      _.remove($scope.selectedImages, function(n) {
+      _.remove($scope.imagesToChain, function(n) {
         return n == imageId;
       });
     } else {
       element.addClass('selected');
-      $scope.selectedImages.push(imageId);
+      $scope.imagesToChain.push(imageId);
     }
   };
 

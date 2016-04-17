@@ -4,7 +4,7 @@
 
 <div class="image-container box box-widget ">
   <div class="content">
-    <img error-handler class="img-thumbnail" ng-if="imageId" ng-src="{{network_address + '/' + folder + '/' + imageId}}">
+    <img class="img-thumbnail" ng-if="imageId" ng-src="{{network_address + '/' + folder + '/' + imageId}}">
     <div ng-if="!imageId" class="overlay">
       <i class="fa fa-refresh fa-spin"></i>
     </div>

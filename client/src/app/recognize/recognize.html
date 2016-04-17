@@ -24,12 +24,12 @@
         <div class="input-image-folder">
           <div ng-repeat="image in images" class="image-tile medium selectable" ng-class="[image]" ng-click="selectUserImage(image)">
             <div class="selector"></div>
-            <img error-handler ng-if="image" ng-src="{{network_address + '/images/' + image}}">
+            <img ng-if="image" ng-src="{{network_address + '/images/' + image}}">
           </div>
         </div>
       </div>
 
-      <div class="input-image-button shift" ng-click="showOutputBlock()">
+      <div class="input-image-button shift" ng-click="sendImagesToChain()" ng-class="{'disabled' : imagesToChain.length == 0}">
         <a>
           <span ng-if="!isLearnMode">RECOGNIZE IMAGES</span>
           <span ng-if="isLearnMode">TRAIN IMAGES</span>
@@ -47,7 +47,7 @@
         </a>
       </div>
 
-      <div ng-if="selectedImages.length == 0" class="spinner">
+      <div ng-if="isLoading" class="spinner">
         <div class="sk-fading-circle">
           <div class="sk-circle1 sk-circle"></div>
           <div class="sk-circle2 sk-circle"></div>
@@ -64,7 +64,7 @@
         </div>
       </div>
 
-      <div ng-if="selectedImages.length > 0" ng-scrollbars class="output-image-content">
+      <div ng-if="!isLoading" ng-scrollbars class="output-image-content">
         <div class="output-image-folder">
 
           <table class="table table-bordered results">
@@ -76,18 +76,18 @@
               <th ng-if="isLearnMode" style="width: 99%">ENTER CORRECT RESULTS</th>
               <th ng-if="!isLearnMode" style="width: 99%">RESULTS</th>
             </tr>
-            <tr ng-repeat="image in selectedImages" ng-class="{'first-child' : $index == 0, 'last-child' : $index == selectedImages.length - 1}">
+            <tr ng-repeat="image in _imagesToChain" ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
               <td class="middle-cell first-child">
                 <span>{{$index + 1}}</span>
               </td>
               <td>
                   <div class="image-tile small">
-                    <img error-handler ng-if="image" ng-src="{{network_address + '/images/' + image}}">
+                    <img ng-if="image" ng-src="{{network_address + '/images/' + image}}">
                   </div>
               </td>
               <td>
                 <div class="image-tile small">
-                  <img error-handler ng-if="image" ng-src="{{network_address + '/images/' + image}}">
+                  <img ng-if="image" ng-src="{{network_address + '/temp/' + imagesAfterChain[$index]}}">
                 </div>
               </td>
               <td class="last-child">
@@ -95,8 +95,8 @@
                   <form class="form-horizontal">
                     <div class="box-body">
                       <div class="form-group">
-                        <label class="col-sm-4 control-label">Enter type of object:</label>
-                        <div class="col-sm-8">
+                        <label class="col-sm-5 control-label">Enter type of object:</label>
+                        <div class="col-sm-7">
                           <input id="{{image}}" type="text"  ng-model="image" class="form-control" placeholder="Class name">
                         </div>
                       </div>
