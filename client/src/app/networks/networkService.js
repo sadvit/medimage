@@ -19,10 +19,10 @@ angular.module('medimage').service('networkService', ['Restangular', function (R
   };
 
   this.learn = function (networkId, params, callback) {
-    Restangular.one('networks/learn', networkId).customPOST(params).then(function (result) {
-      callback(result.plain());
+    Restangular.one('networks/learn', networkId).customPOST(params).then(function () {
+      callback();
     }, function (error) {
-      callback(error.plain());
+      callback(error);
     });
   };
 

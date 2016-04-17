@@ -19,12 +19,12 @@ public class StatisticalRecognizer implements Recognizer {
     Map<String, double[][]> map;
 
     public StatisticalRecognizer(Distribution func) {
-        this.map = new TreeMap<String, double[][]>();
+        this.map = new TreeMap<>();
     }
 
     public StatisticalRecognizer(Distribution func, String fileName) {
         this.func = func;
-        this.map = new TreeMap<String, double[][]>();
+        this.map = new TreeMap<>();
         try {
             loadFromFile(fileName);
         } catch (FileNotFoundException ex) {

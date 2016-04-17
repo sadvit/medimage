@@ -69,12 +69,12 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
     });
   };
 
-  $scope.recognizeImages = function () {
+  /*$scope.recognizeImages = function () {
     networkService.recognize($scope.selectedNetwork.id, $scope.selectedChain.id, $scope.selectedImages, function (result) {
       // TODO stop loader
     });
     // TODO start loader
-  };
+  };*/
 
   $scope.selectUserImage = function (imageId) {
     var element = angular.element('.input-image-folder .' + imageId);
@@ -96,12 +96,12 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
       $scope.imagesAfterChain.forEach(function (imageId) {
         params[imageId] = $scope.types[imageId];
       });
-      networkService.learn(-1, params, function (data) {
-        console.log(data);
+      networkService.learn(-1, params, function () {
+        console.log('learned');
       });
     } else {
       networkService.recognize($scope.selectedNetwork.id, $scope.imagesAfterChain, function (data) {
-        console.log(data);
+        console.log('recognized: ', data);
       });
     }
   };

@@ -1,16 +1,13 @@
 package com.sadvit.controllers;
 
-import com.sadvit.models.Network;
+import com.sadvit.models.NetworkEntity;
 import com.sadvit.services.NetworkService;
-import org.hibernate.validator.constraints.CreditCardNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by sadvit on 3/20/16.
@@ -23,7 +20,7 @@ public class NetworkController {
     private NetworkService networkService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Network> getNetworks() {
+    public List<NetworkEntity> getNetworks() {
         return networkService.getNetworks();
     }
 

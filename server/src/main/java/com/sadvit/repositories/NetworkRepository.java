@@ -1,7 +1,9 @@
 package com.sadvit.repositories;
 
-import com.sadvit.models.Network;
+import com.sadvit.models.NetworkEntity;
 import com.sadvit.models.User;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -24,27 +26,34 @@ public class NetworkRepository {
     @Autowired
     private HibernateTemplate template;
 
-    public List<Network> getNetworks(String username) {
-        String hql = "SELECT U.networks FROM User AS U WHERE U.name = ?";
-        return (List<Network>) template.find(hql, username);
+    public List<NetworkEntity> getNetworks(String username) {
+        Session session = template.getSessionFactory().openSession();
+        Query query = session.getNamedQuery("findNetworksByUser");
+        query.setString("username", username);
+        return query.list();
     }
 
-    public Network getNetwork(String username, Integer networkId) {
-        List<Network> networks = getNetworks(username);
-        return networks.stream().filter(network -> Objects.equals(network.getId(), networkId)).findFirst().get();
+    public NetworkEntity getNetwork(Integer networkId) {
+        return template.get(NetworkEntity.class, networkId);
     }
 
-    public void addNetwork(String username, Network network) {
-        User user = userRepository.getUser(username);
-        Set<Network> networks = user.getNetworks();
-        if (networks == null) {
-            networks = new HashSet<>();
-            networks.add(network);
-            user.setNetworks(networks);
-        } else {
-            networks.add(network);
-        }
-        userRepository.updateUser(user);
+    public void addNetwork(String username, NetworkEntity networkEntity) {
+        template.execute(session -> {
+            Query findUserByName = session.getNamedQuery("findUserByName");
+            findUserByName.setString("username", username);
+            User user = (User) findUserByName.list().stream().findFirst().get();
+            Set<NetworkEntity> networkEntities = user.getNetworkEntities();
+            if (networkEntities == null) {
+                networkEntities = new HashSet<>();
+                networkEntities.add(networkEntity);
+                user.setNetworkEntities(networkEntities);
+            } else {
+                networkEntities.add(networkEntity);
+            }
+            session.update(user);
+            session.flush();
+            return null;
+        });
     }
 
 }

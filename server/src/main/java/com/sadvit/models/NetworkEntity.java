@@ -2,6 +2,8 @@ package com.sadvit.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
+import org.neuroph.core.NeuralNetwork;
+import org.neuroph.nnet.Kohonen;
 import org.neuroph.nnet.MultiLayerPerceptron;
 
 import javax.persistence.*;
@@ -13,7 +15,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "NETWORKS")
-public class Network {
+public class NetworkEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +25,7 @@ public class Network {
 
     @JsonIgnore
     @Type(type = "serializable")
-    private MultiLayerPerceptron perceptron;
+    private NeuralNetwork neuralNetwork;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> answers;
@@ -36,12 +38,12 @@ public class Network {
         this.name = name;
     }
 
-    public MultiLayerPerceptron getPerceptron() {
-        return perceptron;
+    public NeuralNetwork getNeuralNetwork() {
+        return neuralNetwork;
     }
 
-    public void setPerceptron(MultiLayerPerceptron perceptron) {
-        this.perceptron = perceptron;
+    public void setPerceptron(NeuralNetwork neuralNetwork) {
+        this.neuralNetwork = neuralNetwork;
     }
 
     public List<String> getAnswers() {

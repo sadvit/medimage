@@ -15,7 +15,8 @@ import java.util.Set;
 @Table(name = "USERS")
 @NamedQueries({
         @NamedQuery(name = "findUserByName", query = "SELECT U FROM User AS U WHERE U.name = :username"),
-        @NamedQuery(name = "findChainsByUser", query = "SELECT USER.chains FROM User AS USER WHERE USER.name = :username"),
+        @NamedQuery(name = "findChainsByUser", query = "SELECT U.chains FROM User AS U WHERE U.name = :username"),
+        @NamedQuery(name = "findNetworksByUser", query = "SELECT U.networkEntities FROM User AS U WHERE U.name = :username")
 })
 public class User {
 
@@ -38,7 +39,7 @@ public class User {
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Network> networks;
+    private Set<NetworkEntity> networkEntities;
 
 	public Role getRole()
 	{
@@ -84,12 +85,12 @@ public class User {
         this.chains = chains;
     }
 
-    public Set<Network> getNetworks() {
-        return networks;
+    public Set<NetworkEntity> getNetworkEntities() {
+        return networkEntities;
     }
 
-    public void setNetworks(Set<Network> networks) {
-        this.networks = networks;
+    public void setNetworkEntities(Set<NetworkEntity> networkEntities) {
+        this.networkEntities = networkEntities;
     }
 
 }

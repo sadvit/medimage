@@ -1,7 +1,6 @@
 import com.sadvit.Application;
-import com.sadvit.models.Network;
+import com.sadvit.models.NetworkEntity;
 import com.sadvit.repositories.NetworkRepository;
-import com.sadvit.repositories.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,23 +25,23 @@ public class NetworkRepositoryTest {
 
     @Test
     public void test() {
-        List<Network> networks = createNetworks();
-        networks.forEach(network -> networkRepository.addNetwork(USERNAME, network));
-        List<Network> _networks = networkRepository.getNetworks(USERNAME);
-        Assert.assertNotNull(_networks);
-        Assert.assertTrue(networks.size() == _networks.size());
+        List<NetworkEntity> networkEntities = createNetworks();
+        networkEntities.forEach(network -> networkRepository.addNetwork(USERNAME, network));
+        List<NetworkEntity> _networkEntities = networkRepository.getNetworks(USERNAME);
+        Assert.assertNotNull(_networkEntities);
+        Assert.assertTrue(networkEntities.size() == _networkEntities.size());
     }
 
-    public List<Network> createNetworks() {
-        List<Network> networks = new ArrayList<>();
+    public List<NetworkEntity> createNetworks() {
+        List<NetworkEntity> networkEntities = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            Network network = new Network();
-            network.setName("Network " + i);
-            network.setAnswers(Arrays.asList("bovis", "alabamensis", "aubermensis"));
-            network.setPerceptron(new MultiLayerPerceptron(3, 50, 3));
-            networks.add(network);
+            NetworkEntity networkEntity = new NetworkEntity();
+            networkEntity.setName("Network " + i);
+            networkEntity.setAnswers(Arrays.asList("bovis", "alabamensis", "aubermensis"));
+            networkEntity.setPerceptron(new MultiLayerPerceptron(3, 50, 3));
+            networkEntities.add(networkEntity);
         }
-        return networks;
+        return networkEntities;
     }
 
 }
