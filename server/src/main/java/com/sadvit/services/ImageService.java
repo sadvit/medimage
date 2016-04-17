@@ -71,7 +71,7 @@ public class ImageService {
     }
 
     private String getFolderPath() {
-        return content + SEPARATOR + userService.getCurrentUserName() + SEPARATOR + IMAGES;
+        return content + SEPARATOR + userService.getCurrentUser() + SEPARATOR + IMAGES;
     }
 
     private String getFilePath(String id) {

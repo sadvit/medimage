@@ -25,15 +25,12 @@ public class RecognizeService {
     private String content;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private ParamsService paramsService;
 
     @Autowired
     private NetworkService networkService;
 
-    public void learn(Integer networkId, Map<String, String> images) {
+    public void learn(Integer userId, Integer networkId, Map<String, String> images) {
         List<String> answers = RecognizeUtils.extractAnswers(images);
         int outputParamsNumber = answers.size();
         DataSet dataSet = new DataSet(INPUT_PARAMS_NUMBER, outputParamsNumber);
@@ -46,7 +43,7 @@ public class RecognizeService {
             dataSet.addRow(new DataSetRow(params, RecognizeUtils.getInput(answers, value)));
         }
         networkEntity.getNeuralNetwork().learn(dataSet);
-        networkService.addNetwork(networkEntity);
+        networkService.addNetwork(userId, networkEntity);
     }
 
     public Map<String, String> recognize(Integer networkId, List<String> images) {

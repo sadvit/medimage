@@ -2,7 +2,9 @@ import com.sadvit.Application;
 import com.sadvit.analysis.recognizer.statistic.StatisticalRecognizer;
 import com.sadvit.analysis.recognizer.statistic.distribution.HistogramDistribution;
 import com.sadvit.models.NetworkEntity;
+import com.sadvit.models.User;
 import com.sadvit.repositories.NetworkRepository;
+import com.sadvit.repositories.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,11 +31,17 @@ public class NetworkRepositoryTest {
     @Autowired
     private ResourceLoader resourceLoader;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public static final String USERNAME = "sadvit";
     public static final String MEMORY = "memory.txt";
 
     @Test
     public void createTestNetwork() {
+        User user = userRepository.getUser(USERNAME);
+        int id = user.getId();
+
         Map<String, double[][]> memory = null;
         try {
             File file = resourceLoader.getResource(MEMORY).getFile();
@@ -45,7 +53,7 @@ public class NetworkRepositoryTest {
         NetworkEntity networkEntity = new NetworkEntity();
         networkEntity.setMemory(memory);
         networkEntity.setName("Default");
-        networkRepository.addNetwork(USERNAME, networkEntity);
+        networkRepository.addNetwork(id, networkEntity);
     }
 
     @Test

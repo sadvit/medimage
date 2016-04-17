@@ -47,8 +47,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.authenticationEntryPoint(authenticationEntryPoint)
 					.and()
 				.authorizeRequests()
+                .antMatchers("/chains/**").hasRole("USER")
 				.antMatchers("/images/**").hasRole("USER")
+                .antMatchers("/networks/**").hasRole("USER")
 				.antMatchers("/process/**").hasRole("USER")
+                .antMatchers("/statistics/**").hasRole("USER")
+                .antMatchers("/temp/**").hasRole("USER")
 					.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/auth/logout"))
@@ -57,8 +61,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 					.and()
 				.csrf()
 				.disable();
-
-		//http.headers().cacheControl().disable();
 	}
 
 	@Override

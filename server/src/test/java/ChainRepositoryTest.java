@@ -2,9 +2,11 @@ import com.sadvit.Application;
 import com.sadvit.enums.OperationType;
 import com.sadvit.models.Chain;
 import com.sadvit.models.ChainElement;
+import com.sadvit.models.User;
 import com.sadvit.operations.binary.BinaryParams;
 import com.sadvit.operations.binary.BinaryType;
 import com.sadvit.repositories.ChainRepository;
+import com.sadvit.repositories.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,10 +30,16 @@ public class ChainRepositoryTest {
     @Autowired
     private ChainRepository chainRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Test
     public void testAddChain() {
+        User user = userRepository.getUser(USERNAME);
+        int id = user.getId();
+
         List<Chain> chains = createChains();
-        chains.forEach(chain -> chainRepository.addChain(USERNAME, chain));
+        chains.forEach(chain -> chainRepository.addChain(id, chain));
         /*List<Chain> _chains = chainRepository.getChains(USERNAME);
         List<Chain> byOne = new ArrayList<>();
         _chains.forEach(chain -> {

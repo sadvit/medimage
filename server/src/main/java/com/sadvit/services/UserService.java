@@ -1,10 +1,9 @@
 package com.sadvit.services;
 
-import com.sadvit.enums.Role;
+import com.sadvit.models.Authority;
 import com.sadvit.models.User;
 import com.sadvit.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -14,8 +13,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import java.security.Principal;
 import java.util.List;
 
 /**
@@ -32,21 +29,15 @@ public class UserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException	{
-		User user = userRepository.getUser(username);
-		List<GrantedAuthority> authorityList = AuthorityUtils.createAuthorityList("ROLE_" + user.getRole().toString());
-		return new org.springframework.security.core.userdetails.User(user.getName(), user.getHashpwd(), authorityList);
+        try {
+            return userRepository.getUser(username);
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("User with username: " + username + " not found");
+        }
 	}
-
-	public Authentication getCurrentAuthentication() {
-		return SecurityContextHolder.getContext().getAuthentication();
-	}
-
-    public String getCurrentUserName() {
-        return getCurrentAuthentication().getName();
-    }
 
 	public void registerUser(String login, String pass) {
-		userRepository.addUser(login, pass, Role.USER);
+		userRepository.addUser(login, pass, Authority.USER);
 		fileSystemService.createUserFolder(login);
 	}
 

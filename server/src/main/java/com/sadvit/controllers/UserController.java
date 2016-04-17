@@ -21,11 +21,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public List<User> getUsers() {
-		return userService.loadAllUsers();
-	}
-
 	@RequestMapping(method = RequestMethod.GET, value = "/register")
 	public void register(@RequestParam String login, @RequestParam String pass) {
 		userService.registerUser(login, pass);

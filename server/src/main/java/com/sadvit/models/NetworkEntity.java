@@ -34,6 +34,17 @@ public class NetworkEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, double[][]> memory;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<RecognizeResult> recognizeResults;
+
+    public Set<RecognizeResult> getRecognizeResults() {
+        return recognizeResults;
+    }
+
+    public void setRecognizeResults(Set<RecognizeResult> recognizeResults) {
+        this.recognizeResults = recognizeResults;
+    }
+
     public Map<String, double[][]> getMemory() {
         return memory;
     }

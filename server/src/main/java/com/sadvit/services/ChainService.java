@@ -38,9 +38,6 @@ public class ChainService {
     @Autowired
     private ChainRepository chainRepository;
 
-    @Autowired
-    private UserService userService;
-
     public CacheObject processChain(String id, List<ChainElement> chain) {
         BufferedImage currentImage = imageService.getBufferedImage(id);
         for (ChainElement chainElement : chain) {
@@ -73,21 +70,19 @@ public class ChainService {
         return result;
     }
 
-    public List<Chain> getChains() {
-        String username = userService.getCurrentUser();
-        return chainRepository.getChains(username);
+    public Set<Chain> getChains(Integer userId) {
+        return chainRepository.getChains(userId);
     }
 
     public Chain getChain(Integer id) {
         return chainRepository.getChain(id);
     }
 
-    public void saveChain(String name, List<ChainElement> elements) {
-        String username = userService.getCurrentUser();
+    public void saveChain(Integer userId, String name, List<ChainElement> elements) {
         Chain chain = new Chain();
         chain.setName(name);
         chain.setChainElements(elements);
-        chainRepository.addChain(username, chain);
+        chainRepository.addChain(userId, chain);
     }
 
 }

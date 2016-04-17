@@ -8,15 +8,13 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by sadvit on 4/16/16.
  */
 @Service
 public class NetworkService {
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private NetworkRepository networkRepository;
@@ -31,14 +29,12 @@ public class NetworkService {
         return networkRepository.getNetwork(networkId);
     }
 
-    public List<NetworkEntity> getNetworks() {
-        String username = userService.getCurrentUser();
-        return networkRepository.getNetworks(username);
+    public Set<NetworkEntity> getNetworks(Integer userId) {
+        return networkRepository.getNetworks(userId);
     }
 
-    public void addNetwork(NetworkEntity networkEntity) {
-        String username = userService.getCurrentUser();
-        networkRepository.addNetwork(username, networkEntity);
+    public void addNetwork(Integer userId, NetworkEntity networkEntity) {
+        networkRepository.addNetwork(userId, networkEntity);
     }
 
 }

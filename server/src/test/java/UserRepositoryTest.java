@@ -1,12 +1,10 @@
 import com.sadvit.Application;
-import com.sadvit.enums.Role;
+import com.sadvit.models.Authority;
 import com.sadvit.models.User;
 import com.sadvit.repositories.UserRepository;
 import org.junit.Assert;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -25,8 +23,8 @@ public class UserRepositoryTest {
 
     @Test
     public void testAddUser() {
-        userRepository.addUser("sadvit", "sadvit", Role.USER);
-        userRepository.addUser("mrsadvit", "sadvit", Role.USER);
+        userRepository.addUser("sadvit", "sadvit", Authority.USER);
+        userRepository.addUser("mrsadvit", "sadvit", Authority.USER);
 
         User sadvit = userRepository.getUser("sadvit");
         User mrsadvit = userRepository.getUser("mrsadvit");

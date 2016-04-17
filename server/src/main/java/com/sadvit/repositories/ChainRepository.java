@@ -23,27 +23,23 @@ import java.util.Set;
 public class ChainRepository {
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private HibernateTemplate template;
 
-    public List<Chain> getChains(String username) {
-        Session session = template.getSessionFactory().openSession();
-        Query query = session.getNamedQuery("findChainsByUser");
-        query.setString("username", username);
-        return query.list();
+    public Set<Chain> getChains(Integer userId) {
+        return template.execute(session -> {
+            User user = (User) session.get(User.class, userId);
+            Hibernate.initialize(user.getChains());
+            return user.getChains();
+        });
     }
 
     public Chain getChain(Integer chainId) {
         return template.get(Chain.class, chainId);
     }
 
-    public void addChain(String username, Chain chain) {
+    public void addChain(Integer userId, Chain chain) {
         template.execute(session -> {
-            Query findUserByName = session.getNamedQuery("findUserByName");
-            findUserByName.setString("username", username);
-            User user = (User) findUserByName.list().stream().findFirst().get();
+            User user = (User) session.get(User.class, userId);
             Set<Chain> chains = user.getChains();
             if (chains == null) {
                 chains = new HashSet<>();

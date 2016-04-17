@@ -1,13 +1,18 @@
 package com.sadvit.controllers;
 
 import com.sadvit.models.NetworkEntity;
+import com.sadvit.models.User;
 import com.sadvit.services.NetworkService;
+import com.sadvit.services.RecognizeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by sadvit on 3/20/16.
@@ -19,9 +24,22 @@ public class NetworkController {
     @Autowired
     private NetworkService networkService;
 
+    @Autowired
+    private RecognizeService recognizeService;
+
     @RequestMapping(method = RequestMethod.GET)
-    public List<NetworkEntity> getNetworks() {
-        return networkService.getNetworks();
+    public Set<NetworkEntity> getNetworks(@AuthenticationPrincipal User user) {
+        return networkService.getNetworks(user.getId());
+    }
+
+    @RequestMapping(value = "/learn/{networkId}", method = RequestMethod.POST)
+    public void learn(@RequestBody Map<String, String> images, @PathVariable("networkId") Integer networkId, @AuthenticationPrincipal User user) {
+        recognizeService.learn(user.getId(), networkId, images);
+    }
+
+    @RequestMapping(value = "/recognize/{networkId}", method = RequestMethod.POST)
+    public Map<String, String> recognize(@RequestBody List<String> images, @PathVariable("networkId") Integer networkId) {
+        return recognizeService.recognize(networkId, images);
     }
 
 }

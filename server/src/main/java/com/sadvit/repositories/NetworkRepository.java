@@ -1,7 +1,9 @@
 package com.sadvit.repositories;
 
+import com.sadvit.models.Chain;
 import com.sadvit.models.NetworkEntity;
 import com.sadvit.models.User;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,27 +23,23 @@ import java.util.Set;
 public class NetworkRepository {
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
     private HibernateTemplate template;
 
-    public List<NetworkEntity> getNetworks(String username) {
-        Session session = template.getSessionFactory().openSession();
-        Query query = session.getNamedQuery("findNetworksByUser");
-        query.setString("username", username);
-        return query.list();
+    public Set<NetworkEntity> getNetworks(Integer userId) {
+        return template.execute(session -> {
+            User user = (User) session.get(User.class, userId);
+            Hibernate.initialize(user.getNetworkEntities());
+            return user.getNetworkEntities();
+        });
     }
 
     public NetworkEntity getNetwork(Integer networkId) {
         return template.get(NetworkEntity.class, networkId);
     }
 
-    public void addNetwork(String username, NetworkEntity networkEntity) {
+    public void addNetwork(Integer userId, NetworkEntity networkEntity) {
         template.execute(session -> {
-            Query findUserByName = session.getNamedQuery("findUserByName");
-            findUserByName.setString("username", username);
-            User user = (User) findUserByName.list().stream().findFirst().get();
+            User user = (User) session.get(User.class, userId);
             Set<NetworkEntity> networkEntities = user.getNetworkEntities();
             if (networkEntities == null) {
                 networkEntities = new HashSet<>();
