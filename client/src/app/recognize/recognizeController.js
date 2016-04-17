@@ -63,9 +63,7 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
     chainsService.processImages($scope.selectedChain.id, $scope.imagesToChain, function (images) {
       $scope._imagesToChain = angular.copy($scope.imagesToChain);
       $scope.imagesAfterChain = images;
-      $timeout(function () {
-        $scope.isLoading = false;
-      }, 1000);
+      $scope.isLoading = false;
     });
   };
 
