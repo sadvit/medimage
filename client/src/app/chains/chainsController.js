@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('chainsController', ['$scope', 'chainsService', 'imageService', function ($scope, chainsService, imageService) {
+angular.module('medimage').controller('chainsController', ['$scope', 'chainsService', 'imageService', '$state', function ($scope, chainsService, imageService, $state) {
 
   var self = this;
 
@@ -9,7 +9,9 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainsServ
   $scope.images = [];
   $scope.selectedChain = {};
   $scope.selectedImages = [];
-  $scope.finalImages = [];
+
+  $scope.resultImages = [];
+  $scope.imageToSave = [];
 
   $scope.testArray = [];
 
@@ -69,11 +71,25 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainsServ
   };
 
   $scope.selectResultImage = function (imageId) {
-
+    var element = angular.element('.output-image-folder .' + imageId);
+    var isSelected = element.hasClass('selected');
+    if (isSelected) {
+      element.removeClass('selected');
+      _.remove($scope.imageToSave, function(n) {
+        return n == imageId;
+      });
+    } else {
+      element.addClass('selected');
+      $scope.imageToSave.push(imageId);
+    }
   };
 
-  $scope.saveChain = function () {
-
+  $scope.saveResult = function () {
+    if ($scope.imageToSave.length > 0) {
+      imageService.saveImages($scope.imageToSave, function () {
+        $state.go('images');
+      })
+    }
   };
 
 }]);

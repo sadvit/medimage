@@ -85,7 +85,7 @@
         </div>
       </div>
 
-      <div class="input-image-button save">
+      <div ng-click="saveResult()" class="input-image-button save" ng-class="{'disabled' : imageToSave.length == 0}">
         <a><span>SAVE IMAGES</span><i class="fa fa-save yellow"></i></a>
       </div>
 
