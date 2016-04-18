@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <div class="input-image-button shift" ng-click="sendImagesToChain()" ng-class="{'disabled' : imagesToChain.length == 0}">
+      <div class="input-image-button shift" ng-click="inputBlockClick()" ng-class="{'disabled' : selectedImages.length == 0}">
         <a>
           <span ng-if="!isLearnMode">RECOGNIZE IMAGES</span>
           <span ng-if="isLearnMode">TRAIN IMAGES</span>
@@ -79,7 +79,7 @@
                     <div class="form-group">
                       <label class="col-sm-5 control-label">Enter network name:</label>
                       <div class="col-sm-7">
-                        <input spellcheck="false" type="text"  ng-model="networkName" class="form-control" placeholder="Network name">
+                        <input spellcheck="false" type="text"  ng-model="recognizeResult.name" class="form-control" placeholder="Network name">
                       </div>
                     </div>
                   </div>
@@ -88,18 +88,18 @@
               <th ng-if="!isLearnMode" style="width: 99%">RESULTS</th>
             </tr>
 
-            <tr ng-repeat="image in _imagesToChain" ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
+            <tr ng-repeat="result in recognizeResult.values" ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
               <td class="middle-cell first-child">
                 <span>{{$index + 1}}</span>
               </td>
               <td>
                   <div class="image-tile small">
-                    <img ng-if="image" ng-src="{{network_address + '/images/' + image}}">
+                    <img ng-if="result.imageId" ng-src="{{network_address + '/images/' + result.imageId}}">
                   </div>
               </td>
               <td>
                 <div class="image-tile small">
-                  <img ng-if="image" ng-src="{{network_address + '/temp/' + imagesAfterChain[$index]}}">
+                  <img ng-if="result.tempId" ng-src="{{network_address + '/temp/' + result.tempId}}">
                 </div>
               </td>
               <td class="last-child">
@@ -109,7 +109,7 @@
                       <div class="form-group">
                         <label class="col-sm-5 control-label">Enter type of object:</label>
                         <div class="col-sm-7">
-                          <input spellcheck="false" type="text"  ng-model="types[imagesAfterChain[$index]]" class="form-control" placeholder="Class name">
+                          <input spellcheck="false" type="text"  ng-model="result.value" class="form-control" placeholder="Class name">
                         </div>
                       </div>
                     </div>
@@ -119,7 +119,7 @@
                   <form class="form-horizontal">
                     <div class="box-body">
                       <div class="form-group">
-                        <label class="col-sm-12 control-label left">{{::recognizeResult[imagesAfterChain[$index]]}}</label>
+                        <label class="col-sm-12 control-label left">{{result.value}}</label>
                       </div>
                     </div>
                   </form>
@@ -131,7 +131,7 @@
         </div>
       </div>
 
-      <div ng-click="saveResults()" class="input-image-button save">
+      <div ng-click="outputBlockClick()" class="input-image-button save">
         <a>
           <span ng-if="!isLearnMode">SAVE RESULTS</span>
           <span ng-if="isLearnMode">SAVE TRAIN</span>
@@ -141,8 +141,10 @@
 
     </div>
 
-    <div class="no-data">
-      <span>Select network</span>
+    <div ng-if="noData" class="no-data">
+      <span ng-if="noData.network">Select network</span>
+      <span ng-if="noData.chain">Select chain</span>
+      <span ng-if="noData.images">Select images</span>
     </div>
 
   </div>

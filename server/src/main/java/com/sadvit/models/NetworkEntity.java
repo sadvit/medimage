@@ -28,12 +28,15 @@ public class NetworkEntity {
     @Type(type = "serializable")
     private NeuralNetwork neuralNetwork;
 
+    @JsonIgnore
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> answers;
 
+    @JsonIgnore
     @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, double[][]> memory;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<RecognizeResult> recognizeResults;
 

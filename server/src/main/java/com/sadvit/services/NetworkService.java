@@ -20,12 +20,6 @@ public class NetworkService {
     private NetworkRepository networkRepository;
 
     public NetworkEntity getNetwork(Integer networkId) {
-        if (networkId == -1) {
-            NetworkEntity networkEntity = new NetworkEntity();
-            LocalDateTime currentTime = LocalDateTime.now();
-            networkEntity.setName(currentTime.getHour() + ":" + currentTime.getMinute());
-            return networkEntity;
-        }
         return networkRepository.getNetwork(networkId);
     }
 

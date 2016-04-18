@@ -3,6 +3,8 @@ package com.sadvit.services;
 import com.sadvit.analysis.recognizer.statistic.StatisticalRecognizer;
 import com.sadvit.analysis.recognizer.statistic.distribution.HistogramDistribution;
 import com.sadvit.models.NetworkEntity;
+import com.sadvit.models.RecognizeResult;
+import com.sadvit.models.RecognizeValue;
 import com.sadvit.utils.RecognizeUtils;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
@@ -19,7 +21,7 @@ import java.util.*;
 @Service
 public class RecognizeService {
 
-    public static int INPUT_PARAMS_NUMBER = 8; // params from images
+    public static int INPUT_PARAMS_NUMBER = 8;
 
     @Value("${medimage.content}")
     private String content;
@@ -30,15 +32,16 @@ public class RecognizeService {
     @Autowired
     private NetworkService networkService;
 
-    public void learn(Integer userId, Integer networkId, Map<String, String> images) {
-        List<String> answers = RecognizeUtils.extractAnswers(images);
+    public void learn(Integer userId, RecognizeResult recognizeResult) {
+        List<String> answers = RecognizeUtils.extractAnswers(recognizeResult);
         int outputParamsNumber = answers.size();
         DataSet dataSet = new DataSet(INPUT_PARAMS_NUMBER, outputParamsNumber);
-        NetworkEntity networkEntity = networkService.getNetwork(networkId);
+        NetworkEntity networkEntity = new NetworkEntity();
         networkEntity.setPerceptron(new Kohonen(INPUT_PARAMS_NUMBER, outputParamsNumber));
         networkEntity.setAnswers(answers);
-        for (String imageId : images.keySet()) {
-            String value = images.get(imageId);
+        for (RecognizeValue recognizeValue: recognizeResult.getValues()) {
+            String imageId = recognizeValue.getTempId();
+            String value = recognizeValue.getValue();
             double[] params = paramsService.findParams(imageId);
             dataSet.addRow(new DataSetRow(params, RecognizeUtils.getInput(answers, value)));
         }
@@ -46,28 +49,33 @@ public class RecognizeService {
         networkService.addNetwork(userId, networkEntity);
     }
 
-    public Map<String, String> recognize(Integer networkId, List<String> images) {
+    public RecognizeResult recognize(Integer networkId, List<String> images) {
         NetworkEntity networkEntity = networkService.getNetwork(networkId);
         if (networkEntity.getNeuralNetwork() != null) {
-            Map<String, String> resultMap = new HashMap<>();
+            RecognizeResult recognizeResult = new RecognizeResult();
             for (String imageId : images) {
                 double[] params = paramsService.findParams(imageId);
                 networkEntity.getNeuralNetwork().setInput(params);
                 networkEntity.getNeuralNetwork().calculate();
                 double[] result = networkEntity.getNeuralNetwork().getOutput();
                 String answer = RecognizeUtils.getOutput(result, networkEntity.getAnswers());
-                resultMap.put(imageId, answer);
+                recognizeResult.getValues().add(new RecognizeValue(imageId, answer));
             }
-            return resultMap;
+            return recognizeResult;
         } else if (networkEntity.getMemory() != null) {
             StatisticalRecognizer recognizer = new StatisticalRecognizer(new HistogramDistribution(), networkEntity.getMemory());
-            Map<String, String> resultMap = new HashMap<>();
+            RecognizeResult recognizeResult = new RecognizeResult();
+            Set<RecognizeValue> values = new HashSet<>();
             for (String imageId : images) {
                 double[] params = paramsService.findParams(imageId);
                 String answer = recognizer.recognize(params);
-                resultMap.put(imageId, answer);
+                RecognizeValue value = new RecognizeValue();
+                value.setTempId(imageId);
+                value.setValue(answer);
+                values.add(value);
             }
-            return resultMap;
+            recognizeResult.setValues(values);
+            return recognizeResult;
         }
         throw new InternalError();
     }
