@@ -26,4 +26,20 @@ angular.module('medimage').service('networkService', ['Restangular', function (R
     });
   };
 
+  this.saveResults = function (networkId, results, callback) {
+    Restangular.one('results', networkId).customPOST(results).then(function () {
+      callback();
+    }, function (error) {
+      callback(error);
+    });
+  };
+
+  this.getResults = function (callback) {
+    Restangular.all('results').get().then(function (result) {
+      callback(result.plain());
+    }, function (error) {
+      callback(error);
+    });
+  };
+
 }]);

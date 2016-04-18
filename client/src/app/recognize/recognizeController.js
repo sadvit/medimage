@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('recognizeController', ['$scope', 'imageService', 'networkService', 'chainsService', 'modalsService', function ($scope, imageService, networkService, chainsService, modalsService) {
+angular.module('medimage').controller('recognizeController', ['$scope', 'imageService', 'networkService', 'chainsService', 'modalsService', '$state', function ($scope, imageService, networkService, chainsService, modalsService, $state) {
 
   var self = this;
 
@@ -123,7 +123,10 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
       });
     } else {
       modalsService.showRecognizeModal(function (name) {
-        // сохраняю результаты распознования
+        $scope.recognizeResult.name = name;
+        networkService.saveResults($scope.selectedNetwork.id, $scope.recognizeResult, function () {
+          $state.go('statistics');
+        })
       }, function () {
         console.log(false)
       })

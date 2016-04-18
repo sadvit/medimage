@@ -10,11 +10,10 @@ angular.module('medimage').controller('modalRecognizeController', ['$scope', '$u
     return day + '.' + month + '.' + year + ' - ' + hours + ':' + minutes;
   };
 
-  $scope.networkName = 'Network ' + $scope.getFormatDate();
   $scope.recognizeName = 'Recognize ' + $scope.getFormatDate();
 
   $scope.apply = function () {
-    $uibModalInstance.close($scope.name);
+    $uibModalInstance.close($scope.recognizeName);
   };
 
   $scope.cancel = function () {
