@@ -19,7 +19,11 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
 
   $scope.saveChain = function () {
     modalsService.showChainModal(function (name) {
-      chainsService.saveChain(name, $scope.chain, function () {
+      var chain = {
+        name: name,
+        chainElements: $scope.chain
+      };
+      chainsService.saveChain(chain, function () {
         $state.go('chains');
       });
     }, function () {

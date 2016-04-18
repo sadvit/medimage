@@ -78,10 +78,7 @@ public class ChainService {
         return chainRepository.getChain(id);
     }
 
-    public void saveChain(Integer userId, String name, List<ChainElement> elements) {
-        Chain chain = new Chain();
-        chain.setName(name);
-        chain.setChainElements(elements);
+    public void saveChain(Integer userId, Chain chain) {
         chainRepository.addChain(userId, chain);
     }
 

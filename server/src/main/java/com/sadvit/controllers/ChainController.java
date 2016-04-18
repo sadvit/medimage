@@ -26,9 +26,9 @@ public class ChainController {
     @Autowired
     private ChainService chainService;
 
-    @RequestMapping(value = "/{name}", method = RequestMethod.POST)
-    public void saveChain(@RequestBody List<ChainElement> elements, @PathVariable("name") String name, @AuthenticationPrincipal User user) {
-        chainService.saveChain(user.getId(), name, elements);
+    @RequestMapping(method = RequestMethod.POST)
+    public void saveChain(@RequestBody Chain chain, @AuthenticationPrincipal User user) {
+        chainService.saveChain(user.getId(), chain);
     }
 
     @RequestMapping(value = "/one/{imageId}", method = RequestMethod.POST)
