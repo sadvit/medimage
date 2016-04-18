@@ -37,6 +37,7 @@ public class RecognizeService {
         int outputParamsNumber = answers.size();
         DataSet dataSet = new DataSet(INPUT_PARAMS_NUMBER, outputParamsNumber);
         NetworkEntity networkEntity = new NetworkEntity();
+        networkEntity.setName(recognizeResult.getName());
         networkEntity.setPerceptron(new Kohonen(INPUT_PARAMS_NUMBER, outputParamsNumber));
         networkEntity.setAnswers(answers);
         for (RecognizeValue recognizeValue: recognizeResult.getValues()) {
@@ -53,14 +54,19 @@ public class RecognizeService {
         NetworkEntity networkEntity = networkService.getNetwork(networkId);
         if (networkEntity.getNeuralNetwork() != null) {
             RecognizeResult recognizeResult = new RecognizeResult();
+            Set<RecognizeValue> values = new HashSet<>();
             for (String imageId : images) {
                 double[] params = paramsService.findParams(imageId);
                 networkEntity.getNeuralNetwork().setInput(params);
                 networkEntity.getNeuralNetwork().calculate();
                 double[] result = networkEntity.getNeuralNetwork().getOutput();
                 String answer = RecognizeUtils.getOutput(result, networkEntity.getAnswers());
-                recognizeResult.getValues().add(new RecognizeValue(imageId, answer));
+                RecognizeValue value = new RecognizeValue();
+                value.setTempId(imageId);
+                value.setValue(answer);
+                values.add(value);
             }
+            recognizeResult.setValues(values);
             return recognizeResult;
         } else if (networkEntity.getMemory() != null) {
             StatisticalRecognizer recognizer = new StatisticalRecognizer(new HistogramDistribution(), networkEntity.getMemory());

@@ -33,7 +33,6 @@ public class NetworkController {
         return networkService.getNetworks(user.getId());
     }
 
-    // TODO return id for permanent save results
     @RequestMapping(value = "/learn", method = RequestMethod.POST)
     public void learn(@RequestBody RecognizeResult recognizeResult, @AuthenticationPrincipal User user) {
         recognizeService.learn(user.getId(), recognizeResult);

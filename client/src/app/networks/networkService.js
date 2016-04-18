@@ -18,8 +18,8 @@ angular.module('medimage').service('networkService', ['Restangular', function (R
     });
   };
 
-  this.learn = function (networkId, params, callback) {
-    Restangular.one('networks/learn', networkId).customPOST(params).then(function () {
+  this.learn = function (params, callback) {
+    Restangular.all('networks/learn').customPOST(params).then(function () {
       callback();
     }, function (error) {
       callback(error);

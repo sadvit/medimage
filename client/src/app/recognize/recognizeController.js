@@ -116,13 +116,10 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
 
   $scope.outputBlockClick = function () {
     if ($scope.isLearnMode) {
-      // беру recognize object со всей информацией и отправляю на сервер
-      /*var params = {};
-      $scope.imagesAfterChain.forEach(function (imageId) {
-        params[imageId] = $scope.types[imageId];
-      });*/
-      networkService.learn(-1, $scope.recognizeResult, function () {
-        console.log('learned'); // TODO get network id
+      networkService.learn($scope.recognizeResult, function () {
+        networkService.getNetworks(function (networks) {
+          $scope.networks = networks;
+        });
       });
     } else {
       modalsService.showRecognizeModal(function (name) {
