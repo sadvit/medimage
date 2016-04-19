@@ -56,7 +56,7 @@ public class RecognizeService {
         NetworkEntity networkEntity = networkService.getNetwork(networkId);
         if (networkEntity.getNeuralNetwork() != null) {
             RecognizeResultInfo recognizeResult = new RecognizeResultInfo();
-            Set<RecognizeValueInfo> values = new HashSet<>();
+            List<RecognizeValueInfo> values = new ArrayList<>();
             for (String imageId : images) {
                 double[] params = paramsService.findParams(imageId);
                 networkEntity.getNeuralNetwork().setInput(params);
@@ -73,7 +73,7 @@ public class RecognizeService {
         } else if (networkEntity.getMemory() != null) {
             StatisticalRecognizer recognizer = new StatisticalRecognizer(new HistogramDistribution(), networkEntity.getMemory());
             RecognizeResultInfo recognizeResult = new RecognizeResultInfo();
-            Set<RecognizeValueInfo> values = new HashSet<>();
+            List<RecognizeValueInfo> values = new ArrayList<>();
             for (String imageId : images) {
                 double[] params = paramsService.findParams(imageId);
                 String answer = recognizer.recognize(params);

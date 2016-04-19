@@ -55,14 +55,23 @@
       padding-left: 70px;
       padding-right: 70px;
     }
+    .row {
+      margin-bottom: 20px;
+    }
+  }
+  .form-horizontal {
+    padding: 15px;
+  }
+  table {
+    margin-bottom: 0;
   }
   .box.box-info {
     .image-tile {
       margin: auto;
-      top: 15px;
+      //top: 15px;
       right: 0;
       left: 0;
-      position: absolute;
+      //position: absolute;
     }
     &{
       box-shadow: none;
@@ -94,7 +103,7 @@
       font-weight: 600;
     }
     .box-body {
-      height: 420px;
+      //height: 420px;
       .row {
         margin: 0;
         height: 100%;

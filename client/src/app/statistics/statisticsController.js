@@ -4,6 +4,26 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
 
   var self = this;
 
+  $scope.leftResults = [];
+  $scope.rightResults = [];
+
+  $scope.selectNetwork = function (network) {
+    $scope.selectedNetwork = network;
+
+    var size = network.recognizeResults.length;
+    var leftSize = Math.round(size/2);
+
+    network.recognizeResults.forEach(function(result, index) {
+      if (index < leftSize) {
+        $scope.leftResults.push(result);
+      } else {
+        $scope.rightResults.push(result);
+      }
+    });
+
+    var rigthSize = size - leftSize;
+  };
+
   this.init = function () {
     if ($stateParams.imageId) {
       $scope.isOneImage = true;

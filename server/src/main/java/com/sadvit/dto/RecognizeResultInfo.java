@@ -3,7 +3,9 @@ package com.sadvit.dto;
 import com.sadvit.models.RecognizeResult;
 import com.sadvit.models.RecognizeValue;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,7 +17,7 @@ public class RecognizeResultInfo implements DTO<RecognizeResult> {
 
     private String name;
 
-    private Set<RecognizeValueInfo> values;
+    private List<RecognizeValueInfo> values;
 
     public Integer getId() {
         return id;
@@ -33,11 +35,11 @@ public class RecognizeResultInfo implements DTO<RecognizeResult> {
         this.name = name;
     }
 
-    public Set<RecognizeValueInfo> getValues() {
+    public List<RecognizeValueInfo> getValues() {
         return values;
     }
 
-    public void setValues(Set<RecognizeValueInfo> values) {
+    public void setValues(List<RecognizeValueInfo> values) {
         this.values = values;
     }
 
@@ -56,7 +58,7 @@ public class RecognizeResultInfo implements DTO<RecognizeResult> {
 
     @Override
     public void createFromEntity(RecognizeResult entity) {
-        values = new HashSet<>();
+        values = new ArrayList<>();
         entity.getValues().forEach(value -> {
             RecognizeValueInfo recognizeValue = new RecognizeValueInfo();
             recognizeValue.createFromEntity(value);

@@ -3,7 +3,7 @@
     <ul class="sidebar-menu shift-menu">
       <li class="header">NETWORKS</li>
 
-      <li ng-repeat="network in networks" ng-click="showResult($event, element)" ng-class="{'selected' : network.id == selectedNetwork.id}">
+      <li ng-repeat="network in networks" ng-click="selectNetwork(network)" ng-class="{'selected' : network.id == selectedNetwork.id}">
         <a>
           <i class="fa fa-circle-o text-yellow"></i>
           <span>{{network.name}}</span>

@@ -68,6 +68,111 @@
 
     <div ng-if="!isOneImage">
 
+      <section class="content-header">
+        <h1>Recognize history</h1>
+      </section>
+
+      <section class="content">
+        <div class="row">
+
+          <div class="col-md-6">
+
+            <div ng-repeat="recognizeResult in leftResults" class="row">
+
+              <div class="col-md-12">
+                <div class="box box-info">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">{{recognizeResult.name}}</h3>
+                  </div>
+                  <form class="form-horizontal">
+
+                    <table class="table table-bordered results">
+                      <tbody>
+                      <tr class="table-head">
+                        <th>PROCESSED IMAGE</th>
+                        <th style="width: 99%">RECOGNIZE RESULT</th>
+                      </tr>
+
+                      <tr ng-repeat="result in recognizeResult.values" ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
+                        <td>
+                          <div class="image-tile medium">
+                            <img ng-if="result.imageId" ng-src="{{network_address + '/images/' + result.imageId}}">
+                          </div>
+                        </td>
+                        <td class="last-child">
+                          <div>
+                            <form class="form-horizontal">
+                              <div class="box-body">
+                                <div class="form-group">
+                                  <label class="col-sm-12 control-label left">{{result.value}}</label>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </form>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-6">
+
+            <div ng-repeat="recognizeResult in rightResults" class="row">
+
+              <div class="col-md-12">
+                <div class="box box-info">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">{{recognizeResult.name}}</h3>
+                  </div>
+                  <form class="form-horizontal">
+
+                    <table class="table table-bordered results">
+                      <tbody>
+                      <tr class="table-head">
+                        <th>PROCESSED IMAGE</th>
+                        <th style="width: 99%">RECOGNIZE RESULT</th>
+                      </tr>
+
+                      <tr ng-repeat="result in recognizeResult.values" ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
+                        <td>
+                          <div class="image-tile medium">
+                            <img ng-if="result.imageId" ng-src="{{network_address + '/images/' + result.imageId}}">
+                          </div>
+                        </td>
+                        <td class="last-child">
+                          <div>
+                            <form class="form-horizontal">
+                              <div class="box-body">
+                                <div class="form-group">
+                                  <label class="col-sm-12 control-label left">{{result.value}}</label>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </form>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
     </div>
 
   </div>
