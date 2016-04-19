@@ -78,7 +78,13 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       }
     })
     .state('register', {
-      url: '/register'
+      url: '/register',
+      views: {
+        'content':{
+          templateUrl: 'register/register.html',
+          controller: 'registerController'
+        }
+      }
     });
 
   RestangularProvider.setBaseUrl(network_address);
