@@ -62,4 +62,19 @@ public class UserService implements UserDetailsService {
         }
     }
 
+    public UserInfo getUser(Integer id) {
+        User user = userRepository.getUser(id);
+        UserInfo info = new UserInfo();
+        info.setUsername(user.getUsername());
+        return info;
+    }
+
+    public void updateUsername(Integer userId, UserInfo info) {
+        userRepository.updateUsername(userId, info);
+    }
+
+    public void updatePassword(Integer userId, UserInfo info) {
+        userRepository.updatePassword(userId, info);
+    }
+
 }

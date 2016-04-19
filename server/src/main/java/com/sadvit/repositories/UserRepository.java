@@ -1,5 +1,6 @@
 package com.sadvit.repositories;
 
+import com.sadvit.dto.UserInfo;
 import com.sadvit.models.Authority;
 import com.sadvit.models.User;
 import org.hibernate.criterion.DetachedCriteria;
@@ -33,6 +34,10 @@ public class UserRepository {
         return objects.stream().findFirst().get();
 	}
 
+    public User getUser(Integer id) {
+        return template.get(User.class, id);
+    }
+
 	public List<User> getAllUsers() {
 		return template.loadAll(User.class);
 	}
@@ -50,6 +55,18 @@ public class UserRepository {
         user.setAuthorities(authorities);
         template.save(user);
 	}
+
+    public void updateUsername(Integer userId, UserInfo info) {
+        User user = getUser(userId);
+        user.setUsername(info.getUsername());
+        updateUser(user);
+    }
+
+    public void updatePassword(Integer userId, UserInfo info) {
+        User user = getUser(userId);
+        user.setPassword(encoder.encode(info.getPassword()));
+        updateUser(user);
+    }
 
     public void updateUser(User user) {
         template.update(user);
