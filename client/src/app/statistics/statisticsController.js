@@ -62,9 +62,9 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
         }
       });
     } else {
-      networkService.getResults(function (results) {
-        console.log(results);
-      })
+      networkService.getResults(function (networks) {
+        $scope.networks = networks;
+      });
     }
   };
 

@@ -35,7 +35,7 @@ angular.module('medimage').service('networkService', ['Restangular', function (R
   };
 
   this.getResults = function (callback) {
-    Restangular.all('results').get().then(function (result) {
+    Restangular.all('results').getList().then(function (result) {
       callback(result.plain());
     }, function (error) {
       callback(error);

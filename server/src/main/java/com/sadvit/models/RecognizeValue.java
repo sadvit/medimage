@@ -15,9 +15,6 @@ public class RecognizeValue {
 
     private String imageId;
 
-    @Transient
-    private String tempId;
-
     private String value;
 
     public Integer getId() {
@@ -42,14 +39,6 @@ public class RecognizeValue {
 
     public void setValue(String value) {
         this.value = value;
-    }
-
-    public String getTempId() {
-        return tempId;
-    }
-
-    public void setTempId(String tempId) {
-        this.tempId = tempId;
     }
 
     public RecognizeValue(String imageId, String value) {

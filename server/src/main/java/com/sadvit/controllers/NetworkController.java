@@ -1,5 +1,6 @@
 package com.sadvit.controllers;
 
+import com.sadvit.dto.RecognizeResultInfo;
 import com.sadvit.models.NetworkEntity;
 import com.sadvit.models.RecognizeResult;
 import com.sadvit.models.User;
@@ -34,12 +35,12 @@ public class NetworkController {
     }
 
     @RequestMapping(value = "/learn", method = RequestMethod.POST)
-    public void learn(@RequestBody RecognizeResult recognizeResult, @AuthenticationPrincipal User user) {
+    public void learn(@RequestBody RecognizeResultInfo recognizeResult, @AuthenticationPrincipal User user) {
         recognizeService.learn(user.getId(), recognizeResult);
     }
 
     @RequestMapping(value = "/recognize/{networkId}", method = RequestMethod.POST)
-    public RecognizeResult recognize(@RequestBody List<String> images, @PathVariable("networkId") Integer networkId) {
+    public RecognizeResultInfo recognize(@RequestBody List<String> images, @PathVariable("networkId") Integer networkId) {
         return recognizeService.recognize(networkId, images);
     }
 
