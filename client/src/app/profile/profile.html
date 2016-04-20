@@ -16,7 +16,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Change email</h3>
             </div>
-            <form class="form-horizontal">
+            <form novalidate class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
                   <label class="col-sm-4 control-label">Current email:</label>
@@ -25,7 +25,7 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-4 control-label">New email:</label>
                   <div class="col-sm-8">
-                    <input ng-model="_user.username" type="email" class="form-control" id="inputPassword3" placeholder="Email">
+                    <input ng-model="newUser.username" type="text" class="form-control" id="inputPassword3" placeholder="Email">
                   </div>
                 </div>
               </div>
@@ -46,19 +46,19 @@
                 <div class="form-group">
                   <label class="col-sm-4 control-label">Current password:</label>
                   <div class="col-sm-8">
-                    <input ng-model="_user.currentPassword" type="password" class="form-control" placeholder="Password">
+                    <input ng-model="newUser.currentPassword" type="password" class="form-control" placeholder="Password">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-4 control-label">New password:</label>
                   <div class="col-sm-8">
-                    <input ng-model="_user.newPassword" type="password" class="form-control" placeholder="Password">
+                    <input ng-model="newUser.password" type="password" class="form-control" placeholder="Password">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-4 control-label">Repeat password:</label>
                   <div class="col-sm-8">
-                    <input ng-model="_user.repeatPassword" type="password" class="form-control" placeholder="Password">
+                    <input ng-model="newUser.repeatPassword" type="password" class="form-control" placeholder="Password">
                   </div>
                 </div>
               </div>
@@ -77,28 +77,31 @@
         <div class="col-md-6">
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Options</h3>
+              <h3 class="box-title">User information</h3>
             </div>
             <form class="form-horizontal">
-              <div class="box-body buttons">
+              <div class="box-body">
                 <div class="form-group">
-                  <label class="col-sm-4 control-label">Delete <b>ALL</b> user images:</label>
-                  <div class="col-sm-8">
-                    <button type="submit" class="btn btn-primary btn-flat">Delete</button>
+                  <label class="col-sm-6 control-label">Name</label>
+                  <div class="col-sm-6">
+                    <input ng-model="newUser.name" type="password" class="form-control" placeholder="Name">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-4 control-label">Delete <b>ALL</b> user chains:</label>
-                  <div class="col-sm-8">
-                    <button type="submit" class="btn btn-primary btn-flat">Delete</button>
+                  <label class="col-sm-6 control-label">Surname</label>
+                  <div class="col-sm-6">
+                    <input ng-model="newUser.surname" type="text" class="form-control" placeholder="Surname">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-4 control-label">Delete <b>ALL</b> user networks:</label>
-                  <div class="col-sm-8">
-                    <button type="submit" class="btn btn-primary btn-flat">Delete</button>
+                  <label class="col-sm-6 control-label">Address</label>
+                  <div class="col-sm-6">
+                    <input ng-model="newUser.address" type="password" class="form-control" placeholder="Address">
                   </div>
                 </div>
+              </div>
+              <div class="box-footer">
+                <button ng-click="updateInformation()" type="submit" class="btn btn-primary btn-flat pull-right">Save</button>
               </div>
             </form>
           </div>

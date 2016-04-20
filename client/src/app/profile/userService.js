@@ -9,8 +9,8 @@ angular.module('medimage').service('userService', ['Restangular', function (Rest
   };
 
   this.updateUsername = function (user, callback) {
-    Restangular.all('users/username').customPUT(user).then(function () {
-      callback();
+    Restangular.all('users/username').customPUT(user).then(function (newUser) {
+      callback(newUser);
     });
   };
 

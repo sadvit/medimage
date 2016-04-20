@@ -31,8 +31,8 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/username")
-    public void updateUsername(@AuthenticationPrincipal User user, @RequestBody UserInfo info) {
-        userService.updateUsername(user.getId(), info);
+    public UserInfo updateUsername(@AuthenticationPrincipal User user, @RequestBody UserInfo info) {
+        return userService.updateUsername(user.getId(), info);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/password")

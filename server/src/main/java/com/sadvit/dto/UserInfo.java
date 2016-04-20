@@ -7,6 +7,8 @@ public class UserInfo {
 
     private String username;
 
+    private String currentPassword;
+
     private String password;
 
     public String getUsername() {
@@ -23,6 +25,14 @@ public class UserInfo {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCurrentPassword() {
+        return currentPassword;
+    }
+
+    public void setCurrentPassword(String currentPassword) {
+        this.currentPassword = currentPassword;
     }
 
 }

@@ -54,6 +54,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/statistics/**").hasRole("USER")
                 .antMatchers("/results/**").hasRole("USER")
                 .antMatchers("/temp/**").hasRole("USER")
+                .antMatchers("/users/**").hasRole("USER")
 					.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/auth/logout"))

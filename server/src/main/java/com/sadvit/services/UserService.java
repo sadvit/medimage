@@ -69,8 +69,8 @@ public class UserService implements UserDetailsService {
         return info;
     }
 
-    public void updateUsername(Integer userId, UserInfo info) {
-        userRepository.updateUsername(userId, info);
+    public UserInfo updateUsername(Integer userId, UserInfo info) {
+        return userRepository.updateUsername(userId, info);
     }
 
     public void updatePassword(Integer userId, UserInfo info) {

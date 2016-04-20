@@ -7,6 +7,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -56,16 +57,24 @@ public class UserRepository {
         template.save(user);
 	}
 
-    public void updateUsername(Integer userId, UserInfo info) {
+    public UserInfo updateUsername(Integer userId, UserInfo info) {
         User user = getUser(userId);
-        user.setUsername(info.getUsername());
-        updateUser(user);
+        if (info.getUsername() != null && info.getUsername().length() > 0) {
+            user.setUsername(info.getUsername());
+            updateUser(user);
+        }
+        return info;
     }
 
-    public void updatePassword(Integer userId, UserInfo info) {
+    public void updatePassword(Integer userId, UserInfo info) { // TODO to service
         User user = getUser(userId);
-        user.setPassword(encoder.encode(info.getPassword()));
-        updateUser(user);
+        boolean matches = encoder.matches(info.getCurrentPassword(), user.getPassword());
+        if (matches) {
+            user.setPassword(encoder.encode(info.getPassword()));
+            updateUser(user);
+        } else {
+            throw new BadCredentialsException("Incorrect password");
+        }
     }
 
     public void updateUser(User user) {
