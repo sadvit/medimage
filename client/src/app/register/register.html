@@ -1,7 +1,7 @@
 <div class="login-wrapper landing">
   <div class="login-box">
     <div class="login-box-body">
-      <p ng-if="!error" class="login-box-msg">Sign un to start your session</p>
+      <p ng-if="!error" class="login-box-msg">Register to start your session</p>
       <p ng-if="error" class="login-box-msg error">Incorrect login or password</p>
       <div class="form-group has-feedback">
         <input ng-model="username" class="form-control" placeholder="Email">
@@ -11,12 +11,17 @@
         <input ng-model="password" type="password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
+      <div class="form-group has-feedback">
+        <input ng-model="repeatPassword" type="password" class="form-control" placeholder="Repeat password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
       <div class="row">
-        <div class="col-xs-8">
-          <a ui-sref="register" class="text-center"></a>
+        <div class="col-md-4">
+          <button ng-click="back()" class="btn btn-primary btn-block btn-flat">Back</button>
         </div>
-        <div class="col-xs-4">
-          <button ng-click="register()" class="btn btn-primary btn-block btn-flat">Sign Un</button>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <button ng-click="register()" class="btn btn-primary btn-block btn-flat">Register</button>
         </div>
       </div>
     </div>

@@ -16,13 +16,6 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
         }
       }
     })
-      /* TODO add remove session for logout */
-    /*.state('logout', {
-      url: '/logout',
-      controller: function ($scope, $state) {
-        $state.go('login');
-      }
-    })*/
     .state('process', {
       url: '/process/:imageId',
       views: {

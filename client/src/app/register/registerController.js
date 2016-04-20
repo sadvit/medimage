@@ -16,4 +16,8 @@ angular.module('medimage').controller('registerController', ['$scope', 'register
     })
   }
 
+  $scope.back = function () {
+    $state.go('login');
+  }
+
 }]);

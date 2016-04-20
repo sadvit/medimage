@@ -7,6 +7,7 @@ import boofcv.io.UtilIO;
 import boofcv.io.image.ConvertBufferedImage;
 import boofcv.io.image.UtilImageIO;
 import boofcv.struct.image.ImageUInt8;
+import com.sadvit.dto.StatisticInfo;
 import com.sadvit.models.CacheObject;
 import com.sadvit.services.ImageCache;
 import com.sadvit.services.ImageService;
@@ -34,11 +35,10 @@ public class StatisticController {
     @Autowired
     private ImageService imageService;
 
-    @Autowired
-    private ImageCache imageCache;
-
     @RequestMapping(method = RequestMethod.GET, value = "{id}")
-    public Map<Integer, Integer> getStatistic(@PathVariable String id) {
+    public StatisticInfo getStatistic(@PathVariable String id) {
+
+        StatisticInfo info = new StatisticInfo();
 
         BufferedImage buffered = imageService.getBufferedImage(id);
         ImageUInt8 gray = ConvertBufferedImage.convertFrom(buffered, (ImageUInt8) null);
@@ -57,7 +57,13 @@ public class StatisticController {
             }
         }
 
-        return res;
+        info.setHistogram(res);
+        info.setName(id);
+        info.setHeight(buffered.getHeight());
+        info.setWidth(buffered.getWidth());
+        info.setFormat("BMP");
+
+        return info;
     }
 
 }

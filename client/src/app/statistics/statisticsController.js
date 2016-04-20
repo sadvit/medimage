@@ -7,9 +7,11 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
   $scope.leftResults = [];
   $scope.rightResults = [];
 
+  $scope.imageInfo = {};
+
   $scope.selectNetwork = function (network) {
     $scope.selectedNetwork = network;
-
+    $scope.isOneImage = false;
     var size = network.recognizeResults.length;
     var leftSize = Math.round(size/2);
 
@@ -29,7 +31,11 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
       $scope.isOneImage = true;
       $scope.imageId = $stateParams.imageId;
       statisticsService.getStatistics($scope.imageId, function (data) {
-        $scope.histogramId = data.id;
+        $scope.imageInfo.name = data.name;
+        $scope.imageInfo.format = data.format;
+        $scope.imageInfo.width = data.width;
+        $scope.imageInfo.height = data.height;
+
         var canvas = angular.element('#histogram');
         var ctx = canvas.get(0).getContext("2d");
         ctx.translate(0.5, 0.5);
@@ -58,8 +64,8 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
         ctx.stroke();
         ctx.strokeStyle = '#3c8dbc';
         var realHeight = height - padding;
-        for (var key in data) {
-          var value = parseInt(data[key]);
+        for (var key in data.histogram) {
+          var value = parseInt(data.histogram[key]);
           var x = parseInt(key);
           drawLine(x * 2, realHeight, x * 2, realHeight - value * 3)
           drawLine(x * 2 - 1, realHeight, x * 2 - 1, realHeight - value * 3)
@@ -81,11 +87,14 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
           drawNumber(100 - i, x, y); // vertical
         }
       });
-    } else {
-      networkService.getResults(function (networks) {
-        $scope.networks = networks;
-      });
     }
+    networkService.getResults(function (networks) {
+      $scope.networks = networks;
+      if (!$stateParams.imageId) {
+        $scope.selectNetwork(networks[0])
+      }
+    });
+
   };
 
   this.init();

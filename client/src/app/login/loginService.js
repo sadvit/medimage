@@ -11,4 +11,10 @@ angular.module('medimage').service('loginService', ['Restangular', function (Res
         });
     };
 
+    this.logout = function (callback) {
+      Restangular.one('auth/logout').get().then(function () {
+        callback()
+      });
+    };
+
 }]);

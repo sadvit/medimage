@@ -5,7 +5,7 @@
 
   <div ng-scrollbars class="statistic-wrapper">
 
-    <div ng-if="isOneImage">
+    <div class="statistics-image" ng-if="isOneImage">
 
       <section class="content-header">
         <h1>Statistic for image</h1>
@@ -29,19 +29,19 @@
                     <div class="col-md-7">
                       <div class="form-group margin">
                         <label class="col-sm-4 control-label">Name:</label>
-                        <label class="col-sm-8 control-label"><b>{{imageId}}</b></label>
+                        <label class="col-sm-8 control-label"><b>{{imageInfo.name}}</b></label>
                       </div>
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Height:</label>
-                        <label class="col-sm-8 control-label"><b>1280px</b></label>
+                        <label class="col-sm-8 control-label"><b>{{imageInfo.height}}px</b></label>
                       </div>
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Width:</label>
-                        <label class="col-sm-8 control-label"><b>1024px</b></label>
+                        <label class="col-sm-8 control-label"><b>{{imageInfo.width}}px</b></label>
                       </div>
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Format:</label>
-                        <label class="col-sm-8 control-label"><b>BMP</b></label>
+                        <label class="col-sm-8 control-label"><b>{{imageInfo.format}}</b></label>
                       </div>
                     </div>
                   </div>
@@ -66,7 +66,7 @@
 
     </div>
 
-    <div ng-if="!isOneImage">
+    <div class="statistics-history" ng-if="!isOneImage">
 
       <section class="content-header">
         <h1>Recognize history</h1>
@@ -90,7 +90,7 @@
                       <tbody>
                       <tr class="table-head">
                         <th>PROCESSED IMAGE</th>
-                        <th style="width: 99%">RECOGNIZE RESULT</th>
+                        <th>RECOGNIZE RESULT</th>
                       </tr>
 
                       <tr ng-repeat="result in recognizeResult.values" ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
@@ -137,7 +137,7 @@
                       <tbody>
                       <tr class="table-head">
                         <th>PROCESSED IMAGE</th>
-                        <th style="width: 99%">RECOGNIZE RESULT</th>
+                        <th>RECOGNIZE RESULT</th>
                       </tr>
 
                       <tr ng-repeat="result in recognizeResult.values" ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
