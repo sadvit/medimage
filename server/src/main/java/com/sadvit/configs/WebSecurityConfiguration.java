@@ -55,7 +55,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/results/**").hasRole("USER")
                 .antMatchers("/temp/**").hasRole("USER")
                 .antMatchers("/users/**").hasRole("USER")
-					.and()
+                    .and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/auth/logout"))
 				.invalidateHttpSession(true)

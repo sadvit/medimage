@@ -20,11 +20,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(method = RequestMethod.POST, value = "/register")
-	public void register(@RequestBody UserInfo user) {
-		userService.register(user);
-	}
-
     @RequestMapping(method = RequestMethod.GET)
     public UserInfo getUser(@AuthenticationPrincipal User user) {
         return userService.getUser(user.getId());

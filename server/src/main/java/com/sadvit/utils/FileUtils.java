@@ -21,7 +21,11 @@ public class FileUtils {
 
     public static synchronized List<String> readAllFileNames(String path) {
 		File file = new File(path);
-		return Arrays.asList(file.list());
+        if (file.list() == null) {
+            return Collections.emptyList();
+        } else {
+            return Arrays.asList(file.list());
+        }
 	}
 
     public static synchronized void deleteFile(String path) {

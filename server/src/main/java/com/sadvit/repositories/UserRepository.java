@@ -26,8 +26,6 @@ public class UserRepository {
 	@Autowired
 	private HibernateTemplate template;
 
-	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
 	public User getUser(String username) {
         DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
         criteria.add(Restrictions.eq("username", username));
@@ -43,17 +41,7 @@ public class UserRepository {
 		return template.loadAll(User.class);
 	}
 
-	public void addUser(String login, String pass, String role) {
-        User user = new User();
-        user.setEnabled(true);
-        user.setAccountNonExpired(true);
-        user.setAccountNonLocked(true);
-        user.setCredentialsNonExpired(true);
-        user.setUsername(login);
-        user.setPassword(encoder.encode(pass));
-        List<Authority> authorityList = Arrays.asList(new Authority(role));
-        Set<Authority> authorities = new HashSet<>(authorityList);
-        user.setAuthorities(authorities);
+	public void addUser(User user) {
         template.save(user);
 	}
 
@@ -64,17 +52,6 @@ public class UserRepository {
             updateUser(user);
         }
         return info;
-    }
-
-    public void updatePassword(Integer userId, UserInfo info) { // TODO to service
-        User user = getUser(userId);
-        boolean matches = encoder.matches(info.getCurrentPassword(), user.getPassword());
-        if (matches) {
-            user.setPassword(encoder.encode(info.getPassword()));
-            updateUser(user);
-        } else {
-            throw new BadCredentialsException("Incorrect password");
-        }
     }
 
     public void updateUser(User user) {

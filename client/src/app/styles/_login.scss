@@ -33,3 +33,11 @@ p.login-box-msg.error {
 .login-box-body input[placeholder].error {
   color: red;
 }
+
+.login-box.full-height {
+  height: 408px;
+}
+
+.form-group.has-feedback.hidden {
+  visibility: hidden;
+}

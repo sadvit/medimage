@@ -4,17 +4,27 @@ angular.module('medimage').controller('registerController', ['$scope', 'register
 
   $scope.username = '';
   $scope.password = '';
+  $scope.repeatPassword = '';
+  $scope.name = '';
+  $scope.surname = '';
+  $scope.address = '';
+
 
   $scope.register = function () {
-    registerService.register({
-      username: $scope.username,
-      password: $scope.password
-    }, function() {
-      loginService.auth($scope.username, $scope.password, function () {
-        $state.go('images');
-      });
-    })
-  }
+    if ($scope.username && $scope.password && $scope.repeatPassword) {
+      registerService.register({
+        username: $scope.username,
+        password: $scope.password,
+        name: $scope.name,
+        surname: $scope.surname,
+        address: $scope.address
+      }, function() {
+        loginService.auth($scope.username, $scope.password, function () {
+          $state.go('login');
+        });
+      })
+    }
+  };
 
   $scope.back = function () {
     $state.go('login');

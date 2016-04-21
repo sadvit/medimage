@@ -2,14 +2,11 @@ package com.sadvit.services;
 
 import com.sadvit.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -20,13 +17,6 @@ import java.util.UUID;
  */
 @Service
 public class ImageService {
-
-	@Value("${medimage.content}")
-    private String content;
-
-    private static final String IMAGES = "images";
-
-    protected static final String SEPARATOR = "/";
 
     @Autowired
     private UserService userService;
@@ -71,11 +61,11 @@ public class ImageService {
     }
 
     private String getFolderPath() {
-        return content + SEPARATOR + userService.getCurrentUser() + SEPARATOR + IMAGES;
+        return userService.getUserFolderPath();
     }
 
     private String getFilePath(String id) {
-        return getFolderPath() + SEPARATOR + id;
+        return userService.getUserFilePath(id);
     }
 
 }
