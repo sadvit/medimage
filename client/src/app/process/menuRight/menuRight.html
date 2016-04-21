@@ -13,7 +13,7 @@
           dnd-draggable="chainElement"
           dnd-moved="chain.splice($index , 1)"
           dnd-effect-allowed="move">
-        <a>
+        <a draggable="true">
           <i ng-click="changeOperation($index)" class="fa fa-gears chain-options"></i>
           <span>{{chainElement.operationType}}</span>
           <i ng-click="removeOperation($index)" class="fa fa-times chain-close"></i>
