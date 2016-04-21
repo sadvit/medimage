@@ -10,7 +10,7 @@
       <div class="col-md-8">
         <div class="dropdown vcenter">
           <div class="btn-group" uib-dropdown dropdown-append-to-body>
-            <button id="btn-append-to-body" type="button" class="btn btn-primary" uib-dropdown-toggle>
+            <button id="btn-append-to-body" type="button" class="btn btn-primary btn-flat" uib-dropdown-toggle>
               {{blurParams.type}}<span class="caret"></span>
             </button>
             <ul class="uib-dropdown-menu" role="menu" aria-labelledby="btn-append-to-body">
@@ -38,6 +38,6 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default pull-left" data-dismiss="modal" ng-click="cancel()">Close</button>
-  <button type="button" class="btn btn-primary" ng-click="apply()">{{isEditMode ? 'Save' : 'Add'}}</button>
+  <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal" ng-click="cancel()">Close</button>
+  <button type="button" class="btn btn-primary btn-flat" ng-click="apply()">{{isEditMode ? 'Save' : 'Add'}}</button>
 </div>
