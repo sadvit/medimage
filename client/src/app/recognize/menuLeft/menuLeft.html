@@ -10,10 +10,10 @@
 
     </ul>
 
-    <ul class="sidebar-menu action-menu">
+    <ul class="sidebar-menu shift-menu">
       <li class="header">OPTIONS</li>
 
-      <li ng-click="selectTrain()">
+      <li ng-class="{'selected' : isLearnMode}" ng-click="selectTrain()">
         <a ><i class="fa fa-circle-o text-yellow"></i><span>TRAIN NEW NETWORK</span></a>
       </li>
 

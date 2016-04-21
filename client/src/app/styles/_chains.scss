@@ -1,4 +1,5 @@
 $content-background : #ECF0F5;
+$disabled-color: #57646a;
 
 .chain-options {
   margin-right: 3px;
@@ -167,14 +168,14 @@ $content-background : #ECF0F5;
   }
   &.shift.disabled {
     a {
-      border-left: 3px solid #bc3949;
+      border-left: 3px solid $disabled-color;
       span {
-        color: #bc3949;
+        color: $disabled-color;
       }
     }
     i {
       right: 13px;
-      color: #bc3949;
+      color: $disabled-color;
     }
     cursor: pointer;
   }

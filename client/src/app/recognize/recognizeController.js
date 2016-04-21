@@ -13,6 +13,8 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
   $scope.isLearnMode = false;
   $scope.isLoading = false;
 
+  $scope.isOutputShow = false;
+
   $scope.recognizeResult = {
     values : []
   };
@@ -25,20 +27,31 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
 
   $scope.types = {};
 
+  $scope.paramsChanged = function () {
+    if ($scope.isOutputShow) {
+      angular.element('.output-block').toggleClass('show', false);
+    }
+  };
+
   $scope.showInputBlock = function () {
-    $scope.noData.chain = false;
-    $scope.noData.images = true;
+    if ($scope.noData) {
+      $scope.noData.chain = false;
+      $scope.noData.images = true;
+    }
     angular.element('.input-block').toggleClass('show', true);
   };
 
   $scope.showOutputBlock = function () {
-    $scope.noData = undefined
+    $scope.isOutputShow = true;
+    $scope.noData = undefined;
     angular.element('.output-block').toggleClass('show', true);
   };
 
   $scope.showChainsBlock = function () {
-    $scope.noData.network = false;
-    $scope.noData.chain = true;
+    if ($scope.noData) {
+      $scope.noData.network = false;
+      $scope.noData.chain = true;
+    }
     angular.element('.chains-block').toggleClass('show', true);
   };
 
@@ -55,17 +68,21 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
   };
 
   $scope.selectNetwork = function (event, network) {
+    $scope.paramsChanged();
     $scope.showChainsBlock();
     $scope.selectedNetwork = network;
     $scope.isLearnMode = false;
   };
 
   $scope.selectTrain = function () {
+    $scope.paramsChanged();
     $scope.showChainsBlock();
+    $scope.selectedNetwork = undefined;
     $scope.isLearnMode = true;
   };
 
   $scope.selectChain = function (event, chain) {
+    $scope.paramsChanged();
     $scope.showInputBlock();
     $scope.selectedChain = chain;
   };
@@ -73,6 +90,7 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
   //---------------------------------------------
 
   $scope.createRecognizeResult = function (imageIds, tempIds) {
+    $scope.recognizeResult.values = [];
     imageIds.forEach(function (imageId, index) {
       var tempId = tempIds[index];
       $scope.recognizeResult.values.push({

@@ -1,5 +1,7 @@
 package com.sadvit.analysis.recognizer;
 
+import com.sadvit.exceptions.IncorrectImage;
+
 import java.awt.*;
 import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
@@ -259,7 +261,7 @@ public class ImageProcess {
         return result;
     }
 
-    public static Point[] getExtremePoints(BufferedImage img) {
+    public static Point[] getExtremePoints(BufferedImage img) throws IncorrectImage {
         int width = img.getWidth() - 2;
         int height = img.getHeight() - 2;
         Point start = new Point();

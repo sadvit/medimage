@@ -2,6 +2,7 @@ package com.sadvit.services;
 
 import com.sadvit.analysis.beetle.ByteImage;
 import com.sadvit.analysis.beetle.ImageUtils;
+import com.sadvit.exceptions.IncorrectImage;
 import com.sadvit.models.CacheObject;
 import com.sadvit.enums.OperationType;
 import com.sadvit.operations.binary.BinaryParams;
@@ -26,7 +27,21 @@ public class ParamsService {
     @Autowired
     private ImageCache imageCache;
 
-    public ByteImage getContour(ByteImage byteImage) {
+    public double[] findParams(String imageId) {
+        double[] result;
+        try {
+            BufferedImage swap = imageCache.getBuffered(imageId);
+            ByteImage byteImage = ImageUtils.bufferedToBinary(swap);
+            byteImage = getContour(byteImage);
+            BufferedImage buffered = ImageUtils.byteToBuffered(byteImage);
+            result = ImageProcess.getParams(buffered);
+        } catch (Exception e) {
+            throw new IncorrectImage(imageId);
+        }
+        return result;
+    }
+
+    private ByteImage getContour(ByteImage byteImage) {
         ByteImageProcessor byteImageProcessor = new ByteImageProcessor(byteImage);
 
         ByteImage result = byteImageProcessor.getByteImage();
@@ -47,14 +62,6 @@ public class ParamsService {
         image.invert();
 
         return image;
-    }
-
-    public double[] findParams(String imageId) {
-        BufferedImage swap = imageCache.getBuffered(imageId);
-        ByteImage byteImage = ImageUtils.bufferedToBinary(swap);
-        byteImage = getContour(byteImage);
-        BufferedImage buffered = ImageUtils.byteToBuffered(byteImage);
-        return ImageProcess.getParams(buffered);
     }
 
 }
