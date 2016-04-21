@@ -16,16 +16,16 @@
             <div class="box-header with-border">
               <h3 class="box-title">Change email</h3>
             </div>
-            <form novalidate class="form-horizontal">
+            <form name="emailForm" class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
                   <label class="col-sm-4 control-label">Current email:</label>
                   <label class="col-sm-8 control-label"><b>{{user.username}}</b></label>
                 </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-4 control-label">New email:</label>
+                <div class="form-group" ng-class="{'has-error' : emailForm.email.$invalid}">
+                  <label class="col-sm-4 control-label">New email:</label>
                   <div class="col-sm-8">
-                    <input ng-model="newUser.username" type="text" class="form-control" id="inputPassword3" placeholder="Email">
+                    <input spellcheck="false" name="email" ng-model="newUser.username" type="email" class="form-control" placeholder="Email">
                   </div>
                 </div>
               </div>
@@ -84,19 +84,19 @@
                 <div class="form-group">
                   <label class="col-sm-4 control-label">Name:</label>
                   <div class="col-sm-8">
-                    <input ng-model="newUser.name" type="password" class="form-control" placeholder="Name">
+                    <input required ng-model="user.name" type="text" class="form-control" placeholder="Name">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-4 control-label">Surname:</label>
                   <div class="col-sm-8">
-                    <input ng-model="newUser.surname" type="text" class="form-control" placeholder="Surname">
+                    <input required ng-model="user.surname" type="text" class="form-control" placeholder="Surname">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-4 control-label">Address:</label>
                   <div class="col-sm-8">
-                    <input ng-model="newUser.address" type="password" class="form-control" placeholder="Address">
+                    <input required ng-model="user.address" type="text" class="form-control" placeholder="Address">
                   </div>
                 </div>
               </div>

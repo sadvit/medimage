@@ -100,6 +100,9 @@ public class UserService implements UserDetailsService {
         User user = userRepository.getUser(id);
         UserInfo info = new UserInfo();
         info.setUsername(user.getUsername());
+        info.setName(user.getName());
+        info.setSurname(user.getSurname());
+        info.setAddress(user.getAddress());
         return info;
     }
 
