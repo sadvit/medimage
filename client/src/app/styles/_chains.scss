@@ -191,13 +191,13 @@ $disabled-color: #57646a;
   }
   &.save.disabled {
     a {
-      border-left: 3px solid #bc3949;
+      border-left: 3px solid $disabled-color;
       span {
-        color: #bc3949;
+        color: $disabled-color;
       }
     }
     i {
-      color: #bc3949;
+      color: $disabled-color;
     }
     cursor: pointer;
   }
