@@ -15,6 +15,12 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainsServ
 
   $scope.testArray = [];
 
+  $scope.noData = {
+    selectChain : true,
+    applyChain : false,
+    images : false
+  };
+
   self.init = function () {
     chainsService.getChains(function (chains) {
       $scope.chains = chains;
@@ -26,22 +32,35 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainsServ
 
   self.init();
 
-  $scope.showChainsBlock = function (event, element) {
-    var isOpened = angular.element('.chains-block').hasClass('show');
-    if (!isOpened) {
-      angular.element('.chains-block').toggleClass('show');
+  $scope.paramsChanged = function () {
+    if ($scope.isOutputShow) {
+      angular.element('.output-block').toggleClass('show', false);
     }
+  };
+
+  $scope.showChainsBlock = function (event, element) {
+    $scope.paramsChanged();
+    if ($scope.noData) {
+      $scope.noData.selectChain = false;
+      $scope.noData.applyChain = true;
+    }
+    angular.element('.chains-block').toggleClass('show', true);
     $scope.selectedChain = element;
     $scope.chainElements = element.chainElements;
   };
 
   $scope.showInputBlock = function () {
-    angular.element('.input-block').toggleClass('show');
+    if ($scope.noData) {
+      $scope.noData.applyChain = false;
+      $scope.noData.images = true;
+    }
+    angular.element('.input-block').toggleClass('show', true);
   };
 
   $scope.showOutputBlock = function () {
-    angular.element('div.no-data').addClass('hide');
-    angular.element('.output-block').toggleClass('show');
+    $scope.isOutputShow = true;
+    $scope.noData = undefined;
+    angular.element('.output-block').toggleClass('show', true);
   };
 
   $scope.selectUserImage = function (imageId) {

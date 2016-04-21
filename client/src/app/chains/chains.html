@@ -91,8 +91,10 @@
 
     </div>
 
-    <div class="no-data">
-      <span>Select chain</span>
+    <div ng-if="noData" class="no-data">
+      <span ng-if="noData.selectChain">Select chain</span>
+      <span ng-if="noData.applyChain">Apply chain</span>
+      <span ng-if="noData.images">Select images</span>
     </div>
 
   </div>

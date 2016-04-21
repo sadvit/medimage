@@ -15,6 +15,9 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
     var size = network.recognizeResults.length;
     var leftSize = Math.round(size/2);
 
+    $scope.leftResults = [];
+    $scope.rightResults = [];
+
     network.recognizeResults.forEach(function(result, index) {
       if (index < leftSize) {
         $scope.leftResults.push(result);
