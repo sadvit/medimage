@@ -1,4 +1,4 @@
-package com.sadvit.dto;
+package com.sadvit.to;
 
 /**
  * Created by sadvit on 4/19/16.

@@ -1,6 +1,6 @@
 package com.sadvit.controllers;
 
-import com.sadvit.dto.UserInfo;
+import com.sadvit.to.UserTO;
 import com.sadvit.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,7 +20,7 @@ public class AuthController {
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.POST, value = "/register")
-    public void register(@RequestBody UserInfo user) {
+    public void register(@RequestBody UserTO user) {
         userService.register(user);
     }
 

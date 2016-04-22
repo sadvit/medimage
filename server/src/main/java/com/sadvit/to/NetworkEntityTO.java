@@ -1,8 +1,7 @@
-package com.sadvit.dto;
+package com.sadvit.to;
 
 import com.sadvit.models.NetworkEntity;
 import com.sadvit.models.RecognizeResult;
-import com.sadvit.models.RecognizeValue;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,13 +11,13 @@ import java.util.Set;
 /**
  * Created by sadvit on 4/19/16.
  */
-public class NetworkEntityInfo implements DTO<NetworkEntity> {
+public class NetworkEntityTO implements DTO<NetworkEntity> {
 
     private Integer id;
 
     private String name;
 
-    private List<RecognizeResultInfo> recognizeResults;
+    private List<RecognizeResultTO> recognizeResults;
 
     public Integer getId() {
         return id;
@@ -36,11 +35,11 @@ public class NetworkEntityInfo implements DTO<NetworkEntity> {
         this.name = name;
     }
 
-    public List<RecognizeResultInfo> getRecognizeResults() {
+    public List<RecognizeResultTO> getRecognizeResults() {
         return recognizeResults;
     }
 
-    public void setRecognizeResults(List<RecognizeResultInfo> recognizeResults) {
+    public void setRecognizeResults(List<RecognizeResultTO> recognizeResults) {
         this.recognizeResults = recognizeResults;
     }
 
@@ -61,9 +60,9 @@ public class NetworkEntityInfo implements DTO<NetworkEntity> {
     public void createFromEntity(NetworkEntity entity) {
         recognizeResults = new ArrayList<>();
         entity.getRecognizeResults().forEach(value -> {
-            RecognizeResultInfo recognizeResultInfo = new RecognizeResultInfo();
-            recognizeResultInfo.createFromEntity(value);
-            recognizeResults.add(recognizeResultInfo);
+            RecognizeResultTO recognizeResultTO = new RecognizeResultTO();
+            recognizeResultTO.createFromEntity(value);
+            recognizeResults.add(recognizeResultTO);
         });
         name = entity.getName();
         id = entity.getId();

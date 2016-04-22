@@ -9,13 +9,13 @@ angular.module('medimage').controller('profileController', ['$scope', 'userServi
   $scope.newUser = {};
 
   $scope.updateUsername = function () {
-    userService.updateUsername($scope.newUser, function (user) {
+    userService.updateUser($scope.newUser, function (user) {
       $scope.user.username = user.username;
     });
   };
 
   $scope.updatePassword = function () {
-    userService.updatePassword($scope.newUser, function () {
+    userService.updateUser($scope.newUser, function () {
       console.log('ok')
     });
   };

@@ -2,11 +2,9 @@ package com.sadvit.services;
 
 import com.sadvit.analysis.recognizer.statistic.StatisticalRecognizer;
 import com.sadvit.analysis.recognizer.statistic.distribution.HistogramDistribution;
-import com.sadvit.dto.RecognizeResultInfo;
-import com.sadvit.dto.RecognizeValueInfo;
+import com.sadvit.to.RecognizeResultTO;
+import com.sadvit.to.RecognizeValueTO;
 import com.sadvit.models.NetworkEntity;
-import com.sadvit.models.RecognizeResult;
-import com.sadvit.models.RecognizeValue;
 import com.sadvit.utils.RecognizeUtils;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
@@ -34,7 +32,7 @@ public class RecognizeService {
     @Autowired
     private NetworkService networkService;
 
-    public void learn(Integer userId, RecognizeResultInfo recognizeResult) {
+    public void learn(Integer userId, RecognizeResultTO recognizeResult) {
         List<String> answers = RecognizeUtils.extractAnswers(recognizeResult);
         int outputParamsNumber = answers.size();
         DataSet dataSet = new DataSet(INPUT_PARAMS_NUMBER, outputParamsNumber);
@@ -42,7 +40,7 @@ public class RecognizeService {
         networkEntity.setName(recognizeResult.getName());
         networkEntity.setPerceptron(new Kohonen(INPUT_PARAMS_NUMBER, outputParamsNumber));
         networkEntity.setAnswers(answers);
-        for (RecognizeValueInfo recognizeValue: recognizeResult.getValues()) {
+        for (RecognizeValueTO recognizeValue: recognizeResult.getValues()) {
             String imageId = recognizeValue.getTempId();
             String value = recognizeValue.getValue();
             double[] params = paramsService.findParams(imageId);
@@ -52,18 +50,18 @@ public class RecognizeService {
         networkService.addNetwork(userId, networkEntity);
     }
 
-    public RecognizeResultInfo recognize(Integer networkId, List<String> images) {
+    public RecognizeResultTO recognize(Integer networkId, List<String> images) {
         NetworkEntity networkEntity = networkService.getNetwork(networkId);
         if (networkEntity.getNeuralNetwork() != null) {
-            RecognizeResultInfo recognizeResult = new RecognizeResultInfo();
-            List<RecognizeValueInfo> values = new ArrayList<>();
+            RecognizeResultTO recognizeResult = new RecognizeResultTO();
+            List<RecognizeValueTO> values = new ArrayList<>();
             for (String imageId : images) {
                 double[] params = paramsService.findParams(imageId);
                 networkEntity.getNeuralNetwork().setInput(params);
                 networkEntity.getNeuralNetwork().calculate();
                 double[] result = networkEntity.getNeuralNetwork().getOutput();
                 String answer = RecognizeUtils.getOutput(result, networkEntity.getAnswers());
-                RecognizeValueInfo value = new RecognizeValueInfo();
+                RecognizeValueTO value = new RecognizeValueTO();
                 value.setTempId(imageId);
                 value.setValue(answer);
                 values.add(value);
@@ -72,12 +70,12 @@ public class RecognizeService {
             return recognizeResult;
         } else if (networkEntity.getMemory() != null) {
             StatisticalRecognizer recognizer = new StatisticalRecognizer(new HistogramDistribution(), networkEntity.getMemory());
-            RecognizeResultInfo recognizeResult = new RecognizeResultInfo();
-            List<RecognizeValueInfo> values = new ArrayList<>();
+            RecognizeResultTO recognizeResult = new RecognizeResultTO();
+            List<RecognizeValueTO> values = new ArrayList<>();
             for (String imageId : images) {
                 double[] params = paramsService.findParams(imageId);
                 String answer = recognizer.recognize(params);
-                RecognizeValueInfo value = new RecognizeValueInfo();
+                RecognizeValueTO value = new RecognizeValueTO();
                 value.setTempId(imageId);
                 value.setValue(answer);
                 values.add(value);

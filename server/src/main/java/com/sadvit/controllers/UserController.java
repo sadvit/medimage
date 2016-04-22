@@ -1,14 +1,20 @@
 package com.sadvit.controllers;
 
-import com.sadvit.dto.UserInfo;
+import com.sadvit.to.UserTO;
 import com.sadvit.models.User;
-import com.sadvit.repositories.UserRepository;
 import com.sadvit.services.UserService;
+import com.sadvit.validators.UserTOValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.MethodParameter;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 /**
  * Created by vitaly.sadovskiy.
@@ -20,19 +26,25 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+    @Autowired
+    private UserTOValidator validator;
+
     @RequestMapping(method = RequestMethod.GET)
-    public UserInfo getUser(@AuthenticationPrincipal User user) {
+    public UserTO getUser(@AuthenticationPrincipal User user) {
         return userService.getUser(user.getId());
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/username")
-    public UserInfo updateUsername(@AuthenticationPrincipal User user, @RequestBody UserInfo info) {
-        return userService.updateUsername(user.getId(), info);
+    @RequestMapping(method = RequestMethod.PUT)
+    public UserTO updateUser(@AuthenticationPrincipal User user, @Valid @RequestBody UserTO userTO, BindingResult result) throws BindException {
+        if (result.hasErrors()) {
+            throw new BindException(result);
+        }
+        return userService.updateUser(user.getId(), userTO);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/password")
-    public void updatePassword(@AuthenticationPrincipal User user, @RequestBody UserInfo info) {
-        userService.updatePassword(user.getId(), info);
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.addValidators(validator);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.sadvit.dto;
+package com.sadvit.to;
 
 import com.sadvit.models.RecognizeResult;
 import com.sadvit.models.RecognizeValue;
@@ -11,13 +11,13 @@ import java.util.Set;
 /**
  * Created by sadvit on 4/19/16.
  */
-public class RecognizeResultInfo implements DTO<RecognizeResult> {
+public class RecognizeResultTO implements DTO<RecognizeResult> {
 
     private Integer id;
 
     private String name;
 
-    private List<RecognizeValueInfo> values;
+    private List<RecognizeValueTO> values;
 
     public Integer getId() {
         return id;
@@ -35,11 +35,11 @@ public class RecognizeResultInfo implements DTO<RecognizeResult> {
         this.name = name;
     }
 
-    public List<RecognizeValueInfo> getValues() {
+    public List<RecognizeValueTO> getValues() {
         return values;
     }
 
-    public void setValues(List<RecognizeValueInfo> values) {
+    public void setValues(List<RecognizeValueTO> values) {
         this.values = values;
     }
 
@@ -60,7 +60,7 @@ public class RecognizeResultInfo implements DTO<RecognizeResult> {
     public void createFromEntity(RecognizeResult entity) {
         values = new ArrayList<>();
         entity.getValues().forEach(value -> {
-            RecognizeValueInfo recognizeValue = new RecognizeValueInfo();
+            RecognizeValueTO recognizeValue = new RecognizeValueTO();
             recognizeValue.createFromEntity(value);
             values.add(recognizeValue);
         });

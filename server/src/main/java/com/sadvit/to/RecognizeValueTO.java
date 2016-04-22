@@ -1,12 +1,11 @@
-package com.sadvit.dto;
+package com.sadvit.to;
 
-import com.sadvit.models.RecognizeResult;
 import com.sadvit.models.RecognizeValue;
 
 /**
  * Created by sadvit on 4/19/16.
  */
-public class RecognizeValueInfo implements DTO<RecognizeValue> {
+public class RecognizeValueTO implements DTO<RecognizeValue> {
 
     private String imageId;
 

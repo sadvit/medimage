@@ -1,19 +1,15 @@
 package com.sadvit.controllers;
 
-import com.sadvit.dto.RecognizeResultInfo;
+import com.sadvit.to.RecognizeResultTO;
 import com.sadvit.models.NetworkEntity;
-import com.sadvit.models.RecognizeResult;
 import com.sadvit.models.User;
 import com.sadvit.services.NetworkService;
 import com.sadvit.services.RecognizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -35,12 +31,12 @@ public class NetworkController {
     }
 
     @RequestMapping(value = "/learn", method = RequestMethod.POST)
-    public void learn(@RequestBody RecognizeResultInfo recognizeResult, @AuthenticationPrincipal User user) {
+    public void learn(@RequestBody RecognizeResultTO recognizeResult, @AuthenticationPrincipal User user) {
         recognizeService.learn(user.getId(), recognizeResult);
     }
 
     @RequestMapping(value = "/recognize/{networkId}", method = RequestMethod.POST)
-    public RecognizeResultInfo recognize(@RequestBody List<String> images, @PathVariable("networkId") Integer networkId) {
+    public RecognizeResultTO recognize(@RequestBody List<String> images, @PathVariable("networkId") Integer networkId) {
         return recognizeService.recognize(networkId, images);
     }
 

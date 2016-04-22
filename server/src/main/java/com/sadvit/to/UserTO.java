@@ -1,20 +1,22 @@
-package com.sadvit.dto;
+package com.sadvit.to;
 
-import com.sadvit.models.Authority;
 import com.sadvit.models.User;
 
-import java.util.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Created by sadvit on 4/19/16.
  */
-public class UserInfo implements DTO<User> {
+public class UserTO {
 
+    @NotNull
+    @Size(max = 64, min = 3)
     private String username;
 
     private String currentPassword;
 
-    private String password;
+    private String newPassword;
 
     private String name;
 
@@ -54,12 +56,12 @@ public class UserInfo implements DTO<User> {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getNewPassword() {
+        return newPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
 
     public String getCurrentPassword() {
@@ -70,7 +72,8 @@ public class UserInfo implements DTO<User> {
         this.currentPassword = currentPassword;
     }
 
-    @Override
+    // refactoring all DTO/TO to converters
+
     public User convertToEntity() {
         User user = new User();
         user.setUsername(username);
@@ -80,7 +83,7 @@ public class UserInfo implements DTO<User> {
         return user;
     }
 
-    @Override
+
     public void createFromEntity(User entity) {
         name = entity.getName();
         surname = entity.getSurname();

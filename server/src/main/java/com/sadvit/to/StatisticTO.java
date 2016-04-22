@@ -1,11 +1,11 @@
-package com.sadvit.dto;
+package com.sadvit.to;
 
 import java.util.Map;
 
 /**
  * Created by sadvit on 4/20/16.
  */
-public class StatisticInfo {
+public class StatisticTO {
 
     private String name;
 

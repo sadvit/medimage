@@ -1,15 +1,11 @@
 package com.sadvit.repositories;
 
-import com.sadvit.dto.UserInfo;
-import com.sadvit.models.Authority;
+import com.sadvit.to.UserTO;
 import com.sadvit.models.User;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,7 +41,7 @@ public class UserRepository {
         template.save(user);
 	}
 
-    public UserInfo updateUsername(Integer userId, UserInfo info) {
+    public UserTO updateUsername(Integer userId, UserTO info) {
         User user = getUser(userId);
         if (info.getUsername() != null && info.getUsername().length() > 0) {
             user.setUsername(info.getUsername());
@@ -54,8 +50,9 @@ public class UserRepository {
         return info;
     }
 
-    public void updateUser(User user) {
+    public User updateUser(User user) {
         template.update(user);
+        return user; // TODO refactoring after
     }
 
 }

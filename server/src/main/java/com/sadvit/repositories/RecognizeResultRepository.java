@@ -1,8 +1,7 @@
 package com.sadvit.repositories;
 
-import com.sadvit.dto.NetworkEntityInfo;
-import com.sadvit.dto.RecognizeResultInfo;
-import com.sadvit.dto.RecognizeValueInfo;
+import com.sadvit.to.NetworkEntityTO;
+import com.sadvit.to.RecognizeResultTO;
 import com.sadvit.models.NetworkEntity;
 import com.sadvit.models.RecognizeResult;
 import com.sadvit.models.User;
@@ -22,13 +21,13 @@ public class RecognizeResultRepository {
     @Autowired
     private HibernateTemplate template;
 
-    public List<NetworkEntityInfo> getRecognizeResults(Integer userId) {
+    public List<NetworkEntityTO> getRecognizeResults(Integer userId) {
         return template.execute(session -> {
             User user = (User) session.get(User.class, userId);
             Set<NetworkEntity> entities = user.getNetworkEntities();
-            List<NetworkEntityInfo> infos = new ArrayList<>();
+            List<NetworkEntityTO> infos = new ArrayList<>();
             entities.forEach(entity -> {
-                NetworkEntityInfo info = new NetworkEntityInfo();
+                NetworkEntityTO info = new NetworkEntityTO();
                 info.createFromEntity(entity);
                 infos.add(info);
             });
@@ -36,22 +35,22 @@ public class RecognizeResultRepository {
         });
     }
 
-    public RecognizeResultInfo getRecognizeResult(Integer recognizeResultId) {
+    public RecognizeResultTO getRecognizeResult(Integer recognizeResultId) {
         RecognizeResult result = template.get(RecognizeResult.class, recognizeResultId);
-        RecognizeResultInfo recognizeResultInfo = new RecognizeResultInfo();
-        recognizeResultInfo.createFromEntity(result);
-        return recognizeResultInfo;
+        RecognizeResultTO recognizeResultTO = new RecognizeResultTO();
+        recognizeResultTO.createFromEntity(result);
+        return recognizeResultTO;
     }
 
-    public void addRecognizeResult(Integer networkId, RecognizeResultInfo recognizeResultInfo) {
+    public void addRecognizeResult(Integer networkId, RecognizeResultTO recognizeResultTO) {
         template.execute(session -> {
             NetworkEntity network = (NetworkEntity) session.get(NetworkEntity.class, networkId);
             Set<RecognizeResult> results = network.getRecognizeResults();
             if (results == null) {
                 results = new HashSet<>();
-                results.add(recognizeResultInfo.convertToEntity());
+                results.add(recognizeResultTO.convertToEntity());
             } else {
-                results.add(recognizeResultInfo.convertToEntity());
+                results.add(recognizeResultTO.convertToEntity());
             }
             session.update(network);
             session.flush();

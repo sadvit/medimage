@@ -1,10 +1,7 @@
 package com.sadvit.controllers;
 
-import com.sadvit.dto.NetworkEntityInfo;
-import com.sadvit.dto.RecognizeResultInfo;
-import com.sadvit.dto.RecognizeValueInfo;
-import com.sadvit.models.NetworkEntity;
-import com.sadvit.models.RecognizeResult;
+import com.sadvit.to.NetworkEntityTO;
+import com.sadvit.to.RecognizeResultTO;
 import com.sadvit.models.User;
 import com.sadvit.services.RecognizeResultService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +21,12 @@ public class RecognizeResultController {
     private RecognizeResultService service;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<NetworkEntityInfo> getRecognizeResults(@AuthenticationPrincipal User user) {
+    public List<NetworkEntityTO> getRecognizeResults(@AuthenticationPrincipal User user) {
         return service.getRecognizeResults(user.getId());
     }
 
     @RequestMapping(value = "/{networkId}", method = RequestMethod.POST)
-    public void saveRecognizeResult(@RequestBody RecognizeResultInfo result, @PathVariable("networkId") Integer networkId) {
+    public void saveRecognizeResult(@RequestBody RecognizeResultTO result, @PathVariable("networkId") Integer networkId) {
         service.saveRecognizeResult(networkId, result);
     }
 

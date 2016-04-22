@@ -1,27 +1,22 @@
 package com.sadvit.services;
 
-import com.sadvit.dto.UserInfo;
+import com.sadvit.to.UserTO;
 import com.sadvit.models.Authority;
 import com.sadvit.models.User;
 import com.sadvit.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.codec.Base64;
 import org.springframework.security.web.authentication.session.SessionAuthenticationException;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -37,6 +32,9 @@ public class UserService implements UserDetailsService {
 
 	@Autowired
 	private FileSystemService fileSystemService;
+
+    @Autowired
+    private ConversionService conversionService;
 
     @Value("${medimage.content}")
     private String content;
@@ -60,22 +58,18 @@ public class UserService implements UserDetailsService {
         return new HashSet<>(authorityList);
     }
 
-	public void register(UserInfo info) {
+	public void register(UserTO info) {
         User user = info.convertToEntity();
         user.setEnabled(true);
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
-        user.setPassword(encoder.encode(info.getPassword()));
+        user.setPassword(encoder.encode(info.getNewPassword()));
         user.setAuthorities(createDefaultAuthorities());
         String folder = UUID.randomUUID().toString().replace("-", "");
         user.setFolder(folder);
 		userRepository.addUser(user);
 		fileSystemService.createUserFolder(folder);
-	}
-
-	public List<User> loadAllUsers() {
-		return userRepository.getAllUsers();
 	}
 
     public User getCurrentUser() {
@@ -96,9 +90,9 @@ public class UserService implements UserDetailsService {
         return getUserFolderPath() + SEPARATOR + id;
     }
 
-    public UserInfo getUser(Integer id) {
+    public UserTO getUser(Integer id) {
         User user = userRepository.getUser(id);
-        UserInfo info = new UserInfo();
+        UserTO info = new UserTO();
         info.setUsername(user.getUsername());
         info.setName(user.getName());
         info.setSurname(user.getSurname());
@@ -106,18 +100,18 @@ public class UserService implements UserDetailsService {
         return info;
     }
 
-    public UserInfo updateUsername(Integer userId, UserInfo info) {
-        return userRepository.updateUsername(userId, info);
-    }
-
-    public void updatePassword(Integer userId, UserInfo info) {
+    public UserTO updateUser(Integer userId, UserTO info) {
         User user = userRepository.getUser(userId);
-        boolean matches = encoder.matches(info.getCurrentPassword(), user.getPassword());
-        if (matches) {
-            user.setPassword(encoder.encode(info.getPassword()));
-            userRepository.updateUser(user);
+        if (info.getNewPassword() != null) {
+            boolean matches = encoder.matches(info.getCurrentPassword(), user.getPassword());
+            if (matches) {
+                user.setPassword(encoder.encode(info.getNewPassword()));
+                return conversionService.convert(userRepository.updateUser(user), UserTO.class);
+            } else {
+                throw new BadCredentialsException("Incorrect current password");
+            }
         } else {
-            throw new BadCredentialsException("Incorrect password");
+            return conversionService.convert(userRepository.updateUser(user), UserTO.class);
         }
     }
 
