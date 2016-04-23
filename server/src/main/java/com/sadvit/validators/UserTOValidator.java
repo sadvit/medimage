@@ -28,8 +28,16 @@ public class UserTOValidator implements Validator {
     public void validate(Object target, Errors errors) {
         UserTO userTO = (UserTO) target;
         String username = userTO.getUsername();
+        String currentPassword = userTO.getCurrentPassword();
+        String newPassword = userTO.getNewPassword();
         if (username != null && !pattern.matcher(username).matches()) {
             errors.reject("Incorrect user email");
+        }
+        if (currentPassword != null && newPassword == null) {
+            errors.reject("New password cannot be null");
+        }
+        if (currentPassword == null && newPassword != null) {
+            errors.reject("Current password cannot be null");
         }
     }
 

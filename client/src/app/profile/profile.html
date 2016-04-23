@@ -25,7 +25,7 @@
                 <div class="form-group" ng-class="{'has-error' : updateEmailDisabled()}">
                   <label class="col-sm-4 control-label">New email:</label>
                   <div class="col-sm-8">
-                    <input spellcheck="false" name="email" ng-model="newUser.username" type="text" class="form-control" placeholder="Email">
+                    <input spellcheck="false" name="email" ng-change="updateEmailDisabled()" ng-focus="emailFocus()" ng-model="newUser.username" type="text" class="form-control" placeholder="Email">
                   </div>
                 </div>
               </div>
