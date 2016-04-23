@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.sadvit.utils.WebUtils.imageResponse;
+import static com.sadvit.utils.WebUtils.responseImage;
 
 /**
  * Created by vitaly.sadovskiy.
@@ -21,7 +21,7 @@ public class TempController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable String id) {
-        return imageResponse(cache.get(id));
+        return responseImage(cache.get(id));
     }
 
 
