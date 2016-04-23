@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('processController', ['$scope', '$stateParams', 'modalsService', 'chainService', '$state', 'imageService', function ($scope, $stateParams, modalsService, chainService, $state, imageService) {
+angular.module('medimage').controller('processController', ['$scope', '$stateParams', 'modalsService', 'chainService', '$state', 'imageService', 'processService', 'tempService', function ($scope, $stateParams, modalsService, chainService, $state, imageService, processService, tempService) {
 
   var self = this;
 
@@ -11,9 +11,17 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
   $scope.chain = [];
 
   $scope.acceptChain = function () {
-    chainService.acceptChain($stateParams.imageId, $scope.chain, function (imageId) {
+
+    var chainRequest = {
+      images: [$stateParams.imageId],
+      chain: {
+        chainElements: $scope.chain
+      }
+    };
+
+    processService.processChain(chainRequest, function (images) {
       $scope.folder = tempFolder;
-      $scope.imageId = imageId;
+      $scope.imageId = images[0].id;
     });
   };
 
@@ -35,7 +43,7 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
     var imageId = $scope.imageId;
     var query = [];
     query.push(imageId);
-    imageService.saveTempImages(query, function () {
+    tempService.saveTempImages(query, function () {
       $state.go('images');
     });
   };
@@ -66,10 +74,10 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
     switch (chainElement.operationType) {
       case 'BINARY':
         $scope.binaryModalShow(chainElement.binaryParams);
-            break;
+        break;
       case 'BLUR':
         $scope.blurModalShow(chainElement.blurParams);
-            break;
+        break;
 
     }
   };

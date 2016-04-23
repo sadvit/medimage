@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('registerController', ['$scope', 'registerService', '$state', 'authService', function ($scope, registerService, $state, authService) {
+angular.module('medimage').controller('registerController', ['$scope', '$state', 'authService', function ($scope, $state, authService) {
 
   $scope.username = '';
   $scope.password = '';
@@ -12,14 +12,14 @@ angular.module('medimage').controller('registerController', ['$scope', 'register
 
   $scope.register = function () {
     if ($scope.username && $scope.password && $scope.repeatPassword) {
-      registerService.register({
+      authService.register({
         username: $scope.username,
-        password: $scope.password,
+        newPassword: $scope.password,
         name: $scope.name,
         surname: $scope.surname,
         address: $scope.address
       }, function () {
-        authService.auth($scope.username, $scope.password, function () {
+        authService.login($scope.username, $scope.password, function () {
           $state.go('login');
         });
       })

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('chainsController', ['$scope', 'chainService', 'imageService', '$state', function ($scope, chainService, imageService, $state) {
+angular.module('medimage').controller('chainsController', ['$scope', 'chainService', 'imageService', '$state', 'processService', 'tempService', function ($scope, chainService, imageService, $state, processService, tempService) {
 
   var self = this;
 
@@ -82,8 +82,19 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainServi
       $scope.showOutputBlock();
       $scope.isResultLoading = true;
       $scope.resultImages = [];
-      chainService.processImages($scope.selectedChain.id, $scope.selectedImages, function (images) {
-        $scope.resultImages = images;
+
+      var chainRequest = {
+        images: $scope.selectedImages,
+        chain: {
+          id: $scope.selectedChain.id
+        }
+      };
+
+      processService.processChain(chainRequest, function (images) {
+        $scope.resultImages = [];
+        images.forEach(function (image) {
+          $scope.resultImages.push(image.id);
+        });
         $scope.isResultLoading = false;
       });
     }
@@ -105,7 +116,7 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainServi
 
   $scope.saveResult = function () {
     if ($scope.imageToSave.length > 0) {
-      imageService.saveTempImages($scope.imageToSave, function () {
+      tempService.saveTempImages($scope.imageToSave, function () {
         $state.go('images');
       })
     }
