@@ -1,12 +1,6 @@
 package com.sadvit.models;
 
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
 
@@ -19,9 +13,14 @@ public class Chain implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "chain_id", nullable = false)
     private Long id;
 
     private String name;
+
+    @JoinColumn(name = "userId", referencedColumnName = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private User user;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ChainElement> chainElements;
@@ -44,6 +43,14 @@ public class Chain implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setId(Long id) {

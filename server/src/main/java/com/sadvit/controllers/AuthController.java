@@ -27,12 +27,10 @@ public class AuthController {
 	@RequestMapping("/login")
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	public void login() {
-
     }
 
 	@RequestMapping("/logout")
 	public void logout() {
-
     }
 
 }

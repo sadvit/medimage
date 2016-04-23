@@ -1,14 +1,10 @@
 package com.sadvit.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.javafx.UnmodifiableArrayList;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,6 +16,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id", nullable = false)
     private Long id;
 
     @Column(unique = true)
@@ -45,12 +42,6 @@ public class User implements UserDetails {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Authority> authorities;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Chain> chains;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<NetworkEntity> networkEntities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -105,22 +96,6 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Set<Chain> getChains() {
-        return chains;
-    }
-
-    public void setChains(Set<Chain> chains) {
-        this.chains = chains;
-    }
-
-    public Set<NetworkEntity> getNetworkEntities() {
-        return networkEntities;
-    }
-
-    public void setNetworkEntities(Set<NetworkEntity> networkEntities) {
-        this.networkEntities = networkEntities;
     }
 
     public void setAccountNonExpired(boolean accountNonExpired) {

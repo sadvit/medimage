@@ -2,24 +2,28 @@ package com.sadvit.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Map;
 import java.util.Set;
 
 /**
  * Created by sadvit on 4/17/16.
  */
 @Entity
-@Table(name = "RECOGNIZE_RESULTS")
-public class RecognizeResult implements Serializable {
+@Table(name = "RESULTS")
+public class Result implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "result_id", nullable = false)
     private Long id;
 
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<RecognizeValue> values;
+    private Set<Value> values;
+
+    @JoinColumn(name = "networkId", referencedColumnName = "network_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private Network network;
 
     public Long getId() {
         return id;
@@ -29,11 +33,11 @@ public class RecognizeResult implements Serializable {
         this.id = id;
     }
 
-    public Set<RecognizeValue> getValues() {
+    public Set<Value> getValues() {
         return values;
     }
 
-    public void setValues(Set<RecognizeValue> values) {
+    public void setValues(Set<Value> values) {
         this.values = values;
     }
 
@@ -43,6 +47,14 @@ public class RecognizeResult implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Network getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(Network network) {
+        this.network = network;
     }
 
 }

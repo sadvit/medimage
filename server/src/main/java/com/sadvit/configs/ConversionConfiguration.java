@@ -1,7 +1,6 @@
 package com.sadvit.configs;
 
-import com.sadvit.converters.UserConverter;
-import com.sadvit.converters.UserTOConverter;
+import com.sadvit.converters.*;
 import com.sadvit.models.User;
 import com.sadvit.to.UserTO;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +19,14 @@ public class ConversionConfiguration {
         DefaultConversionService conversionService = new DefaultConversionService();
         conversionService.addConverter(new UserConverter());
         conversionService.addConverter(new UserTOConverter());
+        conversionService.addConverter(new ValueConverter());
+        conversionService.addConverter(new ValueTOConverter());
+        conversionService.addConverter(new ResultConverter(conversionService));
+        conversionService.addConverter(new ResultTOConverter(conversionService));
+        conversionService.addConverter(new ChainConverter());
+        conversionService.addConverter(new ChainTOConverter());
+        conversionService.addConverter(new NetworkConverter());
+        conversionService.addConverter(new NetworkTOConverter());
         return conversionService;
     }
 

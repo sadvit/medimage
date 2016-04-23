@@ -1,11 +1,9 @@
 package com.sadvit.to;
 
-import com.sadvit.models.RecognizeValue;
-
 /**
  * Created by sadvit on 4/19/16.
  */
-public class RecognizeValueTO implements DTO<RecognizeValue> {
+public class ValueTO {
 
     private String imageId;
 
@@ -35,20 +33,6 @@ public class RecognizeValueTO implements DTO<RecognizeValue> {
 
     public void setTempId(String tempId) {
         this.tempId = tempId;
-    }
-
-    @Override
-    public RecognizeValue convertToEntity() {
-        RecognizeValue recognizeValue = new RecognizeValue();
-        recognizeValue.setValue(value);
-        recognizeValue.setImageId(imageId);
-        return recognizeValue;
-    }
-
-    @Override
-    public void createFromEntity(RecognizeValue entity) {
-        value = entity.getValue();
-        imageId = entity.getImageId();
     }
 
 }

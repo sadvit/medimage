@@ -16,6 +16,7 @@ public class ChainElement implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "chain_element_id", nullable = false)
     private Long id;
 
     @Enumerated

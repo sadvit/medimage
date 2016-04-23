@@ -6,7 +6,9 @@ import com.sadvit.models.ChainElement;
 import com.sadvit.models.User;
 import com.sadvit.repositories.ChainRepository;
 import com.sadvit.repositories.UserRepository;
+import com.sadvit.to.ChainTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
 import java.awt.image.BufferedImage;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static com.sadvit.utils.FileUtils.toByteArray;
 
@@ -37,6 +40,12 @@ public class ChainService {
 
     @Autowired
     private ChainRepository chainRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ConversionService conversionService;
 
     public CacheObject processChain(String id, List<ChainElement> chain) {
         BufferedImage currentImage = imageService.getBufferedImage(id);
@@ -70,16 +79,22 @@ public class ChainService {
         return result;
     }
 
-    public Set<Chain> getChains(Long userId) {
-        return chainRepository.findByUserId(userId);
+    public List<ChainTO> getChains(Long userId) {
+        Set<Chain> chains = chainRepository.findByUserId(userId);
+        return chains.stream()
+                .map(chain -> conversionService.convert(chain, ChainTO.class))
+                .collect(Collectors.toList());
     }
 
     public Chain getChain(Long id) {
         return chainRepository.findOne(id);
     }
 
-    public void saveChain(Long userId, Chain chain) {
-        //chainRepository.addChain(userId, chain); TODO impl save by user
+    public void saveChain(Long userId, ChainTO chainTO) {
+        Chain chain = conversionService.convert(chainTO, Chain.class);
+        User user = userRepository.findOne(userId);
+        chain.setUser(user);
+        chainRepository.save(chain);
     }
 
 }

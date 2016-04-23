@@ -7,11 +7,12 @@ import java.io.Serializable;
  * Created by sadvit on 4/17/16.
  */
 @Entity
-@Table(name = "RECOGNIZE_VALUES")
-public class RecognizeValue implements Serializable {
+@Table(name = "VALUES")
+public class Value implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "value_id", nullable = false)
     private Long id;
 
     private String imageId;
@@ -40,14 +41,6 @@ public class RecognizeValue implements Serializable {
 
     public void setValue(String value) {
         this.value = value;
-    }
-
-    public RecognizeValue(String imageId, String value) {
-        this.imageId = imageId;
-        this.value = value;
-    }
-
-    public RecognizeValue() {
     }
 
 }

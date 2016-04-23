@@ -1,11 +1,7 @@
 import com.sadvit.Application;
-import com.sadvit.analysis.recognizer.statistic.StatisticalRecognizer;
-import com.sadvit.analysis.recognizer.statistic.distribution.HistogramDistribution;
-import com.sadvit.models.NetworkEntity;
-import com.sadvit.models.User;
+import com.sadvit.models.Network;
 import com.sadvit.repositories.NetworkRepository;
 import com.sadvit.repositories.UserRepository;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.neuroph.nnet.MultiLayerPerceptron;
@@ -14,8 +10,6 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -50,7 +44,7 @@ public class NetworkRepositoryTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        NetworkEntity networkEntity = new NetworkEntity();
+        Network networkEntity = new Network();
         networkEntity.setMemory(memory);
         networkEntity.setName("Default");
         networkRepository.addNetwork(id, networkEntity);*/
@@ -58,21 +52,21 @@ public class NetworkRepositoryTest {
 
     @Test
     public void test() {
-        /*List<NetworkEntity> networkEntities = createNetworks();
+        /*List<Network> networkEntities = createNetworks();
         networkEntities.forEach(network -> networkRepository.addNetwork(USERNAME, network));
-        List<NetworkEntity> _networkEntities = networkRepository.getNetworks(USERNAME);
+        List<Network> _networkEntities = networkRepository.getNetworks(USERNAME);
         Assert.assertNotNull(_networkEntities);
         Assert.assertTrue(networkEntities.size() == _networkEntities.size());*/
     }
 
-    public List<NetworkEntity> createNetworks() {
-        List<NetworkEntity> networkEntities = new ArrayList<>();
+    public List<Network> createNetworks() {
+        List<Network> networkEntities = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            NetworkEntity networkEntity = new NetworkEntity();
-            networkEntity.setName("Network " + i);
-            networkEntity.setAnswers(Arrays.asList("bovis", "alabamensis", "aubermensis"));
-            networkEntity.setPerceptron(new MultiLayerPerceptron(3, 50, 3));
-            networkEntities.add(networkEntity);
+            Network network = new Network();
+            network.setName("Network " + i);
+            network.setAnswers(Arrays.asList("bovis", "alabamensis", "aubermensis"));
+            network.setPerceptron(new MultiLayerPerceptron(3, 50, 3));
+            networkEntities.add(network);
         }
         return networkEntities;
     }

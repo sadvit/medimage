@@ -16,6 +16,7 @@ public class Authority implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "authority_id", nullable = false)
     private Long id;
 
     private String role;

@@ -1,7 +1,7 @@
 package com.sadvit.utils;
 
-import com.sadvit.to.RecognizeResultTO;
-import com.sadvit.to.RecognizeValueTO;
+import com.sadvit.to.ResultTO;
+import com.sadvit.to.ValueTO;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -30,9 +30,9 @@ public class RecognizeUtils {
         return answers.get(maxpos);
     }
 
-    public static List<String> extractAnswers(RecognizeResultTO recognizeResult) {
+    public static List<String> extractAnswers(ResultTO recognizeResult) {
         Set<String> result = new TreeSet<>();
-        for (RecognizeValueTO value : recognizeResult.getValues()) {
+        for (ValueTO value : recognizeResult.getValues()) {
             result.add(value.getValue());
         }
         return result.stream().collect(Collectors.toList());

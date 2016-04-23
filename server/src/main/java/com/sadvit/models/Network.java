@@ -1,45 +1,39 @@
 package com.sadvit.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
 import org.neuroph.core.NeuralNetwork;
-import org.neuroph.nnet.Kohonen;
-import org.neuroph.nnet.MultiLayerPerceptron;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by sadvit on 3/20/16.
  */
 @Entity
 @Table(name = "NETWORKS")
-public class NetworkEntity implements Serializable {
+public class Network implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "network_id", nullable = false)
     private Long id;
 
     private String name;
 
-    @JsonIgnore
     @Type(type = "serializable")
     private NeuralNetwork neuralNetwork;
 
-    @JsonIgnore
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> answers;
 
-    @JsonIgnore
     @ElementCollection(fetch = FetchType.EAGER)
     private Map<String, double[][]> memory;
 
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<RecognizeResult> recognizeResults;
+    @JoinColumn(name = "userId", referencedColumnName = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    private User user;
 
     public Map<String, double[][]> getMemory() {
         return memory;
@@ -85,12 +79,12 @@ public class NetworkEntity implements Serializable {
         this.id = id;
     }
 
-    public Set<RecognizeResult> getRecognizeResults() {
-        return recognizeResults;
+    public User getUser() {
+        return user;
     }
 
-    public void setRecognizeResults(Set<RecognizeResult> recognizeResults) {
-        this.recognizeResults = recognizeResults;
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

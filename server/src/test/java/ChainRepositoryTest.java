@@ -38,8 +38,8 @@ public class ChainRepositoryTest {
         User user = userRepository.findByUsername(USERNAME);
         Long id = user.getId();
 
-        List<Chain> chains = createChains();
-        //chains.forEach(chain -> chainRepository.addChain(id, chain));
+        List<Chain> chains = createChains(user);
+        chains.forEach(chain -> chainRepository.save(chain));
         Set<Chain> _chains = chainRepository.findByUserId(id);
         List<Chain> byOne = new ArrayList<>();
         _chains.forEach(chain -> {
@@ -52,11 +52,12 @@ public class ChainRepositoryTest {
         Assert.assertTrue(chains.size() == byOne.size());
     }
 
-    public List<Chain> createChains() {
+    public List<Chain> createChains(User user) {
         List<Chain> chains = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
             Chain chain = new Chain();
             chain.setName("Chain " + i);
+            chain.setUser(user);
             List<ChainElement> elements = new ArrayList<>();
             double max = Math.random() * 25.0;
             for (int j = 0; j < max; j++) {

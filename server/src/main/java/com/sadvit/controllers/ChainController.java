@@ -8,6 +8,7 @@ import com.sadvit.operations.binary.BinaryParams;
 import com.sadvit.operations.binary.BinaryType;
 import com.sadvit.models.ChainElement;
 import com.sadvit.services.ChainService;
+import com.sadvit.to.ChainTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -27,12 +28,13 @@ public class ChainController {
     private ChainService chainService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public void saveChain(@RequestBody Chain chain, @AuthenticationPrincipal User user) {
-        chainService.saveChain(user.getId(), chain);
+    public void saveChain(@RequestBody ChainTO chainTO, @AuthenticationPrincipal User user) {
+        chainService.saveChain(user.getId(), chainTO);
     }
 
     @RequestMapping(value = "/one/{imageId}", method = RequestMethod.POST)
     public CacheObject processChain(@PathVariable String imageId, @RequestBody List<ChainElement> elements) {
+        // TODO change to ChainTO
         return chainService.processChain(imageId, elements);
     }
 
@@ -42,7 +44,7 @@ public class ChainController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Set<Chain> getChains(@AuthenticationPrincipal User user) {
+    public List<ChainTO> getChains(@AuthenticationPrincipal User user) {
         return chainService.getChains(user.getId());
     }
 
