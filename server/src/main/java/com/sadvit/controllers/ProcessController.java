@@ -1,10 +1,15 @@
 package com.sadvit.controllers;
 
 import com.sadvit.models.CacheObject;
-import com.sadvit.operations.binary.BinaryParams;
-import com.sadvit.services.BinaryService;
+import com.sadvit.services.ChainService;
+import com.sadvit.to.ChainRequestTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by sadvit on 25.11.15.
@@ -14,11 +19,11 @@ import org.springframework.web.bind.annotation.*;
 public class ProcessController {
 
     @Autowired
-    private BinaryService binaryService;
+    private ChainService chainService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/binary/{id}")
-    public CacheObject processBinary(@PathVariable String id, @RequestBody BinaryParams params) {
-		return binaryService.process(id, params);
+    @RequestMapping(value = "/images", method = RequestMethod.PUT)
+    public List<CacheObject> processChain(@RequestBody ChainRequestTO request) {
+        return chainService.process(request);
     }
 
 }

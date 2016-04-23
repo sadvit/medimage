@@ -6,6 +6,7 @@ import com.sadvit.models.ChainElement;
 import com.sadvit.models.User;
 import com.sadvit.repositories.ChainRepository;
 import com.sadvit.repositories.UserRepository;
+import com.sadvit.to.ChainRequestTO;
 import com.sadvit.to.ChainTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
@@ -47,9 +48,31 @@ public class ChainService {
     @Autowired
     private ConversionService conversionService;
 
-    public CacheObject processChain(String id, List<ChainElement> chain) {
+    public List<CacheObject> process(ChainRequestTO request) {
+        ChainTO chainTO = request.getChainTO();
+        List<String> images = request.getImages();
+        Chain chain = conversionService.convert(chainTO, Chain.class);
+        if (isExistingChain(request)) {
+            Long chainId = chainTO.getId();
+            chain = chainRepository.findOne(chainId);
+        }
+        return process(images, chain);
+    }
+
+    public List<CacheObject> process(List<String> images, Chain chain) {
+        return images.stream()
+                .map(image -> processChain(image, chain))
+                .collect(Collectors.toList());
+    }
+
+    public boolean isExistingChain(ChainRequestTO request) {
+        return request.getChainTO().getId() != null;
+    }
+
+    public CacheObject processChain(String id, Chain chain) {
+        List<ChainElement> elements = chain.getChainElements();
         BufferedImage currentImage = imageService.getBufferedImage(id);
-        for (ChainElement chainElement : chain) {
+        for (ChainElement chainElement : elements) {
             switch (chainElement.getOperationType()) {
                 case BINARY:
                     if (chainElement.getBinaryParams() != null)
@@ -65,20 +88,6 @@ public class ChainService {
         return imageCache.addToCache(result);
     }
 
-    public CacheObject processChain(String id, Long chainId) {
-        Chain chain = getChain(chainId);
-        return processChain(id, chain.getChainElements());
-    }
-
-    public List<String> processChains(List<String> images, Long chainId) {
-        Chain chain = chainRepository.findOne(chainId);
-        List<String> result = new ArrayList<>();
-        images.forEach(imageId -> {
-            result.add(processChain(imageId, chain.getChainElements()).getId());
-        });
-        return result;
-    }
-
     public List<ChainTO> getChains(Long userId) {
         Set<Chain> chains = chainRepository.findByUserId(userId);
         return chains.stream()
@@ -86,15 +95,12 @@ public class ChainService {
                 .collect(Collectors.toList());
     }
 
-    public Chain getChain(Long id) {
-        return chainRepository.findOne(id);
-    }
-
-    public void saveChain(Long userId, ChainTO chainTO) {
+    public ChainTO saveChain(Long userId, ChainTO chainTO) {
         Chain chain = conversionService.convert(chainTO, Chain.class);
         User user = userRepository.findOne(userId);
         chain.setUser(user);
-        chainRepository.save(chain);
+        chain = chainRepository.save(chain);
+        return conversionService.convert(chain, ChainTO.class);
     }
 
 }

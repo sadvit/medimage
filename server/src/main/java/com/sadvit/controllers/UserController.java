@@ -1,16 +1,13 @@
 package com.sadvit.controllers;
 
-import com.sadvit.to.UserTO;
 import com.sadvit.models.User;
 import com.sadvit.services.UserService;
+import com.sadvit.to.UserTO;
 import com.sadvit.validators.UserTOValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.MethodParameter;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 

@@ -2,6 +2,7 @@ package com.sadvit.services;
 
 import com.sadvit.analysis.recognizer.statistic.StatisticalRecognizer;
 import com.sadvit.analysis.recognizer.statistic.distribution.HistogramDistribution;
+import com.sadvit.to.NetworkTO;
 import com.sadvit.to.ResultTO;
 import com.sadvit.to.ValueTO;
 import com.sadvit.models.Network;
@@ -10,6 +11,7 @@ import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
 import org.neuroph.nnet.Kohonen;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -28,7 +30,10 @@ public class RecognizeService {
     @Autowired
     private NetworkService networkService;
 
-    public void learn(Long userId, ResultTO recognizeResult) {
+    @Autowired
+    private ConversionService conversionService;
+
+    public NetworkTO learn(Long userId, ResultTO recognizeResult) {
         List<String> answers = RecognizeUtils.extractAnswers(recognizeResult);
         int outputParamsNumber = answers.size();
         DataSet dataSet = new DataSet(INPUT_PARAMS_NUMBER, outputParamsNumber);
@@ -43,8 +48,8 @@ public class RecognizeService {
             dataSet.addRow(new DataSetRow(params, RecognizeUtils.getInput(answers, value)));
         }
         network.getNeuralNetwork().learn(dataSet);
-        networkService.addNetwork(userId, network);
-        // TODO add return statement
+        Network newNetwork = networkService.addNetwork(userId, network);
+        return conversionService.convert(newNetwork, NetworkTO.class);
     }
 
     public ResultTO recognize(Long networkId, List<String> images) {

@@ -24,10 +24,14 @@ public class TempController {
         return responseImage(cache.get(id));
     }
 
-
     @RequestMapping(method = RequestMethod.POST)
     public List<String> saveFromCache(@RequestBody List<String> images) {
         return cache.saveFromCache(images);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    public void deleteImage(@PathVariable String id) {
+        cache.remove(id);
     }
 
 }
