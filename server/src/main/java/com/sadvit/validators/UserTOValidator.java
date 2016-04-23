@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -29,7 +28,7 @@ public class UserTOValidator implements Validator {
     public void validate(Object target, Errors errors) {
         UserTO userTO = (UserTO) target;
         String username = userTO.getUsername();
-        if (!pattern.matcher(username).matches()) {
+        if (username != null && !pattern.matcher(username).matches()) {
             errors.reject("Incorrect user email");
         }
     }

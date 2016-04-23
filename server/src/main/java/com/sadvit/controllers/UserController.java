@@ -20,8 +20,8 @@ import javax.validation.Valid;
 @RequestMapping("/users")
 public class UserController {
 
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private UserTOValidator validator;

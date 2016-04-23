@@ -10,6 +10,7 @@ public class PointsArray {
 
     /**
      * Возвращает копию нашего массива Х.
+     *
      * @return
      */
     public int[] getCopyX() {

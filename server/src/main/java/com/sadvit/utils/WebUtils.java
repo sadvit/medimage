@@ -10,10 +10,10 @@ import org.springframework.http.ResponseEntity;
  */
 public class WebUtils {
 
-	public static ResponseEntity<byte[]> responseImage(byte[] image) {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.IMAGE_PNG);
-		return new ResponseEntity<>(image, headers, HttpStatus.CREATED);
-	}
+    public static ResponseEntity<byte[]> responseImage(byte[] image) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+        return new ResponseEntity<>(image, headers, HttpStatus.CREATED);
+    }
 
 }

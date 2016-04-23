@@ -3,7 +3,6 @@ package com.sadvit.analysis.recognizer.neuralNetwork;
 import java.io.*;
 
 /**
- *
  * @author meskill
  */
 public class NeuralNetwork {
@@ -111,7 +110,7 @@ public class NeuralNetwork {
     public void training(double params[], double teacher[]) {
         double results[][] = new double[w.length + 1][];
         results[0] = params;
-        results[1]=getOutput(params, 0);
+        results[1] = getOutput(params, 0);
         for (int i = 1; i < w.length; i++) {
             results[i + 1] = getOutput(function(results[i]), i);
         }
@@ -124,7 +123,7 @@ public class NeuralNetwork {
             result = results[i + 1];
             for (int j = 0; j < w[i].length; j++) {
                 for (int k = 0; k < delta.length; k++) {
-                    w[i][j][k] += 0.00001* derivative(result[k]) * function(results[i][j]) * delta[k];
+                    w[i][j][k] += 0.00001 * derivative(result[k]) * function(results[i][j]) * delta[k];
                 }
             }
             double nextDelta[] = new double[w[i].length];

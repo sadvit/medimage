@@ -8,7 +8,7 @@ import com.sadvit.analysis.geometry.Point;
  * Контроллер жука - создает жука на указанном изображении, и выдает изображение - результат его работы.
  */
 public class BeetleController {
-	
+
     // Функция возвращает первый правильный объект на изображении.
     public static GeometryObject seekGeometryObject(ByteImage original) {
         // забираем и анализируем объекты до тех пор, пока не найдем нужный.

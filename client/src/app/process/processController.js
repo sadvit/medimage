@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('processController', ['$scope', '$stateParams', 'modalsService', 'chainsService', '$state', 'imageService', function ($scope, $stateParams, modalsService, chainsService, $state, imageService) {
+angular.module('medimage').controller('processController', ['$scope', '$stateParams', 'modalsService', 'chainService', '$state', 'imageService', function ($scope, $stateParams, modalsService, chainService, $state, imageService) {
 
   var self = this;
 
@@ -11,7 +11,7 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
   $scope.chain = [];
 
   $scope.acceptChain = function () {
-    chainsService.acceptChain($stateParams.imageId, $scope.chain, function (imageId) {
+    chainService.acceptChain($stateParams.imageId, $scope.chain, function (imageId) {
       $scope.folder = tempFolder;
       $scope.imageId = imageId;
     });
@@ -23,11 +23,11 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
         name: name,
         chainElements: $scope.chain
       };
-      chainsService.saveChain(chain, function () {
+      chainService.saveChain(chain, function () {
         $state.go('chains');
       });
     }, function () {
-      console.log('cancel');
+
     });
   };
 
@@ -35,7 +35,7 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
     var imageId = $scope.imageId;
     var query = [];
     query.push(imageId);
-    imageService.saveImages(query, function () {
+    imageService.saveTempImages(query, function () {
       $state.go('images');
     });
   };

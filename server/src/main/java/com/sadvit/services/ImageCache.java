@@ -20,28 +20,28 @@ public class ImageCache {
     @Autowired
     private ImageService imageService;
 
-	private Map<String, byte[]> images = new HashMap<>();
+    private Map<String, byte[]> images = new HashMap<>();
 
-	public void put(String id, byte[] image) {
-		images.put(id, image);
-	}
+    public void put(String id, byte[] image) {
+        images.put(id, image);
+    }
 
-	public byte[] get(String id) {
-		return images.get(id);
-	}
+    public byte[] get(String id) {
+        return images.get(id);
+    }
 
-	public BufferedImage getBuffered(String id) {
-		InputStream in = new ByteArrayInputStream(get(id));
-		try {
-			return ImageIO.read(in);
-		} catch (IOException e) {
-			return null;
-		}
-	}
+    public BufferedImage getBuffered(String id) {
+        InputStream in = new ByteArrayInputStream(get(id));
+        try {
+            return ImageIO.read(in);
+        } catch (IOException e) {
+            return null;
+        }
+    }
 
-	public void remove(String id) {
-		images.remove(id);
-	}
+    public void remove(String id) {
+        images.remove(id);
+    }
 
     public CacheObject addToCache(byte[] image) {
         String imageId = UUID.randomUUID().toString();
@@ -56,7 +56,6 @@ public class ImageCache {
         });
         return imageIds;
     }
-
 
 
 }

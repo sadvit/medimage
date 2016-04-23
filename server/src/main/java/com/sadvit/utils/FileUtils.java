@@ -3,9 +3,7 @@ package com.sadvit.utils;
 import com.sadvit.exceptions.FileDeleteException;
 import com.sadvit.exceptions.FileReadException;
 import com.sadvit.exceptions.FileWriteException;
-import com.sadvit.exceptions.FilesReadException;
 import org.apache.commons.io.IOUtils;
-import org.springframework.core.io.ClassPathResource;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -20,20 +18,20 @@ import java.util.List;
 public class FileUtils {
 
     public static synchronized List<String> readAllFileNames(String path) {
-		File file = new File(path);
+        File file = new File(path);
         if (file.list() == null) {
             return Collections.emptyList();
         } else {
             return Arrays.asList(file.list());
         }
-	}
+    }
 
     public static synchronized void deleteFile(String path) {
-		File file = new File(path);
-		if (!file.exists() || !file.delete()) {
-			throw new FileDeleteException(path);
-		}
-	}
+        File file = new File(path);
+        if (!file.exists() || !file.delete()) {
+            throw new FileDeleteException(path);
+        }
+    }
 
     public static synchronized InputStream readFile(String path) {
         try {
@@ -43,14 +41,13 @@ public class FileUtils {
         }
     }
 
-	public static synchronized BufferedImage readBufferedImage(String path) {
-		try	{
-			return ImageIO.read(new File(path));
-		}
-		catch (IOException e) {
-			throw new FileReadException(path);
-		}
-	}
+    public static synchronized BufferedImage readBufferedImage(String path) {
+        try {
+            return ImageIO.read(new File(path));
+        } catch (IOException e) {
+            throw new FileReadException(path);
+        }
+    }
 
     public static synchronized byte[] readFileAsByteArray(String path) {
         return toByteArray(readFile(path));
@@ -102,14 +99,14 @@ public class FileUtils {
         }
     }
 
-	public static byte[] toByteArray(BufferedImage bufferedImage) {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		try	{
-			ImageIO.write(bufferedImage, "bmp", baos);
-			return baos.toByteArray();
-		} catch (IOException e) {
-			throw new RuntimeException("Error converting image");
-		}
-	}
+    public static byte[] toByteArray(BufferedImage bufferedImage) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(bufferedImage, "bmp", baos);
+            return baos.toByteArray();
+        } catch (IOException e) {
+            throw new RuntimeException("Error converting image");
+        }
+    }
 
 }

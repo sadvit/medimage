@@ -6,60 +6,60 @@ package com.sadvit.analysis.beetle;
  */
 public class ByteImage {
 
-	private byte[] arrayImage;
-	
-	public int width;
-	public int height;
+    private byte[] arrayImage;
 
-	public byte[] getArrayImage() {
-		return arrayImage;
-	}
-	
-	public int getWidth() {
-		return width;
-	}
+    public int width;
+    public int height;
 
-	public int getHeight() {
-		return height;
-	}
+    public byte[] getArrayImage() {
+        return arrayImage;
+    }
 
-	/**
-	 * Создаем класс по байт - массиву и размерам изображения.
-	 */
-	public ByteImage(byte[] array, int width, int height) {
-		arrayImage = new byte[array.length];
-		System.arraycopy(array, 0, arrayImage, 0, array.length);
-		this.width = width;
-		this.height = height;
-	}
+    public int getWidth() {
+        return width;
+    }
 
-	public ByteImage(int width, int height) {
-		arrayImage = new byte[width * height];
-		this.width = width;
-		this.height = height;
-	}
+    public int getHeight() {
+        return height;
+    }
 
-	public int getPixel(int x, int y) {
-		if (x >= 0 && x < width && y >= 0 && y < height)
-			return arrayImage[y * width + x] & 0xff;
-		else
-			return 0;
-	}
+    /**
+     * Создаем класс по байт - массиву и размерам изображения.
+     */
+    public ByteImage(byte[] array, int width, int height) {
+        arrayImage = new byte[array.length];
+        System.arraycopy(array, 0, arrayImage, 0, array.length);
+        this.width = width;
+        this.height = height;
+    }
 
-	public void setPixel(int x, int y, int value) {
-		arrayImage[y * width + x] = (byte) value;
-	}
+    public ByteImage(int width, int height) {
+        arrayImage = new byte[width * height];
+        this.width = width;
+        this.height = height;
+    }
 
-	public void invert() {
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
-				if (getPixel(i, j) == BeetleFinder.BLACK_VALUE) {
-					setPixel(i, j, BeetleFinder.WHITE_VALUE);
-				} else {
-					setPixel(i, j, BeetleFinder.BLACK_VALUE);
-				}
-			}
-		}
-	}
+    public int getPixel(int x, int y) {
+        if (x >= 0 && x < width && y >= 0 && y < height)
+            return arrayImage[y * width + x] & 0xff;
+        else
+            return 0;
+    }
+
+    public void setPixel(int x, int y, int value) {
+        arrayImage[y * width + x] = (byte) value;
+    }
+
+    public void invert() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (getPixel(i, j) == BeetleFinder.BLACK_VALUE) {
+                    setPixel(i, j, BeetleFinder.WHITE_VALUE);
+                } else {
+                    setPixel(i, j, BeetleFinder.BLACK_VALUE);
+                }
+            }
+        }
+    }
 
 }

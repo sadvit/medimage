@@ -20,37 +20,37 @@ public class ChainElement implements Serializable {
     private Long id;
 
     @Enumerated
-	private OperationType operationType;
+    private OperationType operationType;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private BinaryParams binaryParams;
+    private BinaryParams binaryParams;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private BlurParams blurParams;
+    private BlurParams blurParams;
 
-	public OperationType getOperationType()	{
-		return operationType;
-	}
+    public OperationType getOperationType() {
+        return operationType;
+    }
 
-	public void setOperationType(OperationType operationType) {
-		this.operationType = operationType;
-	}
+    public void setOperationType(OperationType operationType) {
+        this.operationType = operationType;
+    }
 
-	public BinaryParams getBinaryParams() {
-		return binaryParams;
-	}
+    public BinaryParams getBinaryParams() {
+        return binaryParams;
+    }
 
-	public void setBinaryParams(BinaryParams binaryParams) {
-		this.binaryParams = binaryParams;
-	}
+    public void setBinaryParams(BinaryParams binaryParams) {
+        this.binaryParams = binaryParams;
+    }
 
-	public BlurParams getBlurParams() {
-		return blurParams;
-	}
+    public BlurParams getBlurParams() {
+        return blurParams;
+    }
 
-	public void setBlurParams(BlurParams blurParams) {
-		this.blurParams = blurParams;
-	}
+    public void setBlurParams(BlurParams blurParams) {
+        this.blurParams = blurParams;
+    }
 
     public Long getId() {
         return id;

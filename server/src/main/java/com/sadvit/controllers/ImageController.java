@@ -23,10 +23,10 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
 
-	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
-	public ResponseEntity<byte[]> getImage(@PathVariable String id) {
-		return responseImage(imageService.getImageAsByteArray(id));
-	}
+    @RequestMapping(method = RequestMethod.GET, value = "/{imageId}")
+    public ResponseEntity<byte[]> getImage(@PathVariable String imageId) {
+        return responseImage(imageService.getImageAsByteArray(imageId));
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public List<String> getImages() {
@@ -34,13 +34,13 @@ public class ImageController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String postImage(MultipartFile multipartFile) {
+    public String saveUploadImages(MultipartFile multipartFile) {
         return imageService.saveImage(multipartFile);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    public void deleteImages(@PathVariable String id) {
-		imageService.deleteImage(id);
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{imageId}")
+    public void deleteImages(@PathVariable String imageId) {
+        imageService.deleteImage(imageId);
     }
 
 }

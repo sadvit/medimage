@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- *
  * @author meskill
  */
 public class StatisticalHistogramRecognizerBuilder extends RecognizerBuilder {
@@ -19,7 +18,7 @@ public class StatisticalHistogramRecognizerBuilder extends RecognizerBuilder {
         this.n = n;
     }
 
-//    @Override
+    //    @Override
 //    public StatisticalRecognizer buildRecognizer(Distribution func) {
 //        Map<String, double[][]> result = new TreeMap<>();
 //        for (String cls : this.sample.keySet()) {

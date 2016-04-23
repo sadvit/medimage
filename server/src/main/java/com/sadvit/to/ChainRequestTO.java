@@ -9,7 +9,7 @@ public class ChainRequestTO {
 
     private List<String> images;
 
-    private ChainTO chainTO;
+    private ChainTO chain;
 
     public List<String> getImages() {
         return images;
@@ -19,12 +19,12 @@ public class ChainRequestTO {
         this.images = images;
     }
 
-    public ChainTO getChainTO() {
-        return chainTO;
+    public ChainTO getChain() {
+        return chain;
     }
 
-    public void setChainTO(ChainTO chainTO) {
-        this.chainTO = chainTO;
+    public void setChain(ChainTO chain) {
+        this.chain = chain;
     }
 
 }

@@ -22,7 +22,7 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String username;
 
-	private String password;
+    private String password;
 
     private boolean accountNonExpired;
 

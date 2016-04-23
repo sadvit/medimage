@@ -1,7 +1,6 @@
 package com.sadvit.analysis.recognizer;
 
 /**
- *
  * @author meskill
  */
 public interface Recognizer {

@@ -19,7 +19,6 @@ angular.module('medimage').controller('imagesController', ['$scope', 'imageServi
   $scope.openImageModal = function (image) {
     angular.element('#imageBox').attr('src', $rootScope.network_address + '/images/' + image);
     angular.element('#lightBox').lightbox();
-    console.log(image);
   };
 
   $scope.deleteImage = function (image) {
@@ -31,7 +30,6 @@ angular.module('medimage').controller('imagesController', ['$scope', 'imageServi
 
   $scope.processImage = function (image) {
     $state.go('process', {imageId: image});
-    console.log('process ' + image);
   };
 
   $scope.infoImage = function (image) {

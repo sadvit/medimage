@@ -1,7 +1,6 @@
 package com.sadvit.analysis.recognizer.statistic.distribution;
 
 /**
- *
  * @author meskill
  */
 public class NormalDistribution implements Distribution {

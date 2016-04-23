@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author meskill
  */
 public class ImageProcess {
@@ -140,6 +139,7 @@ public class ImageProcess {
         }
         return result;
     }
+
     private static final byte path[] = {0, -1, 1, 0, 0, 1, -1, 0, 0, -1, 1, 0, 0, 1};
 
     static public BufferedImage pxEdge(BufferedImage source, int startX, int startY) {
@@ -540,7 +540,7 @@ public class ImageProcess {
                     try {
                         double a = current.distance(getIntersect(img, current, heightX, heightY));
                         double b = current.distance(getIntersect(img, current, lengthX, lengthY));
-                        maxS=Math.max(maxS, a*b);
+                        maxS = Math.max(maxS, a * b);
                     } catch (Exception e) {
                     }
                     break;
@@ -555,11 +555,10 @@ public class ImageProcess {
                 grad -= 8;
             }
         } while (!current.equals(left));
-        return maxS/length/h;
+        return maxS / length / h;
     }
 
     /**
-     *
      * @param img
      * @return double[]
      */

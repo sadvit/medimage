@@ -10,7 +10,9 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by sadvit on 4/16/16.

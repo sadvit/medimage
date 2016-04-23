@@ -15,13 +15,13 @@ import java.io.IOException;
 @Component
 public class HttpAuthenticationEntryPoint extends BasicAuthenticationEntryPoint {
 
-	public HttpAuthenticationEntryPoint() {
-		setRealmName("medimage");
-	}
+    public HttpAuthenticationEntryPoint() {
+        setRealmName("medimage");
+    }
 
-	@Override
-	public void commence(final HttpServletRequest request, final HttpServletResponse response, final AuthenticationException authException) throws IOException, ServletException {
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
-	}
+    @Override
+    public void commence(final HttpServletRequest request, final HttpServletResponse response, final AuthenticationException authException) throws IOException, ServletException {
+        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
+    }
 
 }

@@ -27,7 +27,7 @@ public class UserTO {
     @Size(max = 32)
     private String address;
 
-    @Size(max = 32)
+    @Size(max = 36, min = 36)
     private String folder;
 
     private boolean accountNonExpired;

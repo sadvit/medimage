@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('statisticsController', ['$scope', '$stateParams', '$timeout', 'statisticsService', 'networkService', function ($scope, $stateParams, $timeout, statisticsService, networkService) {
+angular.module('medimage').controller('statisticsController', ['$scope', '$stateParams', '$timeout', 'statisticService', 'resultService', function ($scope, $stateParams, $timeout, statisticService, resultService) {
 
   var self = this;
 
@@ -12,13 +12,13 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
   $scope.selectNetwork = function (network) {
     $scope.selectedNetwork = network;
     $scope.isOneImage = false;
-    var size = network.recognizeResults.length;
+    var size = network.results.length;
     var leftSize = Math.round(size/2);
 
     $scope.leftResults = [];
     $scope.rightResults = [];
 
-    network.recognizeResults.forEach(function(result, index) {
+    network.results.forEach(function(result, index) {
       if (index < leftSize) {
         $scope.leftResults.push(result);
       } else {
@@ -33,7 +33,7 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
     if ($stateParams.imageId) {
       $scope.isOneImage = true;
       $scope.imageId = $stateParams.imageId;
-      statisticsService.getStatistics($scope.imageId, function (data) {
+      statisticService.getStatistics($scope.imageId, function (data) {
         $scope.imageInfo.name = data.name;
         $scope.imageInfo.format = data.format;
         $scope.imageInfo.width = data.width;
@@ -91,7 +91,7 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
         }
       });
     }
-    networkService.getResults(function (networks) {
+    resultService.getResults(function (networks) {
       $scope.networks = networks;
       if (!$stateParams.imageId) {
         $scope.selectNetwork(networks[0])

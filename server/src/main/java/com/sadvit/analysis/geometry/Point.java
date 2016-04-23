@@ -36,7 +36,8 @@ public class Point {
 
     /**
      * Сравнивает две точки
-      * @param point точка для сравнения
+     *
+     * @param point точка для сравнения
      * @return равны ли точки
      */
     public boolean equals(Point point) {

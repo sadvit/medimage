@@ -25,9 +25,9 @@ public class ImageService {
         return FileUtils.readFile(getFilePath(id));
     }
 
-	public BufferedImage getBufferedImage(String id) {
-		return FileUtils.readBufferedImage(getFilePath(id));
-	}
+    public BufferedImage getBufferedImage(String id) {
+        return FileUtils.readBufferedImage(getFilePath(id));
+    }
 
     public byte[] getImageAsByteArray(String id) {
         return FileUtils.readFileAsByteArray(getFilePath(id));
@@ -42,14 +42,12 @@ public class ImageService {
     }
 
     public String saveImage(MultipartFile multipartFile) {
-        try
-        {
+        try {
             InputStream inputStream = multipartFile.getInputStream();
             String id = UUID.randomUUID().toString();
             FileUtils.writeFile(getFilePath(id), inputStream);
             return id;
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new MultipartException("Failed to get input stream of the multipart file");
         }
     }

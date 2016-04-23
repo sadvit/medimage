@@ -2,10 +2,10 @@ package com.sadvit.services;
 
 import com.sadvit.analysis.recognizer.statistic.StatisticalRecognizer;
 import com.sadvit.analysis.recognizer.statistic.distribution.HistogramDistribution;
+import com.sadvit.models.Network;
 import com.sadvit.to.NetworkTO;
 import com.sadvit.to.ResultTO;
 import com.sadvit.to.ValueTO;
-import com.sadvit.models.Network;
 import com.sadvit.utils.RecognizeUtils;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
@@ -14,7 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sadvit
@@ -41,7 +42,7 @@ public class RecognizeService {
         network.setName(recognizeResult.getName());
         network.setPerceptron(new Kohonen(INPUT_PARAMS_NUMBER, outputParamsNumber));
         network.setAnswers(answers);
-        for (ValueTO recognizeValue: recognizeResult.getValues()) {
+        for (ValueTO recognizeValue : recognizeResult.getValues()) {
             String imageId = recognizeValue.getTempId();
             String value = recognizeValue.getValue();
             double[] params = paramsService.findParams(imageId);

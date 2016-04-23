@@ -1,9 +1,9 @@
 package com.sadvit.controllers;
 
-import com.sadvit.to.NetworkTO;
-import com.sadvit.to.ResultTO;
 import com.sadvit.models.User;
 import com.sadvit.services.ResultService;
+import com.sadvit.to.NetworkTO;
+import com.sadvit.to.ResultTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;

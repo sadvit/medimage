@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- *
  * @author meskill
  */
 public class StatisticalNormalRecognizerBuilder extends RecognizerBuilder {

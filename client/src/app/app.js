@@ -127,7 +127,7 @@ medimage.run(['$state', '$rootScope', 'Restangular', 'modalsService', function (
     if (response.status == 401) {
       unauthorizedHandler(response);
     }
-    if (response.status == 500) {
+    if (response.status == 500 || response.status == 400 ) {
       internalHandler(response);
     }
   });

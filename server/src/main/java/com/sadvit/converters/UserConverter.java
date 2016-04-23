@@ -1,7 +1,7 @@
 package com.sadvit.converters;
 
-import com.sadvit.to.UserTO;
 import com.sadvit.models.User;
+import com.sadvit.to.UserTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.core.convert.converter.Converter;
 

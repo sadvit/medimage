@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('registerController', ['$scope', 'registerService', '$state', 'loginService', function ($scope, registerService, $state, loginService) {
+angular.module('medimage').controller('registerController', ['$scope', 'registerService', '$state', 'authService', function ($scope, registerService, $state, authService) {
 
   $scope.username = '';
   $scope.password = '';
@@ -18,8 +18,8 @@ angular.module('medimage').controller('registerController', ['$scope', 'register
         name: $scope.name,
         surname: $scope.surname,
         address: $scope.address
-      }, function() {
-        loginService.auth($scope.username, $scope.password, function () {
+      }, function () {
+        authService.auth($scope.username, $scope.password, function () {
           $state.go('login');
         });
       })

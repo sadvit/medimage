@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').service('statisticsService', ['Restangular', function (Restangular) {
+angular.module('medimage').service('statisticService', ['Restangular', function (Restangular) {
 
   this.getStatistics = function (id, callback) {
     Restangular.one('statistics', id).get().then(function (data) {

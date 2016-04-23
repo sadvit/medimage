@@ -1,7 +1,6 @@
 package com.sadvit.converters;
 
 import com.sadvit.models.Result;
-import com.sadvit.models.Value;
 import com.sadvit.to.ResultTO;
 import com.sadvit.to.ValueTO;
 import org.springframework.beans.BeanUtils;
@@ -9,7 +8,6 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**

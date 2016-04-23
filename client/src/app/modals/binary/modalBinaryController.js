@@ -9,12 +9,10 @@ angular.module('medimage').controller('modalBinaryController', ['$scope', '$uibM
   };
 
   $scope.apply = function () {
-    console.log('apply');
     $uibModalInstance.close($scope.binaryParams);
   };
 
   $scope.cancel = function () {
-    console.log('cancel');
     $uibModalInstance.dismiss('cancel');
   };
 

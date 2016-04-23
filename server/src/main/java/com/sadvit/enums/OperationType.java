@@ -5,6 +5,6 @@ package com.sadvit.enums;
  */
 public enum OperationType {
 
-	BINARY, BLUR, CROP, RESIZE;
+    BINARY, BLUR, CROP, RESIZE;
 
 }

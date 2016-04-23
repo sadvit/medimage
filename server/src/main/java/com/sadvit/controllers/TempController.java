@@ -25,7 +25,7 @@ public class TempController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public List<String> saveFromCache(@RequestBody List<String> images) {
+    public List<String> saveTempImages(@RequestBody List<String> images) {
         return cache.saveFromCache(images);
     }
 

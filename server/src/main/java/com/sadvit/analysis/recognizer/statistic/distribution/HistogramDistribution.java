@@ -7,7 +7,7 @@ public class HistogramDistribution implements Distribution {
         return 0;
     }
 
-//    public double function(double[] args, double xw[]) {
+    //    public double function(double[] args, double xw[]) {
 //        double s = args[0];
 //        double h = args[1];
 //        double x = args[args.length - 1];
@@ -32,7 +32,7 @@ public class HistogramDistribution implements Distribution {
         double r = 1;
         for (int i = 0; i < args.length; i++) {
             if (args[i][0] <= x[i] && x[i] <= args[i][0] + (args[0].length - 2) * args[i][1]) {
-                r *= 10*Math.max(0.001, args[i][2 + (int) ((x[i] - args[i][0]) / args[i][1])]);
+                r *= 10 * Math.max(0.001, args[i][2 + (int) ((x[i] - args[i][0]) / args[i][1])]);
             } else {
                 r *= 0.00001;
             }

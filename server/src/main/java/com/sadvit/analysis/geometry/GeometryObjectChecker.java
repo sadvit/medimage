@@ -5,9 +5,9 @@ package com.sadvit.analysis.geometry;
  * Класс, проверяющий является ли объект артефактом.
  */
 public class GeometryObjectChecker {
-	
-	private final static int MAX_OBJ_LENGTH = 2000;
-	private final static int MIN_OBJ_LENGTH = 800;
+
+    private final static int MAX_OBJ_LENGTH = 2000;
+    private final static int MIN_OBJ_LENGTH = 800;
 
     private GeometryObject object;
 
@@ -24,7 +24,7 @@ public class GeometryObjectChecker {
     // Проверяет, замкнут ли объект
     public boolean isClosed() {
         Point first = object.getPointsArray().getPoint(0);
-        Point next =  object.getPointsArray().getPoint(object.getLength() - 1);
+        Point next = object.getPointsArray().getPoint(object.getLength() - 1);
 
         int x1 = first.getX();
         int x2 = next.getX();

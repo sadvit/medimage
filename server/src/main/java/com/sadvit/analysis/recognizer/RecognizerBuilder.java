@@ -5,7 +5,6 @@ import com.sadvit.analysis.recognizer.statistic.distribution.Distribution;
 import java.util.Map;
 
 /**
- *
  * @author meskill
  */
 public abstract class RecognizerBuilder {

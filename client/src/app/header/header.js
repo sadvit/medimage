@@ -1,4 +1,4 @@
-angular.module('medimage').directive('header', ['$state', 'loginService', function ($state, loginService) {
+angular.module('medimage').directive('header', ['$state', 'authService', function ($state, authService) {
   return {
     link: function (scope, element, attrs) {
 
@@ -9,7 +9,7 @@ angular.module('medimage').directive('header', ['$state', 'loginService', functi
       $scope.state = $state;
 
       $scope.logout = function () {
-        loginService.logout(function () {
+        authService.logout(function () {
           $state.go('login')
         });
       }

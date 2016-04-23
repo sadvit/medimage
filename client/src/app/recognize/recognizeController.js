@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('recognizeController', ['$scope', 'imageService', 'networkService', 'chainsService', 'modalsService', '$state', function ($scope, imageService, networkService, chainsService, modalsService, $state) {
+angular.module('medimage').controller('recognizeController', ['$scope', 'imageService', 'networkService', 'chainService', 'modalsService', '$state', 'processService', function ($scope, imageService, networkService, chainService, modalsService, $state, processService) {
 
   var self = this;
 
@@ -62,7 +62,7 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
     networkService.getNetworks(function (networks) {
       $scope.networks = networks;
     });
-    chainsService.getChains(function (chains) {
+    chainService.getChains(function (chains) {
       $scope.chains = chains;
     });
   };
@@ -114,7 +114,15 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
     var imagesToProcess = angular.copy($scope.selectedImages); // TODO remove
 
     $scope.isLoading = true;
-    chainsService.processImages($scope.selectedChain.id, imagesToProcess, function (imagesAfterProcess) {
+
+    var chainRequest = {
+      images : imagesToProcess,
+      chain: {
+        id : $scope.selectedChain.id
+      }
+    };
+
+    processService.processChain(chainRequest, function (imagesAfterProcess) {
 
       if ($scope.isLearnMode) {
         // generate recognize result

@@ -13,8 +13,6 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -49,7 +47,7 @@ public class ChainService {
     private ConversionService conversionService;
 
     public List<CacheObject> process(ChainRequestTO request) {
-        ChainTO chainTO = request.getChainTO();
+        ChainTO chainTO = request.getChain();
         List<String> images = request.getImages();
         Chain chain = conversionService.convert(chainTO, Chain.class);
         if (isExistingChain(request)) {
@@ -66,7 +64,7 @@ public class ChainService {
     }
 
     public boolean isExistingChain(ChainRequestTO request) {
-        return request.getChainTO().getId() != null;
+        return request.getChain().getId() != null;
     }
 
     public CacheObject processChain(String id, Chain chain) {

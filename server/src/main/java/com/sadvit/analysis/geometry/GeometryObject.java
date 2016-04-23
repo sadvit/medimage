@@ -7,8 +7,8 @@ import java.awt.image.BufferedImage;
  * Класс объект. Выполняет все операции с множеством точек - объектом.
  */
 public class GeometryObject {
-	
-	private final static int MAX_OBJ_LENGTH = 2000;
+
+    private final static int MAX_OBJ_LENGTH = 2000;
 
     private PointsArray pointsArray;
 

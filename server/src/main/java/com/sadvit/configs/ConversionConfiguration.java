@@ -1,8 +1,6 @@
 package com.sadvit.configs;
 
 import com.sadvit.converters.*;
-import com.sadvit.models.User;
-import com.sadvit.to.UserTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.ConversionService;

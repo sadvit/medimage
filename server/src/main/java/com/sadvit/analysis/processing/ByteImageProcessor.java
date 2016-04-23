@@ -20,7 +20,7 @@ public class ByteImageProcessor {
     }
     
     /*public void setBinary(BinarizationMethod method) {
-    	int[] histogram = getHistogram();
+        int[] histogram = getHistogram();
         switch (method) {
             case BINARY_MEAN:
                 globalBinary(Mean(histogram));

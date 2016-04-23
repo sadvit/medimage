@@ -9,9 +9,9 @@ import com.sadvit.analysis.geometry.Point;
  * Ходит ТОЛЬКО по черным линиям.
  */
 public class BeetleFinder {
-	
-	private final static int MAX_OBJ_LENGTH = 2000;
-	public final static int WHITE_VALUE = 255;
+
+    private final static int MAX_OBJ_LENGTH = 2000;
+    public final static int WHITE_VALUE = 255;
     public final static int BLACK_VALUE = 0;
 
     private ByteImage byteImage;
@@ -25,8 +25,9 @@ public class BeetleFinder {
 
     /**
      * Конструктор класса.
+     *
      * @param byteImage исходное изображение
-     * @param location исходное положение жука
+     * @param location  исходное положение жука
      */
     public BeetleFinder(ByteImage byteImage, Point location) {
         object = new GeometryObject();
@@ -43,7 +44,7 @@ public class BeetleFinder {
     // Используются в спорных ситуациях, когда вокруг имеется несколько пикселей и жук не знает, на какой из них идти.
     // Если можно - возвращают значение пикселя 0 или 255.
     // Если нельзя - возвращают 2.
-    private int get2UpPixel () {
+    private int get2UpPixel() {
         int X = location.getX();
         int Y = location.getY();
         if (Y - 2 >= 0) {
@@ -52,7 +53,8 @@ public class BeetleFinder {
             return 2;
         }
     }
-    private int get2DownPixel () {
+
+    private int get2DownPixel() {
         int X = location.getX();
         int Y = location.getY();
         if (Y + 2 < height) {
@@ -61,7 +63,8 @@ public class BeetleFinder {
             return 2;
         }
     }
-    private int get2LeftPixel () {
+
+    private int get2LeftPixel() {
         int X = location.getX();
         int Y = location.getY();
         if (X - 2 >= 0) {
@@ -70,7 +73,8 @@ public class BeetleFinder {
             return 2;
         }
     }
-    private int get2RightPixel () {
+
+    private int get2RightPixel() {
         int X = location.getX();
         int Y = location.getY();
         if (X + 2 < width) {
@@ -83,7 +87,7 @@ public class BeetleFinder {
     // Методы проверяют, можно ли ходить на окружающие с четырех сторон пиксели.
     // Если можно - возвращают значение пикселя 0 или 1.
     // Если нельзя - возвращают 2.
-    private int getUpPixel () {
+    private int getUpPixel() {
         int X = location.getX();
         int Y = location.getY();
         if (Y - 1 >= 0) {
@@ -92,7 +96,8 @@ public class BeetleFinder {
             return 2;
         }
     }
-    private int getDownPixel () {
+
+    private int getDownPixel() {
         int X = location.getX();
         int Y = location.getY();
         if (Y + 1 < height) {
@@ -101,7 +106,8 @@ public class BeetleFinder {
             return 2;
         }
     }
-    private int getLeftPixel () {
+
+    private int getLeftPixel() {
         int X = location.getX();
         int Y = location.getY();
         if (X - 1 >= 0) {
@@ -110,7 +116,8 @@ public class BeetleFinder {
             return 2;
         }
     }
-    private int getRightPixel () {
+
+    private int getRightPixel() {
         int X = location.getX();
         int Y = location.getY();
         if (X + 1 < width) {
@@ -130,18 +137,21 @@ public class BeetleFinder {
         length++;
         pointToObject();
     }
+
     private void down() {
         pointBlack();
         location.setY(location.getY() + 1);
         length++;
         pointToObject();
     }
+
     private void left() {
         pointBlack();
         location.setX(location.getX() - 1);
         length++;
         pointToObject();
     }
+
     private void right() {
         pointBlack();
         location.setX(location.getX() + 1);
@@ -207,11 +217,12 @@ public class BeetleFinder {
 
     // Метод прокручивает жизнь жука, пока он не умрет (не окажется среди черных пикселей)
     private void lifeCycle() {
-        while (scanAndGo());
+        while (scanAndGo()) ;
     }
 
     /**
      * Метод возвращает объект - маршурут жука. Будет использоваться для дальнейшего анализа.
+     *
      * @return
      */
     public GeometryObject getObject() {

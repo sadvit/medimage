@@ -128,7 +128,7 @@ public class StatisticalRecognizer implements Recognizer {
         for (Map.Entry a : map.entrySet()) {
             fw.write(a.getKey() + " ");
             double next[][] = (double[][]) a.getValue();
-            fw.write(next.length + " " + next[0].length+" ");
+            fw.write(next.length + " " + next[0].length + " ");
             for (double x[] : next) {
                 for (double y : x) {
                     fw.write(y + " ");
