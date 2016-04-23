@@ -5,10 +5,17 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -16,6 +23,8 @@ import java.util.Properties;
  * Created by vitaly.sadovskiy.
  */
 @Configuration
+@EnableJpaRepositories("com.sadvit.repositories")
+@EnableTransactionManagement
 public class PersistenceConfiguration {
 
     @Autowired
@@ -33,26 +42,21 @@ public class PersistenceConfiguration {
 
     @Bean
     @Autowired
-    public HibernateTemplate hibernateTemplate(SessionFactory sessionFactory) {
-        return new HibernateTemplate(sessionFactory);
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Properties hibernateProperties) {
+        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+        factoryBean.setDataSource(dataSource);
+        factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        factoryBean.setPackagesToScan(configurator.getPackagesToScan());
+        factoryBean.setJpaProperties(hibernateProperties);
+        return factoryBean;
     }
 
     @Bean
     @Autowired
-    public LocalSessionFactoryBean sessionFactory(DataSource dataSource, Properties hibernateProperties) {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource);
-        sessionFactory.setPackagesToScan(configurator.getPackagesToScan());
-        sessionFactory.setHibernateProperties(hibernateProperties);
-        return sessionFactory;
-    }
-
-    @Bean
-    @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-        HibernateTransactionManager txManager = new HibernateTransactionManager();
-        txManager.setSessionFactory(sessionFactory);
-        return txManager;
+    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        return transactionManager;
     }
 
 }

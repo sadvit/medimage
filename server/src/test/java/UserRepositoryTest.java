@@ -2,6 +2,8 @@ import com.sadvit.Application;
 import com.sadvit.models.Authority;
 import com.sadvit.models.User;
 import com.sadvit.repositories.UserRepository;
+import com.sadvit.services.UserService;
+import com.sadvit.to.UserTO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,31 +22,28 @@ import java.util.List;
 public class UserRepositoryTest {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
-    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    @Autowired
+    private UserRepository userRepository;
 
     @Test
     public void testAddUser() {
-        /*userRepository.addUser("sadvit", "sadvit", Authority.USER);
-        userRepository.addUser("mrsadvit", "sadvit", Authority.USER);
+        UserTO userTO = new UserTO();
+        userTO.setUsername("sadvit");
+        userTO.setNewPassword("123456");
+        userService.register(userTO);
+        userTO.setUsername("mrsadvit");
+        userService.register(userTO);
 
-        User sadvit = userRepository.getUser("sadvit");
-        User mrsadvit = userRepository.getUser("mrsadvit");
+        User sadvit = userRepository.findByUsername("sadvit");
+        User mrsadvit = userRepository.findByUsername("mrsadvit");
         Assert.assertNotNull(sadvit);
         Assert.assertNotNull(mrsadvit);
 
-        List<User> users = userRepository.getAllUsers();
+        List<User> users = userRepository.findAll();
         Assert.assertNotNull(users);
-        Assert.assertTrue(users.size() == 2);*/
-    }
-
-    public User createUser(String username) {
-        return null;
-        /*User user = new User();
-        user.setUsername(username);
-        user.setPassword(encoder.encode(username));
-        return user;*/
+        Assert.assertTrue(users.size() == 2);
     }
 
 }

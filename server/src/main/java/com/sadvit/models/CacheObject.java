@@ -5,7 +5,7 @@ package com.sadvit.models;
  */
 public class CacheObject {
 
-    String id;
+    private String id;
 
     public String getId() {
         return id;

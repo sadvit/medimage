@@ -39,7 +39,7 @@ public class NetworkRepositoryTest {
 
     @Test
     public void createTestNetwork() {
-        User user = userRepository.getUser(USERNAME);
+        /*User user = userRepository.getUser(USERNAME);
         int id = user.getId();
 
         Map<String, double[][]> memory = null;
@@ -53,7 +53,7 @@ public class NetworkRepositoryTest {
         NetworkEntity networkEntity = new NetworkEntity();
         networkEntity.setMemory(memory);
         networkEntity.setName("Default");
-        networkRepository.addNetwork(id, networkEntity);
+        networkRepository.addNetwork(id, networkEntity);*/
     }
 
     @Test

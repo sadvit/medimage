@@ -17,12 +17,12 @@ public class RecognizeResultService {
     @Autowired
     private RecognizeResultRepository repository;
 
-    public List<NetworkEntityTO> getRecognizeResults(Integer userId) {
-        return repository.getRecognizeResults(userId);
+    public List<NetworkEntityTO> getRecognizeResults(Long userId) {
+        return null; //repository.getRecognizeResults(userId); TODO get by user
     }
 
-    public void saveRecognizeResult(Integer networkId, RecognizeResultTO result) {
-        repository.addRecognizeResult(networkId, result);
+    public void saveRecognizeResult(Long networkId, RecognizeResultTO result) {
+        //repository.addRecognizeResult(networkId, result); TODO add by user
     }
 
 }

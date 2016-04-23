@@ -37,7 +37,7 @@ public class ChainController {
     }
 
     @RequestMapping(value = "/many/{chainId}", method = RequestMethod.POST)
-    public List<String> processChains(@RequestBody List<String> images, @PathVariable("chainId") Integer chainId) {
+    public List<String> processChains(@RequestBody List<String> images, @PathVariable("chainId") Long chainId) {
         return chainService.processChains(images, chainId);
     }
 

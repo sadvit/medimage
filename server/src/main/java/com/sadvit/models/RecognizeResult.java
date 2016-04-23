@@ -1,6 +1,7 @@
 package com.sadvit.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Map;
 import java.util.Set;
 
@@ -9,22 +10,22 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "RECOGNIZE_RESULTS")
-public class RecognizeResult {
+public class RecognizeResult implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<RecognizeValue> values;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,7 +1,5 @@
 package com.sadvit.to;
 
-import com.sadvit.models.User;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -14,15 +12,31 @@ public class UserTO {
     @Size(max = 64, min = 3)
     private String username;
 
+    @Size(max = 64)
     private String currentPassword;
 
+    @Size(max = 64)
     private String newPassword;
 
+    @Size(max = 32)
     private String name;
 
+    @Size(max = 32)
     private String surname;
 
+    @Size(max = 32)
     private String address;
+
+    @Size(max = 32)
+    private String folder;
+
+    private boolean accountNonExpired;
+
+    private boolean accountNonLocked;
+
+    private boolean credentialsNonExpired;
+
+    private boolean enabled;
 
     public String getName() {
         return name;
@@ -72,23 +86,44 @@ public class UserTO {
         this.currentPassword = currentPassword;
     }
 
-    // refactoring all DTO/TO to converters
-
-    public User convertToEntity() {
-        User user = new User();
-        user.setUsername(username);
-        user.setName(name);
-        user.setSurname(surname);
-        user.setAddress(address);
-        return user;
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
     }
 
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
 
-    public void createFromEntity(User entity) {
-        name = entity.getName();
-        surname = entity.getSurname();
-        username = entity.getUsername();
-        address = entity.getAddress();
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getFolder() {
+        return folder;
+    }
+
+    public void setFolder(String folder) {
+        this.folder = folder;
     }
 
 }

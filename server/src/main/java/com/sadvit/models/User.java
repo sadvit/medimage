@@ -20,12 +20,11 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(unique = true)
     private String username;
 
-    @JsonIgnore
 	private String password;
 
     private boolean accountNonExpired;
@@ -47,11 +46,9 @@ public class User implements UserDetails {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Authority> authorities;
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Chain> chains;
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<NetworkEntity> networkEntities;
 
@@ -90,11 +87,11 @@ public class User implements UserDetails {
         return enabled;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

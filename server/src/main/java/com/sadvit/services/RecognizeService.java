@@ -32,7 +32,7 @@ public class RecognizeService {
     @Autowired
     private NetworkService networkService;
 
-    public void learn(Integer userId, RecognizeResultTO recognizeResult) {
+    public void learn(Long userId, RecognizeResultTO recognizeResult) {
         List<String> answers = RecognizeUtils.extractAnswers(recognizeResult);
         int outputParamsNumber = answers.size();
         DataSet dataSet = new DataSet(INPUT_PARAMS_NUMBER, outputParamsNumber);
@@ -50,7 +50,7 @@ public class RecognizeService {
         networkService.addNetwork(userId, networkEntity);
     }
 
-    public RecognizeResultTO recognize(Integer networkId, List<String> images) {
+    public RecognizeResultTO recognize(Long networkId, List<String> images) {
         NetworkEntity networkEntity = networkService.getNetwork(networkId);
         if (networkEntity.getNeuralNetwork() != null) {
             RecognizeResultTO recognizeResult = new RecognizeResultTO();

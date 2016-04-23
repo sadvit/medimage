@@ -11,7 +11,7 @@ public class BinaryParams {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Enumerated
     private BinaryType type;
@@ -74,11 +74,11 @@ public class BinaryParams {
         this.thresold = thresold;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

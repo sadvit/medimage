@@ -7,6 +7,7 @@ import org.neuroph.nnet.Kohonen;
 import org.neuroph.nnet.MultiLayerPerceptron;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -16,11 +17,11 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "NETWORKS")
-public class NetworkEntity {
+public class NetworkEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     private String name;
 
@@ -76,11 +77,11 @@ public class NetworkEntity {
         this.answers = answers;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

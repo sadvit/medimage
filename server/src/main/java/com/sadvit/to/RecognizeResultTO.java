@@ -13,17 +13,17 @@ import java.util.Set;
  */
 public class RecognizeResultTO implements DTO<RecognizeResult> {
 
-    private Integer id;
+    private Long id;
 
     private String name;
 
     private List<RecognizeValueTO> values;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -19,16 +19,16 @@ public class NetworkService {
     @Autowired
     private NetworkRepository networkRepository;
 
-    public NetworkEntity getNetwork(Integer networkId) {
-        return networkRepository.getNetwork(networkId);
+    public NetworkEntity getNetwork(Long networkId) {
+        return networkRepository.findOne(networkId);
     }
 
-    public Set<NetworkEntity> getNetworks(Integer userId) {
-        return networkRepository.getNetworks(userId);
+    public Set<NetworkEntity> getNetworks(Long userId) {
+        return null; //networkRepository.getNetworks(userId); TODO impl find by user
     }
 
-    public void addNetwork(Integer userId, NetworkEntity networkEntity) {
-        networkRepository.addNetwork(userId, networkEntity);
+    public void addNetwork(Long userId, NetworkEntity networkEntity) {
+        //networkRepository.addNetwork(userId, networkEntity); TODO add by user
     }
 
 }

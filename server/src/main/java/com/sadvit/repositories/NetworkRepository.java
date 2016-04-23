@@ -1,31 +1,14 @@
 package com.sadvit.repositories;
 
-import com.sadvit.models.Chain;
 import com.sadvit.models.NetworkEntity;
-import com.sadvit.models.User;
-import org.hibernate.Hibernate;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate4.HibernateTemplate;
-import org.springframework.stereotype.Repository;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Created by sadvit on 4/16/16.
  */
-@SuppressWarnings("unchecked")
-@Repository
-public class NetworkRepository {
+public interface NetworkRepository extends JpaRepository<NetworkEntity, Long> {
 
-    @Autowired
-    private HibernateTemplate template;
-
-    public Set<NetworkEntity> getNetworks(Integer userId) {
+    /*public Set<NetworkEntity> getNetworks(Integer userId) {
         return template.execute(session -> {
             User user = (User) session.get(User.class, userId);
             Hibernate.initialize(user.getNetworkEntities());
@@ -53,5 +36,19 @@ public class NetworkRepository {
             return null;
         });
     }
+
+    public List<NetworkEntityTO> getRecognizeResults(Integer userId) {
+        return template.execute(session -> {
+            User user = (User) session.get(User.class, userId);
+            Set<NetworkEntity> entities = user.getNetworkEntities();
+            List<NetworkEntityTO> infos = new ArrayList<>();
+            entities.forEach(entity -> {
+                NetworkEntityTO info = new NetworkEntityTO();
+                info.createFromEntity(entity);
+                infos.add(info);
+            });
+            return infos;
+        });
+    }*/
 
 }

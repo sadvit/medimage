@@ -36,7 +36,7 @@ public class NetworkController {
     }
 
     @RequestMapping(value = "/recognize/{networkId}", method = RequestMethod.POST)
-    public RecognizeResultTO recognize(@RequestBody List<String> images, @PathVariable("networkId") Integer networkId) {
+    public RecognizeResultTO recognize(@RequestBody List<String> images, @PathVariable("networkId") Long networkId) {
         return recognizeService.recognize(networkId, images);
     }
 

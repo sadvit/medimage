@@ -5,24 +5,18 @@ angular.module('medimage').controller('profileController', ['$scope', 'userServi
   $scope.userMode = true;
   $scope.optionsMode = false;
 
-  $scope.user = {};
+  $scope.oldUser = {};
   $scope.newUser = {};
 
-  $scope.updateUsername = function () {
-    userService.updateUser($scope.newUser, function (user) {
-      $scope.user.username = user.username;
-    });
-  };
-
-  $scope.updatePassword = function () {
-    userService.updateUser($scope.newUser, function () {
-      console.log('ok')
+  $scope.updateUser = function () {
+    userService.updateUser($scope.newUser, function (newUser) {
+      $scope.oldUser = newUser;
     });
   };
 
   this.init = function () {
-    userService.getUser(function (user) {
-      $scope.user = user;
+    userService.getUser(function (oldUser) {
+      $scope.oldUser = oldUser;
     });
   };
 

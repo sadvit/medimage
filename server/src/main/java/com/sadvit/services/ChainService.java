@@ -56,13 +56,13 @@ public class ChainService {
         return imageCache.addToCache(result);
     }
 
-    public CacheObject processChain(String id, Integer chainId) {
+    public CacheObject processChain(String id, Long chainId) {
         Chain chain = getChain(chainId);
         return processChain(id, chain.getChainElements());
     }
 
-    public List<String> processChains(List<String> images, Integer chainId) {
-        Chain chain = chainRepository.getChain(chainId);
+    public List<String> processChains(List<String> images, Long chainId) {
+        Chain chain = chainRepository.findOne(chainId);
         List<String> result = new ArrayList<>();
         images.forEach(imageId -> {
             result.add(processChain(imageId, chain.getChainElements()).getId());
@@ -70,16 +70,16 @@ public class ChainService {
         return result;
     }
 
-    public Set<Chain> getChains(Integer userId) {
-        return chainRepository.getChains(userId);
+    public Set<Chain> getChains(Long userId) {
+        return chainRepository.findByUserId(userId);
     }
 
-    public Chain getChain(Integer id) {
-        return chainRepository.getChain(id);
+    public Chain getChain(Long id) {
+        return chainRepository.findOne(id);
     }
 
-    public void saveChain(Integer userId, Chain chain) {
-        chainRepository.addChain(userId, chain);
+    public void saveChain(Long userId, Chain chain) {
+        //chainRepository.addChain(userId, chain); TODO impl save by user
     }
 
 }

@@ -1,27 +1,28 @@
 package com.sadvit.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by sadvit on 4/17/16.
  */
 @Entity
 @Table(name = "RECOGNIZE_VALUES")
-public class RecognizeValue {
+public class RecognizeValue implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     private String imageId;
 
     private String value;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

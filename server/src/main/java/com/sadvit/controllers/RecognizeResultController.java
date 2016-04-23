@@ -26,7 +26,7 @@ public class RecognizeResultController {
     }
 
     @RequestMapping(value = "/{networkId}", method = RequestMethod.POST)
-    public void saveRecognizeResult(@RequestBody RecognizeResultTO result, @PathVariable("networkId") Integer networkId) {
+    public void saveRecognizeResult(@RequestBody RecognizeResultTO result, @PathVariable("networkId") Long networkId) {
         service.saveRecognizeResult(networkId, result);
     }
 

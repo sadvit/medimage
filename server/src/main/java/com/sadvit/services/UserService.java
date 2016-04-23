@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 	@Autowired
-	private FileSystemService fileSystemService;
+	private FileSystemService systemService;
 
     @Autowired
     private ConversionService conversionService;
@@ -46,7 +46,7 @@ public class UserService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException	{
         try {
-            return userRepository.getUser(username);
+            return userRepository.findByUsername(username);
         } catch (Exception e) {
             throw new UsernameNotFoundException("User with username: " + username + " not found");
         }
@@ -58,18 +58,18 @@ public class UserService implements UserDetailsService {
         return new HashSet<>(authorityList);
     }
 
-	public void register(UserTO info) {
-        User user = info.convertToEntity();
+	public void register(UserTO userTO) {
+        User user = conversionService.convert(userTO, User.class);
         user.setEnabled(true);
         user.setAccountNonExpired(true);
         user.setAccountNonLocked(true);
         user.setCredentialsNonExpired(true);
-        user.setPassword(encoder.encode(info.getNewPassword()));
+        user.setPassword(encoder.encode(userTO.getNewPassword()));
         user.setAuthorities(createDefaultAuthorities());
-        String folder = UUID.randomUUID().toString().replace("-", "");
+        String folder = UUID.randomUUID().toString();
         user.setFolder(folder);
-		userRepository.addUser(user);
-		fileSystemService.createUserFolder(folder);
+		userRepository.save(user);
+		systemService.createUserFolder(folder);
 	}
 
     public User getCurrentUser() {
@@ -90,28 +90,23 @@ public class UserService implements UserDetailsService {
         return getUserFolderPath() + SEPARATOR + id;
     }
 
-    public UserTO getUser(Integer id) {
-        User user = userRepository.getUser(id);
-        UserTO info = new UserTO();
-        info.setUsername(user.getUsername());
-        info.setName(user.getName());
-        info.setSurname(user.getSurname());
-        info.setAddress(user.getAddress());
-        return info;
+    public UserTO getUser(Long id) {
+        User user = userRepository.findOne(id);
+        return conversionService.convert(user, UserTO.class);
     }
 
-    public UserTO updateUser(Integer userId, UserTO info) {
-        User user = userRepository.getUser(userId);
+    public UserTO updateUser(Long userId, UserTO info) {
+        User user = userRepository.findOne(userId);
         if (info.getNewPassword() != null) {
             boolean matches = encoder.matches(info.getCurrentPassword(), user.getPassword());
             if (matches) {
                 user.setPassword(encoder.encode(info.getNewPassword()));
-                return conversionService.convert(userRepository.updateUser(user), UserTO.class);
+                return conversionService.convert(userRepository.save(user), UserTO.class);
             } else {
                 throw new BadCredentialsException("Incorrect current password");
             }
         } else {
-            return conversionService.convert(userRepository.updateUser(user), UserTO.class);
+            return conversionService.convert(userRepository.save(user), UserTO.class);
         }
     }
 

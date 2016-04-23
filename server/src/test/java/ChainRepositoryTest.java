@@ -35,21 +35,21 @@ public class ChainRepositoryTest {
 
     @Test
     public void testAddChain() {
-        User user = userRepository.getUser(USERNAME);
-        int id = user.getId();
+        User user = userRepository.findByUsername(USERNAME);
+        Long id = user.getId();
 
         List<Chain> chains = createChains();
-        chains.forEach(chain -> chainRepository.addChain(id, chain));
-        /*List<Chain> _chains = chainRepository.getChains(USERNAME);
+        //chains.forEach(chain -> chainRepository.addChain(id, chain));
+        Set<Chain> _chains = chainRepository.findByUserId(id);
         List<Chain> byOne = new ArrayList<>();
         _chains.forEach(chain -> {
-            byOne.add(chainRepository.getChain(chain.getId()));
+            byOne.add(chainRepository.findOne(chain.getId()));
         });
         Assert.assertNotNull(byOne);
         Assert.assertNotNull(chains);
         Assert.assertNotNull(_chains);
         Assert.assertTrue(chains.size() == _chains.size());
-        Assert.assertTrue(chains.size() == byOne.size());*/
+        Assert.assertTrue(chains.size() == byOne.size());
     }
 
     public List<Chain> createChains() {
