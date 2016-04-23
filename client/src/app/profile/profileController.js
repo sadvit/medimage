@@ -2,6 +2,18 @@
 
 angular.module('medimage').controller('profileController', ['$scope', 'userService', function ($scope, userService) {
 
+  var pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+
+  var isEmpty = function (str) {
+    return !str || str.length == 0;
+  };
+
+  var isEmail = function(email) {
+    if (!isEmpty(email)) {
+      return pattern.test(email);
+    }
+  };
+
   $scope.userMode = true;
   $scope.optionsMode = false;
 
@@ -10,50 +22,65 @@ angular.module('medimage').controller('profileController', ['$scope', 'userServi
 
   $scope.emailFocused = false;
 
-  var pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+  $scope.info = {};
+  $scope.pass = {};
+  $scope.email = {};
 
   $scope.updateEmail = function () {
     if (!$scope.updateEmailDisabled()) {
-      $scope.updateUser();
-      $scope.emailDefocus();
+      $scope.updateUser(($scope.email));
+    }
+  };
+
+  $scope.updatePassword = function () {
+    if (!$scope.updatePasswordDisabled()) {
+      $scope.updateUser($scope.pass);
+    }
+  };
+
+  $scope.updateInfo = function () {
+    if (!$scope.updateInfoDisabled()) {
+      $scope.updateUser($scope.info);
     }
   };
 
   $scope.updateEmailDisabled = function () {
-    return $scope.emailFocused && (!$scope.newUser.username || !pattern.test($scope.newUser.username));
+    return $scope.emailFocused && !isEmail($scope.email.username);
+  };
+
+  $scope.updatePasswordDisabled = function () {
+    return $scope.passFocused && ($scope.pass.repeatPassword != $scope.pass.newPassword
+      || isEmpty($scope.pass.currentPassword)
+      || isEmpty($scope.pass.repeatPassword)
+      || isEmpty($scope.pass.newPassword));
+  };
+
+  $scope.updateInfoDisabled = function () {
+    return $scope.infoFocused && (isEmpty($scope.info.address)
+      || isEmpty($scope.info.name)
+      || isEmpty($scope.info.surname));
   };
 
   $scope.emailFocus = function () {
     $scope.emailFocused = true;
   };
 
-  $scope.emailDefocus = function () {
-    $scope.emailFocused = false;
+  $scope.passFocus = function () {
+    $scope.passFocused = true;
   };
 
-  $scope.updatePassword = function () {
-    if (!$scope.updatePasswordDisabled()) {
-      $scope.updateUser();
-    }
-  };
-
-  $scope.updatePasswordDisabled = function () {
-    return $scope.newUser.repeatPassword != $scope.newUser.currentPassword
-      && $scope.newUser.currentPassword.length > 0
-      && $scope.newUser.repeatPassword.length > 0;
-  };
-
-  $scope.updateInfo = function () {
-
+  $scope.infoFocus = function () {
+    $scope.infoFocused = true;
   };
 
   var merge = function (objValue, srcValue) {
     return objValue ? objValue : srcValue;
   };
 
-  $scope.updateUser = function () {
-    var reqUser = _.assign($scope.newUser, $scope.oldUser, merge);
+  $scope.updateUser = function (user) {
+    var reqUser = _.assign(user, $scope.oldUser, merge);
     userService.updateUser(reqUser, function (newUser) {
+      $scope.email = {};
       $scope.oldUser = newUser;
       $scope.newUser = {};
     });
@@ -62,6 +89,12 @@ angular.module('medimage').controller('profileController', ['$scope', 'userServi
   this.init = function () {
     userService.getUser(function (oldUser) {
       $scope.oldUser = oldUser;
+
+      $scope.info.address = oldUser.address;
+      $scope.info.name = oldUser.name;
+      $scope.info.surname = oldUser.surname;
+
+
     });
   };
 

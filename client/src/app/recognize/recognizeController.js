@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('recognizeController', ['$scope', 'imageService', 'networkService', 'chainService', 'modalsService', '$state', 'processService', function ($scope, imageService, networkService, chainService, modalsService, $state, processService) {
+angular.module('medimage').controller('recognizeController', ['$scope', 'imageService', 'networkService', 'chainService', 'modalsService', '$state', 'processService', 'recognizeService', 'resultService', function ($scope, imageService, networkService, chainService, modalsService, $state, processService, recognizeService, resultService) {
 
   var self = this;
 
@@ -130,7 +130,7 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
         $scope.createRecognizeResult(imagesToProcess, imagesAfterProcess);
       } else {
         // get recognize result
-        networkService.recognize($scope.selectedNetwork.id, imagesAfterProcess, function (recognizeResult) {
+        recognizeService.recognize($scope.selectedNetwork.id, imagesAfterProcess, function (recognizeResult) {
           $scope.isLoading = false;
           $scope.recognizeResult = recognizeResult;
           $scope.addOriginalToRecognizeResult(imagesToProcess, imagesAfterProcess);
@@ -142,7 +142,7 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
 
   $scope.outputBlockClick = function () {
     if ($scope.isLearnMode) {
-      networkService.learn($scope.recognizeResult, function () {
+      recognizeService.learn($scope.recognizeResult, function () {
         networkService.getNetworks(function (networks) {
           $scope.networks = networks;
         });
@@ -150,7 +150,7 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
     } else {
       modalsService.showRecognizeModal(function (name) {
         $scope.recognizeResult.name = name;
-        networkService.saveResults($scope.selectedNetwork.id, $scope.recognizeResult, function () {
+        resultService.saveResults($scope.selectedNetwork.id, $scope.recognizeResult, function () {
           $state.go('statistics');
         })
       }, function () {

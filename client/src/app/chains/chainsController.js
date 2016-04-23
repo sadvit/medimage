@@ -91,10 +91,7 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainServi
       };
 
       processService.processChain(chainRequest, function (images) {
-        $scope.resultImages = [];
-        images.forEach(function (image) {
-          $scope.resultImages.push(image.id);
-        });
+        $scope.resultImages = images;;
         $scope.isResultLoading = false;
       });
     }

@@ -4,7 +4,12 @@ angular.module('medimage').service('processService', ['Restangular', function (R
 
   this.processChain = function (chainRequest, callback) {
     Restangular.all('process/images').customPUT(chainRequest).then(function (data) {
-      callback(data.plain());
+      var images = data.plain();
+      var _images = [];
+      images.forEach(function (image) {
+        _images.push(image.id);
+      });
+      callback(_images);
     });
   };
 

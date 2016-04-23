@@ -104,6 +104,7 @@ public class UserService implements UserDetailsService {
         if (oldUser != null) {
             User newUser = conversionService.convert(userTO, User.class);
             newUser.setId(userId);
+            newUser.setAuthorities(oldUser.getAuthorities());
             if (userTO.getNewPassword() != null) {
                 boolean matches = encoder.matches(userTO.getCurrentPassword(), oldUser.getPassword());
                 if (matches) {

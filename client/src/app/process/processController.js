@@ -21,7 +21,7 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
 
     processService.processChain(chainRequest, function (images) {
       $scope.folder = tempFolder;
-      $scope.imageId = images[0].id;
+      $scope.imageId = images[0];
     });
   };
 

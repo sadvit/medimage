@@ -44,7 +44,7 @@ public class User implements UserDetails {
     private Set<Authority> authorities;
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Set<Authority> getAuthorities() {
         return authorities;
     }
 
