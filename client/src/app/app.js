@@ -4,7 +4,7 @@ var medimage = angular.module('medimage', ['restangular', 'ui.router', 'ui.boots
 
 var network_address = 'http://192.168.0.101:8080';
 
-medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvider, ScrollBarsProvider) {
+medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvider, ScrollBarsProvider, $httpProvider) {
   $urlRouterProvider.otherwise('login');
   $stateProvider
     .state('login', {
@@ -82,6 +82,10 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
 
   RestangularProvider.setBaseUrl(network_address);
 
+  RestangularProvider.setDefaultHttpFields({
+    timeout: 10000
+  });
+
   ScrollBarsProvider.defaults = {
     scrollButtons: {
       scrollAmount: 'auto', // scroll amount when button pressed
@@ -98,15 +102,35 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
 
 });
 
-medimage.run(['$state', '$rootScope', 'Restangular', function ($state, $rootScope, Restangular) {
+medimage.run(['$state', '$rootScope', 'Restangular', 'modalsService', function ($state, $rootScope, Restangular, modalsService) {
 
-  Restangular.setErrorInterceptor(function (response) {
-      if (response.status == 401) {
+  var isUnauthorizedProcessed = false;
+
+  var unauthorizedHandler = function (error) {
+    if (!isUnauthorizedProcessed) {
+      isUnauthorizedProcessed = true;
+      modalsService.showErrorModal(function () {
         $state.go('login');
-      }
-      return false;
+        isUnauthorizedProcessed = false;
+        return false;
+      }, error);
     }
-  );
+  };
+
+  var internalHandler = function (error) {
+    modalsService.showErrorModal(function () {
+      return false;
+    }, error);
+  };
+
+  Restangular.setErrorInterceptor(function(response) {
+    if (response.status == 401) {
+      unauthorizedHandler(response);
+    }
+    if (response.status == 500) {
+      internalHandler(response);
+    }
+  });
 
   $rootScope.network_address = network_address;
 

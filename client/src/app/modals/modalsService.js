@@ -48,4 +48,21 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
     modalInstance.result.then(apply, cancel);
   };
 
+  this.showErrorModal = function (apply, error) {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      backdrop: 'static',
+      keyboard: false,
+      openedClass: 'modal-warning',
+      templateUrl: '/modals/error/modalErrorTemplate.html',
+      controller: 'modalErrorController',
+      resolve: {
+        error: function() {
+          return angular.copy(error);
+        }
+      }
+    });
+    modalInstance.result.then(apply);
+  };
+
 }]);
