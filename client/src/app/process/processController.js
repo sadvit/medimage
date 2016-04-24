@@ -7,6 +7,7 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
   var imagesFolder = 'images';
   var tempFolder = 'temp';
   $scope.folder = imagesFolder;
+  $scope.cropMode = false;
 
   $scope.chain = [];
 
@@ -166,6 +167,56 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
     } else {
       $scope.chain.push(chainElement);
     }
+  };
+
+  $scope.cropImage = function() {
+    $scope.cropMode = true;
+    document.body.style.cursor='crosshair';
+    var glass = angular.element('body');
+    glass.on('mousedown.crop', function (event) {
+      var p1 = {
+        x: event.clientX,
+        y: event.clientY
+      };
+      glass.on('mousemove.crop', function (event) {
+        var p2 = {
+          x: event.clientX + 5,
+          y: event.clientY - 25
+        };
+        $scope.drawRect(p1, p2);
+        //console.log('move', p1, p2);
+      });
+      glass.on('mouseup.crop', function (event) {
+        var p2 = {
+          x: event.clientX,
+          y: event.clientY
+        };
+        document.body.style.cursor='default';
+        glass.off('mousedown.crop');
+        glass.off('mouseup.crop');
+        glass.off('mousemove.crop');
+        $scope.$apply(function () {
+          $scope.cropMode = false;
+          $scope.crop(p1, p2);
+        });
+      });
+    });
+  };
+
+  $scope.crop = function (p1, p2) {
+
+  };
+
+  $scope.drawRect = function (p1, p2) {
+    var rect = angular.element('#rect');
+    var w = p2.x - p1.x;
+    var h = p2.y - p1.y;
+    rect.css({
+      top: p1.y + 'px',
+      left: p1.x + 'px',
+      width: w + 'px',
+      height: h + 'px'
+    })
   };
 
   self.cannyModalCancel = function () {
