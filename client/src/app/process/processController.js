@@ -102,6 +102,9 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
       case 'HISTOGRAM_EQUALIZE':
         $scope.histogramEqualizeModalShow(chainElement.histogramEqualizeParams);
         break;
+      case 'CANNY':
+        $scope.cannyModalShow(chainElement.cannyParams);
+        break;
     }
   };
 

@@ -23,3 +23,7 @@ body {
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
   cursor: default;
 }
+
+.hack {
+  cursor: default !important;
+}

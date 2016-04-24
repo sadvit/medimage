@@ -12,16 +12,16 @@
           <li class="panel-header border"><a><span>CHAIN OPERATION LIST</span></a></li>
         </ul>
 
-        <ul dnd-list="chainElements" class="sidebar-menu chain-menu">
+        <ul dnd-list="chainElements" class="sidebar-menu chain-menu hack">
 
-          <li ng-repeat="chainElement in chainElements"
-              dnd-draggable="chainElement"
+          <li class="hack" ng-repeat="chainElement in chainElements">
+            <!--dnd-draggable="chainElement"
               dnd-moved="chainElements.splice($index , 1)"
-              dnd-effect-allowed="move">
-            <a draggable="true">
-              <i ng-click="changeOperation($index)" class="fa fa-gears chain-options"></i>
+              dnd-effect-allowed="move"-->
+            <a class="hack" draggable="false">
+              <!--<i ng-click="changeOperation($index)" class="fa fa-gears chain-options"></i>-->
               <span>{{chainElement.operationType}}</span>
-              <i ng-click="removeOperation($index)" class="fa fa-times chain-close"></i>
+              <!--<i ng-click="removeOperation($index)" class="fa fa-times chain-close"></i>-->
             </a>
           </li>
 

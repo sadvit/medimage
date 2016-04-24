@@ -43,10 +43,14 @@ public class CannyService {
         // Create a canny edge detector which will dynamically compute the threshold based on maximum edge intensity
         // It has also been configured to save the trace as a graph.  This is the graph created while performing
         // hysteresis thresholding.
-        CannyEdge<ImageUInt8, ImageSInt16> canny = FactoryEdgeDetectors.canny(2, true, true, ImageUInt8.class, ImageSInt16.class);
+        CannyEdge<ImageUInt8, ImageSInt16> canny = FactoryEdgeDetectors.canny(params.getBlurRadius(), params.isSaveTrace(), params.isDynamicThreshold(), ImageUInt8.class, ImageSInt16.class);
 
         // The edge image is actually an optional parameter.  If you don't need it just pass in null
-        canny.process(gray, 0.1f, 0.3f, edgeImage);
+
+        float threshHigh = params.getThreshHigh();
+        float threshLow = params.getThreshLow();
+
+        canny.process(gray, threshLow / 100, threshHigh / 100, edgeImage);
 
         // First get the contour created by canny
         List<EdgeContour> edgeContours = canny.getContours();
