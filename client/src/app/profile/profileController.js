@@ -16,6 +16,7 @@ angular.module('medimage').controller('profileController', ['$scope', 'userServi
   var $validationProvider = $injector.get('$validation');
 
   $scope.checkValid = $validationProvider.checkValid;
+  $scope.reset = $validationProvider.reset;
 
   $scope.updateEmail = function () {
     $scope.updateUser(($scope.email));

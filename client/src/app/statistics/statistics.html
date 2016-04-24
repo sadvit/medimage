@@ -68,11 +68,19 @@
 
     <div class="statistics-history" ng-if="!isOneImage">
 
-      <section class="content-header">
+      <section ng-if="leftResults.length == 0 && rightResults.length == 0" class="content">
+
+        <div class="no-data">
+          <span>History is empty</span>
+        </div>
+
+      </section>
+
+      <section ng-if="leftResults.length > 0 || rightResults.length > 0" class="content-header">
         <h1>Recognize history</h1>
       </section>
 
-      <section class="content">
+      <section ng-if="leftResults.length > 0 || rightResults.length > 0" class="content">
         <div class="row">
 
           <div class="col-md-6">
