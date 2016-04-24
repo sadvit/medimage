@@ -2,12 +2,6 @@ angular.module('medimage').controller('modalHistogramEqualizeController', ['$sco
 
   var self = this;
 
-  $scope.binaryTypes = ['MEAN', 'OTSU', 'ENTROPY', 'SQUARE', 'GAUSSIAN', 'SAUVOLA', 'THRESOLD'];
-
-  $scope.selectBinaryType = function (binaryType) {
-    $scope.binaryParams.type = binaryType;
-  };
-
   $scope.apply = function () {
     $uibModalInstance.close($scope.equalizeParams);
   };

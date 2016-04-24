@@ -1,6 +1,6 @@
 'use strict';
 
-var medimage = angular.module('medimage', ['restangular', 'ui.router', 'ui.bootstrap', 'ui.bootstrap-slider', 'dndLists', 'ngScrollbars', 'angularFileUpload', 'validation', 'validation.rule']);
+var medimage = angular.module('medimage', ['restangular', 'ui.router', 'ui.bootstrap', 'ui.bootstrap-slider', 'dndLists', 'ngScrollbars', 'angularFileUpload', 'validation', 'validation.rule', 'ui.checkbox']);
 
 var network_address = 'http://192.168.0.100:8080';
 

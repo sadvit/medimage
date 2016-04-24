@@ -43,3 +43,18 @@ ul.uib-dropdown-menu {
   border-radius: 0;
   width: 350px;
 }
+
+/* TODO to equalize */
+
+.row.checkbox .col-md-8 {
+  padding-left: 7px;
+  padding-top: 13px;
+  button {
+    border-radius: 0 !important;
+    margin-left: 55px;
+    margin-top: -3px;
+  }
+  .type-span {
+    position: absolute;
+  }
+}

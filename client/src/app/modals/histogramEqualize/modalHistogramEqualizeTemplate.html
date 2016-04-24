@@ -3,16 +3,21 @@
 </div>
 <div class="modal-body">
   <div class="container-fluid">
-    <div class="row">
+    <div class="row checkbox">
       <div class="col-md-4 text-center">
-        <span>Global type:</span>
+        <span>Equalization type:</span>
       </div>
       <div class="col-md-8">
-        <input type="checkbox" ng-model="equalizeParams.isGlobal">
+        <span class="type-span" ng-if="equalizeParams.isGlobal">GLOBAL</span>
+        <span class="type-span" ng-if="!equalizeParams.isGlobal">LOCAL</span>
+        <checkbox
+          class="btn-primary"
+          ng-model="equalizeParams.isGlobal">
+        </checkbox>
       </div>
     </div>
     <!-- THRESOLD PARAMS -->
-    <div class="row" ng-class="{'hidden': equalizeParams.isGlobal}">
+    <div class="row" ng-show="!equalizeParams.isGlobal">
       <div class="col-md-4 text-center">
         <span>Thresold:</span>
       </div>
@@ -21,7 +26,7 @@
           <span slider
                 ng-model="equalizeParams.radius"
                 min="0"
-                max="255"
+                max="150"
                 range="range">
 	        </span>
         </div>
