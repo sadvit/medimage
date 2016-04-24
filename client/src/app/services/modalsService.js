@@ -65,4 +65,21 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
     modalInstance.result.then(apply);
   };
 
+  this.showSuccessModal = function (apply, success) {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      backdrop: 'static',
+      keyboard: false,
+      openedClass: 'modal-primary',
+      templateUrl: '/modals/success/modalSuccessTemplate.html',
+      controller: 'modalSuccessController',
+      resolve: {
+        success: function () {
+          return angular.copy(success);
+        }
+      }
+    });
+    modalInstance.result.then(apply);
+  };
+
 }]);

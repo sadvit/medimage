@@ -1,76 +1,33 @@
 'use strict';
 
-angular.module('medimage').controller('profileController', ['$scope', 'userService', function ($scope, userService) {
-
-  var pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-
-  var isEmpty = function (str) {
-    return !str || str.length == 0;
-  };
-
-  var isEmail = function (email) {
-    if (!isEmpty(email)) {
-      return pattern.test(email);
-    }
-  };
+angular.module('medimage').controller('profileController', ['$scope', 'userService', '$validation', '$injector', 'modalsService', function ($scope, userService, $validation, $injector, modalsService) {
 
   $scope.userMode = true;
   $scope.optionsMode = false;
 
-  $scope.oldUser = {};
-  $scope.newUser = {};
-
-  $scope.emailFocused = false;
+  $scope.user = {};
 
   $scope.info = {};
   $scope.pass = {};
   $scope.email = {};
 
+  $scope.newPassword = '';
+
+  var $validationProvider = $injector.get('$validation');
+
+  $scope.checkValid = $validationProvider.checkValid;
+
   $scope.updateEmail = function () {
-    if (!$scope.updateEmailDisabled()) {
-      $scope.updateUser(($scope.email));
-    }
+    $scope.updateUser(($scope.email));
   };
 
   $scope.updatePassword = function () {
-    if (!$scope.updatePasswordDisabled()) {
-      $scope.updateUser($scope.pass);
-    }
+    $scope.pass.newPassword = $scope.newPassword;
+    $scope.updateUser($scope.pass);
   };
 
   $scope.updateInfo = function () {
-    if (!$scope.updateInfoDisabled()) {
-      $scope.updateUser($scope.info);
-    }
-  };
-
-  $scope.updateEmailDisabled = function () {
-    return $scope.emailFocused && !isEmail($scope.email.username);
-  };
-
-  $scope.updatePasswordDisabled = function () {
-    return $scope.passFocused && ($scope.pass.repeatPassword != $scope.pass.newPassword
-      || isEmpty($scope.pass.currentPassword)
-      || isEmpty($scope.pass.repeatPassword)
-      || isEmpty($scope.pass.newPassword));
-  };
-
-  $scope.updateInfoDisabled = function () {
-    return $scope.infoFocused && (isEmpty($scope.info.address)
-      || isEmpty($scope.info.name)
-      || isEmpty($scope.info.surname));
-  };
-
-  $scope.emailFocus = function () {
-    $scope.emailFocused = true;
-  };
-
-  $scope.passFocus = function () {
-    $scope.passFocused = true;
-  };
-
-  $scope.infoFocus = function () {
-    $scope.infoFocused = true;
+    $scope.updateUser($scope.info);
   };
 
   var merge = function (objValue, srcValue) {
@@ -78,22 +35,35 @@ angular.module('medimage').controller('profileController', ['$scope', 'userServi
   };
 
   $scope.updateUser = function (user) {
-    var reqUser = _.assign(user, $scope.oldUser, merge);
-    userService.updateUser(reqUser, function (newUser) {
-      $scope.email = {};
-      $scope.oldUser = newUser;
-      $scope.newUser = {};
+    var reqUser = _.assign(user, $scope.user, merge);
+    userService.updateUser(reqUser, function (user) {
+      modalsService.showSuccessModal(function () {
+        $scope.user = user;
+
+        $scope.email = {};
+
+        $scope.info.address = user.address;
+        $scope.info.name = user.name;
+        $scope.info.surname = user.surname;
+
+        delete $scope.newPassword;
+        $scope.pass = {};
+
+      }, {
+        title: 'Updated',
+        message: 'User updated successfully'
+      })
+
     });
   };
 
   this.init = function () {
-    userService.getUser(function (oldUser) {
-      $scope.oldUser = oldUser;
+    userService.getUser(function (user) {
+      $scope.user = user;
 
-      $scope.info.address = oldUser.address;
-      $scope.info.name = oldUser.name;
-      $scope.info.surname = oldUser.surname;
-
+      $scope.info.address = user.address;
+      $scope.info.name = user.name;
+      $scope.info.surname = user.surname;
 
     });
   };

@@ -10,23 +10,25 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
   $scope.imageInfo = {};
 
   $scope.selectNetwork = function (network) {
-    $scope.selectedNetwork = network;
-    $scope.isOneImage = false;
-    var size = network.results.length;
-    var leftSize = Math.round(size / 2);
+    if (network && network.results) {
+      $scope.selectedNetwork = network;
+      $scope.isOneImage = false;
+      var size = network.results.length;
+      var leftSize = Math.round(size / 2);
 
-    $scope.leftResults = [];
-    $scope.rightResults = [];
+      $scope.leftResults = [];
+      $scope.rightResults = [];
 
-    network.results.forEach(function (result, index) {
-      if (index < leftSize) {
-        $scope.leftResults.push(result);
-      } else {
-        $scope.rightResults.push(result);
-      }
-    });
+      network.results.forEach(function (result, index) {
+        if (index < leftSize) {
+          $scope.leftResults.push(result);
+        } else {
+          $scope.rightResults.push(result);
+        }
+      });
 
-    var rigthSize = size - leftSize;
+      var rigthSize = size - leftSize;
+    }
   };
 
   this.init = function () {

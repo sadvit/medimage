@@ -26,7 +26,8 @@
         <div class="form-group has-feedback">
           <input spellcheck="false" ng-model="repeatPassword" type="password" class="form-control"
                  placeholder="Repeat password"
-                 validator="required, passwordMatch">
+                 validator="required, passwordMatch"
+                 required-error-message="Require repeat password">
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback" ng-class="{'hidden' : repeatPassword.length == 0}">
