@@ -8,7 +8,6 @@ angular.module('medimage').directive('processMenuRight', [function () {
     controller: function ($scope) {
 
 
-
     }
   }
 }]);

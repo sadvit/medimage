@@ -2,27 +2,47 @@
   <div class="login-box" ng-class="{'full-height' : repeatPassword.length > 0}">
     <div class="login-box-body">
       <p class="login-box-msg">Register to start your session</p>
-      <form novalidate>
+      <form name="registerFormName" id="registerFormId" novalidate>
         <div class="form-group has-feedback">
-          <input spellcheck="false" ng-model="username" class="form-control" placeholder="Email">
+          <input spellcheck="false" ng-model="username" class="form-control" placeholder="Email"
+                  validator="required, email"
+                  email-error-message="Required valid email"
+                  email-success-message="Email is valid"
+                  required-error-message="Required valid email"
+                  required-success-message="Email is valid"
+          >
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input spellcheck="false" ng-model="password" type="password" class="form-control" placeholder="Password">
+          <input spellcheck="false" ng-model="newPassword" type="password" class="form-control" placeholder="Password"
+                 validator="required, minlength=6"
+                 minlength-error-message="Minimum password length - 6 symbols"
+                 minlength-success-message="Password is valid"
+                 required-error-message="Required password"
+                 required-success-message="Password is valid"
+          >
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-          <input spellcheck="false" ng-model="repeatPassword" type="password" class="form-control" placeholder="Repeat password">
+          <input spellcheck="false" ng-model="repeatPassword" type="password" class="form-control"
+                 placeholder="Repeat password"
+                 validator="required, passwordMatch">
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback" ng-class="{'hidden' : repeatPassword.length == 0}">
-          <input spellcheck="false" ng-model="name" type="text" class="form-control" placeholder="Name">
+          <input spellcheck="false" ng-model="name" type="text" class="form-control" placeholder="Name"
+                 validator="required, letters"
+                 required-error-message="Required name">
         </div>
         <div class="form-group has-feedback" ng-class="{'hidden' : repeatPassword.length == 0}">
-          <input spellcheck="false" ng-model="surname" type="text" class="form-control" placeholder="Surname">
+          <input spellcheck="false" ng-model="surname" type="text" class="form-control" placeholder="Surname"
+                 validator="required, letters"
+                 required-error-message="Required surname">
         </div>
         <div class="form-group has-feedback" ng-class="{'hidden' : repeatPassword.length == 0}">
-          <input spellcheck="false" ng-model="address" type="text" class="form-control" placeholder="Address">
+          <input spellcheck="false" ng-model="address" type="text" class="form-control" placeholder="Address"
+                 validator="required, letters"
+                 required-error-message="Required address">
         </div>
         <div class="row">
           <div class="col-md-4">
@@ -30,7 +50,7 @@
           </div>
           <div class="col-md-4"></div>
           <div class="col-md-4">
-            <button ng-class="{'disabled' : !username && !password && !repeatPassword}" ng-click="register()" class="btn btn-primary btn-block btn-flat">Register</button>
+            <button ng-disabled="!registerForm.checkValid(registerFormName)" ng-click="register()" class="btn btn-primary btn-block btn-flat">Register</button>
           </div>
         </div>
       </form>

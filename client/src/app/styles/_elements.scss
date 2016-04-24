@@ -114,11 +114,11 @@ ul.sidebar-menu.chain-menu {
   width: 100%;
   .sk-fading-circle {
     position: absolute;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
-    margin:auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
   }
 }
 
@@ -223,11 +223,13 @@ canvas.histogram {
     color: black;
   }
 }
+
 .image-tile:hover {
   .right-image-menu {
     opacity: 1;
   }
 }
+
 .right-image-menu {
   opacity: 0;
   cursor: default;

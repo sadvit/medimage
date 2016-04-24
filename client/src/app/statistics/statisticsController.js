@@ -13,12 +13,12 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
     $scope.selectedNetwork = network;
     $scope.isOneImage = false;
     var size = network.results.length;
-    var leftSize = Math.round(size/2);
+    var leftSize = Math.round(size / 2);
 
     $scope.leftResults = [];
     $scope.rightResults = [];
 
-    network.results.forEach(function(result, index) {
+    network.results.forEach(function (result, index) {
       if (index < leftSize) {
         $scope.leftResults.push(result);
       } else {
@@ -76,7 +76,7 @@ angular.module('medimage').controller('statisticsController', ['$scope', '$state
 
         //drawNumber("0", padding - 3, height - padding / 2);
 
-        ctx.textAlign="center";
+        ctx.textAlign = "center";
         var x, y;
         for (var i = 0; i <= 255; i += 15) {
           x = i * 1.72 + padding + 3;

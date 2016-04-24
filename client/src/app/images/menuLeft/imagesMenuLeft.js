@@ -1,4 +1,4 @@
-angular.module('medimage').directive('imagesMenuLeft', function() {
+angular.module('medimage').directive('imagesMenuLeft', function () {
   return {
     link: function (scope, element, attrs) {
 

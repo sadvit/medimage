@@ -93,7 +93,8 @@
                         <th>RECOGNIZE RESULT</th>
                       </tr>
 
-                      <tr ng-repeat="result in recognizeResult.values" ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
+                      <tr ng-repeat="result in recognizeResult.values"
+                          ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
                         <td>
                           <div class="image-tile medium">
                             <img ng-if="result.imageId" ng-src="{{network_address + '/images/' + result.imageId}}">
@@ -140,7 +141,8 @@
                         <th>RECOGNIZE RESULT</th>
                       </tr>
 
-                      <tr ng-repeat="result in recognizeResult.values" ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
+                      <tr ng-repeat="result in recognizeResult.values"
+                          ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
                         <td>
                           <div class="image-tile medium">
                             <img ng-if="result.imageId" ng-src="{{network_address + '/images/' + result.imageId}}">

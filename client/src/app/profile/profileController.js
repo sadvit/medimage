@@ -8,7 +8,7 @@ angular.module('medimage').controller('profileController', ['$scope', 'userServi
     return !str || str.length == 0;
   };
 
-  var isEmail = function(email) {
+  var isEmail = function (email) {
     if (!isEmpty(email)) {
       return pattern.test(email);
     }

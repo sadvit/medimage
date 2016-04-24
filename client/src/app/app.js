@@ -1,16 +1,16 @@
 'use strict';
 
-var medimage = angular.module('medimage', ['restangular', 'ui.router', 'ui.bootstrap', 'ui.bootstrap-slider', 'dndLists', 'ngScrollbars', 'angularFileUpload']);
+var medimage = angular.module('medimage', ['restangular', 'ui.router', 'ui.bootstrap', 'ui.bootstrap-slider', 'dndLists', 'ngScrollbars', 'angularFileUpload', 'validation', 'validation.rule']);
 
-var network_address = 'http://192.168.0.101:8080';
+var network_address = 'http://192.168.0.100:8080';
 
-medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvider, ScrollBarsProvider, $httpProvider) {
+medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvider, ScrollBarsProvider, $validationProvider) {
   $urlRouterProvider.otherwise('login');
   $stateProvider
     .state('login', {
       url: '/login',
       views: {
-        'content':{
+        'content': {
           templateUrl: 'login/login.html',
           controller: 'loginController'
         }
@@ -19,7 +19,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
     .state('process', {
       url: '/process/:imageId',
       views: {
-        'content':{
+        'content': {
           templateUrl: 'process/process.html',
           controller: 'processController'
         }
@@ -28,7 +28,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
     .state('images', {
       url: '/images',
       views: {
-        'content':{
+        'content': {
           templateUrl: 'images/images.html',
           controller: 'imagesController'
         }
@@ -37,7 +37,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
     .state('chains', {
       url: '/chains',
       views: {
-        'content':{
+        'content': {
           templateUrl: 'chains/chains.html',
           controller: 'chainsController'
         }
@@ -46,7 +46,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
     .state('statistics', {
       url: '/statistics/:imageId',
       views: {
-        'content':{
+        'content': {
           templateUrl: 'statistics/statistics.html',
           controller: 'statisticsController'
         }
@@ -55,7 +55,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
     .state('recognize', {
       url: '/recognize',
       views: {
-        'content':{
+        'content': {
           templateUrl: 'recognize/recognize.html',
           controller: 'recognizeController'
         }
@@ -64,7 +64,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
     .state('profile', {
       url: '/profile',
       views: {
-        'content':{
+        'content': {
           templateUrl: 'profile/profile.html',
           controller: 'profileController'
         }
@@ -73,7 +73,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
     .state('register', {
       url: '/register',
       views: {
-        'content':{
+        'content': {
           templateUrl: 'register/register.html',
           controller: 'registerController'
         }
@@ -94,11 +94,41 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
     axis: 'y', // enable 2 axis scrollbars by default
     autoHideScrollbar: false,
     theme: 'minimal-dark',
-    advanced:{
+    advanced: {
       updateOnContentResize: true
     },
     scrollInertia: 0
   };
+
+  $validationProvider.setValidMethod('watch');
+
+  $validationProvider
+    .setExpression({
+      passwordMatch: function(value, scope) {
+        return value === scope.newPassword;
+      }
+    })
+    .setDefaultMsg({
+      passwordMatch: {
+        error: 'Password is not maching',
+        success: 'Repeat correct'
+      }
+    });
+
+  var letters = /^[a-zA-Z\s]*$/;
+  $validationProvider
+    .setExpression({
+      letters: function(value) {
+        return value && value.length > 0 && letters.test(value);
+      }
+    })
+    .setDefaultMsg({
+      letters: {
+        error: 'Allowed only letters and spaces',
+        success: ''
+      }
+    });
+
 
 });
 
@@ -123,11 +153,11 @@ medimage.run(['$state', '$rootScope', 'Restangular', 'modalsService', function (
     }, error);
   };
 
-  Restangular.setErrorInterceptor(function(response) {
+  Restangular.setErrorInterceptor(function (response) {
     if (response.status == 401) {
       unauthorizedHandler(response);
     }
-    if (response.status == 500 || response.status == 400 ) {
+    if (response.status == 500 || response.status == 400) {
       internalHandler(response);
     }
   });

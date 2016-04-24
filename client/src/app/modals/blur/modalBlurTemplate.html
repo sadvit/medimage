@@ -14,7 +14,8 @@
               {{blurParams.type}}<span class="caret"></span>
             </button>
             <ul class="uib-dropdown-menu" role="menu" aria-labelledby="btn-append-to-body">
-              <li ng-repeat="blurType in blurTypes" role="menuitem"><a href ng-click="selectBinaryType(blurType)">{{blurType}}</a></li>
+              <li ng-repeat="blurType in blurTypes" role="menuitem"><a href ng-click="selectBinaryType(blurType)">{{blurType}}</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -38,6 +39,7 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal" ng-click="cancel()">Close</button>
+  <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal" ng-click="cancel()">Close
+  </button>
   <button type="button" class="btn btn-primary btn-flat" ng-click="apply()">{{isEditMode ? 'Save' : 'Add'}}</button>
 </div>

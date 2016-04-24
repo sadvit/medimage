@@ -6,13 +6,13 @@ angular.module('medimage').controller('imagesController', ['$scope', 'imageServi
     url: network_address + '/upload'
   });
 
-  $scope.uploader.onCompleteItem = function() {
+  $scope.uploader.onCompleteItem = function () {
     imageService.getImages(function (images) {
       $scope.images = images;
     });
   };
 
-  $scope.uploader.onAfterAddingFile = function() {
+  $scope.uploader.onAfterAddingFile = function () {
     $scope.uploader.uploadAll();
   };
 
@@ -46,10 +46,10 @@ angular.module('medimage').controller('imagesController', ['$scope', 'imageServi
     });
   };
 
-  $scope.safeApply = function(fn) {
+  $scope.safeApply = function (fn) {
     var phase = $scope.$$phase;
-    if(phase == '$apply' || phase == '$digest') {
-      if(fn && (typeof(fn) === 'function')) {
+    if (phase == '$apply' || phase == '$digest') {
+      if (fn && (typeof(fn) === 'function')) {
         fn();
       }
     } else {

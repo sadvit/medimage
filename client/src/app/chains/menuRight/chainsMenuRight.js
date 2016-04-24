@@ -8,7 +8,6 @@ angular.module('medimage').directive('chainsMenuRight', [function () {
     controller: function ($scope) {
 
 
-
     }
   }
 }]);

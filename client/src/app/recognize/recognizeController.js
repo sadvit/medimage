@@ -16,13 +16,13 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
   $scope.isOutputShow = false;
 
   $scope.recognizeResult = {
-    values : []
+    values: []
   };
 
   $scope.noData = {
-    network : true,
-    chain : false,
-    images : false
+    network: true,
+    chain: false,
+    images: false
   };
 
   $scope.types = {};
@@ -116,9 +116,9 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
     $scope.isLoading = true;
 
     var chainRequest = {
-      images : imagesToProcess,
+      images: imagesToProcess,
       chain: {
-        id : $scope.selectedChain.id
+        id: $scope.selectedChain.id
       }
     };
 
@@ -164,7 +164,7 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
     var isSelected = element.hasClass('selected');
     if (isSelected) {
       element.removeClass('selected');
-      _.remove($scope.selectedImages, function(n) {
+      _.remove($scope.selectedImages, function (n) {
         return n == imageId;
       });
     } else {

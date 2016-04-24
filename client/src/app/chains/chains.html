@@ -41,14 +41,16 @@
 
       <div ng-scrollbars class="input-image-content">
         <div class="input-image-folder">
-          <div ng-repeat="image in images" class="image-tile medium selectable" ng-class="[image]" ng-click="selectUserImage(image)">
+          <div ng-repeat="image in images" class="image-tile medium selectable" ng-class="[image]"
+               ng-click="selectUserImage(image)">
             <div class="selector"></div>
             <img ng-if="image" ng-src="{{network_address + '/images/' + image}}">
           </div>
         </div>
       </div>
 
-      <div ng-click="processImages()" class="input-image-button shift" ng-class="{'disabled' : selectedImages.length == 0}">
+      <div ng-click="processImages()" class="input-image-button shift"
+           ng-class="{'disabled' : selectedImages.length == 0}">
         <a><span>PROCESS IMAGES</span><i class="fa fa-play yellow"></i></a>
       </div>
     </div>
@@ -78,7 +80,8 @@
       <div ng-if="resultImages.length > 0" ng-scrollbars class="output-image-content">
         <div class="output-image-folder">
           <!-- selectedImages -->
-          <div ng-repeat="image in resultImages" class="image-tile medium selectable" ng-class="[image]" ng-click="selectResultImage(image)">
+          <div ng-repeat="image in resultImages" class="image-tile medium selectable" ng-class="[image]"
+               ng-click="selectResultImage(image)">
             <div class="selector"></div>
             <img ng-if="image" ng-src="{{network_address + '/temp/' + image}}">
           </div>
