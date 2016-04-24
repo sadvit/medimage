@@ -78,6 +78,16 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
       equalizeParams);
   };
 
+  $scope.cannyModalShow = function (cannyParams) {
+    if (!cannyParams) {
+      self.chainIndex = undefined;
+    }
+    modalsService.showCannyModal(
+      self.cannyModalApply,
+      self.cannyModalCancel,
+      cannyParams);
+  };
+
   $scope.changeOperation = function (index) {
     var chainElement = $scope.chain[index];
     self.chainIndex = index;
@@ -143,6 +153,22 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
   };
 
   self.histogramEqualizeModalCancel = function () {
+
+  };
+
+  self.cannyModalApply = function (cannyParams) {
+    var chainElement = {
+      operationType: 'CANNY',
+      cannyParams: cannyParams
+    };
+    if (self.chainIndex != undefined) {
+      $scope.chain[self.chainIndex] = chainElement;
+    } else {
+      $scope.chain.push(chainElement);
+    }
+  };
+
+  self.cannyModalCancel = function () {
 
   };
 

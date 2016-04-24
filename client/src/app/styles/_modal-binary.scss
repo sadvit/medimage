@@ -47,11 +47,13 @@ ul.uib-dropdown-menu {
 /* TODO to equalize */
 
 .row.checkbox .col-md-8 {
+  &.shift button {
+    margin-left: 55px;
+  }
   padding-left: 7px;
   padding-top: 13px;
   button {
     border-radius: 0 !important;
-    margin-left: 55px;
     margin-top: -3px;
   }
   .type-span {

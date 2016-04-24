@@ -39,6 +39,9 @@ public class ChainService {
     private HistogramEqualizeService histogramEqualizeService;
 
     @Autowired
+    private CannyService cannyService;
+
+    @Autowired
     private BlurService blurService;
 
     @Autowired
@@ -88,6 +91,12 @@ public class ChainService {
                     if (chainElement.getHistogramEqualizeParams() != null) {
                         currentImage = histogramEqualizeService.processAsImage(currentImage, chainElement.getHistogramEqualizeParams());
                     }
+                    break;
+                case CANNY:
+                    if (chainElement.getCannyParams() != null) {
+                        currentImage = cannyService.processAsImage(currentImage, chainElement.getCannyParams());
+                    }
+                    break;
             }
         }
         byte[] result = toByteArray(currentImage);

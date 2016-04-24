@@ -44,6 +44,20 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
     modalInstance.result.then(apply, cancel);
   };
 
+  this.showCannyModal = function (apply, cancel, cannyParams) {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: '/modals/canny/modalCannyTemplate.html',
+      controller: 'modalCannyController',
+      resolve: {
+        cannyParams: function () {
+          return angular.copy(cannyParams);
+        }
+      }
+    });
+    modalInstance.result.then(apply, cancel);
+  };
+
   this.showChainModal = function (apply, cancel) {
     var modalInstance = $uibModal.open({
       animation: true,

@@ -3,6 +3,7 @@ package com.sadvit.models;
 import com.sadvit.enums.OperationType;
 import com.sadvit.operations.binary.BinaryParams;
 import com.sadvit.operations.blur.BlurParams;
+import com.sadvit.operations.canny.CannyParams;
 import com.sadvit.operations.histogramEqualize.HistogramEqualizeParams;
 
 import javax.persistence.*;
@@ -31,6 +32,17 @@ public class ChainElement implements Serializable {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private HistogramEqualizeParams histogramEqualizeParams;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private CannyParams cannyParams;
+
+    public CannyParams getCannyParams() {
+        return cannyParams;
+    }
+
+    public void setCannyParams(CannyParams cannyParams) {
+        this.cannyParams = cannyParams;
+    }
 
     public OperationType getOperationType() {
         return operationType;

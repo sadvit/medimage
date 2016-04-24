@@ -17,7 +17,7 @@ angular.module('medimage').controller('modalHistogramEqualizeController', ['$sco
     } else {
       $scope.isEditMode = false;
       $scope.equalizeParams = {};
-      $scope.equalizeParams.isGlobal = false;
+      $scope.equalizeParams.isGlobal = true;
     }
   };
 

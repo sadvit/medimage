@@ -5,6 +5,6 @@ package com.sadvit.enums;
  */
 public enum OperationType {
 
-    BINARY, BLUR, HISTOGRAM_EQUALIZE
+    BINARY, BLUR, HISTOGRAM_EQUALIZE, CANNY
 
 }
