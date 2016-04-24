@@ -68,6 +68,16 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
       binaryParams);
   };
 
+  $scope.histogramEqualizeModalShow = function (equalizeParams) {
+    if (!equalizeParams) {
+      self.chainIndex = undefined;
+    }
+    modalsService.showHistogramEqualizeModal(
+      self.histogramEqualizeModalApply,
+      self.histogramEqualizeModalCancel,
+      equalizeParams);
+  };
+
   $scope.changeOperation = function (index) {
     var chainElement = $scope.chain[index];
     self.chainIndex = index;
@@ -78,7 +88,9 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
       case 'BLUR':
         $scope.blurModalShow(chainElement.blurParams);
         break;
-
+      case 'HISTOGRAM_EQUALIZE':
+        $scope.histogramEqualizeModalShow(chainElement.histogramEqualizeParams);
+        break;
     }
   };
 
@@ -115,6 +127,22 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
   };
 
   self.binaryModalCancel = function () {
+
+  };
+
+  self.histogramEqualizeModalApply = function (equalizeParams) {
+    var chainElement = {
+      operationType: 'HISTOGRAM_EQUALIZE',
+      histogramEqualizeParams: equalizeParams
+    };
+    if (self.chainIndex != undefined) {
+      $scope.chain[self.chainIndex] = chainElement;
+    } else {
+      $scope.chain.push(chainElement);
+    }
+  };
+
+  self.histogramEqualizeModalCancel = function () {
 
   };
 

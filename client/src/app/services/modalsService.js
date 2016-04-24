@@ -30,6 +30,20 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
     modalInstance.result.then(apply, cancel);
   };
 
+  this.showHistogramEqualizeModal = function (apply, cancel, equalizeParams) {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: '/modals/histogramEqualize/modalHistogramEqualizeTemplate.html',
+      controller: 'modalHistogramEqualizeController',
+      resolve: {
+        equalizeParams: function () {
+          return angular.copy(equalizeParams);
+        }
+      }
+    });
+    modalInstance.result.then(apply, cancel);
+  };
+
   this.showChainModal = function (apply, cancel) {
     var modalInstance = $uibModal.open({
       animation: true,

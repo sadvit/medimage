@@ -3,6 +3,7 @@ package com.sadvit.models;
 import com.sadvit.enums.OperationType;
 import com.sadvit.operations.binary.BinaryParams;
 import com.sadvit.operations.blur.BlurParams;
+import com.sadvit.operations.histogramEqualize.HistogramEqualizeParams;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,6 +28,9 @@ public class ChainElement implements Serializable {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private BlurParams blurParams;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private HistogramEqualizeParams histogramEqualizeParams;
 
     public OperationType getOperationType() {
         return operationType;
@@ -58,6 +62,14 @@ public class ChainElement implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public HistogramEqualizeParams getHistogramEqualizeParams() {
+        return histogramEqualizeParams;
+    }
+
+    public void setHistogramEqualizeParams(HistogramEqualizeParams histogramEqualizeParams) {
+        this.histogramEqualizeParams = histogramEqualizeParams;
     }
 
 }

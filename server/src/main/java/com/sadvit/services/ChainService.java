@@ -4,6 +4,7 @@ import com.sadvit.models.CacheObject;
 import com.sadvit.models.Chain;
 import com.sadvit.models.ChainElement;
 import com.sadvit.models.User;
+import com.sadvit.operations.histogramEqualize.HistogramEqualizeParams;
 import com.sadvit.repositories.ChainRepository;
 import com.sadvit.repositories.UserRepository;
 import com.sadvit.to.ChainRequestTO;
@@ -33,6 +34,9 @@ public class ChainService {
 
     @Autowired
     private BinaryService binaryService;
+
+    @Autowired
+    private HistogramEqualizeService histogramEqualizeService;
 
     @Autowired
     private BlurService blurService;
@@ -80,6 +84,10 @@ public class ChainService {
                     if (chainElement.getBlurParams() != null)
                         currentImage = blurService.processAsImage(currentImage, chainElement.getBlurParams());
                     break;
+                case HISTOGRAM_EQUALIZE:
+                    if (chainElement.getHistogramEqualizeParams() != null) {
+                        currentImage = histogramEqualizeService.processAsImage(currentImage, chainElement.getHistogramEqualizeParams());
+                    }
             }
         }
         byte[] result = toByteArray(currentImage);
