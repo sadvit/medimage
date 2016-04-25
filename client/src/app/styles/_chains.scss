@@ -50,6 +50,30 @@ $disabled-color: #57646a;
   &.show {
     width: 230px;
   }
+  .save-button {
+    background-color: #1E282C;
+    &:hover {
+      cursor: pointer;
+      a {
+        border-left: 3px solid #3c8dbc !important;
+        i {
+          color: #3c8dbc !important;
+        }
+      }
+    }
+    a {
+      border-left: 3px solid #f39c12 !important;
+      &:hover {
+        cursor: pointer;
+      }
+      i {
+        color: #f39c12;
+        float: right;
+        margin-right: 3px;
+        margin-top: 3px;
+      }
+    }
+  }
 }
 
 .input-block {

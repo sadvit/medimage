@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medimage').controller('chainsController', ['$scope', 'chainService', 'imageService', '$state', 'processService', 'tempService', function ($scope, chainService, imageService, $state, processService, tempService) {
+angular.module('medimage').controller('chainsController', ['$scope', 'chainService', 'imageService', '$state', 'processService', 'tempService', 'modalsService', 'chainEditor', function ($scope, chainService, imageService, $state, processService, tempService, modalsService, chainEditor) {
 
   var self = this;
 
@@ -14,6 +14,8 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainServi
   $scope.imageToSave = [];
 
   $scope.testArray = [];
+
+  $scope.chainEditor = chainEditor;
 
   $scope.noData = {
     selectChain: true,
@@ -46,6 +48,8 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainServi
     }
     angular.element('.chains-block').toggleClass('show', true);
     $scope.selectedChain = element;
+
+    chainEditor.setChain(element.chainElements);
     $scope.chainElements = element.chainElements;
   };
 
@@ -79,22 +83,39 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainServi
 
   $scope.processImages = function () {
     if ($scope.selectedImages.length > 0) {
-      $scope.showOutputBlock();
-      $scope.isResultLoading = true;
-      $scope.resultImages = [];
+      if ($scope.isChainChanged) {
+        $scope.showOutputBlock();
+        $scope.isResultLoading = true;
+        $scope.resultImages = [];
 
-      var chainRequest = {
-        images: $scope.selectedImages,
-        chain: {
-          id: $scope.selectedChain.id
-        }
-      };
+        let chainRequest = {
+          images: $scope.selectedImages,
+          chain: {
+            chainElements: $scope.chainElements
+          }
+        };
 
-      processService.processChain(chainRequest, function (images) {
-        $scope.resultImages = images;
-        ;
-        $scope.isResultLoading = false;
-      });
+        processService.processChain(chainRequest, function (images) {
+          $scope.resultImages = images;
+          $scope.isResultLoading = false;
+        });
+      } else {
+        $scope.showOutputBlock();
+        $scope.isResultLoading = true;
+        $scope.resultImages = [];
+
+        let chainRequest = {
+          images: $scope.selectedImages,
+          chain: {
+            id: $scope.selectedChain.id
+          }
+        };
+
+        processService.processChain(chainRequest, function (images) {
+          $scope.resultImages = images;
+          $scope.isResultLoading = false;
+        });
+      }
     }
   };
 

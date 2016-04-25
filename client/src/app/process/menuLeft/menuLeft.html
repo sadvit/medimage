@@ -8,11 +8,11 @@
     </button>
     <ul class="sidebar-menu action-menu">
       <li class="header">COMPUTER VISION</li>
-      <li ng-click="cannyModalShow()"><a><i class="fa fa-circle-o text-yellow"></i><span>EDGE DETECTOR</span></a></li>
-      <li ng-click="histogramEqualizeModalShow()"><a><i class="fa fa-circle-o text-yellow"></i><span>HISTOGRAM EQUALIZATION</span></a></li>
-      <li ng-click="binaryModalShow()"><a><i class="fa fa-circle-o text-yellow"></i><span>BINARY</span></a></li>
+      <li ng-click="chainService.cannyModalShow()"><a><i class="fa fa-circle-o text-yellow"></i><span>EDGE DETECTOR</span></a></li>
+      <li ng-click="chainService.histogramEqualizeModalShow()"><a><i class="fa fa-circle-o text-yellow"></i><span>HISTOGRAM EQUALIZATION</span></a></li>
+      <li ng-click="chainService.binaryModalShow()"><a><i class="fa fa-circle-o text-yellow"></i><span>BINARY</span></a></li>
       <li class="header">MATRIX OPERATIONS</li>
-      <li ng-click="blurModalShow()"><a><i class="fa fa-circle-o text-yellow"></i><span>BLUR</span></a></li>
+      <li ng-click="chainService.blurModalShow()"><a><i class="fa fa-circle-o text-yellow"></i><span>BLUR</span></a></li>
       <!--<li class="header">SIZE OPERATIONS</li>
       <li ng-click="cropImage()"><a><i class="fa fa-circle-o text-yellow"></i> <span>CROP</span></a></li>
       <li class="header">COLOR OPERATIONS</li>

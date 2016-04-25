@@ -15,9 +15,9 @@
           dnd-moved="chain.splice($index , 1)"
           dnd-effect-allowed="move">
         <a draggable="true">
-          <i ng-click="changeOperation($index)" class="fa fa-gears chain-options"></i>
+          <i ng-click="chainService.changeOperation($index)" class="fa fa-gears chain-options"></i>
           <span>{{chainElement.operationType}}</span>
-          <i ng-click="removeOperation($index)" class="fa fa-times chain-close"></i>
+          <i ng-click="chainService.removeOperation($index)" class="fa fa-times chain-close"></i>
         </a>
       </li>
     </ul>

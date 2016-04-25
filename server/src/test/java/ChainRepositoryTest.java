@@ -81,9 +81,9 @@ public class ChainRepositoryTest {
         } else if (v < 66) {
             return OperationType.BLUR;
         } else if (v < 99) {
-            return OperationType.CROP;
+            return OperationType.CANNY;
         } else {
-            return OperationType.RESIZE;
+            return OperationType.HISTOGRAM_EQUALIZE;
         }
     }
 

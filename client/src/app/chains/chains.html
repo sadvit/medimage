@@ -10,6 +10,10 @@
 
         <ul class="sidebar-menu chain-menu">
           <li class="panel-header border"><a><span>CHAIN OPERATION LIST</span></a></li>
+
+          <li ng-show="chainService.isChainChanged" ng-click="saveChainChanges()" class="save-button">
+            <a><span>SAVE CHAIN</span><i class="fa fa-save yellow"></i></a>
+          </li>
         </ul>
 
         <ul dnd-list="chainElements" class="sidebar-menu chain-menu">
@@ -19,9 +23,9 @@
               dnd-moved="chainElements.splice($index , 1)"
               dnd-effect-allowed="move">
             <a draggable="true">
-              <i ng-click="changeOperation($index)" class="fa fa-gears chain-options"></i>
+              <i ng-click="chainEditor.changeOperation($index)" class="fa fa-gears chain-options"></i>
               <span>{{chainElement.operationType}}</span>
-              <i ng-click="removeOperation($index)" class="fa fa-times chain-close"></i>
+              <i ng-click="chainEditor.removeOperation($index)" class="fa fa-times chain-close"></i>
             </a>
           </li>
 
