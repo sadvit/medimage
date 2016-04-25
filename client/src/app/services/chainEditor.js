@@ -4,14 +4,9 @@ angular.module('medimage').service('chainEditor', ['modalsService', function (mo
 
   var self = this;
 
-  self.isChainChanged = false;
-
-  self.setChain = function (chainElements) {
+  self.init = function (chainElements) {
+    self.isChainChanged = false;
     self.chainElements = chainElements;
-  };
-
-  self.getChain = function () {
-    return self.chainElements;
   };
 
   self.blurModalShow = function (blurParams) {
@@ -64,6 +59,7 @@ angular.module('medimage').service('chainEditor', ['modalsService', function (mo
     } else {
       self.chainElements.push(chainElement);
     }
+    self.isChainChanged = true;
   };
 
   self.blurModalCancel = function () {
@@ -80,6 +76,7 @@ angular.module('medimage').service('chainEditor', ['modalsService', function (mo
     } else {
       self.chainElements.push(chainElement);
     }
+    self.isChainChanged = true;
   };
 
   self.binaryModalCancel = function () {
@@ -96,6 +93,7 @@ angular.module('medimage').service('chainEditor', ['modalsService', function (mo
     } else {
       self.chainElements.push(chainElement);
     }
+    self.isChainChanged = true;
   };
 
   self.histogramEqualizeModalCancel = function () {
@@ -112,6 +110,7 @@ angular.module('medimage').service('chainEditor', ['modalsService', function (mo
     } else {
       self.chainElements.push(chainElement);
     }
+    self.isChainChanged = true;
   };
 
   self.changeOperation = function (index) {
@@ -135,6 +134,7 @@ angular.module('medimage').service('chainEditor', ['modalsService', function (mo
 
   self.removeOperation = function (index) {
     self.chainElements.splice(index, 1);
+    self.isChainChanged = true;
   };
 
 }]);

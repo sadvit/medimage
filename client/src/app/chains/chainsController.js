@@ -49,7 +49,7 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainServi
     angular.element('.chains-block').toggleClass('show', true);
     $scope.selectedChain = element;
 
-    chainEditor.setChain(element.chainElements);
+    chainEditor.init(element.chainElements);
     $scope.chainElements = element.chainElements;
   };
 
@@ -81,9 +81,17 @@ angular.module('medimage').controller('chainsController', ['$scope', 'chainServi
     }
   };
 
+  $scope.saveChainChanges = function () {
+    var index = _.findIndex($scope.chains, $scope.selectedChain);
+    chainService.saveChain($scope.selectedChain, function (savedChain) {
+      //$scope.chains[index] = savedChain;
+      chainEditor.isChainChanged = false;
+    });
+  };
+
   $scope.processImages = function () {
     if ($scope.selectedImages.length > 0) {
-      if ($scope.isChainChanged) {
+      if (chainEditor.isChainChanged) {
         $scope.showOutputBlock();
         $scope.isResultLoading = true;
         $scope.resultImages = [];

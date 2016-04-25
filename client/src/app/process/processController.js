@@ -11,7 +11,7 @@ angular.module('medimage').controller('processController', ['$scope', '$statePar
 
   $scope.chain = [];
 
-  chainEditor.setChain($scope.chain);
+  chainEditor.init($scope.chain);
   $scope.chainService = chainEditor;
 
   $scope.acceptChain = function () {
