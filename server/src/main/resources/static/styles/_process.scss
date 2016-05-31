@@ -1,0 +1,49 @@
+.image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 50px;
+  padding-left: 230px;
+  padding-right: 230px;
+
+  width: 100%;
+  height: 100%;
+  background-color: #ecf0f5;
+  margin: 0;
+  img {
+    margin: auto;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    .overlay {
+      top: -50px;
+    }
+  }
+  .content {
+    width: 100%;
+    height: 100%;
+  }
+  .img-thumbnail {
+    border-radius: 0;
+  }
+}
+
+.disable-drag {
+  -webkit-user-drag: none;
+}
+
+.modal.fade.in.glass {
+  z-index: 1050;
+  display: block;
+}
+
+#rect {
+  position: absolute;
+}
+
+img.img-thumbnail.disable-drag.glassed {
+  background: black;
+  opacity: 0.5;
+}

@@ -1,0 +1,13 @@
+<aside class="main-sidebar ">
+  <section ng-scrollbars class="sidebar">
+    <ul class="sidebar-menu shift-menu">
+      <li class="header">MAIN INFO</li>
+      <li ng-click="userMode = true; optionsMode = false;" ng-class="{'selected' : userMode}">
+        <a><i class="fa fa-circle-o text-yellow"></i><span>SETTINGS</span></a>
+      </li>
+      <li ng-click="userMode = false; optionsMode = true;" ng-class="{'selected' : optionsMode}">
+        <a><i class="fa fa-circle-o text-yellow"></i><span>INFORMATION</span></a>
+      </li>
+    </ul>
+  </section>
+</aside>

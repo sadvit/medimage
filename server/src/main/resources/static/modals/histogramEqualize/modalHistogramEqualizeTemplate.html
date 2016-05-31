@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h4 class="modal-title">Select equalize params:</h4>
+</div>
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="row checkbox">
+      <div class="col-md-4 text-center">
+        <span>Equalization type:</span>
+      </div>
+      <div class="col-md-8 shift">
+        <span class="type-span" ng-if="equalizeParams.isGlobal">GLOBAL</span>
+        <span class="type-span" ng-if="!equalizeParams.isGlobal">LOCAL</span>
+        <checkbox
+          class="btn-primary"
+          ng-model="equalizeParams.isGlobal">
+        </checkbox>
+      </div>
+    </div>
+    <!-- THRESOLD PARAMS -->
+    <div class="row" ng-show="!equalizeParams.isGlobal">
+      <div class="col-md-4 text-center">
+        <span>Thresold:</span>
+      </div>
+      <div class="col-md-8">
+        <div class="slider-container">
+          <span slider
+                ng-model="equalizeParams.radius"
+                min="0"
+                max="150"
+                range="range">
+	        </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal" ng-click="cancel()">Close</button>
+  <button type="button" class="btn btn-primary btn-flat" ng-click="apply()">{{isEditMode ? 'Save' : 'Add'}}</button>
+</div>

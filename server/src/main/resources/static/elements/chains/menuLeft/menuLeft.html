@@ -1,0 +1,17 @@
+<aside class="main-sidebar">
+  <section ng-scrollbars class="sidebar">
+    <ul class="sidebar-menu shift-menu">
+      <li class="header">CHAINS LIST</li>
+
+      <li ng-repeat="element in chains" ng-click="showChainsBlock($event, element)"
+          ng-class="{'selected' : element.id == selectedChain.id}">
+        <a>
+          <i class="fa fa-circle-o text-yellow"></i>
+          <span>{{element.name}}</span>
+          <i class="fa fa-play yellow"></i>
+        </a>
+      </li>
+
+    </ul>
+  </section>
+</aside>
