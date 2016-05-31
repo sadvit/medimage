@@ -21,11 +21,11 @@ import java.util.Set;
 /**
  * Created by sadvit on 4/16/16.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(Application.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringApplicationConfiguration(Application.class)
 public class ChainRepositoryTest {
 
-    public static final String USERNAME = "sadvit";
+/*    public static final String USERNAME = "sadvit";
 
     @Autowired
     private ChainRepository chainRepository;
@@ -85,6 +85,6 @@ public class ChainRepositoryTest {
         } else {
             return OperationType.HISTOGRAM_EQUALIZE;
         }
-    }
+    }*/
 
 }

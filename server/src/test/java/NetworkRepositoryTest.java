@@ -17,11 +17,11 @@ import java.util.List;
 /**
  * Created by sadvit on 4/16/16.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(Application.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringApplicationConfiguration(Application.class)
 public class NetworkRepositoryTest {
 
-    @Autowired
+    /*@Autowired
     private NetworkRepository networkRepository;
 
     @Autowired
@@ -35,7 +35,7 @@ public class NetworkRepositoryTest {
 
     @Test
     public void createTestNetwork() {
-        /*User user = userRepository.getUser(USERNAME);
+        *//*User user = userRepository.getUser(USERNAME);
         int id = user.getId();
 
         Map<String, double[][]> memory = null;
@@ -49,16 +49,16 @@ public class NetworkRepositoryTest {
         Network networkEntity = new Network();
         networkEntity.setMemory(memory);
         networkEntity.setName("Default");
-        networkRepository.addNetwork(id, networkEntity);*/
+        networkRepository.addNetwork(id, networkEntity);*//*
     }
 
     @Test
     public void test() {
-        /*List<Network> networkEntities = createNetworks();
+        *//*List<Network> networkEntities = createNetworks();
         networkEntities.forEach(network -> networkRepository.addNetwork(USERNAME, network));
         List<Network> _networkEntities = networkRepository.getNetworks(USERNAME);
         Assert.assertNotNull(_networkEntities);
-        Assert.assertTrue(networkEntities.size() == _networkEntities.size());*/
+        Assert.assertTrue(networkEntities.size() == _networkEntities.size());*//*
     }
 
     public List<Network> createNetworks() {
@@ -71,6 +71,6 @@ public class NetworkRepositoryTest {
             networkEntities.add(network);
         }
         return networkEntities;
-    }
+    }*/
 
 }
