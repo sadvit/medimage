@@ -3,7 +3,7 @@
 angular.module('medimage').controller('imagesController', ['$scope', 'imageService', '$state', '$rootScope', 'FileUploader', function ($scope, imageService, $state, $rootScope, FileUploader) {
 
   $scope.uploader = new FileUploader({
-    url: 'medimage/upload'
+    url: 'upload'
   });
 
   $scope.uploader.onCompleteItem = function () {
@@ -17,7 +17,7 @@ angular.module('medimage').controller('imagesController', ['$scope', 'imageServi
   };
 
   $scope.openImageModal = function (image) {
-    angular.element('#imageBox').attr('src', $rootScope.network_address + '/images/' + image);
+    angular.element('#imageBox').attr('src', 'images/' + image);
     angular.element('#lightBox').lightbox();
   };
 
