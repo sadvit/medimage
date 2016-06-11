@@ -3,7 +3,7 @@ angular.module('medimage').directive('processMenuRight', [function () {
     link: function (scope, element, attrs) {
 
     },
-    templateUrl: 'elements/process/menuRight/menuRight.html',
+    templateUrl: 'scripts/process/menuRight/menuRight.html',
     restrict: 'A',
     controller: function ($scope) {
 

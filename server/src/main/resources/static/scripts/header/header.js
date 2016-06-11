@@ -3,7 +3,7 @@ angular.module('medimage').directive('header', ['$state', 'authService', functio
     link: function (scope, element, attrs) {
 
     },
-    templateUrl: 'header/header.html',
+    templateUrl: 'scripts/header/header.html',
     restrict: 'A',
     controller: function ($scope) {
       $scope.state = $state;

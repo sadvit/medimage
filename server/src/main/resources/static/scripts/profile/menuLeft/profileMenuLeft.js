@@ -3,7 +3,7 @@ angular.module('medimage').directive('profileMenuLeft', [function () {
     link: function (scope, element, attrs) {
 
     },
-    templateUrl: 'profile/menuLeft/menuLeft.html',
+    templateUrl: 'scripts/profile/menuLeft/menuLeft.html',
     restrict: 'A',
     controller: ['$scope', 'modalsService', function ($scope, modalsService) {
 
