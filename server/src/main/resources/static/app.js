@@ -20,7 +20,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       url: '/process/:imageId',
       views: {
         'content': {
-          templateUrl: 'scripts/elements/process/process.html',
+          templateUrl: 'scripts/process/process.html',
           controller: 'processController'
         }
       }
@@ -29,7 +29,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       url: '/images',
       views: {
         'content': {
-          templateUrl: 'scripts/elements/images/images.html',
+          templateUrl: 'scripts/images/images.html',
           controller: 'imagesController'
         }
       }
@@ -38,7 +38,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       url: '/chains',
       views: {
         'content': {
-          templateUrl: 'scripts/elements/chains/chains.html',
+          templateUrl: 'scripts/chains/chains.html',
           controller: 'chainsController'
         }
       }
@@ -47,7 +47,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       url: '/statistics/:imageId',
       views: {
         'content': {
-          templateUrl: 'scripts/elements/statistics/statistics.html',
+          templateUrl: 'scripts/statistics/statistics.html',
           controller: 'statisticsController'
         }
       }
@@ -56,7 +56,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       url: '/recognize',
       views: {
         'content': {
-          templateUrl: 'scripts/elements/recognize/recognize.html',
+          templateUrl: 'scripts/recognize/recognize.html',
           controller: 'recognizeController'
         }
       }

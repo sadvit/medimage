@@ -27,7 +27,7 @@
           <div ng-repeat="image in images" class="image-tile medium selectable" ng-class="[image]"
                ng-click="selectUserImage(image)">
             <div class="selector"></div>
-            <img ng-if="image" ng-src="{{network_address + '/images/' + image}}">
+            <img ng-if="image" ng-src="{{'images/' + image}}">
           </div>
         </div>
       </div>
@@ -100,12 +100,12 @@
               </td>
               <td>
                 <div class="image-tile small">
-                  <img ng-if="result.imageId" ng-src="{{network_address + '/images/' + result.imageId}}">
+                  <img ng-if="result.imageId" ng-src="{{'images/' + result.imageId}}">
                 </div>
               </td>
               <td>
                 <div class="image-tile small">
-                  <img ng-if="result.tempId" ng-src="{{network_address + '/temp/' + result.tempId}}">
+                  <img ng-if="result.tempId" ng-src="{{'temp/' + result.tempId}}">
                 </div>
               </td>
               <td class="last-child">
