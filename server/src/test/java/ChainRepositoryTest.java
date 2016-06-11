@@ -78,12 +78,8 @@ public class ChainRepositoryTest {
         double v = Math.random() * 100.0;
         if (v < 33) {
             return OperationType.BINARY;
-        } else if (v < 66) {
-            return OperationType.BLUR;
-        } else if (v < 99) {
-            return OperationType.CROP;
         } else {
-            return OperationType.RESIZE;
+            return OperationType.BLUR;
         }
     }
 
