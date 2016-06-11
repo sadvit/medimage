@@ -173,6 +173,14 @@ angular.module('medimage').controller('recognizeController', ['$scope', 'imageSe
     }
   };
 
+  $scope.generateDefault = function () {
+    networkService.generateDefault(function() {
+        networkService.getNetworks(function (networks) {
+            $scope.networks = networks;
+        });
+    })
+  };
+
   self.init();
 
 }]);

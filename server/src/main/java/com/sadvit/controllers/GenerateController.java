@@ -5,18 +5,15 @@ import com.sadvit.analysis.recognizer.statistic.distribution.HistogramDistributi
 import com.sadvit.models.Network;
 import com.sadvit.models.User;
 import com.sadvit.repositories.NetworkRepository;
-import com.sadvit.repositories.UserRepository;
-import com.sadvit.services.UserService;
-import com.sadvit.to.UserTO;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
-import java.io.IOException;
+import java.net.URL;
 import java.util.Map;
 
 /**
@@ -26,54 +23,38 @@ import java.util.Map;
 @RequestMapping("/generate")
 public class GenerateController {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private UserService userService;
+    private static Logger logger = Logger.getLogger(GenerateController.class);
 
     @Autowired
     private NetworkRepository networkRepository;
 
-    @Autowired
-    private ResourceLoader resourceLoader;
-
     public static final String MEMORY = "memory.txt";
-    public static final String USER = "dasha2@gmail.com";
 
     @RequestMapping(method = RequestMethod.GET)
-    public String generateNetwork(@AuthenticationPrincipal User user) {
-
-        /*UserTO userTO = new UserTO();
-        userTO.setUsername(USER);
-        userTO.setNewPassword("Password1");
-        userService.register(userTO);
-
-        User user = userRepository.findByUsername(USER);*/
-
-        if (user == null)
-            return "Not found";
-
+    public void generateNetwork(@AuthenticationPrincipal User user) {
+        logger.info("Generate memory for user: " + user);
         Map<String, double[][]> memory = null;
-        try {
-            File file = new File(getClass().getClassLoader().getResource(MEMORY).getFile());
-            StatisticalRecognizer recognizer = new StatisticalRecognizer(new HistogramDistribution(), file);
-            memory = recognizer.getMap();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Network networkEntity = new Network();
-        networkEntity.setMemory(memory);
-        networkEntity.setName("Default");
-        networkEntity.setUser(user);
-        networkRepository.save(networkEntity);
-
-        if (memory == null) {
-            return "Not OK, memsize empty";
+        URL resource = getClass().getClassLoader().getResource(MEMORY);
+        if (resource != null) {
+            logger.info("Resources found");
+            try {
+                File file = new File(resource.getFile());
+                StatisticalRecognizer recognizer = new StatisticalRecognizer(new HistogramDistribution(), file);
+                memory = recognizer.getMap();
+                logger.info("Default memory found");
+            } catch (Exception e) {
+                logger.warn("Default memory not found");
+                e.printStackTrace();
+            }
+            Network networkEntity = new Network();
+            networkEntity.setMemory(memory);
+            networkEntity.setName("Default");
+            networkEntity.setUser(user);
+            networkRepository.save(networkEntity);
+            logger.info("Default memory saved");
         } else {
-            return "OK, memsize: " + memory.size();
+            logger.warn("Resources not found");
         }
-
     }
 
 }
