@@ -4,7 +4,7 @@
 
 <div class="image-container box box-widget ">
   <div class="content">
-    <img ng-class="{'glassed': cropMode}" class="img-thumbnail disable-drag" ng-if="imageId" ng-src="{{network_address + '/' + folder + '/' + imageId}}">
+    <img ng-class="{'glassed': cropMode}" class="img-thumbnail disable-drag" ng-if="imageId" ng-src="{{folder + '/' + imageId}}">
     <div ng-if="!imageId" class="overlay">
       <i class="fa fa-refresh fa-spin"></i>
     </div>

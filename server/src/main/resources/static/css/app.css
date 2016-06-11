@@ -749,7 +749,7 @@ ul.sidebar-menu.chain-menu a {
     width: 100%;
     height: 100%;
     position: absolute;
-    background: rgba(201, 235, 253, 0.38) url("/assets/arrow.png") no-repeat;
+    background: rgba(201, 235, 253, 0.38) url("assets/arrow.png") no-repeat;
     background-position-x: 73px;
     background-position-y: 73px;
     transition: background-color 100ms; }

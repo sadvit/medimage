@@ -87,7 +87,7 @@
           <div ng-repeat="image in resultImages" class="image-tile medium selectable" ng-class="[image]"
                ng-click="selectResultImage(image)">
             <div class="selector"></div>
-            <img ng-if="image" ng-src="{{network_address + '/temp/' + image}}">
+            <img ng-if="image" ng-src="{{'temp/' + image}}">
           </div>
         </div>
       </div>
