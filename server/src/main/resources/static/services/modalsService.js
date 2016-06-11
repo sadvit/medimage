@@ -5,7 +5,7 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
   this.showBinaryModal = function (apply, cancel, binaryParams) {
     var modalInstance = $uibModal.open({
       animation: true,
-      templateUrl: '/modals/binary/modalBinaryTemplate.html',
+      templateUrl: 'modals/binary/modalBinaryTemplate.html',
       controller: 'modalBinaryController',
       resolve: {
         binaryParams: function () {
@@ -19,7 +19,7 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
   this.showBlurModal = function (apply, cancel, blurParams) {
     var modalInstance = $uibModal.open({
       animation: true,
-      templateUrl: '/modals/blur/modalBlurTemplate.html',
+      templateUrl: 'modals/blur/modalBlurTemplate.html',
       controller: 'modalBlurController',
       resolve: {
         blurParams: function () {
@@ -33,7 +33,7 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
   this.showHistogramEqualizeModal = function (apply, cancel, equalizeParams) {
     var modalInstance = $uibModal.open({
       animation: true,
-      templateUrl: '/modals/histogramEqualize/modalHistogramEqualizeTemplate.html',
+      templateUrl: 'modals/histogramEqualize/modalHistogramEqualizeTemplate.html',
       controller: 'modalHistogramEqualizeController',
       resolve: {
         equalizeParams: function () {
@@ -47,7 +47,7 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
   this.showCannyModal = function (apply, cancel, cannyParams) {
     var modalInstance = $uibModal.open({
       animation: true,
-      templateUrl: '/modals/canny/modalCannyTemplate.html',
+      templateUrl: 'modals/canny/modalCannyTemplate.html',
       controller: 'modalCannyController',
       resolve: {
         cannyParams: function () {
@@ -61,7 +61,7 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
   this.showChainModal = function (apply, cancel) {
     var modalInstance = $uibModal.open({
       animation: true,
-      templateUrl: '/modals/chain/modalChainTemplate.html',
+      templateUrl: 'modals/chain/modalChainTemplate.html',
       controller: 'modalChainController'
     });
     modalInstance.result.then(apply, cancel);
@@ -70,7 +70,7 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
   this.showRecognizeModal = function (apply, cancel) {
     var modalInstance = $uibModal.open({
       animation: true,
-      templateUrl: '/modals/recognize/modalRecognizeTemplate.html',
+      templateUrl: 'modals/recognize/modalRecognizeTemplate.html',
       controller: 'modalRecognizeController'
     });
     modalInstance.result.then(apply, cancel);
@@ -82,7 +82,7 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
       backdrop: 'static',
       keyboard: false,
       openedClass: 'modal-warning',
-      templateUrl: '/modals/error/modalErrorTemplate.html',
+      templateUrl: 'modals/error/modalErrorTemplate.html',
       controller: 'modalErrorController',
       resolve: {
         error: function () {
@@ -99,7 +99,7 @@ angular.module('medimage').service('modalsService', ['$uibModal', function ($uib
       backdrop: 'static',
       keyboard: false,
       openedClass: 'modal-primary',
-      templateUrl: '/modals/success/modalSuccessTemplate.html',
+      templateUrl: 'modals/success/modalSuccessTemplate.html',
       controller: 'modalSuccessController',
       resolve: {
         success: function () {
