@@ -4,13 +4,12 @@ import boofcv.alg.misc.ImageStatistics;
 import boofcv.io.image.ConvertBufferedImage;
 import boofcv.struct.image.ImageUInt8;
 import com.sadvit.to.StatisticTO;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.awt.image.BufferedImage;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by sadvit on 4/23/16.
@@ -22,17 +21,14 @@ public class StatisticService {
     private ImageService imageService;
 
     public StatisticTO getStatistic(String imageId) {
-
         StatisticTO info = new StatisticTO();
-
         BufferedImage buffered = imageService.getBufferedImage(imageId);
         ImageUInt8 gray = ConvertBufferedImage.convertFrom(buffered, (ImageUInt8) null);
-
-        int histogram[] = new int[256];
-
+        int[] histogram = new int[256];
         ImageStatistics.histogram(gray, histogram);
-
-        double max = (double) Arrays.stream(histogram).max().getAsInt();
+        Integer[] ints = ArrayUtils.toObject(histogram);
+        List<Integer> integers = Arrays.asList(ints);
+        double max = (double) Collections.min(integers);
 
         Map<Integer, Integer> res = new HashMap<>();
         for (int i = 0; i < histogram.length; i++) {

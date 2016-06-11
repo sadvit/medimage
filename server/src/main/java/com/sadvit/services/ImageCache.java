@@ -51,9 +51,9 @@ public class ImageCache {
 
     public List<String> saveFromCache(List<String> images) {
         List<String> imageIds = new ArrayList<>();
-        images.forEach(image -> {
+        for (String image : images) {
             imageIds.add(imageService.saveImage(getBuffered(image)));
-        });
+        }
         return imageIds;
     }
 

@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by sadvit on 4/16/16.
@@ -33,9 +33,11 @@ public class NetworkService {
 
     public List<NetworkTO> getNetworks(Long userId) {
         List<Network> networks = networkRepository.findByUserId(userId);
-        return networks.stream()
-                .map(network -> conversionService.convert(network, NetworkTO.class))
-                .collect(Collectors.toList());
+        List<NetworkTO> networkTOs = new ArrayList<>();
+        for (Network network: networks) {
+            networkTOs.add(conversionService.convert(network, NetworkTO.class));
+        }
+        return networkTOs;
     }
 
     public Network addNetwork(Long userId, Network network) {

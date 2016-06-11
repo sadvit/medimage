@@ -4,7 +4,6 @@ import com.sadvit.models.CacheObject;
 import com.sadvit.models.Chain;
 import com.sadvit.models.ChainElement;
 import com.sadvit.models.User;
-import com.sadvit.operations.histogramEqualize.HistogramEqualizeParams;
 import com.sadvit.repositories.ChainRepository;
 import com.sadvit.repositories.UserRepository;
 import com.sadvit.to.ChainRequestTO;
@@ -14,9 +13,9 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static com.sadvit.utils.FileUtils.toByteArray;
 
@@ -65,9 +64,11 @@ public class ChainService {
     }
 
     public List<CacheObject> process(List<String> images, Chain chain) {
-        return images.stream()
-                .map(image -> processChain(image, chain))
-                .collect(Collectors.toList());
+        List<CacheObject> results = new ArrayList<>();
+        for (String image : images) {
+            results.add(processChain(image, chain));
+        }
+        return results;
     }
 
     public boolean isExistingChain(ChainRequestTO request) {
@@ -105,9 +106,12 @@ public class ChainService {
 
     public List<ChainTO> getChains(Long userId) {
         Set<Chain> chains = chainRepository.findByUserId(userId);
-        return chains.stream()
-                .map(chain -> conversionService.convert(chain, ChainTO.class))
-                .collect(Collectors.toList());
+        List<ChainTO> result = new ArrayList<>();
+        for (Chain chain : chains) {
+            ChainTO convert = conversionService.convert(chain, ChainTO.class);
+            result.add(convert);
+        }
+        return result;
     }
 
     public ChainTO saveChain(Long userId, ChainTO chainTO) {

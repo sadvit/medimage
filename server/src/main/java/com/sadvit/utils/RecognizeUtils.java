@@ -3,10 +3,10 @@ package com.sadvit.utils;
 import com.sadvit.to.ResultTO;
 import com.sadvit.to.ValueTO;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
 
 /**
  * Created by sadvit on 4/3/16.
@@ -37,7 +37,9 @@ public class RecognizeUtils {
         for (ValueTO value : recognizeResult.getValues()) {
             result.add(value.getValue());
         }
-        return result.stream().collect(Collectors.toList());
+        List<String> answers = new ArrayList<>();
+        answers.addAll(result);
+        return answers;
     }
 
 }
