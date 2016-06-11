@@ -1,0 +1,158 @@
+<div header></div>
+<div recognize-menu-left></div>
+
+<div class="recognize-container">
+  <div class="row main">
+
+    <div class="col-md-4 chains-block anim-colm">
+      <div ng-scrollbars class="content">
+        <ul class="sidebar-menu shift-menu">
+          <li class="panel-header border"><a><span>SELECT CHAIN</span></a></li>
+          <li ng-repeat="chain in chains" ng-click="selectChain($event, chain)"
+              ng-class="{'selected' : chain.id == selectedChain.id}">
+            <a><i class="fa fa-circle-o text-yellow"></i><span>{{chain.name}}</span><i
+              class="fa fa-play yellow"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-4 input-block anim-colm">
+      <div class="panel-header border-right">
+        <a><span>SELECT USER IMAGES</span></a>
+      </div>
+
+      <div ng-scrollbars class="input-image-content">
+        <div class="input-image-folder">
+          <div ng-repeat="image in images" class="image-tile medium selectable" ng-class="[image]"
+               ng-click="selectUserImage(image)">
+            <div class="selector"></div>
+            <img ng-if="image" ng-src="{{network_address + '/images/' + image}}">
+          </div>
+        </div>
+      </div>
+
+      <div class="input-image-button shift" ng-click="inputBlockClick()"
+           ng-class="{'disabled' : selectedImages.length == 0}">
+        <a>
+          <span ng-if="!isLearnMode">RECOGNIZE IMAGES</span>
+          <span ng-if="isLearnMode">TRAIN IMAGES</span>
+          <i class="fa fa-play yellow"></i>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="col-md-4 output-block anim-colm">
+      <div class="panel-header">
+        <a>
+          <span ng-if="!isLearnMode">RECOGNIZE RESULTS</span>
+          <span ng-if="isLearnMode">ENTER RECOGNIZE RESULTS</span>
+        </a>
+      </div>
+
+      <div ng-if="isLoading" class="spinner">
+        <div class="sk-fading-circle">
+          <div class="sk-circle1 sk-circle"></div>
+          <div class="sk-circle2 sk-circle"></div>
+          <div class="sk-circle3 sk-circle"></div>
+          <div class="sk-circle4 sk-circle"></div>
+          <div class="sk-circle5 sk-circle"></div>
+          <div class="sk-circle6 sk-circle"></div>
+          <div class="sk-circle7 sk-circle"></div>
+          <div class="sk-circle8 sk-circle"></div>
+          <div class="sk-circle9 sk-circle"></div>
+          <div class="sk-circle10 sk-circle"></div>
+          <div class="sk-circle11 sk-circle"></div>
+          <div class="sk-circle12 sk-circle"></div>
+        </div>
+      </div>
+
+      <div ng-if="!isLoading" ng-scrollbars class="output-image-content">
+        <div class="output-image-folder">
+
+          <table class="table table-bordered results">
+            <tbody>
+            <tr class="table-head">
+              <th>#</th>
+              <th>ORIGINAL</th>
+              <th>PROCESS</th>
+              <th ng-if="isLearnMode" class="table-learn" style="width: 99%">
+                <form class="form-horizontal">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label class="col-sm-5 control-label">Enter network name:</label>
+                      <div class="col-sm-7">
+                        <input spellcheck="false" type="text" ng-model="recognizeResult.name" class="form-control"
+                               placeholder="Network name">
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </th>
+              <th ng-if="!isLearnMode" style="width: 99%">RESULTS</th>
+            </tr>
+
+            <tr ng-repeat="result in recognizeResult.values"
+                ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
+              <td class="middle-cell first-child">
+                <span>{{$index + 1}}</span>
+              </td>
+              <td>
+                <div class="image-tile small">
+                  <img ng-if="result.imageId" ng-src="{{network_address + '/images/' + result.imageId}}">
+                </div>
+              </td>
+              <td>
+                <div class="image-tile small">
+                  <img ng-if="result.tempId" ng-src="{{network_address + '/temp/' + result.tempId}}">
+                </div>
+              </td>
+              <td class="last-child">
+                <div ng-if="isLearnMode">
+                  <form class="form-horizontal">
+                    <div class="box-body">
+                      <div class="form-group">
+                        <label class="col-sm-5 control-label">Enter type of object:</label>
+                        <div class="col-sm-7">
+                          <input spellcheck="false" type="text" ng-model="result.value" class="form-control"
+                                 placeholder="Class name">
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div ng-if="!isLearnMode">
+                  <form class="form-horizontal">
+                    <div class="box-body">
+                      <div class="form-group">
+                        <label class="col-sm-12 control-label left">{{result.value}}</label>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div ng-click="outputBlockClick()" class="input-image-button save">
+        <a>
+          <span ng-if="!isLearnMode">SAVE RESULTS</span>
+          <span ng-if="isLearnMode">SAVE TRAIN</span>
+          <i class="fa fa-save yellow"></i>
+        </a>
+      </div>
+
+    </div>
+
+    <div ng-if="noData" class="no-data">
+      <span ng-if="noData.network">Select network</span>
+      <span ng-if="noData.chain">Select chain</span>
+      <span ng-if="noData.images">Select images</span>
+    </div>
+
+  </div>
+</div>

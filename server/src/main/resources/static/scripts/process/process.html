@@ -1,0 +1,15 @@
+<div header></div>
+<div process-menu-right></div>
+<div process-menu-left></div>
+
+<div class="image-container box box-widget ">
+  <div class="content">
+    <img ng-class="{'glassed': cropMode}" class="img-thumbnail disable-drag" ng-if="imageId" ng-src="{{network_address + '/' + folder + '/' + imageId}}">
+    <div ng-if="!imageId" class="overlay">
+      <i class="fa fa-refresh fa-spin"></i>
+    </div>
+  </div>
+</div>
+
+<!--<div id="rect" class="modal-dialog" style="border: 2px solid black; opacity: 0.5; background: #222D32">
+</div>-->

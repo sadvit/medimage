@@ -11,7 +11,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       url: '/login',
       views: {
         'content': {
-          templateUrl: 'login/login.html',
+          templateUrl: 'scripts/login/login.html',
           controller: 'loginController'
         }
       }
@@ -20,7 +20,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       url: '/process/:imageId',
       views: {
         'content': {
-          templateUrl: 'elements/process/process.html',
+          templateUrl: 'scripts/elements/process/process.html',
           controller: 'processController'
         }
       }
@@ -29,7 +29,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       url: '/images',
       views: {
         'content': {
-          templateUrl: 'elements/images/images.html',
+          templateUrl: 'scripts/elements/images/images.html',
           controller: 'imagesController'
         }
       }
@@ -38,7 +38,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       url: '/chains',
       views: {
         'content': {
-          templateUrl: 'elements/chains/chains.html',
+          templateUrl: 'scripts/elements/chains/chains.html',
           controller: 'chainsController'
         }
       }
@@ -47,7 +47,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       url: '/statistics/:imageId',
       views: {
         'content': {
-          templateUrl: 'elements/statistics/statistics.html',
+          templateUrl: 'scripts/elements/statistics/statistics.html',
           controller: 'statisticsController'
         }
       }
@@ -56,7 +56,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       url: '/recognize',
       views: {
         'content': {
-          templateUrl: 'elements/recognize/recognize.html',
+          templateUrl: 'scripts/elements/recognize/recognize.html',
           controller: 'recognizeController'
         }
       }
@@ -65,7 +65,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       url: '/profile',
       views: {
         'content': {
-          templateUrl: 'profile/profile.html',
+          templateUrl: 'scripts/profile/profile.html',
           controller: 'profileController'
         }
       }
@@ -74,7 +74,7 @@ medimage.config(function ($stateProvider, $urlRouterProvider, RestangularProvide
       url: '/register',
       views: {
         'content': {
-          templateUrl: 'register/register.html',
+          templateUrl: 'scripts/register/register.html',
           controller: 'registerController'
         }
       }

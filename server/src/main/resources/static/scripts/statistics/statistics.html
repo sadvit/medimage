@@ -1,0 +1,190 @@
+<div header></div>
+<div statistics-menu-left></div>
+
+<div class="container-fluid statistics-container">
+
+  <div ng-scrollbars class="statistic-wrapper">
+
+    <div class="statistics-image" ng-if="isOneImage">
+
+      <section class="content-header">
+        <h1>Statistic for image</h1>
+      </section>
+
+      <section class="content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="box box-info">
+              <div class="box-header with-border">
+                <h3 class="box-title">Image details</h3>
+              </div>
+              <form class="form-horizontal">
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="image-tile medium zoomable">
+                        <img ng-src="{{network_address + '/images/' + imageId}}">
+                      </div>
+                    </div>
+                    <div class="col-md-7">
+                      <div class="form-group margin">
+                        <label class="col-sm-4 control-label">Name:</label>
+                        <label class="col-sm-8 control-label"><b>{{imageInfo.name}}</b></label>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Height:</label>
+                        <label class="col-sm-8 control-label"><b>{{imageInfo.height}}px</b></label>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Width:</label>
+                        <label class="col-sm-8 control-label"><b>{{imageInfo.width}}px</b></label>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Format:</label>
+                        <label class="col-sm-8 control-label"><b>{{imageInfo.format}}</b></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="box box-info">
+              <div class="box-header with-border">
+                <h3 class="box-title">Histogram</h3>
+              </div>
+              <form class="form-horizontal">
+                <div class="box-body">
+                  <canvas class="histogram" id="histogram" width="500" height="400"></canvas>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="statistics-history" ng-if="!isOneImage">
+
+      <section ng-if="leftResults.length == 0 && rightResults.length == 0" class="content">
+
+        <div class="no-data">
+          <span>History is empty</span>
+        </div>
+
+      </section>
+
+      <section ng-if="leftResults.length > 0 || rightResults.length > 0" class="content-header">
+        <h1>Recognize history</h1>
+      </section>
+
+      <section ng-if="leftResults.length > 0 || rightResults.length > 0" class="content">
+        <div class="row">
+
+          <div class="col-md-6">
+
+            <div ng-repeat="recognizeResult in leftResults" class="row">
+
+              <div class="col-md-12">
+                <div class="box box-info">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">{{recognizeResult.name}}</h3>
+                  </div>
+                  <form class="form-horizontal">
+
+                    <table class="table table-bordered results">
+                      <tbody>
+                      <tr class="table-head">
+                        <th>PROCESSED IMAGE</th>
+                        <th>RECOGNIZE RESULT</th>
+                      </tr>
+
+                      <tr ng-repeat="result in recognizeResult.values"
+                          ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
+                        <td>
+                          <div class="image-tile medium">
+                            <img ng-if="result.imageId" ng-src="{{network_address + '/images/' + result.imageId}}">
+                          </div>
+                        </td>
+                        <td class="last-child">
+                          <div>
+                            <form class="form-horizontal">
+                              <div class="box-body">
+                                <div class="form-group">
+                                  <label class="col-sm-12 control-label left">{{result.value}}</label>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </form>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-6">
+
+            <div ng-repeat="recognizeResult in rightResults" class="row">
+
+              <div class="col-md-12">
+                <div class="box box-info">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">{{recognizeResult.name}}</h3>
+                  </div>
+                  <form class="form-horizontal">
+
+                    <table class="table table-bordered results">
+                      <tbody>
+                      <tr class="table-head">
+                        <th>PROCESSED IMAGE</th>
+                        <th>RECOGNIZE RESULT</th>
+                      </tr>
+
+                      <tr ng-repeat="result in recognizeResult.values"
+                          ng-class="{'first-child' : $index == 0, 'last-child' : $index == imagesAfterChain.length - 1}">
+                        <td>
+                          <div class="image-tile medium">
+                            <img ng-if="result.imageId" ng-src="{{network_address + '/images/' + result.imageId}}">
+                          </div>
+                        </td>
+                        <td class="last-child">
+                          <div>
+                            <form class="form-horizontal">
+                              <div class="box-body">
+                                <div class="form-group">
+                                  <label class="col-sm-12 control-label left">{{result.value}}</label>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </form>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </div>
+
+</div>

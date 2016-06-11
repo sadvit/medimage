@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h4 class="modal-title">Enter chain name</h4>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal">
+    <div class="box-body">
+      <div class="form-group">
+        <label class="col-sm-3 control-label">Chain</label>
+        <div class="col-sm-9">
+          <input spellcheck="false" ng-model="name" type="text" class="form-control" placeholder="Name">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal" ng-click="cancel()">Close
+  </button>
+  <button type="button" class="btn btn-primary btn-flat" ng-click="apply()">Save</button>
+</div>

@@ -1,0 +1,108 @@
+<div header></div>
+<div chains-menu-left></div>
+
+<div class="chains-container">
+  <div class="row main">
+
+    <div class="col-md-4 chains-block anim-colm">
+
+      <div ng-scrollbars class="content">
+
+        <ul class="sidebar-menu chain-menu">
+          <li class="panel-header border"><a><span>CHAIN OPERATION LIST</span></a></li>
+
+          <li ng-show="chainEditor.isChainChanged" ng-click="saveChainChanges()" class="save-button">
+            <a><span>SAVE CHAIN</span><i class="fa fa-save yellow"></i></a>
+          </li>
+        </ul>
+
+        <ul dnd-list="chainElements" class="sidebar-menu chain-menu">
+
+          <li ng-repeat="chainElement in chainElements"
+              dnd-draggable="chainElement"
+              dnd-moved="chainElements.splice($index , 1)"
+              dnd-effect-allowed="move">
+            <a draggable="true">
+              <i ng-click="chainEditor.changeOperation($index)" class="fa fa-gears chain-options"></i>
+              <span>{{chainElement.operationType}}</span>
+              <i ng-click="chainEditor.removeOperation($index)" class="fa fa-times chain-close"></i>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div ng-click="showInputBlock()" class="input-image-button shift">
+        <a><span>SELECT IMAGES</span><i class="fa fa-play yellow"></i></a>
+      </div>
+
+    </div>
+
+    <div class="col-md-4 input-block anim-colm">
+      <div class="panel-header border-right">
+        <a><span>SELECT USER IMAGES</span></a>
+      </div>
+
+      <div ng-scrollbars class="input-image-content">
+        <div class="input-image-folder">
+          <div ng-repeat="image in images" class="image-tile medium selectable" ng-class="[image]"
+               ng-click="selectUserImage(image)">
+            <div class="selector"></div>
+            <img ng-if="image" ng-src="{{network_address + '/images/' + image}}">
+          </div>
+        </div>
+      </div>
+
+      <div ng-click="processImages()" class="input-image-button shift"
+           ng-class="{'disabled' : selectedImages.length == 0}">
+        <a><span>PROCESS IMAGES</span><i class="fa fa-play yellow"></i></a>
+      </div>
+    </div>
+
+    <div class="col-md-4 output-block anim-colm">
+      <div class="panel-header">
+        <a><span>RESULTS PROCESSING</span></a>
+      </div>
+
+      <div ng-if="isResultLoading" class="spinner">
+        <div class="sk-fading-circle">
+          <div class="sk-circle1 sk-circle"></div>
+          <div class="sk-circle2 sk-circle"></div>
+          <div class="sk-circle3 sk-circle"></div>
+          <div class="sk-circle4 sk-circle"></div>
+          <div class="sk-circle5 sk-circle"></div>
+          <div class="sk-circle6 sk-circle"></div>
+          <div class="sk-circle7 sk-circle"></div>
+          <div class="sk-circle8 sk-circle"></div>
+          <div class="sk-circle9 sk-circle"></div>
+          <div class="sk-circle10 sk-circle"></div>
+          <div class="sk-circle11 sk-circle"></div>
+          <div class="sk-circle12 sk-circle"></div>
+        </div>
+      </div>
+
+      <div ng-if="resultImages.length > 0" ng-scrollbars class="output-image-content">
+        <div class="output-image-folder">
+          <!-- selectedImages -->
+          <div ng-repeat="image in resultImages" class="image-tile medium selectable" ng-class="[image]"
+               ng-click="selectResultImage(image)">
+            <div class="selector"></div>
+            <img ng-if="image" ng-src="{{network_address + '/temp/' + image}}">
+          </div>
+        </div>
+      </div>
+
+      <div ng-click="saveResult()" class="input-image-button save" ng-class="{'disabled' : imageToSave.length == 0}">
+        <a><span>SAVE IMAGES</span><i class="fa fa-save yellow"></i></a>
+      </div>
+
+    </div>
+
+    <div ng-if="noData" class="no-data">
+      <span ng-if="noData.selectChain">Select chain</span>
+      <span ng-if="noData.applyChain">Apply chain</span>
+      <span ng-if="noData.images">Select images</span>
+    </div>
+
+  </div>
+</div>
